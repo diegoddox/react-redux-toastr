@@ -15,12 +15,11 @@ export class ReduxToastr extends Component {
   static displayName = 'ReduxToastr'
 
   static propTypes = {
-    timeout: PropTypes.number,
+    toastrs: PropTypes.array,
     position: PropTypes.string
   }
 
   static defaultProps = {
-    timeout: 3000,
     position: 'top-right'
   }
 
