@@ -7,7 +7,7 @@
     "dev": "webpack --watch --config webpack.base.js",
     "build": "babel src --out-dir lib",
     "lint": "eslint . --ext .js --ext .jsx || true",
-    "build-less": "lessc src/less/redux-toastr.less --clean-css dist/css/redux-toastr.min.css && lessc src/less/redux-toastr.less dist/css/redux-toastr.css",
+    "less": "lessc src/less/redux-toastr.less --clean-css lib/css/redux-toastr.min.css && lessc src/less/redux-toastr.less lib/css/redux-toastr.css",
     "clean": "node_modules/.bin/rimraf dist lib"
   },
   "author": [
