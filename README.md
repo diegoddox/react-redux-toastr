@@ -5,7 +5,19 @@
 `npm install --save redux-toastr` or `npm i --save redux-toastr`
 
 ##### 2. Link `redux-toastr` styles to your app
-comming soon. 
+comming soon.
+
+##### NOTE: I'm using google font
+```
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+```
+but you can use the font you want just include the font and change the css like.
+
+```
+.redux-toastr-message-holder {
+  font-family: 'You font name here', sans-serif;
+}
+```
 
 ##### 3. The third thing you need to do is to add the `redux-toastr` `reducer to Redux.
 
