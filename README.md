@@ -4,7 +4,7 @@
 
 `npm install --save redux-toastr` or `npm i --save redux-toastr`
 
-### 2. Link `redux-toastr` styles to your app
+##### 2. Link `redux-toastr` styles to your app
 comming soon. 
 
 ### 3. The third thing you need to do is to add the `redux-toastr` `reducer to Redux.
@@ -22,7 +22,7 @@ const store = createStore(reducer);
 
 ##### NOTE: The default mount point for `redux-toastr` is `toastr`.
 
-### 4. Add the `redux-toastr` component to the root of your app
+##### 4. Add the `redux-toastr` component to the root of your app
 
 ```
 import ReduxToastr from 'redux-toastr'
@@ -34,7 +34,7 @@ import ReduxToastr from 'redux-toastr'
 </Provider>
 ```
 
-### 5. Add the `toastr` 
+##### 5. Add the `toastr` 
 The toastr method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
 ```
@@ -92,7 +92,7 @@ export class YouComponent extends Component {
 }
 ```
 
-### Toastr method
+##### Toastr method
 `success` `info` `warning` `error`
 Each method can take up to three arguments.
 
@@ -113,7 +113,7 @@ toastr.warning('The message'});
 toastr.error('The message'});
 ```
 
-### Toastr icons
+##### Toastr icons
 By default `redux-toastr` provides a icon for `success`, `info`, `warning` and `error`
 but you can override by passing a object `{icon: 'icon-name'}` to the `toastr` method.
 
