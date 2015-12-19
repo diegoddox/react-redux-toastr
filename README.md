@@ -85,7 +85,7 @@ export class YouComponent extends Component {
     return (
       <div>
         <button
-          onClick={this.handleOnClick}
+          onClick={e => this.handleOnClick(e)}
           type="button">Toastr Success</button>
       </div>
     );
