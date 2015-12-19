@@ -7,7 +7,7 @@
 ##### 2. Link `redux-toastr` styles to your app
 comming soon. 
 
-### 3. The third thing you need to do is to add the `redux-toastr` `reducer to Redux.
+##### 3. The third thing you need to do is to add the `redux-toastr` `reducer to Redux.
 
 ```
 import {createStore, combineReducers} from 'redux';
