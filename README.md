@@ -1,6 +1,6 @@
 ## Implementation Guide
 
-### 1. Install redux-toastr
+#### 1. Install redux-toastr
 
 `npm install --save redux-toastr` or `npm i --save redux-toastr`
 
@@ -76,7 +76,8 @@ export class YouComponent extends Component {
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  handleOnClick() {
+  handleOnClick(e) {
+    e.preventDefault();
     this.toastr.success('Lorem ipsum dolor sit amet.');
   }
 
@@ -84,7 +85,7 @@ export class YouComponent extends Component {
     return (
       <div>
         <button
-          onClick={() => this.handleOnClick()}
+          onClick={this.handleOnClick}
           type="button">Toastr Success</button>
       </div>
     );
