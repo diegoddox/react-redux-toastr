@@ -158,7 +158,7 @@ export default class ToastrBox extends Component {
         <div className="icon-holder">
           <div className={iconClasses}></div>
         </div>
-        <div className="message-holder" onClick={this.handleClick}>
+        <div className="redux-toastr-message-holder" onClick={this.handleClick}>
           {toastr.title &&
           <div className="title">{toastr.title}</div>}
           {toastr.message &&
