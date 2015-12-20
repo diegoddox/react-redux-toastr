@@ -10,8 +10,7 @@ The reducer listens to dispatched actions from the component to maintain your st
 `npm install --save redux-toastr` or `npm i --save redux-toastr`
 
 ##### 2. Link `redux-toastr` styles to your app
-Yes your right github pages as cdn :D
-#####NOTE: This can be changed in the future
+#####NOTE: This can be changed at anytime
 ```
 <link href="http://diegoddox.github.io/redux-toastr/css/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
