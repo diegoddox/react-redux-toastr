@@ -1,4 +1,3 @@
-import _ from 'lodash';
 export function createReducer(initialState, fnMap) {
   return (state = initialState, {type, payload}) => {
     const handle = fnMap[type];
@@ -12,9 +11,9 @@ export function _bind(obj, ...methods) {
 
 export function checkPositionName(name) {
   const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-  const isValidName = _.contains(positions, name);
+  const isValidName = positions.indexOf(name);
 
-  if (isValidName) {
+  if (isValidName > -1) {
     return name;
   }
   return positions[0];
@@ -28,27 +27,43 @@ export function mapToToastrMessage(type, array) {
     options: {}
   };
 
-  if (array.length > 1 && _.isString(array[0]) && _.isString(array[1])) {
+  if(!array.length) {
+    console.error('REDUX-TOASTR ERROR:: The toastr method: ' + type + ' cannot be empty', array);
+    return false;
+  }
+
+  const options = array.filter(hasObject)[0];
+  if (options) {
+    obj.options = options;
+  }
+
+  if (array.length > 1 && isString(array[0]) && isString(array[1])) {
     obj.title = array[0];
     obj.message = array[1];
-
-    if (array[2] && _.isObject(array[2])) {
-      obj.options = applyOptions(array[2]);
-    } else if (array[1] && _.isObject(array[1])) {
-      obj.options = applyOptions(array[1]);
-    }
-  } else {
+  } else if (isString(array[0])){
     obj.message = array[0];
+  } else {
+    console.error('REDUX-TOASTR ERROR:: The first arguments most be a string', array);
+    return false;
   }
 
-  function applyOptions(options) {
-    if (options.icon) {
-      const hasIconPrefix = options.icon.toLowerCase().match('icon-');
-      if (!hasIconPrefix) {
-        options.icon = 'icon-' + obj.options.icon;
-      }
-    }
-    return options;
-  }
   return obj;
+}
+export function hasProperty(obj, property) {
+  if (obj == null) {
+    return false;
+  }
+  return typeof obj[property] !== 'undefined';
+} 
+
+function isString(obj) {
+  if (typeof obj == 'string') {
+    return true;
+  }
+  return false;
+}
+  
+
+function hasObject(item) {
+  return item.icon || item.timOut || item.onShowComplete || item.onHideComplete || item.icon;
 }

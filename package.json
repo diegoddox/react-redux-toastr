@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack --watch --config webpack.base.js",
     "build": "babel src --out-dir lib",
+    "build:w": "babel -w src --out-dir lib",
     "lint": "eslint . --ext .js --ext .jsx || true",
     "less": "lessc src/less/redux-toastr.less --clean-css lib/css/redux-toastr.min.css && lessc src/less/redux-toastr.less lib/css/redux-toastr.css",
     "clean": "node_modules/.bin/rimraf dist lib"
@@ -79,7 +80,6 @@
     "classnames": "^2.2.1",
     "cuid": "^1.3.8",
     "eventemitter3": "^1.1.1",
-    "lodash": "^3.10.1",
     "react-dom": "^0.14.2"
   },
   "npmName": "redux-toastr"
