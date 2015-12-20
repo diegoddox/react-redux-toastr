@@ -10,13 +10,34 @@ The reducer listens to dispatched actions from the component to maintain your st
 `npm install --save redux-toastr` or `npm i --save redux-toastr`
 
 ##### 2. Link `redux-toastr` styles to your app
-comming soon.
+Until the project does not have a cdn for the style you can import the style from the lib but you will need to bundle your project with webpack.
+
+In your main component
+```
+import 'redux-toastr/lib/css/redux-toastr.css';
+```
+
+First install the webpack loaders 
+`npm install --save-dev style-loader css-loader url-loader`
+
+In your webpack.config.js
+```
+{
+  test: /\.css$/,
+  loader: "style-loader!css-loader"
+}, {
+  test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
+  loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
+}
+```
+
+
 
 ##### NOTE: I'm using google font
 ```
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
 ```
-but you can use the font you want just include the font and change the css like.
+but you can use the font you want just include the font and change the css.
 
 ```
 .redux-toastr-message-holder {
