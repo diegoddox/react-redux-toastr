@@ -1,3 +1,5 @@
+`redux-toastr` is a react toast message
+
 ## Implementation Guide
 
 #### 1. Install redux-toastr
@@ -105,7 +107,7 @@ export class YouComponent extends Component {
 }
 ```
 
-##### Toastr method
+## Toastr method
 `success` `info` `warning` `error`
 Each method can take up to three arguments.
 
@@ -125,6 +127,14 @@ toastr.info('The message', {timeOut: 7000, icon: 'icons'});
 toastr.warning('The message'});
 toastr.error('The message'});
 ```
+
+#### toastr method options
+| options          |         |
+| -----------------|:-------:|
+| `timeOut`        | number  |
+| `icon`           | string  |
+| `onShowComplete` | func    |
+| `onHideComplete` | func    |
 
 ##### Toastr icons
 By default `redux-toastr` provides a icon for `success`, `info`, `warning` and `error`
