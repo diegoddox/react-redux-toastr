@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "syntax-class-properties",
+    "transform-class-properties",
+    "syntax-decorators",
+    "transform-es2015-arrow-functions",
+    "transform-es2015-block-scoping"
+  ],
+  "presets": ["stage-0", "react", "es2015"]
+}

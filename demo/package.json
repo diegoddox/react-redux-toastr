@@ -1,0 +1,30 @@
+{
+  "name": "redux-toastr-demo",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node_modules/.bin/webpack-dev-server"
+  },
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-syntax-class-properties": "^6.1.18",
+    "babel-plugin-syntax-decorators": "^6.1.18",
+    "babel-plugin-transform-class-properties": "^6.2.2",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.1.18",
+    "babel-plugin-transform-es2015-block-scoping": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-0": "^6.3.13",
+    "html-webpack-plugin": "^1.6.2",
+    "webpack": "^1.12.4",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-redux": "^4.0.0",
+    "redux-toastr": "*",
+    "redux": "^3.0.4"
+  }
+}
