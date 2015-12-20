@@ -19,6 +19,7 @@ import 'redux-toastr/lib/css/redux-toastr.css';
 
 First install the webpack loaders 
 `npm install --save-dev style-loader css-loader url-loader`
+[style-loader](https://github.com/webpack/style-loader) [css-loader](https://github.com/webpack/css-loader) [url-loader](https://github.com/webpack/url-loader)
 
 In your webpack.config.js
 ```
