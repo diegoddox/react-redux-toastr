@@ -65,5 +65,5 @@ function isString(obj) {
   
 
 function hasObject(item) {
-  return item.icon || item.timOut || item.onShowComplete || item.onHideComplete || item.icon;
+  return item.icon || item.timeOut || item.onShowComplete || item.onHideComplete || item.icon;
 }
