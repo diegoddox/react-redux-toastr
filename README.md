@@ -26,7 +26,7 @@ but you can use the font you want just include the font and change the css.
 }
 ```
 
-##### 3. The third thing you need to do is to add the `redux-toastr` `reducer to Redux.
+##### 3. The third thing you need to do is to add the `redux-toastr` reducer to Redux.
 
 ```
 import {createStore, combineReducers} from 'redux';
@@ -144,6 +144,15 @@ toastr.error('The message'});
 ##### Toastr icons
 By default `redux-toastr` provides a icon for `success`, `info`, `warning` and `error`
 but you can override by passing a object `{icon: 'icon-name'}` to the `toastr` method.
+
+# Run a local demo
+```
+git clone https://github.com/diegoddox/redux-toastr.git
+cd redux-toastr/demo/
+npm install
+npm start
+```
+open your browser at `http://localhost:3000`
 
 # TODO
 create test.
