@@ -312,24 +312,24 @@
   margin-top: -11px;
   margin-left: -11px;
 }
-.redux-toastr .redux-toastr-box .message-holder {
+.redux-toastr .redux-toastr-box .redux-toastr-message-holder {
   width: 75%;
   margin-left: 15%;
   font-family: 'Open Sans Condensed', sans-serif;
   padding: 5px 0;
 }
-.redux-toastr .redux-toastr-box .message-holder:hover {
+.redux-toastr .redux-toastr-box .redux-toastr-message-holder:hover {
   cursor: pointer;
 }
-.redux-toastr .redux-toastr-box .message-holder .title:first-letter,
-.redux-toastr .redux-toastr-box .message-holder .message:first-letter {
+.redux-toastr .redux-toastr-box .redux-toastr-message-holder .title:first-letter,
+.redux-toastr .redux-toastr-box .redux-toastr-message-holder .message:first-letter {
   text-transform: capitalize;
 }
-.redux-toastr .redux-toastr-box .message-holder .title {
+.redux-toastr .redux-toastr-box .redux-toastr-message-holder .title {
   font-size: 1em;
   font-weight: 700;
 }
-.redux-toastr .redux-toastr-box .message-holder .message {
+.redux-toastr .redux-toastr-box .redux-toastr-message-holder .message {
   font-size: 1em;
 }
 .redux-toastr .redux-toastr-box:hover {

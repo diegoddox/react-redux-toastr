@@ -2,9 +2,8 @@ import CSSCore from 'fbjs/lib/CSSCore';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
 
-import {_bind} from './utils';
+import {_bind, hasProperty} from './utils';
 
 
 export default class ToastrBox extends Component {
@@ -32,6 +31,7 @@ export default class ToastrBox extends Component {
       'mouseLeave',
       'handleClick',
       'removeToastr',
+      'onAnimationComplite',
       '_setTransition',
       '_clearTransition',
       '_setIntervalId',
@@ -49,23 +49,33 @@ export default class ToastrBox extends Component {
 
     const node = this.toastrBox;
     const {remove, timeOut, toastr} = this.props;
-    const time = _.has(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut;
+    const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut;
 
-    const onRemoveComplite = () => {
-      if (this.isHiding) {
-        this._setIsHiding(false);
-        ReactTransitionEvents.removeEndEventListener(node, onRemoveComplite);
-        remove(toastr.id);
-      }
-    };
-
-    ReactTransitionEvents.addEndEventListener(node, onRemoveComplite);
+    ReactTransitionEvents.addEndEventListener(node, this.onAnimationComplite);
     this._setIntervalId(setTimeout(this.removeToastr, time));
   }
 
   componentWillUnmount() {
     if (this.intervalId) {
       clearTimeout(this.intervalId);
+    }
+  }
+
+  onAnimationComplite() {
+    const {remove, toastr} = this.props;
+
+    if (this.isHiding) {
+      this._setIsHiding(false);
+      ReactTransitionEvents.removeEndEventListener(this.toastrBox, this.onAnimationComplite);
+      remove(toastr.id);
+
+      if (hasProperty(toastr.options, 'onHideComplete')) {
+        toastr.options.onHideComplete && toastr.options.onHideComplete();
+      }
+    } else if (!this.isHiding) {
+      if (hasProperty(toastr.options, 'onShowComplete')) {
+        toastr.options.onShowComplete && toastr.options.onShowComplete();
+      }
     }
   }
 
@@ -135,7 +145,7 @@ export default class ToastrBox extends Component {
     let classIcon = null;
     const classes = classnames('redux-toastr-box', 'animated', toastr.type);
 
-    if (_.has(toastr.options, 'icon')) {
+    if (hasProperty(toastr.options, 'icon')) {
       classIcon = toastr.options.icon;
     } else {
       classIcon = {
