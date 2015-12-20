@@ -1,4 +1,7 @@
-`redux-toastr` is a react toast message
+`redux-toastr` is a toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a Redux reducer, `redux-toastr` toastr emitter and a React component.
+
+The reducer listens to dispatched actions from the component to maintain your state in Redux.
+`redux-toastr` [demo](http://diegoddox.github.io/redux-toastr/)
 
 ## Implementation Guide
 
