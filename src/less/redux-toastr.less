@@ -29,13 +29,12 @@
     background-color: #fcfcfc;
     width: 310px;
     min-height: 40px;
-    height: auto;
     margin-bottom: 10px;
     border-radius: 4px;
     position: relative;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
-    color: white;
+    color: #333;
 
     &.hide {
       display: none;
@@ -61,12 +60,17 @@
       }
     }
 
-    .redux-toastr-message-holder {
+    .message-holder {
       width: 75%;
       margin-left: 15%;
       font-family: 'Open Sans Condensed', sans-serif;
       text-align: left;
-      padding: 5px 0;
+      position: relative;
+
+      p {
+        padding: 5px;
+        margin: 0;
+      }
 
       &:hover {
         cursor: pointer;
@@ -93,18 +97,17 @@
       opacity: 1;
     }
 
+
+    &.info, &.success, &.warning, &.error {
+      color: white;
+    }
+
     &.info {
       background-color: #58abc3;
     }
 
     &.success {
       background-color: #60bb71;
-      button {
-        color: white;
-        &:hover {
-          color: #129b7b;
-        }
-      }
     }
 
     &.warning {
@@ -143,6 +146,58 @@
 
       &:focus {
         outline: 0;
+      }
+    }
+
+    &.message {
+      .icon-holder {
+        display: none;
+      }
+      padding-bottom: 10px;
+
+      .message-holder {
+        width: 100%;
+        margin-left: 0;
+
+        .title {
+          width: 90%;
+          height: 40px;
+          text-align: center;
+          overflow: hidden;
+          font-size: 1.2em;
+
+          p {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 1.1em;
+          }
+        }
+
+        .message {
+          width: 100%;
+          max-height: 400px;
+          overflow-y: auto;
+          border-top: 1px solid #f1f1f1;
+
+          p {
+            padding: 15px;
+            font-size: 1.1em;
+          }
+
+          img {
+            width: 100%;
+            margin: 10px 0;
+          }
+        }
+      }
+
+      button.close {
+        height: 42px;
+        color: #666;
       }
     }
   }

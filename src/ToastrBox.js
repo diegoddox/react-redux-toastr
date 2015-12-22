@@ -1,6 +1,6 @@
 import CSSCore from 'fbjs/lib/CSSCore';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
 import classnames from 'classnames';
 
 import {_bind, hasProperty} from './utils';
@@ -35,7 +35,8 @@ export default class ToastrBox extends Component {
       '_setTransition',
       '_clearTransition',
       '_setIntervalId',
-      '_setIsHiding'
+      '_setIsHiding',
+      '_renderMessage'
     );
   }
 
@@ -52,7 +53,9 @@ export default class ToastrBox extends Component {
     const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut;
 
     ReactTransitionEvents.addEndEventListener(node, this.onAnimationComplite);
-    this._setIntervalId(setTimeout(this.removeToastr, time));
+    if (toastr.type !== 'message') {
+      this._setIntervalId(setTimeout(this.removeToastr, time));
+    }
   }
 
   componentWillUnmount() {
@@ -95,7 +98,8 @@ export default class ToastrBox extends Component {
   }
 
   mouseLeave() {
-    if (!this.isHiding) {
+    const {toastr} = this.props;
+    if (!this.isHiding && toastr.type !== 'message') {
       this._setIntervalId(setTimeout(this.removeToastr, 1000));
     }
   }
@@ -140,6 +144,18 @@ export default class ToastrBox extends Component {
     this.isHiding = val;
   }
 
+  _renderMessage() {
+    const {toastr} = this.props;
+    let p = null;
+    if (toastr.type == 'message') {
+      p = <p dangerouslySetInnerHTML={{__html: toastr.message}}></p>
+    } else {
+      p = <p>{toastr.message}</p>
+    }
+
+    return <div className="message">{p}</div>
+  }
+
   render() {
     const {toastr} = this.props;
     let classIcon = null;
@@ -168,11 +184,10 @@ export default class ToastrBox extends Component {
         <div className="icon-holder">
           <div className={iconClasses}></div>
         </div>
-        <div className="redux-toastr-message-holder" onClick={this.handleClick}>
+        <div className="message-holder" onClick={this.handleClick}>
           {toastr.title &&
-          <div className="title">{toastr.title}</div>}
-          {toastr.message &&
-          <div className="message">{toastr.message}</div>}
+          <div className="title"><p>{toastr.title}</p></div>}
+          {this._renderMessage()}
         </div>
         <button onClick={this.handleClick} className="close icon-close-round"></button>
       </div>

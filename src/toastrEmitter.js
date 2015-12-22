@@ -4,6 +4,9 @@ const emitter = new EventEmitter();
 
 export const EE = emitter;
 export const toastrEmitter = {
+  message: (...args) => {
+    addToToastr('message', args);
+  },
   info: (...args) => {
     addToToastr('info', args);
   },
