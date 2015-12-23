@@ -1,6 +1,6 @@
 {
   "name": "redux-toastr",
-  "version": "0.2.3",
+  "version": "0.3.1",
   "description": "redux-toastr is a toastr message implemented with Redux",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "babel src --out-dir lib",
     "build:w": "babel -w src --out-dir lib",
     "lint": "eslint . --ext .js --ext .jsx || true",
-    "less": "lessc src/less/redux-toastr.less --clean-css lib/css/redux-toastr.min.css && lessc src/less/redux-toastr.less lib/css/redux-toastr.css",
+    "less": "lessc src/less/redux-toastr.less --clean-css lib/css/redux-toastr.min.css",
     "clean": "node_modules/.bin/rimraf dist lib"
   },
   "author": [

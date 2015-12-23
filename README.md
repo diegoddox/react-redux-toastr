@@ -7,41 +7,29 @@ The reducer listens to dispatched actions from the component to maintain your st
 
 #### 1. Install redux-toastr
 
-`npm install --save redux-toastr` or `npm i --save redux-toastr`
+`npm install --save redux-toastr`
 
 ##### 2. Link `redux-toastr` styles to your app
 #####NOTE: This can be changed at anytime
 ```
-<link href="http://diegoddox.github.io/redux-toastr/css/redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/redux-toastr/0.3.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
-##### NOTE: I'm using google font
-```
-<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
-```
-but you can use the font you want just include the font and change the css.
-
-```
-.redux-toastr-message-holder {
-  font-family: 'You font name here', sans-serif;
-}
-```
-
 ##### 3. The third thing you need to do is to add the `redux-toastr` reducer to Redux.
 
 ```
-import {createStore, combineReducers} from 'redux';
-import {reducer as toastrReducer}     from 'redux-toastr';
+import {createStore, combineReducers} from 'redux'
+import {reducer as toastrReducer} from 'redux-toastr'
 const reducers = {
   // ... other reducers ...
   toastr: toastrReducer     // <---- Mounted at toastr.
 }
-const reducer = combineReducers(reducers);
-const store = createStore(reducer);
+const reducer = combineReducers(reducers)
+const store = createStore(reducer)
 ```
 
 ##### NOTE: The default mount point for `redux-toastr` is `toastr`.
 
-##### 4. Add the `redux-toastr` component to the root of your app
+##### 4. Add the `redux-toastr` React component to the root of your app
 
 ```
 import ReduxToastr from 'redux-toastr'
@@ -57,61 +45,32 @@ import ReduxToastr from 'redux-toastr'
 The toastr method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
 ```
-import React, {Component, PropTypes}  from 'react';
-import {toastr}                       from 'redux-toastr';
+import React, {Component}  from 'react'
+import {toastr} from 'redux-toastr'
 
-export class YouComponent extends Component {
-  static displayName = 'YouComponent'
-
-  constructor(props) {
-    super(props);
-  }
-
+export class YourComponent extends Component {
   render() {
     return (
       <div>
         <button
-          onClick={() => toastr.success('Lorem ipsum dolor sit amet')}
+          onClick={() => toastr.success('The title', 'The message')}
           type="button">Toastr Success</button>
       </div>
-    );
+    )
   }
 }
 ```
-
-but you can also bind the `actions` to your component if you prefer.
-
+Or you can bind the `actions` to your component if you prefer.
 ```
-import React, {Component, PropTypes}  from 'react';
-import {bindActionCreators}           from 'redux';
-import {actions as toastrActions}     from 'redux-toastr';
-
-export class YouComponent extends Component {
-  static displayName = 'YouComponent'
-
-  constructor(props) {
-    super(props);
-    this.toastr = bindActionCreators(toastrActions, this.props.state.dispatch); //<-- bind the actions to your component
-    this.handleOnClick = this.handleOnClick.bind(this);
-  }
-
-  handleOnClick(e) {
-    e.preventDefault();
-    this.toastr.success('Lorem ipsum dolor sit amet.');
-  }
-
-  render() {
-    return (
-      <div>
-        <button
-          onClick={e => this.handleOnClick(e)}
-          type="button">Toastr Success</button>
-      </div>
-    );
-  }
+import {bindActionCreators} from 'redux'
+import {actions as toastrActions} from 'redux-toastr'
+// In your React component
+constructor(props) {
+  super(props);
+  // Bind the redux-toastr actions to the component
+  this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
 }
 ```
-
 ## Toastr method
 `success` `info` `warning` `error`
 Each method can take up to three arguments.
@@ -126,20 +85,20 @@ Each method can take up to three arguments.
 | `string`  | `string`   | `object`  |
 
 ```
-import {toastr} from 'redux-toastr';
-toastr.success('Title', 'Message', {timeOut: 7000, icon: 'icons'});
-toastr.info('The message', {timeOut: 7000, icon: 'icons'});
-toastr.warning('The message'});
-toastr.error('The message'});
-```
+import {toastr} from 'redux-toastr'
 
-#### toastr method options
-| options          |         |
-| -----------------|:-------:|
-| `timeOut`        | number  |
-| `icon`           | string  |
-| `onShowComplete` | func    |
-| `onHideComplete` | func    |
+const toastrOptions = {
+  timeOut: number,
+  onShowComplete: func, // <-- When the animation-show is complete
+  onHideComplete: func, // <-- When the animation-hide is complete
+  icon: string // Custom icon
+}
+
+toastr.success('Title', 'Message', toastrOptions)
+toastr.info('The message', toastrOptions)
+toastr.warning('The title', 'The message')
+toastr.error('The message'})
+```
 
 ##### Toastr icons
 By default `redux-toastr` provides a icon for `success`, `info`, `warning` and `error`
