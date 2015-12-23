@@ -50,7 +50,7 @@ export class ReduxToastr extends Component {
 
   render() {
     const posName = checkPositionName(this.props.position);
-    const classes = classnames(posName, 'redux-toastr');
+    const classes = classnames('redux-toastr', posName);
 
     return (
       <div className={classes}>
