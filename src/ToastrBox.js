@@ -46,16 +46,16 @@ export default class ToastrBox extends Component {
   }
 
   componentDidMount() {
-    this._setTransition();
-
     const node = this.toastrBox;
-    const {remove, timeOut, toastr} = this.props;
-    const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut;
+    const {remove, timeOut, toastr, transition} = this.props;
+    const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut + 5000;
 
-    ReactTransitionEvents.addEndEventListener(node, this.onAnimationComplite);
     if (toastr.type !== 'message') {
       this._setIntervalId(setTimeout(this.removeToastr, time));
-    }
+    } 
+
+    this._setTransition();
+    ReactTransitionEvents.addEndEventListener(node, this.onAnimationComplite);
   }
 
   componentWillUnmount() {
@@ -99,7 +99,7 @@ export default class ToastrBox extends Component {
 
   mouseLeave() {
     const {toastr} = this.props;
-    if (!this.isHiding && toastr.type !== 'message') {
+    if (!this.isHiding) {
       this._setIntervalId(setTimeout(this.removeToastr, 1000));
     }
   }
