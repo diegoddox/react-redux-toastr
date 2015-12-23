@@ -16,7 +16,7 @@ export default class ToastrBox extends Component {
   }
 
   static defaultProps = {
-    timeOut: 4000,
+    timeOut: 5000,
     transition: {
       in: 'bounceIn',
       out: 'bounceOut'
