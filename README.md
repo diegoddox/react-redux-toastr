@@ -91,7 +91,7 @@ export class YouComponent extends Component {
 
   constructor(props) {
     super(props);
-    this.toastr = bindActionCreators(toastrActions, this.props.dispatch); //<-- bind the actions to your component
+    this.toastr = bindActionCreators(toastrActions, this.props.state.dispatch); //<-- bind the actions to your component
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
@@ -118,7 +118,7 @@ Each method can take up to three arguments.
 
 1. Passing three arguments the first is the `title` the second `message` and the third is the `options`
 2. Passing two `string` arguments the first will be the `title` and the second the `message`
-3. You can pass the `message and the second argument can be the `options`
+3. You can pass the `message` and the second argument can be the `options`
 4. If you pass only one argument it will become the message 
 
 | Title     |message     | options   |
