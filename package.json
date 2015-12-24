@@ -8,7 +8,7 @@
     "build": "babel src --out-dir lib",
     "build:w": "babel -w src --out-dir lib",
     "lint": "eslint . --ext .js --ext .jsx || true",
-    "less": "lessc src/less/redux-toastr.less --clean-css lib/css/redux-toastr.min.css",
+    "less": "lessc src/less/redux-toastr.less --clean-css lib/css/redux-toastr.min.css && lessc src/less/redux-toastr.less lib/css/redux-toastr.css",
     "clean": "node_modules/.bin/rimraf dist lib"
   },
   "author": [
