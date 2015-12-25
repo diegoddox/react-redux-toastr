@@ -80,18 +80,14 @@ Each method can take up to three arguments.
 3. You can pass the `message` and the second argument can be the `options`
 4. If you pass only one argument it will become the message 
 
-| Title     |message     | options   |
-| ----------|:----------:| ---------:|
-| `string`  | `string`   | `object`  |
-
 ```
 import {toastr} from 'redux-toastr'
 
 const toastrOptions = {
-  timeOut: number,
+  timeOut: number, // Override the default: 5000s timeOut
   onShowComplete: func, // <-- When the animation-show is complete
   onHideComplete: func, // <-- When the animation-hide is complete
-  icon: string // Custom icon
+  icon: string // Override the default icon
 }
 
 toastr.success('Title', 'Message', toastrOptions)
@@ -99,10 +95,6 @@ toastr.info('The message', toastrOptions)
 toastr.warning('The title', 'The message')
 toastr.error('The message'})
 ```
-
-##### Toastr icons
-By default `redux-toastr` provides a icon for `success`, `info`, `warning` and `error`
-but you can override by passing a object `{icon: 'icon-name'}` to the `toastr` method.
 
 # Run a local demo
 ```
