@@ -37,6 +37,7 @@
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
     color: #333;
+    padding: 10px 0;
 
     &.hide {
       display: none;
@@ -57,7 +58,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-top: -11px;
+        margin-top: -20px;
         margin-left: -11px;
       }
     }
@@ -91,7 +92,6 @@
 
       .message {
         font-size: 1em;
-        padding-top: 5px;
         font-family: 'open_sanscondensed_light', sans-serif;
       }
     }
@@ -158,29 +158,21 @@
         display: none;
       }
 
-      box-shadow: 0px 0px 30px #333;
-
       .message-holder {
         width: 100%;
         margin-left: 0;
 
         .title {
           width: 90%;
-          height: 60px;
+          height: 50px;
           text-align: center;
           overflow: hidden;
           font-size: 1.2em;
-
-          p {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            line-height: 60px;
-            padding: 0;
-            padding-left: 15px;
-            padding-right: 15px;
-            font-size: 1.1em;
-          }
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          line-height: 45px;
+          padding: 0 15px;
         }
 
         .message {
