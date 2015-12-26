@@ -10,9 +10,9 @@ The reducer listens to dispatched actions from the component to maintain your st
 `npm install --save redux-toastr`
 
 ##### 2. Link `redux-toastr` styles to your app
-#####NOTE: This can be changed at anytime
+#####NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/redux-toastr/0.3.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/redux-toastr/0.4.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 ##### 3. The third thing you need to do is to add the `redux-toastr` reducer to Redux.
 
@@ -30,15 +30,26 @@ const store = createStore(reducer)
 ##### NOTE: The default mount point for `redux-toastr` is `toastr`.
 
 ##### 4. Add the `redux-toastr` React component to the root of your app
-
 ```
 import ReduxToastr from 'redux-toastr'
 <Provider store={store}>
   <div>
     ... other things like router ...
-    <ReduxToastr/>
+    // props are not required
+    <ReduxToastr
+      timeOut={3000}
+      newestOnTop={false}
+      position="top-left"/>
   </div>
 </Provider>
+```
+position can be: `top-left`, `top-right`, `bottom-left` and `bottom-right`
+
+default props: In case you don't pass the props
+```
+timeOut: 5000
+newestOnTop: true
+position: 'top-right'
 ```
 
 ##### 5. Add the `toastr` 
@@ -72,7 +83,7 @@ constructor(props) {
 }
 ```
 ## Toastr method
-`success` `info` `warning` `error`
+`success` `info` `warning` `error` and `message`
 Each method can take up to three arguments.
 
 1. Passing three arguments the first is the `title` the second `message` and the third is the `options`
@@ -95,6 +106,12 @@ toastr.info('The message', toastrOptions)
 toastr.warning('The title', 'The message')
 toastr.error('The message'})
 ```
+
+## Toastr `message` method
+This one is in case you wanna show a large amount of information to the user,
+unlike the other method this one will not close automatically and do not have icon.
+
+This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html)
 
 # Run a local demo
 ```

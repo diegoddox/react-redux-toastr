@@ -1,3 +1,8 @@
+#0.4.0
+add method message
+add option newestOnTop
+add mobile style
+
 #0.3.1
 Nothing new just some problems with npm readme.md file
 
