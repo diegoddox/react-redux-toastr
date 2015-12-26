@@ -16,7 +16,7 @@ export function checkPositionName(name) {
   if (isValidName > -1) {
     return name;
   }
-  return positions[0];
+  return positions[1];
 }
 
 export function mapToToastrMessage(type, array) {
