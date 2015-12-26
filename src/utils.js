@@ -41,6 +41,9 @@ export function mapToToastrMessage(type, array) {
     obj.title = array[0];
     obj.message = array[1];
   } else if (isString(array[0])){
+    if (type == 'message') {
+      obj.title = 'Message';
+    }
     obj.message = array[0];
   } else {
     console.error('REDUX-TOASTR ERROR:: The first arguments most be a string', array);
