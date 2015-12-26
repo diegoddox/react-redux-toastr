@@ -1,11 +1,15 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
+import React,
+  {Component, PropTypes}    from 'react';
+import {connect}            from 'react-redux';
 import {bindActionCreators} from 'redux';
-import classnames from 'classnames';
-import ToastrBox from './ToastrBox';
-import * as toastrAction from './actions';
-import {EE} from './toastrEmitter';
-import {checkPositionName} from './utils.js';
+import classnames           from 'classnames';
+
+import ToastrBox            from './ToastrBox';
+import * as tActions        from './actions';
+import {EE}                 from './toastrEmitter';
+import config               from './config';
+
+import {checkPositionName, isMobile}  from './utils.js';
 
 const mapStateToProps = (state) => ({
   toastrs: state.toastr
@@ -16,16 +20,21 @@ export class ReduxToastr extends Component {
 
   static propTypes = {
     toastrs: PropTypes.array,
-    position: PropTypes.string
+    position: PropTypes.string,
+    newestOnTop: PropTypes.bool,
+    timeOut: PropTypes.number
   }
 
   static defaultProps = {
-    position: 'top-right'
+    position: 'top-right',
+    newestOnTop: true
   }
 
   constructor(props) {
     super(props);
-    this.actions = bindActionCreators(toastrAction, this.props.dispatch);
+    this.actions = bindActionCreators(tActions, this.props.dispatch);
+    config.set('newestOnTop', this.props.newestOnTop);
+    this.handleRemoveToastr = this.handleRemoveToastr.bind(this);
   }
 
   componentDidMount() {
@@ -48,9 +57,13 @@ export class ReduxToastr extends Component {
     EE.removeListener('clean/toastr');
   }
 
+  handleRemoveToastr(id) {
+    this.actions.remove(id);
+  }
+
   render() {
     const posName = checkPositionName(this.props.position);
-    const classes = classnames('redux-toastr', posName);
+    const classes = classnames('redux-toastr', posName, {mobile: isMobile});
 
     return (
       <div className={classes}>
@@ -59,7 +72,8 @@ export class ReduxToastr extends Component {
             <ToastrBox
               key={toastr.id}
               toastr={toastr}
-              {...this.actions}/>
+              timeOut={this.props.timeOut}
+              remove={this.handleRemoveToastr}/>
           );
         })}
       </div>
