@@ -30,8 +30,8 @@ export default class ToastrBox extends Component {
       'mouseEnter',
       'mouseLeave',
       'handleClick',
-      'removeToastr',
-      'onAnimationComplite',
+      '_removeToastr',
+      '_onAnimationComplite',
       '_setTransition',
       '_clearTransition',
       '_setIntervalId',
@@ -51,11 +51,11 @@ export default class ToastrBox extends Component {
     const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut + 5000;
 
     if (toastr.type !== 'message') {
-      this._setIntervalId(setTimeout(this.removeToastr, time));
+      this._setIntervalId(setTimeout(this._removeToastr, time));
     } 
 
     this._setTransition();
-    ReactTransitionEvents.addEndEventListener(node, this.onAnimationComplite);
+    ReactTransitionEvents.addEndEventListener(node, this._onAnimationComplite);
   }
 
   componentWillUnmount() {
@@ -64,12 +64,12 @@ export default class ToastrBox extends Component {
     }
   }
 
-  onAnimationComplite() {
+  _onAnimationComplite() {
     const {remove, toastr} = this.props;
 
     if (this.isHiding) {
       this._setIsHiding(false);
-      ReactTransitionEvents.removeEndEventListener(this.toastrBox, this.onAnimationComplite);
+      ReactTransitionEvents.removeEndEventListener(this.toastrBox, this._onAnimationComplite);
       remove(toastr.id);
 
       if (hasProperty(toastr.options, 'onHideComplete')) {
@@ -84,7 +84,7 @@ export default class ToastrBox extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.removeToastr();
+    this._removeToastr();
   }
 
   mouseEnter() {
@@ -100,11 +100,11 @@ export default class ToastrBox extends Component {
   mouseLeave() {
     const {toastr} = this.props;
     if (!this.isHiding) {
-      this._setIntervalId(setTimeout(this.removeToastr, 1000));
+      this._setIntervalId(setTimeout(this._removeToastr, 1000));
     }
   }
 
-  removeToastr() {
+  _removeToastr() {
     if (this.isHiding) {
       return;
     }
