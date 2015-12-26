@@ -146,14 +146,12 @@ export default class ToastrBox extends Component {
 
   _renderMessage() {
     const {toastr} = this.props;
-    let p = null;
+
     if (toastr.type == 'message') {
-      p = <p dangerouslySetInnerHTML={{__html: toastr.message}}></p>
-    } else {
-      p = <p>{toastr.message}</p>
+      return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>
     }
 
-    return <div className="message">{p}</div>
+    return <div className="message">{toastr.message}</div>
   }
 
   render() {
@@ -186,7 +184,7 @@ export default class ToastrBox extends Component {
         </div>
         <div className="message-holder" onClick={this.handleClick}>
           {toastr.title &&
-          <div className="title"><p>{toastr.title}</p></div>}
+          <div className="title">{toastr.title}</div>}
           {this._renderMessage()}
         </div>
         <button onClick={this.handleClick} className="close icon-close-round"></button>
