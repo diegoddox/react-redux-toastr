@@ -75,6 +75,13 @@ export function hasProperty(obj, property) {
   return typeof obj[property] !== 'undefined';
 }
 
+export function guid() {
+  function r() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  }
+  return r() + r() + r() + '-' + r() + '-' + r() + '-' + r() + '-' + r() + r() + r();
+}
+
 export const isMobile = detectIsMobile();
 
 function isString(obj) {
