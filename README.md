@@ -107,8 +107,7 @@ toastr.error('The message'})
 ```
 
 ## Toastr `message` method
-This one is in case you wanna show a large amount of information,
-unlike the other method this one will not close automatically and do not have icon.
+This one is in case you wanna show a large amount of information, unlike the other method this one will not close automatically and doesn't have icon.
 
 This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html)
 
