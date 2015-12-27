@@ -21,7 +21,7 @@ import {createStore, combineReducers} from 'redux'
 import {reducer as toastrReducer} from 'redux-toastr'
 const reducers = {
   // ... other reducers ...
-  toastr: toastrReducer     // <---- Mounted at toastr.
+  toastr: toastrReducer // <- Mounted at toastr.
 }
 const reducer = combineReducers(reducers)
 const store = createStore(reducer)
@@ -43,17 +43,16 @@ import ReduxToastr from 'redux-toastr'
   </div>
 </Provider>
 ```
-position can be: `top-left`, `top-right`, `bottom-left` and `bottom-right`
-
 default props: In case you don't pass the props
 ```
 timeOut: 5000
 newestOnTop: true
 position: 'top-right'
 ```
+positions: `top-left`, `top-right`, `bottom-left` and `bottom-right`
 
 ##### 5. Add the `toastr` 
-The toastr method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
+The toastr methods use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
 ```
 import React, {Component}  from 'react'
@@ -82,7 +81,7 @@ constructor(props) {
   this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
 }
 ```
-## Toastr method
+## Toastr methods
 `success` `info` `warning` `error` and `message`
 Each method can take up to three arguments.
 
@@ -95,7 +94,7 @@ Each method can take up to three arguments.
 import {toastr} from 'redux-toastr'
 
 const toastrOptions = {
-  timeOut: number, // Override the default: 5000s timeOut
+  timeOut: number, // Override the default timeOut
   onShowComplete: func, // <-- When the animation-show is complete
   onHideComplete: func, // <-- When the animation-hide is complete
   icon: string // Override the default icon
@@ -108,7 +107,7 @@ toastr.error('The message'})
 ```
 
 ## Toastr `message` method
-This one is in case you wanna show a large amount of information to the user,
+This one is in case you wanna show a large amount of information,
 unlike the other method this one will not close automatically and do not have icon.
 
 This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html)
