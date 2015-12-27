@@ -24,8 +24,8 @@ export default class App extends Component {
             className="btn btn-success"
             onClick={() => {
               toastr.success(
-                'YOU SHALL LOVE YOUR NEIGHBOR and hate your enemy',
-                'But I say to you, love your enemies and pray for those who persecute you...',
+                'The title',
+                '...love your enemies and pray for those who persecute you...',
                 {
                   timeOut: 8000,
                   onShowComplete: () => {
