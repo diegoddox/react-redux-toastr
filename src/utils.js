@@ -16,7 +16,7 @@ export function checkPositionName(name) {
   if (isValidName > -1) {
     return name;
   }
-  return positions[0];
+  return positions[1];
 }
 
 export function mapToToastrMessage(type, array) {
@@ -41,6 +41,9 @@ export function mapToToastrMessage(type, array) {
     obj.title = array[0];
     obj.message = array[1];
   } else if (isString(array[0])){
+    if (type == 'message') {
+      obj.title = 'Message';
+    }
     obj.message = array[0];
   } else {
     console.error('REDUX-TOASTR ERROR:: The first arguments most be a string', array);
@@ -49,12 +52,37 @@ export function mapToToastrMessage(type, array) {
 
   return obj;
 }
+
+export function mapToIcon(icon) {
+  switch(icon) {
+    case 'info':
+      return 'icon-information-circle';
+    case 'success':
+      return 'icon-check-1';
+    case 'warning':
+      return 'icon-exclamation';
+    case 'error':
+      return 'icon-exclamation-alert';
+    default:
+      return icon;
+  }
+}
+
 export function hasProperty(obj, property) {
   if (obj == null) {
     return false;
   }
   return typeof obj[property] !== 'undefined';
-} 
+}
+
+export function guid() {
+  function r() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  }
+  return r() + r() + r() + '-' + r() + '_' + r() + '-' + r() + '_' + r() + r() + r();
+}
+
+export const isMobile = detectIsMobile();
 
 function isString(obj) {
   if (typeof obj == 'string') {
@@ -66,4 +94,19 @@ function isString(obj) {
 
 function hasObject(item) {
   return item.icon || item.timeOut || item.onShowComplete || item.onHideComplete || item.icon;
+}
+
+function detectIsMobile() { 
+ if (navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ ) {
+    return true;
+  }else {
+    return false;
+  }
 }

@@ -1,3 +1,5 @@
 node_modules
 lib
 npm-debug.log
+0.*
+1*

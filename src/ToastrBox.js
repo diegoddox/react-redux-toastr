@@ -1,9 +1,10 @@
 import CSSCore from 'fbjs/lib/CSSCore';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
 import classnames from 'classnames';
+import {config} from './config';
 
-import {_bind, hasProperty} from './utils';
+import {_bind, hasProperty, mapToIcon} from './utils';
 
 
 export default class ToastrBox extends Component {
@@ -30,12 +31,13 @@ export default class ToastrBox extends Component {
       'mouseEnter',
       'mouseLeave',
       'handleClick',
-      'removeToastr',
-      'onAnimationComplite',
+      '_removeToastr',
+      '_onAnimationComplite',
       '_setTransition',
       '_clearTransition',
       '_setIntervalId',
-      '_setIsHiding'
+      '_setIsHiding',
+      '_renderMessage'
     );
   }
 
@@ -45,14 +47,15 @@ export default class ToastrBox extends Component {
   }
 
   componentDidMount() {
-    this._setTransition();
-
-    const node = this.toastrBox;
-    const {remove, timeOut, toastr} = this.props;
+    const {timeOut, toastr} = this.props;
     const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut;
 
-    ReactTransitionEvents.addEndEventListener(node, this.onAnimationComplite);
-    this._setIntervalId(setTimeout(this.removeToastr, time));
+    if (toastr.type !== 'message') {
+      this._setIntervalId(setTimeout(this._removeToastr, time));
+    } 
+
+    this._setTransition();
+    ReactTransitionEvents.addEndEventListener(this.toastrBox, this._onAnimationComplite);
   }
 
   componentWillUnmount() {
@@ -61,27 +64,9 @@ export default class ToastrBox extends Component {
     }
   }
 
-  onAnimationComplite() {
-    const {remove, toastr} = this.props;
-
-    if (this.isHiding) {
-      this._setIsHiding(false);
-      ReactTransitionEvents.removeEndEventListener(this.toastrBox, this.onAnimationComplite);
-      remove(toastr.id);
-
-      if (hasProperty(toastr.options, 'onHideComplete')) {
-        toastr.options.onHideComplete && toastr.options.onHideComplete();
-      }
-    } else if (!this.isHiding) {
-      if (hasProperty(toastr.options, 'onShowComplete')) {
-        toastr.options.onShowComplete && toastr.options.onShowComplete();
-      }
-    }
-  }
-
   handleClick(e) {
     e.preventDefault();
-    this.removeToastr();
+    this._removeToastr();
   }
 
   mouseEnter() {
@@ -95,12 +80,33 @@ export default class ToastrBox extends Component {
   }
 
   mouseLeave() {
-    if (!this.isHiding) {
-      this._setIntervalId(setTimeout(this.removeToastr, 1000));
+    const {toastr} = this.props;
+    if(this.isHiding || toastr.type == 'message') {
+      return;
+    }
+
+    this._setIntervalId(setTimeout(this._removeToastr, 1000));
+  }
+
+  _onAnimationComplite() {
+    const {remove, toastr} = this.props;
+
+    if (this.isHiding) {
+      this._setIsHiding(false);
+      ReactTransitionEvents.removeEndEventListener(this.toastrBox, this._onAnimationComplite);
+      remove(toastr.id);
+
+      if (hasProperty(toastr.options, 'onHideComplete')) {
+        toastr.options.onHideComplete && toastr.options.onHideComplete();
+      }
+    } else if (!this.isHiding) {
+      if (hasProperty(toastr.options, 'onShowComplete')) {
+        toastr.options.onShowComplete && toastr.options.onShowComplete();
+      }
     }
   }
 
-  removeToastr() {
+  _removeToastr() {
     if (this.isHiding) {
       return;
     }
@@ -140,20 +146,25 @@ export default class ToastrBox extends Component {
     this.isHiding = val;
   }
 
+  _renderMessage() {
+    const {toastr} = this.props;
+
+    if (toastr.type == 'message') {
+      return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>
+    }
+
+    return <div className="message">{toastr.message}</div>
+  }
+
   render() {
     const {toastr} = this.props;
     let classIcon = null;
-    const classes = classnames('redux-toastr-box', 'animated', toastr.type);
+    const classes = classnames('toastr', 'animated', toastr.type);
 
     if (hasProperty(toastr.options, 'icon')) {
-      classIcon = toastr.options.icon;
+      classIcon = mapToIcon(toastr.options.icon);
     } else {
-      classIcon = {
-        'icon-information-circle': toastr.type == 'info',
-        'icon-check-1': toastr.type == 'success',
-        'icon-exclamation': toastr.type == 'warning',
-        'icon-exclamation-alert': toastr.type == 'error'
-      };
+      classIcon = mapToIcon(toastr.type);
     }
 
     const iconClasses = classnames('icon', classIcon);
@@ -168,11 +179,10 @@ export default class ToastrBox extends Component {
         <div className="icon-holder">
           <div className={iconClasses}></div>
         </div>
-        <div className="redux-toastr-message-holder" onClick={this.handleClick}>
+        <div className="message-holder" onClick={this.handleClick}>
           {toastr.title &&
           <div className="title">{toastr.title}</div>}
-          {toastr.message &&
-          <div className="message">{toastr.message}</div>}
+          {this._renderMessage()}
         </div>
         <button onClick={this.handleClick} className="close icon-close-round"></button>
       </div>

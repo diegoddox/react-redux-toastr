@@ -6,6 +6,13 @@
   position: fixed;
   z-index: 999999999999999999999;
   
+  &.top-left,
+  &.top-right,
+  &.bottom-left,
+  &.bottom-right {
+    width: 310px;
+  }
+
   &.top-left {
     top: 15px;
     left: 15px;
@@ -26,21 +33,17 @@
     right: 15px;
   }
 
-  .redux-toastr-box {
+  .toastr {
     background-color: #fcfcfc;
-    width: 310px;
+    width: 100%;
     min-height: 40px;
-    height: auto;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 5px;
     position: relative;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
-    color: white;
-
-    &.hide {
-      display: none;
-    }
+    color: #333;
+    padding: 10px 0;
 
     .icon-holder {
       width: 15%;
@@ -57,16 +60,21 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-top: -11px;
+        margin-top: -22px;
         margin-left: -11px;
       }
     }
 
-    .redux-toastr-message-holder {
+    .message-holder {
       width: 75%;
       margin-left: 15%;
       text-align: left;
-      padding: 5px 0;
+      position: relative;
+
+      p {
+        padding: 5px;
+        margin: 0;
+      }
 
       &:hover {
         cursor: pointer;
@@ -79,14 +87,13 @@
       }
       
       .title {
-        font-size: 1em;
+        font-size: 1.1em;
         font-family: 'open_sans_condensedbold' sans-serif;
         font-weight: bold;
       }
 
       .message {
-        font-size: 1em;
-        padding-top: 5px;
+        font-size: 1.1em;
         font-family: 'open_sanscondensed_light', sans-serif;
       }
     }
@@ -96,18 +103,17 @@
       opacity: 1;
     }
 
+
+    &.info, &.success, &.warning, &.error {
+      color: white;
+    }
+
     &.info {
       background-color: #58abc3;
     }
 
     &.success {
       background-color: #60bb71;
-      button {
-        color: white;
-        &:hover {
-          color: #129b7b;
-        }
-      }
     }
 
     &.warning {
@@ -147,6 +153,77 @@
       &:focus {
         outline: 0;
       }
+    }
+
+    &.message {
+      .icon-holder {
+        display: none;
+      }
+
+      .message-holder {
+        width: 100%;
+        margin-left: 0;
+
+        .title {
+          width: 90%;
+          height: 50px;
+          text-align: center;
+          overflow: hidden;
+          font-size: 1.2em;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          line-height: 45px;
+          padding: 0 15px;
+        }
+
+        .message {
+          border-radius: 5px;
+          width: 100%;
+          max-height: 400px;
+          overflow: hidden;
+          overflow-y: auto;
+          border-top: 1px solid #f1f1f1;
+          background-color: white;
+
+          p {
+            padding: 15px;
+            font-size: 1.1em;
+          }
+
+          img {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+          }
+        }
+      }
+
+      button.close {
+        height: 62px;
+        color: #666;
+
+        &:hover {
+          opacity: 1;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  &.mobile {
+    &.top-left,
+    &.top-right,
+    &.bottom-left,
+    &.bottom-right {
+      width: 100%;
+      top: 0;
+      right: 0;
+    }
+
+    .toastr {
+      border-radius: 0px;
+      margin-bottom: 0;
     }
   }
 }
