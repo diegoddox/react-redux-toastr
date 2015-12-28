@@ -5,21 +5,23 @@ import {bindActionCreators} from 'redux';
 import classnames           from 'classnames';
 
 import ToastrBox            from './ToastrBox';
+import ToastrConfirm        from './ToastrConfirm';
 import * as tActions        from './actions';
 import {EE}                 from './toastrEmitter';
 import config               from './config';
 
-import {checkPositionName, isMobile}  from './utils.js';
+import {checkPositionName, isMobile, _bind}  from './utils.js';
 
 const mapStateToProps = (state) => ({
-  toastrs: state.toastr
+  toastr: state.toastr
 });
 
 export class ReduxToastr extends Component {
   static displayName = 'ReduxToastr'
 
   static propTypes = {
-    toastrs: PropTypes.array,
+    toastr: PropTypes.object,
+    options: PropTypes.object,
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number
@@ -34,7 +36,12 @@ export class ReduxToastr extends Component {
     super(props);
     this.actions = bindActionCreators(tActions, this.props.dispatch);
     config.set('newestOnTop', this.props.newestOnTop);
-    this.handleRemoveToastr = this.handleRemoveToastr.bind(this);
+
+    _bind(
+      this,
+      'handleRemoveToastr',
+      'handleHideConfirm'
+    );
   }
 
   componentDidMount() {
@@ -43,16 +50,21 @@ export class ReduxToastr extends Component {
     };
 
     const onCleanToastr = () => {
-      if (this.props.toastrs.length) {
+      if (this.props.toastr.toastrs.length) {
         this.actions.clean();
       }
     };
+    const confirm = (obj) => {
+      this.actions.confirm(obj.message, obj.options);
+    };
 
+    EE.on('toastr/confirm', confirm);
     EE.on('add/toastr', onAddToastr);
     EE.on('clean/toastr', onCleanToastr);
   }
 
   componentWillUnmount() {
+    EE.removeListener('toastr/confirm');
     EE.removeListener('add/toastr');
     EE.removeListener('clean/toastr');
   }
@@ -61,13 +73,20 @@ export class ReduxToastr extends Component {
     this.actions.remove(id);
   }
 
+  handleHideConfirm() {
+    this.actions.hideConfirm();
+  }
+
   render() {
     const toastrPosition = checkPositionName(this.props.position);
     const classes = classnames('redux-toastr', toastrPosition, {mobile: isMobile});
 
     return (
       <div className={classes}>
-        {this.props.toastrs.map((toastr) => {
+        <ToastrConfirm
+          hideConfirm={this.handleHideConfirm}
+          confirm={this.props.toastr.confirm}/>
+        {this.props.toastr.toastrs.map((toastr) => {
           return (
             <ToastrBox
               key={toastr.id}
