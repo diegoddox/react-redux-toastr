@@ -1,7 +1,8 @@
-`redux-toastr` is a toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a Redux reducer, `redux-toastr` toastr emitter and a React component.
+##`redux-toastr` [demo](http://diegoddox.github.io/redux-toastr/)
+
+`redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a Redux reducer, redux-toastr toastr emitter and a React component.
 
 The reducer listens to dispatched actions from the component to maintain your state in Redux.
-`redux-toastr` [demo](http://diegoddox.github.io/redux-toastr/)
 
 ## Implementation Guide
 
@@ -10,7 +11,7 @@ The reducer listens to dispatched actions from the component to maintain your st
 `npm install --save redux-toastr`
 
 ##### 2. Link `redux-toastr` styles to your app
-#####NOTE: This can be change at anytime
+##### NOTE: This can be change at anytime
 ```
 <link href="http://diegoddox.github.io/redux-toastr/0.4.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
