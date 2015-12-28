@@ -77,24 +77,33 @@
           background-color: transparent;
           padding: 0;
           margin: 0;
+          position: relative;
+          z-index: 1;
+
+          &:before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -20px;
+            background-color: #999;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: .3;
+            transition: all .3s ease-in-out;
+            transform: scale(0);
+          }
+
+          &.active {
+            &:before {
+              transform: scale(1.5);
+            }
+          }
 
           &:focus {
             outline: none;
-          }
-
-          &.ok {
-            border-right: 1px solid #f0f0f0;
-            &:active {
-              background-color: #a3c6a7;
-              color: white;
-            }
-          }
-
-          &.cancel {
-            &:active {
-              background-color: #ef9f9e;
-              color: white;
-            }
           }
 
           &:hover {

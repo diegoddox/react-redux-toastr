@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import CSSCore from 'fbjs/lib/CSSCore';
 import {_bind, hasProperty} from './utils';
+import Button from './Button';
 
 export default class ToastrConfirm extends Component {
   static displayName = 'ToastrConfirm'
@@ -42,11 +43,12 @@ export default class ToastrConfirm extends Component {
     this._setTransition();
   }
 
-  handleCancelClick() {
+  handleCancelClick(e) {
     const {confirm} = this.props;
     if (confirm.options && hasProperty(confirm.options, 'onCancel')) {
       confirm.options.onCancel && confirm.options.onCancel();
     }
+
     this._setTransition();
   }
 
@@ -67,10 +69,12 @@ export default class ToastrConfirm extends Component {
     ReactTransitionEvents.addEndEventListener(this.confirm, this._onConfirmAnimationComplete);
   }
 
-  _onConfirmAnimationComplete() {
+  _onConfirmAnimationComplete(e) {
+    e.stopPropagation();
     if (this.isHiding) {
-      this._removeConfirm();
+      //this._removeConfirm();
     }
+    console.log('animation done');
     ReactTransitionEvents.removeEndEventListener(this.confirm, this._onConfirmAnimationComplete);
   }
 
@@ -78,6 +82,7 @@ export default class ToastrConfirm extends Component {
     CSSCore.addClass(this.confirmHolder, 'hide');
     CSSCore.removeClass(this.confirm, 'bounceOutUp');
     CSSCore.removeClass(this.confirm, 'bounceInDown');
+
     CSSCore.removeClass(document.querySelector('body'), 'toastr-confirm-active');
     this.props.hideConfirm();
   }
@@ -96,10 +101,9 @@ export default class ToastrConfirm extends Component {
                 onClick={e => this.handleConfirmClick(e)}>confirm</button>
             </li>
             <li>
-              <button
-                type="button"
-                className="cancel"
-                onClick={e => this.handleCancelClick(e)}>cancel</button>
+              <Button
+                classname="cancel"
+                onClick={e => this.handleCancelClick(e)}>cancel</Button>
             </li>
           </ul>
         </div>

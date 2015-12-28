@@ -55,7 +55,9 @@ export class ReduxToastr extends Component {
       }
     };
     const confirm = (obj) => {
-      this.actions.confirm(obj.message, obj.options);
+      if (!this.props.toastr.confirm.show) {
+        this.actions.confirm(obj.message, obj.options);
+      }
     };
 
     EE.on('toastr/confirm', confirm);
@@ -80,13 +82,13 @@ export class ReduxToastr extends Component {
   render() {
     const toastrPosition = checkPositionName(this.props.position);
     const classes = classnames('redux-toastr', toastrPosition, {mobile: isMobile});
-
+    const {toastr} = this.props;
     return (
       <div className={classes}>
         <ToastrConfirm
           hideConfirm={this.handleHideConfirm}
-          confirm={this.props.toastr.confirm}/>
-        {this.props.toastr.toastrs.map((toastr) => {
+          confirm={toastr.confirm}/>
+        {toastr.toastrs.map((toastr) => {
           return (
             <ToastrBox
               key={toastr.id}
