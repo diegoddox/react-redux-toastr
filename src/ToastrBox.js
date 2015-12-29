@@ -89,19 +89,20 @@ export default class ToastrBox extends Component {
   }
 
   _onAnimationComplite(e) {
-    e.stopPropagation();
+    e.stopPropagation()
     const {remove, toastr} = this.props;
+    const {options} = toastr;
 
     if (this.isHiding) {
       this._setIsHiding(false);
       remove(toastr.id);
 
-      if (hasProperty(toastr.options, 'onHideComplete')) {
-        toastr.options.onHideComplete && toastr.options.onHideComplete();
+      if (hasProperty(options, 'onHideComplete')) {
+        options.onHideComplete && options.onHideComplete();
       }
     } else if (!this.isHiding) {
-      if (hasProperty(toastr.options, 'onShowComplete')) {
-        toastr.options.onShowComplete && toastr.options.onShowComplete();
+      if (hasProperty(options, 'onShowComplete')) {
+        options.onShowComplete && options.onShowComplete();
       }
     }
   }
@@ -126,7 +127,7 @@ export default class ToastrBox extends Component {
       CSSCore.removeClass(node, animationType);
     };
 
-    onCSSTransitionEnd(node, onEndListener);
+    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
     CSSCore.addClass(node, animationType);
   }
 

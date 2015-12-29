@@ -13,6 +13,11 @@ export default class ToastrConfirm extends Component {
     onCancelText: PropTypes.string
   }
 
+  static defaultProps = {
+    onConfirmText: 'ok',
+    onCancelText: 'cancel'
+  }
+
   constructor(props) {
     super(props);
     _bind(
@@ -93,12 +98,12 @@ export default class ToastrConfirm extends Component {
             <li>
               <Button
                 className="ok"
-                onClick={e => this.handleConfirmClick(e)}>confirm</Button>
+                onClick={e => this.handleConfirmClick(e)}>{this.props.onConfirmText}</Button>
             </li>
             <li>
               <Button
                 className="cancel"
-                onClick={e => this.handleCancelClick(e)}>cancel</Button>
+                onClick={e => this.handleCancelClick(e)}>{this.props.onCancelText}</Button>
             </li>
           </ul>
         </div>

@@ -87,8 +87,8 @@ export function guid() {
 export function onCSSTransitionEnd(node, callback) {
   const runOnce = (e) => {
     e.stopPropagation();
-    ReactTransitionEvents.removeEndEventListener(node, runOnce);
     callback && callback(e);
+    ReactTransitionEvents.removeEndEventListener(node, runOnce);
   };
   ReactTransitionEvents.addEndEventListener(node, runOnce);
 }
