@@ -55,6 +55,7 @@ export class ReduxToastr extends Component {
       }
     };
     const confirm = (obj) => {
+      // Fire if we don't have any active confirm
       if (!this.props.toastr.confirm.show) {
         this.actions.confirm(obj.message, obj.options);
       }

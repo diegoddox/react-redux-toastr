@@ -4,7 +4,7 @@ import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
 import classnames from 'classnames';
 import {config} from './config';
 
-import {_bind, hasProperty, mapToIcon} from './utils';
+import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd} from './utils';
 
 
 export default class ToastrBox extends Component {
@@ -55,7 +55,7 @@ export default class ToastrBox extends Component {
     } 
 
     this._setTransition();
-    ReactTransitionEvents.addEndEventListener(this.toastrBox, this._onAnimationComplite);
+    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
   }
 
   componentWillUnmount() {
@@ -88,12 +88,12 @@ export default class ToastrBox extends Component {
     this._setIntervalId(setTimeout(this._removeToastr, 1000));
   }
 
-  _onAnimationComplite() {
+  _onAnimationComplite(e) {
+    e.stopPropagation();
     const {remove, toastr} = this.props;
 
     if (this.isHiding) {
       this._setIsHiding(false);
-      ReactTransitionEvents.removeEndEventListener(this.toastrBox, this._onAnimationComplite);
       remove(toastr.id);
 
       if (hasProperty(toastr.options, 'onHideComplete')) {
@@ -124,10 +124,9 @@ export default class ToastrBox extends Component {
       }
 
       CSSCore.removeClass(node, animationType);
-      ReactTransitionEvents.removeEndEventListener(node, onEndListener);
     };
 
-    ReactTransitionEvents.addEndEventListener(node, onEndListener);
+    onCSSTransitionEnd(node, onEndListener);
     CSSCore.addClass(node, animationType);
   }
 

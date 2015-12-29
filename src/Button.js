@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import CSSCore from 'fbjs/lib/CSSCore';
 
-import {_bind} from './utils';
+import {_bind, onCSSTransitionEnd} from './utils';
 
 export default class Button extends Component {
   static displayName = 'Button'
@@ -13,20 +13,20 @@ export default class Button extends Component {
   }
 
   handleClick(e) {
-    e.stopPropagation();
-    e.preventDefault();
+    CSSCore.addClass(this.toastrButton, 'active');
 
-    const onComplete = (e) => {
+    /*
+     * In order to avoid event bubbling we need to call the onClick callback
+     * after we have remove the css class 'active' that contains the animation
+     */
+    const end = () => {
       CSSCore.removeClass(this.toastrButton, 'active');
-      ReactTransitionEvents.removeEndEventListener(this.toastrButton, onComplete);
+      if (this.props.onClick) {
+        this.props.onClick && this.props.onClick();
+      }
     };
 
-    CSSCore.addClass(this.toastrButton, 'active');
-    ReactTransitionEvents.addEndEventListener(this.toastrButton, onComplete);
-
-    if (this.props.onClick) {
-      this.props.onClick && this.props.onClick()
-    }
+    onCSSTransitionEnd(this.toastrButton, end);
   }
 
   render() {
@@ -34,8 +34,7 @@ export default class Button extends Component {
       <button
         ref={(ref) => this.toastrButton = ref}
         type="button"
-        className={this.props.classname}
-        onClick={e => this.handleClick(e)}>{this.props.children}</button>
+        onClick={e => this.handleClick(e)}><p>{this.props.children}</p></button>
     );
   }
 }

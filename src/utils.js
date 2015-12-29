@@ -1,3 +1,5 @@
+import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
+
 export function createReducer(initialState, fnMap) {
   return (state = initialState, {type, payload}) => {
     const handle = fnMap[type];
@@ -81,6 +83,16 @@ export function guid() {
   }
   return r() + r() + r() + '-' + r() + '_' + r() + '-' + r() + '_' + r() + r() + r();
 }
+
+export function onCSSTransitionEnd(node, callback) {
+  const runOnce = (e) => {
+    e.stopPropagation();
+    ReactTransitionEvents.removeEndEventListener(node, runOnce);
+    callback && callback(e);
+  };
+  ReactTransitionEvents.addEndEventListener(node, runOnce);
+}
+
 
 export const isMobile = detectIsMobile();
 

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import CSSCore from 'fbjs/lib/CSSCore';
-import {_bind, hasProperty} from './utils';
+import {_bind, hasProperty, onCSSTransitionEnd} from './utils';
 import Button from './Button';
 
 export default class ToastrConfirm extends Component {
@@ -23,16 +23,14 @@ export default class ToastrConfirm extends Component {
       '_setTransition',
       '_onConfirmAnimationComplete'
     );
-
-    this.isHiding = false;
   }
 
   componentDidUpdate() {
+    this.isHiding = false;
+
     if (this.props.confirm.show) {
       this._setTransition(true);
     }
-
-    ReactTransitionEvents.addEndEventListener(this.confirm, this._onConfirmAnimationComplete);
   }
 
   handleConfirmClick() {
@@ -66,19 +64,17 @@ export default class ToastrConfirm extends Component {
       this.isHiding = true;
     }
 
-    ReactTransitionEvents.addEndEventListener(this.confirm, this._onConfirmAnimationComplete);
+    onCSSTransitionEnd(this.confirm, this._onConfirmAnimationComplete);
   }
 
   _onConfirmAnimationComplete(e) {
-    e.stopPropagation();
     if (this.isHiding) {
-      //this._removeConfirm();
+      this._removeConfirm();
     }
-    console.log('animation done');
-    ReactTransitionEvents.removeEndEventListener(this.confirm, this._onConfirmAnimationComplete);
   }
 
   _removeConfirm() {
+    this.isHiding = false;
     CSSCore.addClass(this.confirmHolder, 'hide');
     CSSCore.removeClass(this.confirm, 'bounceOutUp');
     CSSCore.removeClass(this.confirm, 'bounceInDown');
@@ -95,19 +91,18 @@ export default class ToastrConfirm extends Component {
           <div className="message">{this.props.confirm.message}</div>}
           <ul>
             <li>
-              <button
-                type="button"
+              <Button
                 className="ok"
-                onClick={e => this.handleConfirmClick(e)}>confirm</button>
+                onClick={e => this.handleConfirmClick(e)}>confirm</Button>
             </li>
             <li>
               <Button
-                classname="cancel"
+                className="cancel"
                 onClick={e => this.handleCancelClick(e)}>cancel</Button>
             </li>
           </ul>
         </div>
-        <div className="shadow"></div>
+        <div className="shadow animated" ref={(ref) => this.confirmShadow = ref}></div>
       </div>
     );
   }
