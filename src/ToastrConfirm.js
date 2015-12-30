@@ -32,15 +32,13 @@ export default class ToastrConfirm extends Component {
     }
   }
 
-  handleConfirmClick(e) {
-    e.preventDefault();
+  handleConfirmClick() {
     const {options} = this.props.confirm;
     returnFuncFromObj(options, 'onOk');
     this._setTransition();
   }
 
-  handleCancelClick(e) {
-    e.preventDefault();
+  handleCancelClick() {
     const {options} = this.props.confirm;
     returnFuncFromObj(options, 'onCancel');
     this._setTransition();
