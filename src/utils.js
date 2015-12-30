@@ -93,14 +93,6 @@ export function onCSSTransitionEnd(node, callback) {
   ReactTransitionEvents.addEndEventListener(node, runOnce);
 }
 
-export function findNameInObject(obj, name, elseName) {
-  if (hasProperty(obj, name)){
-    return name
-  } else {
-    return elseName;
-  }
-}
-
 export function returnFuncFromObj(obj, name) {
   if (obj && hasProperty(obj, name)) {
     return obj[name] && obj[name]();

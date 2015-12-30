@@ -9,7 +9,7 @@ import * as tActions        from './actions';
 import {EE}                 from './toastrEmitter';
 import config               from './config';
 
-import {checkPositionName, isMobile, _bind, findNameInObject} from './utils.js';
+import {checkPositionName, isMobile, _bind, hasProperty} from './utils.js';
 
 const mapStateToProps = (state) => ({
   toastr: state.toastr
@@ -88,8 +88,9 @@ export class ReduxToastr extends Component {
     const toastrPosition = checkPositionName(this.props.position);
     const classes = classnames('redux-toastr', toastrPosition, {mobile: isMobile});
     const {toastr, confirm} = this.props;
-    const confirmOkText = findNameInObject(confirm, 'okText', 'ok');
-    const confirmCancelText = findNameInObject(confirm, 'cancelText', 'cancel');
+
+    const confirmOkText = hasProperty(confirm, 'okText') ? confirm.okText : 'ok';
+    const confirmCancelText = hasProperty(confirm, 'cancelText') ? confirm.cancelText : 'cancel';
 
     return (
       <div className={classes}>
