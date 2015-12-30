@@ -89,7 +89,6 @@ export default class ToastrBox extends Component {
   }
 
   _onAnimationComplite(e) {
-    e.stopPropagation()
     const {remove, toastr} = this.props;
     const {options} = toastr;
 
@@ -97,13 +96,9 @@ export default class ToastrBox extends Component {
       this._setIsHiding(false);
       remove(toastr.id);
 
-      if (hasProperty(options, 'onHideComplete')) {
-        options.onHideComplete && options.onHideComplete();
-      }
+      returnFuncFromObj(options, 'onHideComplete');
     } else if (!this.isHiding) {
-      if (hasProperty(options, 'onShowComplete')) {
-        options.onShowComplete && options.onShowComplete();
-      }
+      returnFuncFromObj(options, 'onShowComplete');
     }
   }
 
@@ -113,6 +108,7 @@ export default class ToastrBox extends Component {
     }
     this._setIsHiding(true);
     this._setTransition(true);
+    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
   }
 
   _setTransition(hide) {
@@ -127,7 +123,7 @@ export default class ToastrBox extends Component {
       CSSCore.removeClass(node, animationType);
     };
 
-    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
+    onCSSTransitionEnd(this.toastrBox, onEndListener);
     CSSCore.addClass(node, animationType);
   }
 
@@ -158,15 +154,8 @@ export default class ToastrBox extends Component {
 
   render() {
     const {toastr} = this.props;
-    let classIcon = null;
     const classes = classnames('toastr', 'animated', toastr.type);
-
-    if (hasProperty(toastr.options, 'icon')) {
-      classIcon = mapToIcon(toastr.options.icon);
-    } else {
-      classIcon = mapToIcon(toastr.type);
-    }
-
+    const classIcon = hasProperty(toastr.options, 'icon') ? mapToIcon(toastr.options.icon) : mapToIcon(toastr.type);
     const iconClasses = classnames('icon', classIcon);
 
     return (
