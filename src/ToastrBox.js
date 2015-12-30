@@ -1,10 +1,8 @@
 import CSSCore from 'fbjs/lib/CSSCore';
-import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
 import classnames from 'classnames';
-import {config} from './config';
 
-import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd} from './utils';
+import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd, returnFuncFromObj} from './utils';
 
 
 export default class ToastrBox extends Component {
@@ -52,7 +50,7 @@ export default class ToastrBox extends Component {
 
     if (toastr.type !== 'message') {
       this._setIntervalId(setTimeout(this._removeToastr, time));
-    } 
+    }
 
     this._setTransition();
     onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
@@ -81,14 +79,14 @@ export default class ToastrBox extends Component {
 
   mouseLeave() {
     const {toastr} = this.props;
-    if(this.isHiding || toastr.type == 'message') {
+    if (this.isHiding || toastr.type == 'message') {
       return;
     }
 
     this._setIntervalId(setTimeout(this._removeToastr, 1000));
   }
 
-  _onAnimationComplite(e) {
+  _onAnimationComplite() {
     const {remove, toastr} = this.props;
     const {options} = toastr;
 
@@ -146,10 +144,10 @@ export default class ToastrBox extends Component {
     const {toastr} = this.props;
 
     if (toastr.type == 'message') {
-      return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>
+      return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>;
     }
 
-    return <div className="message">{toastr.message}</div>
+    return <div className="message">{toastr.message}</div>;
   }
 
   render() {

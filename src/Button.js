@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import CSSCore from 'fbjs/lib/CSSCore';
 
 import {_bind, onCSSTransitionEnd} from './utils';
@@ -13,6 +12,7 @@ export default class Button extends Component {
   }
 
   handleClick(e) {
+    e.preventDefault();
     CSSCore.addClass(this.toastrButton, 'active');
 
     /*

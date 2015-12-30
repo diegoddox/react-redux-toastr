@@ -41,7 +41,7 @@ export default createReducer(initialState, {
     return {
       ...state,
       toastrs: state.toastrs.filter(toastr => toastr.id !== payload.id)
-    }
+    };
   },
   [CLEAN_TOASTR]: (state) => {
     return {
@@ -57,7 +57,7 @@ export default createReducer(initialState, {
         message: payload.message,
         options: payload.options || null
       }
-    }
+    };
   },
   [HIDE_CONFIRM]: (state) => {
     return {
@@ -66,6 +66,6 @@ export default createReducer(initialState, {
         show: false,
         options: null
       }
-    }
+    };
   }
 });

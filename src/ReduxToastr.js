@@ -1,4 +1,4 @@
-import React,{Component, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect}            from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classnames           from 'classnames';
@@ -100,11 +100,11 @@ export class ReduxToastr extends Component {
           okText={confirmOkText}
           cancelText={confirmCancelText}/>
 
-        {toastr.toastrs.map((toastr) => {
+        {toastr.toastrs.map((item) => {
           return (
             <ToastrBox
-              key={toastr.id}
-              toastr={toastr}
+              key={item.id}
+              toastr={item}
               timeOut={this.props.timeOut}
               remove={this.handleRemoveToastr}/>
           );

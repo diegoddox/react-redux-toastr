@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import CSSCore from 'fbjs/lib/CSSCore';
-import {_bind, hasProperty, onCSSTransitionEnd, returnFuncFromObj} from './utils';
+import {_bind, onCSSTransitionEnd, returnFuncFromObj} from './utils';
 import Button from './Button';
 
 export default class ToastrConfirm extends Component {
@@ -33,13 +32,15 @@ export default class ToastrConfirm extends Component {
     }
   }
 
-  handleConfirmClick() {
+  handleConfirmClick(e) {
+    e.preventDefault();
     const {options} = this.props.confirm;
     returnFuncFromObj(options, 'onOk');
     this._setTransition();
   }
 
   handleCancelClick(e) {
+    e.preventDefault();
     const {options} = this.props.confirm;
     returnFuncFromObj(options, 'onCancel');
     this._setTransition();
@@ -62,7 +63,7 @@ export default class ToastrConfirm extends Component {
     onCSSTransitionEnd(this.confirm, this._onConfirmAnimationComplete);
   }
 
-  _onConfirmAnimationComplete(e) {
+  _onConfirmAnimationComplete() {
     if (this.isHiding) {
       this._removeConfirm();
     }
