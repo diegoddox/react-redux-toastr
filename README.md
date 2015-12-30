@@ -1,21 +1,21 @@
 ##`redux-toastr` [demo](http://diegoddox.github.io/redux-toastr/)
 
-`redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a Redux reducer, redux-toastr toastr emitter and a React component.
+`redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a reducer, toastr emitter and a React component.
 
 The reducer listens to dispatched actions from the component to maintain your state in Redux.
 
 ## Implementation Guide
 
-#### 1. Install redux-toastr
+##### 1. Installation
 
 `npm install --save redux-toastr`
 
-##### 2. Link `redux-toastr` styles to your app
+##### 2. Add the `redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/redux-toastr/0.4.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/redux-toastr/0.5.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
-##### 3. The third thing you need to do is to add the `redux-toastr` reducer to Redux.
+##### 3. The third thing you need to do is to add the `redux-toastr` `reducer` to Redux.
 
 ```
 import {createStore, combineReducers} from 'redux'
@@ -32,6 +32,7 @@ const store = createStore(reducer)
 
 ##### 4. Add the `redux-toastr` React component to the root of your app
 ```
+import {Provider}  from 'react-redux'
 import ReduxToastr from 'redux-toastr'
 <Provider store={store}>
   <div>
@@ -50,10 +51,10 @@ timeOut: 5000
 newestOnTop: true
 position: 'top-right'
 ```
-positions: `top-left`, `top-right`, `bottom-left` and `bottom-right`
+positions: `top-left` `top-right`  `bottom-left` and `bottom-right`
 
-##### 5. Add the `toastr` 
-The toastr methods use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
+##### 5. Add the `redux-toastr`  `toastr` emitter
+The `toastr` methods use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
 ```
 import React, {Component}  from 'react'
@@ -82,14 +83,9 @@ constructor(props) {
   this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
 }
 ```
-## Toastr methods
+# Toastr methods
 `success` `info` `warning` `error` and `message`
-Each method can take up to three arguments.
-
-1. Passing three arguments the first is the `title` the second `message` and the third is the `options`
-2. Passing two `string` arguments the first will be the `title` and the second the `message`
-3. You can pass the `message` and the second argument can be the `options`
-4. If you pass only one argument it will become the message 
+Each of this method can take up to three arguments.
 
 ```
 import {toastr} from 'redux-toastr'
@@ -104,13 +100,23 @@ const toastrOptions = {
 toastr.success('Title', 'Message', toastrOptions)
 toastr.info('The message', toastrOptions)
 toastr.warning('The title', 'The message')
-toastr.error('The message'})
+toastr.error('The message')
 ```
 
-## Toastr `message` method
+##### NOTE: Toastr `message`
 This one is in case you wanna show a large amount of information, unlike the other method this one will not close automatically and doesn't have icon.
 
-This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html)
+This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html) to display the message.
+
+##### Toastr `confirm` 
+The confirm method takes two arguments the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
+
+```
+toastr.confirm('The message', {
+  onOk: func, // <-- When ok is clicked
+  onCancel: func, // <-- When cancel is clicked
+})
+```
 
 # Run a local demo
 ```
