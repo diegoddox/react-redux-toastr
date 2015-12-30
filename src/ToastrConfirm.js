@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import CSSCore from 'fbjs/lib/CSSCore';
-import {_bind, hasProperty, onCSSTransitionEnd} from './utils';
+import {_bind, hasProperty, onCSSTransitionEnd, returnFuncFromObj} from './utils';
 import Button from './Button';
 
 export default class ToastrConfirm extends Component {
@@ -9,13 +9,8 @@ export default class ToastrConfirm extends Component {
 
   static propTypes = {
     confirm: PropTypes.object.isRequired,
-    onConfirmText: PropTypes.string,
-    onCancelText: PropTypes.string
-  }
-
-  static defaultProps = {
-    onConfirmText: 'ok',
-    onCancelText: 'cancel'
+    okText: PropTypes.string,
+    cancelText: PropTypes.string
   }
 
   constructor(props) {
@@ -39,19 +34,14 @@ export default class ToastrConfirm extends Component {
   }
 
   handleConfirmClick() {
-    const {confirm} = this.props;
-    if (confirm.options && hasProperty(confirm.options, 'onConfirm')) {
-      confirm.options.onConfirm && confirm.options.onConfirm();
-    }
+    const {options} = this.props.confirm;
+    returnFuncFromObj(options, 'onOk');
     this._setTransition();
   }
 
   handleCancelClick(e) {
-    const {confirm} = this.props;
-    if (confirm.options && hasProperty(confirm.options, 'onCancel')) {
-      confirm.options.onCancel && confirm.options.onCancel();
-    }
-
+    const {options} = this.props.confirm;
+    returnFuncFromObj(options, 'onCancel');
     this._setTransition();
   }
 
@@ -89,6 +79,7 @@ export default class ToastrConfirm extends Component {
   }
 
   render() {
+    const {okText, cancelText} = this.props;
     return (
       <div className="confirm-holder hide fadeIn" ref={(ref) => this.confirmHolder = ref}>
         <div className="confirm animated" ref={(ref) => this.confirm = ref}>
@@ -98,12 +89,12 @@ export default class ToastrConfirm extends Component {
             <li>
               <Button
                 className="ok"
-                onClick={e => this.handleConfirmClick(e)}>{this.props.onConfirmText}</Button>
+                onClick={e => this.handleConfirmClick(e)}>{okText}</Button>
             </li>
             <li>
               <Button
                 className="cancel"
-                onClick={e => this.handleCancelClick(e)}>{this.props.onCancelText}</Button>
+                onClick={e => this.handleCancelClick(e)}>{cancelText}</Button>
             </li>
           </ul>
         </div>

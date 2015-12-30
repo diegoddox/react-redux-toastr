@@ -1,5 +1,4 @@
-import React,
-  {Component, PropTypes}    from 'react';
+import React,{Component, PropTypes} from 'react';
 import {connect}            from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classnames           from 'classnames';
@@ -10,7 +9,7 @@ import * as tActions        from './actions';
 import {EE}                 from './toastrEmitter';
 import config               from './config';
 
-import {checkPositionName, isMobile, _bind}  from './utils.js';
+import {checkPositionName, isMobile, _bind, findNameInObject} from './utils.js';
 
 const mapStateToProps = (state) => ({
   toastr: state.toastr
@@ -24,12 +23,17 @@ export class ReduxToastr extends Component {
     options: PropTypes.object,
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
-    timeOut: PropTypes.number
+    timeOut: PropTypes.number,
+    confirm: PropTypes.object
   }
 
   static defaultProps = {
     position: 'top-right',
-    newestOnTop: true
+    newestOnTop: true,
+    confirm: {
+      okText: 'ok',
+      onCancelText: 'cancel'
+    }
   }
 
   constructor(props) {
@@ -83,12 +87,18 @@ export class ReduxToastr extends Component {
   render() {
     const toastrPosition = checkPositionName(this.props.position);
     const classes = classnames('redux-toastr', toastrPosition, {mobile: isMobile});
-    const {toastr} = this.props;
+    const {toastr, confirm} = this.props;
+    const confirmOkText = findNameInObject(confirm, 'okText', 'ok');
+    const confirmCancelText = findNameInObject(confirm, 'cancelText', 'cancel');
+
     return (
       <div className={classes}>
         <ToastrConfirm
           hideConfirm={this.handleHideConfirm}
-          confirm={toastr.confirm}/>
+          confirm={toastr.confirm}
+          okText={confirmOkText}
+          cancelText={confirmCancelText}/>
+
         {toastr.toastrs.map((toastr) => {
           return (
             <ToastrBox
