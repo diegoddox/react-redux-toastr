@@ -4,7 +4,7 @@
   "description": "redux-toastr is a toastr message implemented with Redux",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "npm run clean && babel src --out-dir lib && npm run less",
     "build:w": "babel -w src --out-dir lib",
     "lint": "eslint . --ext .js --ext .jsx || true",
     "less": "node_modules/.bin/lessc src/less/redux-toastr.less --clean-css lib/css/redux-toastr.min.css && node_modules/.bin/lessc src/less/redux-toastr.less lib/css/redux-toastr.css",
