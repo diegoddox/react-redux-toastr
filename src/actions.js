@@ -1,4 +1,4 @@
-import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR} from './constants';
+import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
 import {mapToToastrMessage} from './utils';
 
 export function addToastrAction(toastr) {
@@ -23,6 +23,8 @@ export function remove(id) {
   };
 }
 
+// In case the user wanna bind the actions
+// we need to use the func 'mapToToastrMessage' here as well.
 export function success(...toastr) {
   return {
     type: ADD_TOASTR,
@@ -48,5 +50,21 @@ export function error(...toastr) {
   return {
     type: ADD_TOASTR,
     payload: mapToToastrMessage('error', toastr)
+  };
+}
+
+export function confirm(message, options) {
+  return {
+    type: SHOW_CONFIRM,
+    payload: {
+      message,
+      options
+    }
+  };
+}
+
+export function hideConfirm() {
+  return {
+    type: HIDE_CONFIRM
   };
 }

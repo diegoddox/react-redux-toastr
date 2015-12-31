@@ -1,10 +1,8 @@
 import CSSCore from 'fbjs/lib/CSSCore';
-import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
 import classnames from 'classnames';
-import {config} from './config';
 
-import {_bind, hasProperty, mapToIcon} from './utils';
+import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd, returnFuncFromObj} from './utils';
 
 
 export default class ToastrBox extends Component {
@@ -52,10 +50,10 @@ export default class ToastrBox extends Component {
 
     if (toastr.type !== 'message') {
       this._setIntervalId(setTimeout(this._removeToastr, time));
-    } 
+    }
 
     this._setTransition();
-    ReactTransitionEvents.addEndEventListener(this.toastrBox, this._onAnimationComplite);
+    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
   }
 
   componentWillUnmount() {
@@ -81,7 +79,7 @@ export default class ToastrBox extends Component {
 
   mouseLeave() {
     const {toastr} = this.props;
-    if(this.isHiding || toastr.type == 'message') {
+    if (this.isHiding || toastr.type == 'message') {
       return;
     }
 
@@ -90,19 +88,15 @@ export default class ToastrBox extends Component {
 
   _onAnimationComplite() {
     const {remove, toastr} = this.props;
+    const {options} = toastr;
 
     if (this.isHiding) {
       this._setIsHiding(false);
-      ReactTransitionEvents.removeEndEventListener(this.toastrBox, this._onAnimationComplite);
       remove(toastr.id);
 
-      if (hasProperty(toastr.options, 'onHideComplete')) {
-        toastr.options.onHideComplete && toastr.options.onHideComplete();
-      }
+      returnFuncFromObj(options, 'onHideComplete');
     } else if (!this.isHiding) {
-      if (hasProperty(toastr.options, 'onShowComplete')) {
-        toastr.options.onShowComplete && toastr.options.onShowComplete();
-      }
+      returnFuncFromObj(options, 'onShowComplete');
     }
   }
 
@@ -112,6 +106,7 @@ export default class ToastrBox extends Component {
     }
     this._setIsHiding(true);
     this._setTransition(true);
+    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
   }
 
   _setTransition(hide) {
@@ -124,10 +119,9 @@ export default class ToastrBox extends Component {
       }
 
       CSSCore.removeClass(node, animationType);
-      ReactTransitionEvents.removeEndEventListener(node, onEndListener);
     };
 
-    ReactTransitionEvents.addEndEventListener(node, onEndListener);
+    onCSSTransitionEnd(this.toastrBox, onEndListener);
     CSSCore.addClass(node, animationType);
   }
 
@@ -150,23 +144,16 @@ export default class ToastrBox extends Component {
     const {toastr} = this.props;
 
     if (toastr.type == 'message') {
-      return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>
+      return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>;
     }
 
-    return <div className="message">{toastr.message}</div>
+    return <div className="message">{toastr.message}</div>;
   }
 
   render() {
     const {toastr} = this.props;
-    let classIcon = null;
     const classes = classnames('toastr', 'animated', toastr.type);
-
-    if (hasProperty(toastr.options, 'icon')) {
-      classIcon = mapToIcon(toastr.options.icon);
-    } else {
-      classIcon = mapToIcon(toastr.type);
-    }
-
+    const classIcon = hasProperty(toastr.options, 'icon') ? mapToIcon(toastr.options.icon) : mapToIcon(toastr.type);
     const iconClasses = classnames('icon', classIcon);
 
     return (

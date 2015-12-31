@@ -1,6 +1,11 @@
 @import './open-sans-condensed.less';
 @import './fonts-icon.less';
 @import './animation.less';
+@import './confirm.less';
+
+body.toastr-confirm-active {
+  overflow: hidden;
+}
 
 .redux-toastr {
   position: fixed;
@@ -88,13 +93,13 @@
       
       .title {
         font-size: 1.1em;
-        font-family: 'open_sans_condensedbold' sans-serif;
+        font-family: 'open-sans-condensedbold' sans-serif;
         font-weight: bold;
       }
 
       .message {
         font-size: 1.1em;
-        font-family: 'open_sanscondensed_light', sans-serif;
+        font-family: 'open-sanscondensed-light', sans-serif;
       }
     }
 

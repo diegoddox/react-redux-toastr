@@ -1,3 +1,5 @@
+import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
+
 export function createReducer(initialState, fnMap) {
   return (state = initialState, {type, payload}) => {
     const handle = fnMap[type];
@@ -27,7 +29,7 @@ export function mapToToastrMessage(type, array) {
     options: {}
   };
 
-  if(!array.length) {
+  if (!array.length) {
     console.error('REDUX-TOASTR ERROR:: The toastr method: ' + type + ' cannot be empty', array);
     return false;
   }
@@ -40,7 +42,7 @@ export function mapToToastrMessage(type, array) {
   if (array.length > 1 && isString(array[0]) && isString(array[1])) {
     obj.title = array[0];
     obj.message = array[1];
-  } else if (isString(array[0])){
+  } else if (isString(array[0])) {
     if (type == 'message') {
       obj.title = 'Message';
     }
@@ -54,7 +56,7 @@ export function mapToToastrMessage(type, array) {
 }
 
 export function mapToIcon(icon) {
-  switch(icon) {
+  switch (icon) {
     case 'info':
       return 'icon-information-circle';
     case 'success':
@@ -82,6 +84,22 @@ export function guid() {
   return r() + r() + r() + '-' + r() + '_' + r() + '-' + r() + '_' + r() + r() + r();
 }
 
+export function onCSSTransitionEnd(node, callback) {
+  const runOnce = (e) => {
+    e.stopPropagation();
+    callback && callback(e);
+    ReactTransitionEvents.removeEndEventListener(node, runOnce);
+  };
+  ReactTransitionEvents.addEndEventListener(node, runOnce);
+}
+
+export function returnFuncFromObj(obj, name) {
+  if (obj && hasProperty(obj, name)) {
+    return obj[name] && obj[name]();
+  }
+}
+
+
 export const isMobile = detectIsMobile();
 
 function isString(obj) {
@@ -90,20 +108,19 @@ function isString(obj) {
   }
   return false;
 }
-  
 
 function hasObject(item) {
   return item.icon || item.timeOut || item.onShowComplete || item.onHideComplete || item.icon;
 }
 
-function detectIsMobile() { 
- if (navigator.userAgent.match(/Android/i)
- || navigator.userAgent.match(/webOS/i)
- || navigator.userAgent.match(/iPhone/i)
- || navigator.userAgent.match(/iPad/i)
- || navigator.userAgent.match(/iPod/i)
- || navigator.userAgent.match(/BlackBerry/i)
- || navigator.userAgent.match(/Windows Phone/i)
+function detectIsMobile() {
+  if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i)
  ) {
     return true;
   }else {
