@@ -13,7 +13,7 @@ The reducer listens to dispatched actions from the component to maintain your st
 ##### 2. Add the `redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/redux-toastr/0.5.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/redux-toastr/1.0.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 ##### 3. The third thing you need to do is to add the `redux-toastr` `reducer` to Redux.
 
@@ -54,7 +54,7 @@ position: 'top-right'
 positions: `top-left` `top-right`  `bottom-left` and `bottom-right`
 
 ##### 5. Add the `redux-toastr`  `toastr` emitter
-The `toastr` methods use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
+The `toastr` method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
 ```
 import React, {Component}  from 'react'
@@ -84,17 +84,18 @@ constructor(props) {
 }
 ```
 # Toastr methods
-`success` `info` `warning` `error` and `message`
-Each of this method can take up to three arguments.
+##### Toastr: `success` `info` `warning` and `error` 
+Each of this method can take up to three arguments the `title` a `message` and `options`. 
+In the `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete` 
 
 ```
 import {toastr} from 'redux-toastr'
 
 const toastrOptions = {
-  timeOut: number, // Override the default timeOut
-  onShowComplete: func, // <-- When the animation-show is complete
-  onHideComplete: func, // <-- When the animation-hide is complete
-  icon: string // Override the default icon
+  timeOut: 3000,
+  icon: 'my-icon-name',
+  onShowComplete: () => console.log('SHOW: animation is done'),
+  onHideComplete: () => console.log('HIDE: animation is done'),
 }
 
 toastr.success('Title', 'Message', toastrOptions)
@@ -103,21 +104,40 @@ toastr.warning('The title', 'The message')
 toastr.error('The message')
 ```
 
-##### NOTE: Toastr `message`
-This one is in case you wanna show a large amount of information, unlike the other method this one will not close automatically and doesn't have icon.
+##### Toastr: `message`
+This one are in case you wanna show a large amount of information, unlike the other methods above this will not close automatically to close the user has to click on the close button.
 
+In case you don't pass the `title` a default one will be provided.
+
+```
+const toastrMessageOptions = {
+  onShowComplete: () => console.log('SHOW: animation is done'),
+  onHideComplete: () => console.log('HIDE: animation is done')
+};
+toastr.message('Title', 'text <img src="myimage.jpg" />', toastrMessageOptions)
+```
 This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html) to display the message.
 
-##### Toastr `confirm` 
+##### Toastr: `confirm` 
 The confirm method takes two arguments the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
 
 ```
-toastr.confirm('The message', {
-  onOk: func, // <-- When ok is clicked
-  onCancel: func, // <-- When cancel is clicked
-})
+const toastrConfirmOptions = {
+  onOk: () => console.log('OK: clicked'),
+  onCancel: () => console.log('CANCEL: clicked')
+};
+toastr.confirm('Are you sure about that!', toastrConfirmOptions)
 ```
 
+You can change the `ok` and `cancel` text by passing a prop to the `ReduxToastr` component
+
+```
+const confirmOptions = {
+  okText: 'confirm text',
+  cancelText: 'cancel text'
+};
+<ReduxToastr confirm={confirmOptions}/>
+```
 # Run a local demo
 ```
 git clone https://github.com/diegoddox/redux-toastr.git
