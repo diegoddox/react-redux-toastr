@@ -86,7 +86,7 @@ constructor(props) {
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error` 
 Each of this method can take up to three arguments the `title` a `message` and `options`. 
-In the `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete` 
+In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete` 
 
 ```
 import {toastr} from 'redux-toastr'
@@ -120,6 +120,8 @@ This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/re
 
 ##### Toastr: `confirm` 
 The confirm method takes two arguments the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
+
+NOTE: You can only have one at a time, right now if you have one `confirm` and you fire another it will be ignored.
 
 ```
 const toastrConfirmOptions = {
