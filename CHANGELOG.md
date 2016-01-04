@@ -1,5 +1,6 @@
 #1.0.0
 ##### add confirm method
+##### add css prefix
 
 #0.4.0
 #### add method message
