@@ -30,6 +30,7 @@ export class ReduxToastr extends Component {
   static defaultProps = {
     position: 'top-right',
     newestOnTop: true,
+    timeOut: 5000,
     confirm: {
       okText: 'ok',
       onCancelText: 'cancel'
@@ -39,6 +40,8 @@ export class ReduxToastr extends Component {
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(tActions, this.props.dispatch);
+    
+    config.set('timeOut', this.props.timeOut);
     config.set('newestOnTop', this.props.newestOnTop);
 
     _bind(
@@ -91,22 +94,27 @@ export class ReduxToastr extends Component {
 
     const confirmOkText = hasProperty(confirm, 'okText') ? confirm.okText : 'ok';
     const confirmCancelText = hasProperty(confirm, 'cancelText') ? confirm.cancelText : 'cancel';
+    
+    const confirmProps = {
+      hideConfirm: this.handleHideConfirm,
+      confirm: toastr.confirm,
+      okText: confirmOkText,
+      cancelText: confirmCancelText
+    };
 
     return (
       <div className={classes}>
-        <ToastrConfirm
-          hideConfirm={this.handleHideConfirm}
-          confirm={toastr.confirm}
-          okText={confirmOkText}
-          cancelText={confirmCancelText}/>
+        <ToastrConfirm {...confirmProps}/>
 
         {toastr.toastrs.map((item) => {
+          const props = {
+            key: item.id,
+            toastr: item,
+            timeOut: this.props.timeOut,
+            remove: this.handleRemoveToastr
+          };
           return (
-            <ToastrBox
-              key={item.id}
-              toastr={item}
-              timeOut={this.props.timeOut}
-              remove={this.handleRemoveToastr}/>
+            <ToastrBox {...props}/>
           );
         })}
       </div>
