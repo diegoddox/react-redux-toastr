@@ -62,7 +62,7 @@ export function mapToIcon(icon) {
     case 'success':
       return 'icon-check-1';
     case 'warning':
-      return 'icon-exclamation';
+      return 'icon-exclamation-triangle';
     case 'error':
       return 'icon-exclamation-alert';
     default:
