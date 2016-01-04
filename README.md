@@ -2,7 +2,7 @@
 
 `redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a reducer, toastr emitter and a React component.
 
-The reducer listens to dispatched actions from the component to maintain your state in Redux.
+The reducer listens to dispatched actions from the component to maintain the `toastr` state in Redux. 
 
 ## Implementation Guide
 
@@ -34,12 +34,13 @@ const store = createStore(reducer)
 ```
 import {Provider}  from 'react-redux'
 import ReduxToastr from 'redux-toastr'
+
 <Provider store={store}>
   <div>
     ... other things like router ...
     // props are not required
     <ReduxToastr
-      timeOut={3000}
+      timeOut={4000}
       newestOnTop={false}
       position="top-left"/>
   </div>
@@ -86,7 +87,7 @@ constructor(props) {
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error` 
 Each of this method can take up to three arguments the `title` a `message` and `options`. 
-In the `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete` 
+In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete` 
 
 ```
 import {toastr} from 'redux-toastr'
@@ -95,7 +96,7 @@ const toastrOptions = {
   timeOut: 3000,
   icon: 'my-icon-name',
   onShowComplete: () => console.log('SHOW: animation is done'),
-  onHideComplete: () => console.log('HIDE: animation is done'),
+  onHideComplete: () => console.log('HIDE: animation is done')
 }
 
 toastr.success('Title', 'Message', toastrOptions)
@@ -119,7 +120,9 @@ toastr.message('Title', 'text <img src="myimage.jpg" />', toastrMessageOptions)
 This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html) to display the message.
 
 ##### Toastr: `confirm` 
-The confirm method takes two arguments the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
+The confirm method takes two arguments, the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
+
+NOTE: You can only have one at a time, right now if you have one `confirm` and you fire another it will be ignored.
 
 ```
 const toastrConfirmOptions = {
@@ -129,7 +132,7 @@ const toastrConfirmOptions = {
 toastr.confirm('Are you sure about that!', toastrConfirmOptions)
 ```
 
-You can change the `ok` and `cancel` text by passing a prop to the `ReduxToastr` component
+You can change the `ok` and `cancel` text by passing the `confirm` props to the `ReduxToastr` component
 
 ```
 const confirmOptions = {

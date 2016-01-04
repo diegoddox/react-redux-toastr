@@ -3,19 +3,17 @@ import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
 import classnames from 'classnames';
 
 import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd, returnFuncFromObj} from './utils';
-
+import config from './config';
 
 export default class ToastrBox extends Component {
   static displayName = 'ToastrBox'
 
   static propTypes = {
     toastr: PropTypes.object.isRequired,
-    timeOut: PropTypes.number,
     transition: PropTypes.object
   }
 
   static defaultProps = {
-    timeOut: 5000,
     transition: {
       in: 'bounceIn',
       out: 'bounceOut'
@@ -29,13 +27,13 @@ export default class ToastrBox extends Component {
       'mouseEnter',
       'mouseLeave',
       'handleClick',
+      'renderMessage',
       '_removeToastr',
       '_onAnimationComplite',
       '_setTransition',
       '_clearTransition',
       '_setIntervalId',
-      '_setIsHiding',
-      '_renderMessage'
+      '_setIsHiding'
     );
   }
 
@@ -45,7 +43,8 @@ export default class ToastrBox extends Component {
   }
 
   componentDidMount() {
-    const {timeOut, toastr} = this.props;
+    const {toastr} = this.props;
+    const timeOut = config.get('timeOut');
     const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut;
 
     if (toastr.type !== 'message') {
@@ -140,7 +139,7 @@ export default class ToastrBox extends Component {
     this.isHiding = val;
   }
 
-  _renderMessage() {
+  renderMessage() {
     const {toastr} = this.props;
 
     if (toastr.type == 'message') {
@@ -168,8 +167,8 @@ export default class ToastrBox extends Component {
         </div>
         <div className="message-holder" onClick={this.handleClick}>
           {toastr.title &&
-          <div className="title">{toastr.title}</div>}
-          {this._renderMessage()}
+            <div className="title">{toastr.title}</div>}
+          {this.renderMessage()}
         </div>
         <button onClick={this.handleClick} className="close icon-close-round"></button>
       </div>
