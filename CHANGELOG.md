@@ -1,3 +1,6 @@
+#1.0.1
+##### Fix icons
+
 #1.0.0
 ##### add confirm method
 ##### add css prefix
