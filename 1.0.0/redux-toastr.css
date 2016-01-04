@@ -10,7 +10,7 @@
   font-family: "open-sans-condensedbold";
   src: url("../fonts/opensans-condbold.eot");
   src: url("../fonts/opensans-condbold.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-condbold.woff2") format("woff2"), url("../fonts/opensans-condbold.woff") format("woff"), url("../fonts/opensans-condbold.ttf") format("truetype"), url("../fonts/opensans-condbold.svg#open_sans_condensedbold") format("svg");
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 @font-face {
@@ -569,7 +569,7 @@ body.toastr-confirm-active {
   position: relative;
   color: #333;
   padding: 10px 0;
-  opacity: .99;
+  opacity: .95;
 }
 .redux-toastr .toastr .icon-holder {
   width: 15%;
