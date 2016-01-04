@@ -1,26 +1,5 @@
 @charset "UTF-8";
 @font-face {
-  font-family: "open-sans-condensedbold";
-  src: url("../fonts/opensans-condbold.eot");
-  src: url("../fonts/opensans-condbold.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-condbold.woff2") format("woff2"), url("../fonts/opensans-condbold.woff") format("woff"), url("../fonts/opensans-condbold.ttf") format("truetype"), url("../fonts/opensans-condbold.svg#open_sans_condensedbold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: "open-sanscondensed-light";
-  src: url("../fonts/opensans-condlight.eot");
-  src: url("../fonts/opensans-condlight.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-condlight.woff2") format("woff2"), url("../fonts/opensans-condlight.woff") format("woff"), url("../fonts/opensans-condlight.ttf") format("truetype"), url("../fonts/opensans-condlight.svg#open_sanscondensed_light") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "open-sans-condensedbold";
-  src: url("../fonts/opensans-condbold.eot");
-  src: url("../fonts/opensans-condbold.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-condbold.woff2") format("woff2"), url("../fonts/opensans-condbold.woff") format("woff"), url("../fonts/opensans-condbold.ttf") format("truetype"), url("../fonts/opensans-condbold.svg#open_sans_condensedbold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
   font-family: "redux-toastr";
   src: url("../fonts/redux-toastr.eot");
   src: url("../fonts/redux-toastr.eot?#iefix") format("embedded-opentype"), url("../fonts/redux-toastr.woff") format("woff"), url("../fonts/redux-toastr.ttf") format("truetype"), url("../fonts/redux-toastr.svg#redux-toastr") format("svg");
@@ -543,7 +522,7 @@ body.toastr-confirm-active {
 }
 .redux-toastr {
   position: fixed;
-  z-index: 999999;
+  z-index: 99999999;
 }
 .redux-toastr.top-left,
 .redux-toastr.top-right,
@@ -576,7 +555,8 @@ body.toastr-confirm-active {
   position: relative;
   color: #333;
   padding: 10px 0;
-  opacity: .95;
+  opacity: .9;
+  box-shadow: 0px 0px 10px #999;
 }
 .redux-toastr .toastr .icon-holder {
   width: 15%;
@@ -615,12 +595,12 @@ body.toastr-confirm-active {
 }
 .redux-toastr .toastr .message-holder .title {
   font-size: 1.1em;
-  font-family: 'open-sans-condensedbold' sans-serif;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
   font-weight: bold;
 }
 .redux-toastr .toastr .message-holder .message {
   font-size: 1.1em;
-  font-family: 'open-sanscondensed-light', sans-serif;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
 }
 .redux-toastr .toastr:hover {
   box-shadow: 0px 0px 10px #444;
