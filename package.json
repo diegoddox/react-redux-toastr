@@ -1,6 +1,6 @@
 {
   "name": "redux-toastr",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "redux-toastr is a toastr message implemented with Redux",
   "main": "lib/index.js",
   "scripts": {
