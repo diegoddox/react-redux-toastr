@@ -40,7 +40,7 @@ export class ReduxToastr extends Component {
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(tActions, this.props.dispatch);
-    
+
     config.set('timeOut', this.props.timeOut);
     config.set('newestOnTop', this.props.newestOnTop);
 
@@ -94,7 +94,7 @@ export class ReduxToastr extends Component {
 
     const confirmOkText = hasProperty(confirm, 'okText') ? confirm.okText : 'ok';
     const confirmCancelText = hasProperty(confirm, 'cancelText') ? confirm.cancelText : 'cancel';
-    
+
     const confirmProps = {
       hideConfirm: this.handleHideConfirm,
       confirm: toastr.confirm,
