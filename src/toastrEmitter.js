@@ -21,6 +21,12 @@ export const toastrEmitter = {
   },
   clean: () => {
     cleanToastr();
+  },
+  confirm: (...args) => {
+    emitter.emit('toastr/confirm', {
+      message: args[0].toString(),
+      options: args[1]
+    });
   }
 };
 

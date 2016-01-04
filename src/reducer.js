@@ -1,8 +1,14 @@
 import {createReducer, guid}  from './utils.js';
 import config from './config';
-import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR} from './constants';
+import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
 
-const initialState = [];
+const initialState = {
+  toastrs: [],
+  confirm: {
+    show: false,
+    options: null
+  }
+};
 
 export default createReducer(initialState, {
   [ADD_TOASTR]: (state, payload) => {
@@ -15,22 +21,51 @@ export default createReducer(initialState, {
     };
 
     if (!config.get('newestOnTop')) {
-      return [
+      return {
         ...state,
-        newToastr
-      ];
+        toastrs: [
+          ...state.toastrs,
+          newToastr
+        ]
+      };
     }
-    return [
-      newToastr,
-      ...state
-    ];
+    return {
+      ...state,
+      toastrs: [
+        newToastr,
+        ...state.toastrs
+      ]
+    };
   },
   [REMOVE_TOASTR]: (state, payload) => {
-    return state.filter(toastr =>
-      toastr.id !== payload.id
-    );
+    return {
+      ...state,
+      toastrs: state.toastrs.filter(toastr => toastr.id !== payload.id)
+    };
   },
-  [CLEAN_TOASTR]: () => {
-    return [];
+  [CLEAN_TOASTR]: (state) => {
+    return {
+      ...state,
+      toastrs: []
+    };
+  },
+  [SHOW_CONFIRM]: (state, payload) => {
+    return {
+      ...state,
+      confirm: {
+        show: true,
+        message: payload.message,
+        options: payload.options || null
+      }
+    };
+  },
+  [HIDE_CONFIRM]: (state) => {
+    return {
+      ...state,
+      confirm: {
+        show: false,
+        options: null
+      }
+    };
   }
 });

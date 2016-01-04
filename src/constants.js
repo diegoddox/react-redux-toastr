@@ -1,3 +1,5 @@
-export const ADD_TOASTR     = 'reduxToastr/ADD_TOASTR';
-export const REMOVE_TOASTR  = 'reduxToastr/REMOVE_TOASTR';
-export const CLEAN_TOASTR   = 'reduxToastr/CLEAN_TOASTR';
+export const ADD_TOASTR     = '@ReduxToastr/toastr/ADD';
+export const REMOVE_TOASTR  = '@ReduxToastr/toastr/REMOVE';
+export const CLEAN_TOASTR   = '@ReduxToastr/toastr/CLEAN';
+export const SHOW_CONFIRM   = '@ReduxToastr/confirm/SHOW';
+export const HIDE_CONFIRM   = '@ReduxToastr/confirm/HIDE';
