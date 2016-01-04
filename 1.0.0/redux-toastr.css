@@ -536,7 +536,7 @@ body.toastr-confirm-active {
 }
 .redux-toastr {
   position: fixed;
-  z-index: 999999999999999999999;
+  z-index: 999999;
 }
 .redux-toastr.top-left,
 .redux-toastr.top-right,
@@ -569,7 +569,7 @@ body.toastr-confirm-active {
   position: relative;
   color: #333;
   padding: 10px 0;
-  opacity: .9;
+  opacity: .99;
 }
 .redux-toastr .toastr .icon-holder {
   width: 15%;
