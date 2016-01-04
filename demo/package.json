@@ -21,10 +21,11 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "lorem-ipsum": "^1.0.3",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
-    "redux-toastr": "*",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-toastr": "*"
   }
 }
