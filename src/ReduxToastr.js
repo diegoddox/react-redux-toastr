@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
 });
 
 export class ReduxToastr extends Component {
-  static displayName = 'ReduxToastr'
+  static displayName = 'ReduxToastr';
 
   static propTypes = {
     toastr: PropTypes.object,
@@ -25,7 +25,7 @@ export class ReduxToastr extends Component {
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
     confirm: PropTypes.object
-  }
+  };
 
   static defaultProps = {
     position: 'top-right',
@@ -35,7 +35,7 @@ export class ReduxToastr extends Component {
       okText: 'ok',
       onCancelText: 'cancel'
     }
-  }
+  };
 
   constructor(props) {
     super(props);

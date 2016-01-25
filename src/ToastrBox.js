@@ -6,19 +6,19 @@ import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd, returnFuncFromObj} fr
 import config from './config';
 
 export default class ToastrBox extends Component {
-  static displayName = 'ToastrBox'
+  static displayName = 'ToastrBox';
 
   static propTypes = {
     toastr: PropTypes.object.isRequired,
     transition: PropTypes.object
-  }
+  };
 
   static defaultProps = {
     transition: {
       in: 'bounceIn',
       out: 'bounceOut'
     }
-  }
+  };
 
   constructor(props) {
     super(props);

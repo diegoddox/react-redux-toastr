@@ -4,13 +4,13 @@ import {_bind, onCSSTransitionEnd, returnFuncFromObj} from './utils';
 import Button from './Button';
 
 export default class ToastrConfirm extends Component {
-  static displayName = 'ToastrConfirm'
+  static displayName = 'ToastrConfirm';
 
   static propTypes = {
     confirm: PropTypes.object.isRequired,
     okText: PropTypes.string,
     cancelText: PropTypes.string
-  }
+  };
 
   constructor(props) {
     super(props);
