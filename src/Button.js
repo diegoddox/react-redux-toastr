@@ -4,7 +4,7 @@ import CSSCore from 'fbjs/lib/CSSCore';
 import {_bind, onCSSTransitionEnd} from './utils';
 
 export default class Button extends Component {
-  static displayName = 'Button'
+  static displayName = 'ReduxConfirmButton';
 
   constructor(props) {
     super(props);
