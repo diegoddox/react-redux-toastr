@@ -12,3 +12,6 @@ CVS
 npm-debug.log
 src
 CHANGELOG.md
+build/
+config/
+demo/
