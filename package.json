@@ -73,13 +73,20 @@
     "React.js",
     "React",
     "Redux",
+    "react",
+    "redux toastr",
     "redux-toastr",
     "react-component",
     "toastr",
     "alert",
     "toast",
     "message",
-    "popup"
+    "popup",
+    "react toastr",
+    "react redux toastr",
+    "react toastr redux",
+    "react confirm",
+    "react alert"
   ],
   "devDependencies": {
     "babel-cli": "^6.4.5",
