@@ -3,12 +3,52 @@
   "version": "1.0.2",
   "description": "redux-toastr is a toastr message implemented with Redux",
   "main": "lib/index.js",
+  "jsnext:main": "./src/index.js",
   "scripts": {
-    "build": "npm run clean && babel src --out-dir lib && npm run less",
-    "build:w": "node_modules/.bin/babel -w src --out-dir lib",
-    "lint": "eslint . --ext .js --ext .jsx || true",
-    "less": "node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" --clean-css lib/css/redux-toastr.min.css && node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" lib/css/redux-toastr.css",
-    "clean": "node_modules/.bin/rimraf dist lib"
+    "start": "better-npm-run build:w",
+    "build": "better-npm-run build_app"
+  },
+  "betterScripts": {
+    "build:umd:min": {
+      "command": "./node_modules/.bin/webpack src/index.js dist/redux-toastr.min.js  --config build/webpack.config.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "build": {
+      "command": "node_modules/.bin/babel src --out-dir lib"
+    },
+    "build:w": {
+      "command": "node_modules/.bin/babel -w src --out-dir lib"
+    },
+    "less": {
+      "command": "node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" lib/css/redux-toastr.css"
+    },
+    "less:min": {
+      "command": "node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" --clean-css lib/css/redux-toastr.min.css"
+    },
+    "lint": {
+      "command": "eslint . --ext .js --ext .jsx || true"
+    },
+    "clean": {
+      "command": "node_modules/.bin/rimraf dist lib"
+    },
+    "build_less": [
+      {
+        "run": "less"
+      }, {
+        "run": "less:min"
+      }
+    ],
+    "build_app": [
+      {
+        "run": "clean"
+      }, {
+        "run": "build"
+      }, {
+        "run": "build_less"
+      }
+    ]
   },
   "author": [
     {
@@ -51,6 +91,7 @@
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "babel-preset-stage-0": "^6.1.18",
+    "better-npm-run": "0.0.5",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.10.0",
