@@ -1,5 +1,5 @@
 import CSSCore from 'fbjs/lib/CSSCore';
-import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
+import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react'; //  eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 
 import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd, returnFuncFromObj} from './utils';
