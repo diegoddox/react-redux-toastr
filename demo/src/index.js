@@ -13,5 +13,4 @@ const reducer = combineReducers(reducers);
 const store = createStore(reducer);
 const target = document.getElementById('app');
 
-const node = (<App store={store} />);
-render(node, target);
+render(<App store={store} />, target);

@@ -4,11 +4,11 @@ import {Provider}                     from 'react-redux';
 import ReduxToastr, {toastr}          from 'redux-toastr';
 
 export default class App extends Component {
-  static displayName = 'ReduxToastrDemo'
+  static displayName = 'ReduxToastrDemo';
 
   static propTypes = {
     store: PropTypes.object.isRequired
-  }
+  };
 
   constructor(props) {
     super(props);
