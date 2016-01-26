@@ -11,11 +11,10 @@ import config               from './config';
 
 import {checkPositionName, isMobile, _bind, hasProperty} from './utils.js';
 
-const mapStateToProps = (state) => ({
+@connect(state => ({
   toastr: state.toastr
-});
-
-export class ReduxToastr extends Component {
+}))
+export default class ReduxToastr extends Component {
   static displayName = 'ReduxToastr';
 
   static propTypes = {
@@ -121,5 +120,3 @@ export class ReduxToastr extends Component {
     );
   }
 }
-
-export default connect(mapStateToProps)(ReduxToastr);
