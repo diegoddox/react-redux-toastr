@@ -1,3 +1,5 @@
+#1.0.2
+fix [issue](https://github.com/diegoddox/redux-toastr/issues/1)
 #1.0.1
 ##### Fix icons
 
