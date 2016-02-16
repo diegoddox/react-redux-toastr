@@ -2,7 +2,7 @@
 
 `redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a reducer, toastr emitter and a React component.
 
-The reducer listens to dispatched actions from the component to maintain the `toastr` state in Redux. 
+The reducer listens to dispatched actions from the component to maintain the `toastr` state in Redux.
 
 ## Implementation Guide
 
@@ -13,7 +13,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ##### 2. Add the `redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/redux-toastr/1.0.2/redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/redux-toastr/1.1.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 ##### 3. The third thing you need to do is to add the `redux-toastr` `reducer` to Redux.
 
@@ -85,9 +85,9 @@ constructor(props) {
 }
 ```
 # Toastr methods
-##### Toastr: `success` `info` `warning` and `error` 
-Each of this method can take up to three arguments the `title` a `message` and `options`. 
-In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete` 
+##### Toastr: `success` `info` `warning` and `error`
+Each of this method can take up to three arguments the `title` a `message` and `options`.
+In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`
 
 ```
 import {toastr} from 'redux-toastr'
@@ -119,7 +119,7 @@ toastr.message('Title', 'text <img src="myimage.jpg" />', toastrMessageOptions)
 ```
 This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html) to display the message.
 
-##### Toastr: `confirm` 
+##### Toastr: `confirm`
 The confirm method takes two arguments, the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
 
 NOTE: You can only have one at a time, right now if you have one `confirm` and you fire another it will be ignored.
