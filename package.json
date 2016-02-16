@@ -1,12 +1,17 @@
 {
   "name": "redux-toastr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
   "scripts": {
     "start": "better-npm-run build:w",
-    "build": "better-npm-run build_app"
+    "build": "better-npm-run build",
+    "less": "better-npm-run less_file",
+    "less:m": "better-npm-run less_file:min",
+    "clean": "better-npm-run clean",
+    "lint": "better-npm-run lint",
+    "build_app": "concurrent --kill-others & npm run clean & npm run lint & npm run build & npm run less & npm run less:m"
   },
   "betterScripts": {
     "build:umd:min": {
@@ -21,10 +26,10 @@
     "build:w": {
       "command": "node_modules/.bin/babel -w src --out-dir lib"
     },
-    "less": {
+    "less_file": {
       "command": "node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" lib/css/redux-toastr.css"
     },
-    "less:min": {
+    "less_file:min": {
       "command": "node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" --clean-css lib/css/redux-toastr.min.css"
     },
     "lint": {
@@ -32,23 +37,7 @@
     },
     "clean": {
       "command": "node_modules/.bin/rimraf dist lib"
-    },
-    "build_less": [
-      {
-        "run": "less"
-      }, {
-        "run": "less:min"
-      }
-    ],
-    "build_app": [
-      {
-        "run": "clean"
-      }, {
-        "run": "build"
-      }, {
-        "run": "build_less"
-      }
-    ]
+    }
   },
   "author": [
     {
