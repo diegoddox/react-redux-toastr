@@ -13,7 +13,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ##### 2. Add the `redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/redux-toastr/1.1.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/redux-toastr/1.1.2/redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 ##### 3. The third thing you need to do is to add the `redux-toastr` `reducer` to Redux.
 
