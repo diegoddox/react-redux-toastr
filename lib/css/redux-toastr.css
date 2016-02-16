@@ -342,9 +342,10 @@
   top: 0;
   left: 0;
   z-index: 2;
-}
-.confirm-holder .hide {
   display: none;
+}
+.confirm-holder.active {
+  display: block;
 }
 .confirm-holder .shadow {
   width: 100%;
@@ -356,7 +357,7 @@
   width: 320px;
   background-color: white;
   position: absolute;
-  z-index: 999999999999999999;
+  z-index: 9;
   top: 20%;
   left: 50%;
   margin-left: -160px;
@@ -364,44 +365,19 @@
   border-radius: 2px;
   overflow: hidden;
 }
-.confirm-holder .confirm .title,
 .confirm-holder .confirm .message {
-  width: 100%;
-}
-.confirm-holder .confirm .title:first-letter,
-.confirm-holder .confirm .message:first-letter {
-  text-transform: capitalize;
-}
-.confirm-holder .confirm .message {
+  width: 98%;
+  padding: 10px 1%;
   min-height: 50px;
   font-size: 1em;
-  padding: 15px 10px;
   background-color: white;
   text-align: center;
   font-family: 'open-sanscondensed-light', sans-serif;
+  clear: both;
 }
-.confirm-holder .confirm ul {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 40px;
-  border-top: 1px solid #f0f0f0;
-  text-align: center;
-  overflow: hidden;
-  background-color: #fcfcfc;
-}
-.confirm-holder .confirm ul li {
+.confirm-holder .confirm button {
   width: 50%;
-  height: 40px;
-  float: left;
-  overflow: hidden;
-}
-.confirm-holder .confirm ul li:first-child {
-  border-right: 1px solid #f0f0f0;
-}
-.confirm-holder .confirm ul li button {
-  width: 100%;
-  height: 100%;
+  height: 50px;
   text-transform: capitalize;
   border: none;
   background-color: transparent;
@@ -409,8 +385,12 @@
   margin: 0;
   position: relative;
   z-index: 1;
+  float: left;
+  border-top: 1px solid #f0f0f0;
+  font-size: 14px;
+  overflow: hidden;
 }
-.confirm-holder .confirm ul li button p {
+.confirm-holder .confirm button p {
   position: relative;
   z-index: 1;
   line-height: 100%;
@@ -418,7 +398,7 @@
   margin: 0;
   color: #555;
 }
-.confirm-holder .confirm ul li button:before {
+.confirm-holder .confirm button:before {
   content: '';
   width: 40px;
   height: 40px;
@@ -429,21 +409,21 @@
   background-color: #999;
   border-radius: 50%;
   z-index: 0;
-  opacity: .4;
+  opacity: .2;
   -webkit-transform: scale(0);
           transform: scale(0);
 }
-.confirm-holder .confirm ul li button.active:before {
+.confirm-holder .confirm button.active:before {
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
   -webkit-transform: scale(2);
           transform: scale(2);
 }
-.confirm-holder .confirm ul li button:focus {
+.confirm-holder .confirm button:focus {
   outline: none;
 }
-.confirm-holder .confirm ul li button:hover {
+.confirm-holder .confirm button:hover {
   cursor: pointer;
   background-color: #f5f5f5;
 }
@@ -497,15 +477,11 @@ body.toastr-confirm-active {
   position: absolute;
   font-size: 22px;
 }
-.redux-toastr .toastr .icon-holder .icon {
-  width: 22px;
-  height: 22px;
-  overflow: hidden;
+.redux-toastr .toastr .icon-holder::before {
   position: absolute;
   top: 50%;
-  left: 50%;
   margin-top: -22px;
-  margin-left: -11px;
+  left: 22%;
 }
 .redux-toastr .toastr .message-holder {
   width: 75%;

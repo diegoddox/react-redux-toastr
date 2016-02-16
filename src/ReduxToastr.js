@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import {connect}            from 'react-redux';
-import {bindActionCreators} from 'redux';
 import classnames           from 'classnames';
 
 import ToastrBox            from './ToastrBox';
@@ -9,11 +8,11 @@ import * as tActions        from './actions';
 import {EE}                 from './toastrEmitter';
 import config               from './config';
 
-import {checkPositionName, isMobile, _bind, hasProperty} from './utils.js';
+import {checkPositionName, isMobile, hasProperty} from './utils.js';
 
 @connect(state => ({
   toastr: state.toastr
-}))
+}), tActions)
 export default class ReduxToastr extends Component {
   static displayName = 'ReduxToastr';
 
@@ -38,32 +37,24 @@ export default class ReduxToastr extends Component {
 
   constructor(props) {
     super(props);
-    this.actions = bindActionCreators(tActions, this.props.dispatch);
-
     config.set('timeOut', this.props.timeOut);
     config.set('newestOnTop', this.props.newestOnTop);
-
-    _bind(
-      this,
-      'handleRemoveToastr',
-      'handleHideConfirm'
-    );
   }
 
   componentDidMount() {
     const onAddToastr = (toastr) => {
-      this.actions.addToastrAction(toastr);
+      this.props.addToastrAction(toastr);
     };
 
     const onCleanToastr = () => {
       if (this.props.toastr.toastrs.length) {
-        this.actions.clean();
+        this.props.clean();
       }
     };
     const confirm = (obj) => {
       // Fire if we don't have any active confirm
       if (!this.props.toastr.confirm.show) {
-        this.actions.confirm(obj.message, obj.options);
+        this.props.confirm(obj.message, obj.options);
       }
     };
 
@@ -78,13 +69,13 @@ export default class ReduxToastr extends Component {
     EE.removeListener('clean/toastr');
   }
 
-  handleRemoveToastr(id) {
-    this.actions.remove(id);
-  }
+  handleRemoveToastr = (id) => {
+    this.props.remove(id);
+  };
 
-  handleHideConfirm() {
-    this.actions.hideConfirm();
-  }
+  handleHideConfirm = () => {
+    this.props.hideConfirm();
+  };
 
   render() {
     const toastrPosition = checkPositionName(this.props.position);

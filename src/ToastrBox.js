@@ -2,7 +2,7 @@ import CSSCore from 'fbjs/lib/CSSCore';
 import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react'; //  eslint-disable-line no-unused-vars
 import classnames from 'classnames';
 
-import {_bind, hasProperty, mapToIcon, onCSSTransitionEnd, returnFuncFromObj} from './utils';
+import {onCSSTransitionEnd} from './utils';
 import config from './config';
 
 export default class ToastrBox extends Component {
@@ -22,19 +22,6 @@ export default class ToastrBox extends Component {
 
   constructor(props) {
     super(props);
-    _bind(
-      this,
-      'mouseEnter',
-      'mouseLeave',
-      'handleClick',
-      'renderMessage',
-      '_removeToastr',
-      '_onAnimationComplite',
-      '_setTransition',
-      '_clearTransition',
-      '_setIntervalId',
-      '_setIsHiding'
-    );
   }
 
   componentWillMount() {
@@ -45,7 +32,7 @@ export default class ToastrBox extends Component {
   componentDidMount() {
     const {toastr} = this.props;
     const timeOut = config.get('timeOut');
-    const time = hasProperty(toastr.options, 'timeOut') ? toastr.options.timeOut : timeOut;
+    const time = toastr.options.timeOut || timeOut;
 
     if (toastr.type !== 'message') {
       this._setIntervalId(setTimeout(this._removeToastr, time));
@@ -61,12 +48,12 @@ export default class ToastrBox extends Component {
     }
   }
 
-  handleClick(e) {
+  handleClick = (e) => {
     e.preventDefault();
     this._removeToastr();
-  }
+  };
 
-  mouseEnter() {
+  mouseEnter = () => {
     if (this.intervalId) {
       clearTimeout(this.intervalId);
       this._setIntervalId(null);
@@ -74,41 +61,44 @@ export default class ToastrBox extends Component {
         this._setIsHiding(false);
       }
     }
-  }
+  };
 
-  mouseLeave() {
+  mouseLeave = () => {
     const {toastr} = this.props;
     if (this.isHiding || toastr.type == 'message') {
       return;
     }
 
     this._setIntervalId(setTimeout(this._removeToastr, 1000));
-  }
+  };
 
-  _onAnimationComplite() {
+  _onAnimationComplite = () => {
     const {remove, toastr} = this.props;
     const {options} = toastr;
 
     if (this.isHiding) {
       this._setIsHiding(false);
       remove(toastr.id);
-
-      returnFuncFromObj(options, 'onHideComplete');
+      if (options.onHideComplete) {
+        options.onHideComplete();
+      }
     } else if (!this.isHiding) {
-      returnFuncFromObj(options, 'onShowComplete');
+      if (options.onShowComplete) {
+        options.onShowComplete();
+      }
     }
-  }
+  };
 
-  _removeToastr() {
+  _removeToastr = () => {
     if (this.isHiding) {
       return;
     }
     this._setIsHiding(true);
     this._setTransition(true);
     onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
-  }
+  };
 
-  _setTransition(hide) {
+  _setTransition = (hide) => {
     const node = this.toastrBox;
     const animationType = hide ? this.props.transition.out : this.props.transition.in;
 
@@ -122,39 +112,35 @@ export default class ToastrBox extends Component {
 
     onCSSTransitionEnd(this.toastrBox, onEndListener);
     CSSCore.addClass(node, animationType);
-  }
+  };
 
-  _clearTransition() {
+  _clearTransition = () => {
     const node = this.toastrBox;
     const {transition} = this.props;
     CSSCore.removeClass(node, transition.in);
     CSSCore.removeClass(node, transition.out);
-  }
+  };
 
-  _setIntervalId(intervalId) {
+  _setIntervalId = (intervalId) => {
     this.intervalId = intervalId;
-  }
+  };
 
-  _setIsHiding(val) {
+  _setIsHiding = (val) => {
     this.isHiding = val;
-  }
+  };
 
-  renderMessage() {
+  renderMessage = () => {
     const {toastr} = this.props;
-
     if (toastr.type == 'message') {
       return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>;
     }
-
     return <div className="message">{toastr.message}</div>;
-  }
+  };
 
   render() {
     const {toastr} = this.props;
     const classes = classnames('toastr', 'animated', toastr.type);
-    const classIcon = hasProperty(toastr.options, 'icon') ? mapToIcon(toastr.options.icon) : mapToIcon(toastr.type);
-    const iconClasses = classnames('icon', classIcon);
-
+    const icons = classnames('icon-holder', toastr.options.icon);
     return (
       <div
         className={classes}
@@ -162,9 +148,7 @@ export default class ToastrBox extends Component {
         onMouseLeave={this.mouseLeave}
         ref={(ref) => this.toastrBox = ref}>
 
-        <div className="icon-holder">
-          <div className={iconClasses}></div>
-        </div>
+        <div className={icons}></div>
         <div className="message-holder" onClick={this.handleClick}>
           {toastr.title &&
             <div className="title">{toastr.title}</div>}

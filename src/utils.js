@@ -22,41 +22,35 @@ export function checkPositionName(name) {
 }
 
 export function mapToToastrMessage(type, array) {
-  const obj = {
-    type: type,
-    title: '',
-    message: '',
-    options: {}
-  };
+  const obj = {};
+  obj.type = type;
+  obj.options = {};
 
-  if (!array.length) {
-    console.error('REDUX-TOASTR ERROR:: The toastr method: ' + type + ' cannot be empty', array);
-    return false;
-  }
+  const options = array.filter(item => {
+    return item.icon || item.timeOut || item.onShowComplete || item.onHideComplete || item.icon;
+  })[0];
 
-  const options = array.filter(hasObject)[0];
   if (options) {
     obj.options = options;
   }
 
-  if (array.length > 1 && isString(array[0]) && isString(array[1])) {
+  console.log(obj.options.icon);
+  if (!obj.options.icon) {
+    obj.options.icon = mapToIcon(type);
+  }
+
+  if (isString(array[0]) && isString(array[1])) {
     obj.title = array[0];
     obj.message = array[1];
-  } else if (isString(array[0])) {
-    if (type == 'message') {
-      obj.title = 'Message';
-    }
-    obj.message = array[0];
   } else {
-    console.error('REDUX-TOASTR ERROR:: The first arguments most be a string', array);
-    return false;
+    obj.message = array[0];
   }
 
   return obj;
 }
 
-export function mapToIcon(icon) {
-  switch (icon) {
+export function mapToIcon(type) {
+  switch (type) {
     case 'info':
       return 'icon-information-circle';
     case 'success':
@@ -66,7 +60,7 @@ export function mapToIcon(icon) {
     case 'error':
       return 'icon-exclamation-alert';
     default:
-      return icon;
+      return type;
   }
 }
 
@@ -107,10 +101,6 @@ function isString(obj) {
     return true;
   }
   return false;
-}
-
-function hasObject(item) {
-  return item.icon || item.timeOut || item.onShowComplete || item.onHideComplete || item.icon;
 }
 
 function detectIsMobile() {

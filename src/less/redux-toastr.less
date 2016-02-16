@@ -11,7 +11,7 @@ body.toastr-confirm-active {
   height: 0;
   position: fixed;
   z-index: 99999999;
-  
+
   &.top-left,
   &.top-right,
   &.bottom-left,
@@ -57,16 +57,11 @@ body.toastr-confirm-active {
       text-align: center;
       position: absolute;
       font-size: 22px;
-
-      .icon {
-        width: 22px;
-        height: 22px;
-        overflow: hidden;
+      &::before {
         position: absolute;
         top: 50%;
-        left: 50%;
         margin-top: -22px;
-        margin-left: -11px;
+        left: 22%;
       }
     }
 
@@ -92,7 +87,7 @@ body.toastr-confirm-active {
           text-transform: capitalize;
         }
       }
-      
+
       .title {
         font-size: 1.1em;
         font-weight: bold;
