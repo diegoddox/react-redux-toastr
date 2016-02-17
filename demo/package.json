@@ -26,6 +26,6 @@
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4",
-    "redux-toastr": "*"
+    "react-redux-toastr": "*"
   }
 }
