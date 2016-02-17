@@ -1,6 +1,6 @@
-##`redux-toastr` [demo](http://diegoddox.github.io/redux-toastr/)
+##`react-redux-toastr` [demo](http://diegoddox.github.io/react-redux-toastr/)
 
-`redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a reducer, toastr emitter and a React component.
+`react-redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a reducer, toastr emitter and a React component.
 
 The reducer listens to dispatched actions from the component to maintain the `toastr` state in Redux.
 
@@ -8,18 +8,18 @@ The reducer listens to dispatched actions from the component to maintain the `to
 
 ##### 1. Installation
 
-`npm install --save redux-toastr`
+`npm install --save react-redux-toastr`
 
-##### 2. Add the `redux-toastr` css link to your app
+##### 2. Add the `react-redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/redux-toastr/2.0.0/redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/react-redux-toastr/2.0.1/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
-##### 3. The third thing you need to do is to add the `redux-toastr` `reducer` to Redux.
+##### 3. The third thing you need to do is to add the `react-redux-toastr` `reducer` to Redux.
 
 ```
 import {createStore, combineReducers} from 'redux'
-import {reducer as toastrReducer} from 'redux-toastr'
+import {reducer as toastrReducer} from 'react-redux-toastr'
 const reducers = {
   // ... other reducers ...
   toastr: toastrReducer // <- Mounted at toastr.
@@ -28,12 +28,12 @@ const reducer = combineReducers(reducers)
 const store = createStore(reducer)
 ```
 
-##### NOTE: The default mount point for `redux-toastr` is `toastr`.
+##### NOTE: The default mount point for `react-redux-toastr` is `toastr`.
 
-##### 4. Add the `redux-toastr` React component to the root of your app
+##### 4. Add the `react-redux-toastr` React component to the root of your app
 ```
 import {Provider}  from 'react-redux'
-import ReduxToastr from 'redux-toastr'
+import ReduxToastr from 'react-redux-toastr'
 
 <Provider store={store}>
   <div>
@@ -54,12 +54,12 @@ position: 'top-right'
 ```
 positions: `top-left` `top-right`  `bottom-left` and `bottom-right`
 
-##### 5. Add the `redux-toastr`  `toastr` emitter
+##### 5. Add the `react-redux-toastr`  `toastr` emitter
 The `toastr` method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
 ```
 import React, {Component}  from 'react'
-import {toastr} from 'redux-toastr'
+import {toastr} from 'react-redux-toastr'
 
 export class YourComponent extends Component {
   render() {
@@ -76,11 +76,11 @@ export class YourComponent extends Component {
 Or you can bind the `actions` to your component if you prefer.
 ```
 import {bindActionCreators} from 'redux'
-import {actions as toastrActions} from 'redux-toastr'
+import {actions as toastrActions} from 'react-redux-toastr'
 // In your React component
 constructor(props) {
   super(props);
-  // Bind the redux-toastr actions to the component
+  // Bind the react-redux-toastr actions to the component
   this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
 }
 ```
@@ -90,7 +90,7 @@ Each of this method can take up to three arguments the `title` a `message` and `
 In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`
 
 ```
-import {toastr} from 'redux-toastr'
+import {toastr} from 'react-redux-toastr'
 
 const toastrOptions = {
   timeOut: 3000,
@@ -143,8 +143,8 @@ const confirmOptions = {
 ```
 # Run a local demo
 ```
-git clone https://github.com/diegoddox/redux-toastr.git
-cd redux-toastr/demo/
+git clone https://github.com/diegoddox/react-redux-toastr.git
+cd react-redux-toastr/demo/
 npm install
 npm start
 ```

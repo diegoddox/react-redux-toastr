@@ -1,7 +1,7 @@
 {
   "name": "react-redux-toastr",
   "version": "2.0.0",
-  "description": "redux-toastr is a React toastr message implemented with Redux",
+  "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "betterScripts": {
     "build:umd:min": {
-      "command": "./node_modules/.bin/webpack src/index.js dist/redux-toastr.min.js  --config build/webpack.config.js",
+      "command": "./node_modules/.bin/webpack src/index.js dist/react-redux-toastr.min.js  --config build/webpack.config.js",
       "env": {
         "NODE_ENV": "production"
       }
@@ -27,10 +27,10 @@
       "command": "node_modules/.bin/babel -w src --out-dir lib"
     },
     "less_file": {
-      "command": "node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" lib/css/redux-toastr.css"
+      "command": "node_modules/.bin/lessc src/less/react-redux-toastr.less --autoprefix=\"last 2 versions\" lib/css/react-redux-toastr.css"
     },
     "less_file:min": {
-      "command": "node_modules/.bin/lessc src/less/redux-toastr.less --autoprefix=\"last 2 versions\" --clean-css lib/css/redux-toastr.min.css"
+      "command": "node_modules/.bin/lessc src/less/react-redux-toastr.less --autoprefix=\"last 2 versions\" --clean-css lib/css/react-redux-toastr.min.css"
     },
     "lint": {
       "command": "eslint . --ext .js --ext .jsx || true"
@@ -64,7 +64,7 @@
     "Redux",
     "react",
     "redux toastr",
-    "redux-toastr",
+    "react-redux-toastr",
     "react-component",
     "toastr",
     "alert",
