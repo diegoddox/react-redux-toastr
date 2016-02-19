@@ -1,7 +1,7 @@
 import React, {Component, PropTypes}  from 'react';
 import loremIpsum                     from 'lorem-ipsum';
 import {Provider}                     from 'react-redux';
-import ReduxToastr, {toastr}          from 'redux-toastr';
+import ReduxToastr, {toastr}          from 'react-redux-toastr';
 
 export default class App extends Component {
   static displayName = 'ReduxToastrDemo';

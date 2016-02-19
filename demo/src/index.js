@@ -3,7 +3,7 @@ import {render}       from 'react-dom';
 import App            from './App';
 
 import {createStore, combineReducers}  from 'redux';
-import {reducer as toastrReducer}      from 'redux-toastr';
+import {reducer as toastrReducer}      from 'react-redux-toastr';
 
 const reducers = {
   toastr: toastrReducer

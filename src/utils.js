@@ -33,8 +33,7 @@ export function mapToToastrMessage(type, array) {
   if (options) {
     obj.options = options;
   }
-
-  console.log(obj.options.icon);
+  
   if (!obj.options.icon) {
     obj.options.icon = mapToIcon(type);
   }
@@ -93,27 +92,9 @@ export function returnFuncFromObj(obj, name) {
   }
 }
 
-
-export const isMobile = detectIsMobile();
-
 function isString(obj) {
   if (typeof obj == 'string') {
     return true;
   }
   return false;
-}
-
-function detectIsMobile() {
-  if (navigator.userAgent.match(/Android/i)
-  || navigator.userAgent.match(/webOS/i)
-  || navigator.userAgent.match(/iPhone/i)
-  || navigator.userAgent.match(/iPad/i)
-  || navigator.userAgent.match(/iPod/i)
-  || navigator.userAgent.match(/BlackBerry/i)
-  || navigator.userAgent.match(/Windows Phone/i)
- ) {
-    return true;
-  }else {
-    return false;
-  }
 }

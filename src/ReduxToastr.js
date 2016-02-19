@@ -8,7 +8,7 @@ import * as tActions        from './actions';
 import {EE}                 from './toastrEmitter';
 import config               from './config';
 
-import {checkPositionName, isMobile, hasProperty} from './utils.js';
+import {checkPositionName, hasProperty} from './utils.js';
 
 @connect(state => ({
   toastr: state.toastr
@@ -79,7 +79,7 @@ export default class ReduxToastr extends Component {
 
   render() {
     const toastrPosition = checkPositionName(this.props.position);
-    const classes = classnames('redux-toastr', toastrPosition, {mobile: isMobile});
+    const classes = classnames('redux-toastr', toastrPosition);
     const {toastr, confirm} = this.props;
 
     const confirmOkText = hasProperty(confirm, 'okText') ? confirm.okText : 'ok';
