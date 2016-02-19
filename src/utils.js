@@ -7,10 +7,6 @@ export function createReducer(initialState, fnMap) {
   };
 }
 
-export function _bind(obj, ...methods) {
-  methods.forEach((method) => obj[method] = obj[method].bind(obj));
-}
-
 export function checkPositionName(name) {
   const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
   const isValidName = positions.indexOf(name);
