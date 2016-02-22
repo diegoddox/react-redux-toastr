@@ -431,16 +431,9 @@ body.toastr-confirm-active {
   overflow: hidden;
 }
 .redux-toastr {
-  width: 0;
-  height: 0;
+  width: 310px;
   position: fixed;
   z-index: 99999999;
-}
-.redux-toastr.top-left,
-.redux-toastr.top-right,
-.redux-toastr.bottom-left,
-.redux-toastr.bottom-right {
-  width: 310px;
 }
 .redux-toastr.top-left {
   top: 15px;
