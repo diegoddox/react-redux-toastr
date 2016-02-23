@@ -31,11 +31,13 @@ export default class ToastrBox extends Component {
 
   componentDidMount() {
     const {toastr} = this.props;
-    const timeOut = config.get('timeOut');
-    const time = toastr.options.timeOut || timeOut;
+    let {timeOut} = toastr.options;
+    if (typeof timeOut === 'undefined' && toastr.type !== 'message') {
+      timeOut = config.get('timeOut');
+    }
 
-    if (toastr.type !== 'message') {
-      this._setIntervalId(setTimeout(this._removeToastr, time));
+    if (timeOut) {
+      this._setIntervalId(setTimeout(this._removeToastr, timeOut));
     }
 
     this._setTransition();
