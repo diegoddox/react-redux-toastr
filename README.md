@@ -13,7 +13,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ##### 2. Add the `react-redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/react-redux-toastr/2.0.1/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/react-redux-toastr/2.1.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 ##### 3. The third thing you need to do is to add the `react-redux-toastr` `reducer` to Redux.
 
@@ -106,14 +106,13 @@ toastr.error('The message')
 ```
 
 ##### Toastr: `message`
-This one are in case you wanna show a large amount of information, unlike the other methods above this will not close automatically to close the user has to click on the close button.
-
-In case you don't pass the `title` a default one will be provided.
+This one is in case you wanna show a large amount of information, unlike the other methods above this will not close automatically unless you provide a `timeout` in the `message` options.
 
 ```
 const toastrMessageOptions = {
   onShowComplete: () => console.log('SHOW: animation is done'),
-  onHideComplete: () => console.log('HIDE: animation is done')
+  onHideComplete: () => console.log('HIDE: animation is done'),
+  timeout: 10000
 };
 toastr.message('Title', 'text <img src="myimage.jpg" />', toastrMessageOptions)
 ```
@@ -135,11 +134,11 @@ toastr.confirm('Are you sure about that!', toastrConfirmOptions)
 You can change the `ok` and `cancel` text by passing the `confirm` props to the `ReduxToastr` component
 
 ```
-const confirmOptions = {
+const options = {
   okText: 'confirm text',
   cancelText: 'cancel text'
 };
-<ReduxToastr confirm={confirmOptions}/>
+<ReduxToastr confirmOptions={options}/>
 ```
 # Run a local demo
 ```

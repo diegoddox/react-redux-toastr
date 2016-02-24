@@ -1,3 +1,6 @@
+#2.1.0
+change ReduxToastr props name from `confirm` to `confirmOptions`
+the `message` method can close automaticly you you provide a `timeout` in the `message` options 
 #1.1.0
 Improve the code end fix [issue](https://github.com/diegoddox/redux-toastr/issues/3)
 #1.0.2
