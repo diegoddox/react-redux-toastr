@@ -29,7 +29,7 @@ module.exports = {
         + '   <meta charset="iso-8859-1">'
         + '   <title>Redux Toastr Demo</title>'
         + '   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">'
-        + '   <link href="http://diegoddox.github.io/react-redux-toastr/2.0.1/react-redux-toastr.min.css" rel="stylesheet" type="text/css">'
+        + '   <link href="http://diegoddox.github.io/react-redux-toastr/2.1.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">'
         + '   <style>.wrapper {width: 100%; text-align: center; margin: 20px 0;} button{margin: 10px;}</style>'
         + ' </head>'
         + ' <body style="background-color: #fcfcfc;">'
