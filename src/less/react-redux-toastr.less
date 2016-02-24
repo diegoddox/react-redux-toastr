@@ -1,4 +1,4 @@
-// @import './css-fonts.less';
+@import './css-fonts.less';
 @import './animation.less';
 @import './confirm.less';
 
@@ -41,20 +41,13 @@ body.toastr-confirm-active {
     color: #333;
     padding: 10px 0;
     opacity: .9;
-
-    .icon-holder {
-      width: 15%;
-      height: 100%;
-      line-height: 100%;
-      text-align: center;
+    
+    &:before {
       position: absolute;
+      top: 50%;
+      left: 12px;
+      margin-top: -11px;
       font-size: 22px;
-      &::before {
-        position: absolute;
-        top: 50%;
-        margin-top: -22px;
-        left: 22%;
-      }
     }
 
     .message-holder {
@@ -145,10 +138,7 @@ body.toastr-confirm-active {
 
     &.message {
       opacity: 1;
-      .icon-holder {
-        display: none;
-      }
-
+      
       .message-holder {
         width: 100%;
         margin-left: 0;
@@ -187,32 +177,6 @@ body.toastr-confirm-active {
           }
         }
       }
-
-      button.close {
-        height: 62px;
-        color: #666;
-
-        &:hover {
-          opacity: 1;
-          color: #000;
-        }
-      }
-    }
-  }
-
-  &.mobile {
-    &.top-left,
-    &.top-right,
-    &.bottom-left,
-    &.bottom-right {
-      width: 100%;
-      top: 0;
-      right: 0;
-    }
-
-    .toastr {
-      border-radius: 0px;
-      margin-bottom: 0;
     }
   }
 }
