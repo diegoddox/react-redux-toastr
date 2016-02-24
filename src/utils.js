@@ -29,7 +29,7 @@ export function mapToToastrMessage(type, array) {
   if (options) {
     obj.options = options;
   }
-  
+
   if (!obj.options.icon) {
     obj.options.icon = mapToIcon(type);
   }
