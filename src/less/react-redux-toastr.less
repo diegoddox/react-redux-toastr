@@ -10,24 +10,28 @@ body.toastr-confirm-active {
   width: 310px;
   position: fixed;
   z-index: 99999999;
-
+  
+  &.top-left, &.top-right {
+    top: 15px;  
+  }
+  
+  &.bottom-left, &.bottom-right {
+    bottom: 15px;
+  }
+  
   &.top-left {
-    top: 15px;
     left: 15px;
   }
 
   &.top-right {
-    top: 15px;
     right: 15px;
   }
 
   &.bottom-left {
-    bottom: 15px;
     left: 15px;
   }
 
   &.bottom-right {
-    bottom: 15px;
     right: 15px;
   }
 
@@ -49,11 +53,16 @@ body.toastr-confirm-active {
       margin-top: -11px;
       font-size: 22px;
     }
+    
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 10px #444;
+      opacity: 1;
+    }
 
     .message-holder {
-      width: 75%;
+      width: 80%;
       margin-left: 15%;
-      text-align: left;
       position: relative;
       font-family: Arial, Helvetica, sans-serif, sans-serif;
       font-size: 1em;
@@ -63,27 +72,11 @@ body.toastr-confirm-active {
         margin: 0;
       }
 
-      &:hover {
-        cursor: pointer;
-      }
-
-      .title, .message {
-        &:first-letter {
-          text-transform: capitalize;
-        }
-      }
-
       .title {
         font-size: 1.1em;
         font-weight: bold;
       }
     }
-
-    &:hover {
-      box-shadow: 0px 0px 10px #444;
-      opacity: 1;
-    }
-
 
     &.info, &.success, &.warning, &.error {
       color: white;
@@ -103,37 +96,6 @@ body.toastr-confirm-active {
 
     &.error {
       background-color: #db6a64;
-    }
-
-    button.close {
-      width: 10%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      right: 0;
-      text-align: center;
-      background-color: transparent;
-      border: none;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 16px;
-      color: white;
-      padding: 0;
-      margin: 0;
-      opacity: .4;
-
-      &:hover {
-        cursor: pointer;
-        color: #333;
-      }
-
-      &:active {
-        outline: none;
-      }
-
-      &:focus {
-        outline: 0;
-      }
     }
 
     &.message {
