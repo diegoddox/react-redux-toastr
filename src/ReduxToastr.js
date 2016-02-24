@@ -69,10 +69,6 @@ export default class ReduxToastr extends Component {
     EE.removeListener('clean/toastr');
   }
 
-  handleRemoveToastr = (id) => {
-    this.props.remove(id);
-  };
-
   handleHideConfirm = () => {
     this.props.hideConfirm();
   };
@@ -95,18 +91,7 @@ export default class ReduxToastr extends Component {
     return (
       <div className={classes}>
         <ToastrConfirm {...confirmProps}/>
-
-        {toastr.toastrs.map((item) => {
-          const props = {
-            key: item.id,
-            toastr: item,
-            timeOut: this.props.timeOut,
-            remove: this.handleRemoveToastr
-          };
-          return (
-            <ToastrBox {...props}/>
-          );
-        })}
+        {toastr.toastrs.map(item => <ToastrBox key={item.id} item={item}  {...this.props}/>)}
       </div>
     );
   }
