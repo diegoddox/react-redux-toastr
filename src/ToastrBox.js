@@ -13,26 +13,18 @@ export default class ToastrBox extends Component {
     transition: PropTypes.object
   };
 
-  static defaultProps = {
-    transition: {
-      in: 'bounceIn',
-      out: 'bounceOut'
-    }
-  };
-
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount() {
     this.isHiding = false;
     this.intervalId = null;
+    this.transitionIn = 'bounceIn';
+    this.transitionOut = 'bounceOut'
   }
 
   componentDidMount() {
-    const {toastr} = this.props;
-    let {timeOut} = toastr.options;
-    if (typeof timeOut === 'undefined' && toastr.type !== 'message') {
+    const {item} = this.props;
+    let {timeOut} = item.options;
+    if (typeof timeOut === 'undefined' && item.type !== 'message') {
       timeOut = config.get('timeOut');
     }
 
@@ -50,66 +42,53 @@ export default class ToastrBox extends Component {
     }
   }
 
-  handleClick = (e) => {
-    e.preventDefault();
+  handleClick = () => {
     this._removeToastr();
   };
 
   mouseEnter = () => {
-    if (this.intervalId) {
-      clearTimeout(this.intervalId);
-      this._setIntervalId(null);
-      if (this.isHiding) {
-        this._setIsHiding(false);
-      }
-    }
+    clearTimeout(this.intervalId);
+    this._setIntervalId(null);
+    this._setIsHiding(false);
   };
 
   mouseLeave = () => {
-    const {toastr} = this.props;
-    if (this.isHiding || toastr.type == 'message') {
-      return;
+    if (this.isHiding || this.props.item.type !== 'message') {
+      this._setIntervalId(setTimeout(this._removeToastr, 1000));
     }
-
-    this._setIntervalId(setTimeout(this._removeToastr, 1000));
   };
 
   _onAnimationComplite = () => {
-    const {remove, toastr} = this.props;
-    const {options} = toastr;
+    const {remove, item} = this.props;
+    const {options, id} = item;
 
     if (this.isHiding) {
       this._setIsHiding(false);
-      remove(toastr.id);
+      remove(id);
       if (options.onHideComplete) {
         options.onHideComplete();
       }
-    } else if (!this.isHiding) {
-      if (options.onShowComplete) {
-        options.onShowComplete();
-      }
+    } else if (!this.isHiding && options.onShowComplete) {
+       options.onShowComplete();
     }
   };
 
   _removeToastr = () => {
-    if (this.isHiding) {
-      return;
+    if (!this.isHiding) {
+      this._setIsHiding(true);
+      this._setTransition(true);
+      onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
     }
-    this._setIsHiding(true);
-    this._setTransition(true);
-    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
   };
 
   _setTransition = (hide) => {
     const node = this.toastrBox;
-    const animationType = hide ? this.props.transition.out : this.props.transition.in;
+    const animationType = hide ? this.transitionOut : this.transitionIn;
 
     const onEndListener = (e) => {
-      if (e && e.target !== node) {
-        return;
+      if (e && e.target == node) {
+        CSSCore.removeClass(node, animationType);
       }
-
-      CSSCore.removeClass(node, animationType);
     };
 
     onCSSTransitionEnd(this.toastrBox, onEndListener);
@@ -118,9 +97,8 @@ export default class ToastrBox extends Component {
 
   _clearTransition = () => {
     const node = this.toastrBox;
-    const {transition} = this.props;
-    CSSCore.removeClass(node, transition.in);
-    CSSCore.removeClass(node, transition.out);
+    CSSCore.removeClass(node, this.transitionIn);
+    CSSCore.removeClass(node, this.transitionOut);
   };
 
   _setIntervalId = (intervalId) => {
@@ -132,31 +110,24 @@ export default class ToastrBox extends Component {
   };
 
   renderMessage = () => {
-    const {toastr} = this.props;
-    if (toastr.type == 'message') {
-      return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>;
-    }
-    return <div className="message">{toastr.message}</div>;
+    const {message, type} = this.props.item;
+    return type == 'message' ? <p dangerouslySetInnerHTML={{__html: message}}></p> : message;
   };
 
   render() {
-    const {toastr} = this.props;
-    const classes = classnames('toastr', 'animated', toastr.type);
-    const icons = classnames('icon-holder', toastr.options.icon);
+    const {title, type, options} = this.props.item;
+    const classes = classnames('toastr', 'animated', type, options.icon);
     return (
       <div
         className={classes}
         onMouseEnter={this.mouseEnter}
         onMouseLeave={this.mouseLeave}
+        onClick={() => this.handleClick()} 
         ref={(ref) => this.toastrBox = ref}>
-
-        <div className={icons}></div>
-        <div className="message-holder" onClick={this.handleClick}>
-          {toastr.title &&
-            <div className="title">{toastr.title}</div>}
-          {this.renderMessage()}
+        <div className="message-holder">
+          {title && <div className="title">{title}</div>}
+          <div className="message">{this.renderMessage()}</div>
         </div>
-        <button onClick={this.handleClick} className="close icon-close-round"></button>
       </div>
     );
   }
