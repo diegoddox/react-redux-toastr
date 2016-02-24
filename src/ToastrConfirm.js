@@ -72,7 +72,7 @@ export default class ToastrConfirm extends Component {
   };
 
   render() {
-    const {okText, cancelText} = this.props;
+    const {okText, cancelText} = this.props.confirmOptions;
     const classes = cn('confirm-holder', {active: this.props.confirm.show});
     return (
       <div className={classes}>

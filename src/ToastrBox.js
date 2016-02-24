@@ -9,8 +9,7 @@ export default class ToastrBox extends Component {
   static displayName = 'ToastrBox';
 
   static propTypes = {
-    toastr: PropTypes.object.isRequired,
-    transition: PropTypes.object
+    toastr: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -120,8 +119,8 @@ export default class ToastrBox extends Component {
     return (
       <div
         className={classes}
-        onMouseEnter={this.mouseEnter}
-        onMouseLeave={this.mouseLeave}
+        onMouseEnter={() => this.mouseEnter()}
+        onMouseLeave={() => this.mouseLeave()}
         onClick={() => this.handleClick()} 
         ref={(ref) => this.toastrBox = ref}>
         <div className="message-holder">
