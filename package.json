@@ -13,6 +13,9 @@
     "lint": "better-npm-run lint",
     "build_app": "concurrent --kill-others & npm run clean & npm run lint & npm run build & npm run less & npm run less:m"
   },
+  "eslintConfig": {
+    "root": true
+  },
   "betterScripts": {
     "build:umd:min": {
       "command": "./node_modules/.bin/webpack src/index.js dist/react-redux-toastr.min.js  --config build/webpack.config.js",
@@ -33,18 +36,13 @@
       "command": "node_modules/.bin/lessc src/less/react-redux-toastr.less --autoprefix=\"last 2 versions\" --clean-css lib/css/react-redux-toastr.min.css"
     },
     "lint": {
-      "command": "eslint . --ext .js --ext .jsx || true"
+      "command": "node_modules/.bin/eslint . --ext .js --ext .jsx || true"
     },
     "clean": {
       "command": "node_modules/.bin/rimraf dist lib"
     }
   },
-  "author": [
-    {
-      "name": "Diego Oliveira",
-      "url": "https://github.com/diegoddox"
-    }
-  ],
+  "author": "Diego Oliveira",
   "license": "MIT",
   "repository": {
     "type": "git",
