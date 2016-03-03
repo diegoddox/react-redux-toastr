@@ -27,8 +27,8 @@ export default class App extends Component {
     };
 
     const confirmOptions = {
-      onOk: () => console.log('OK: clicked'),
-      onCancel: () => console.log('CANCEL: clicked')
+      onOk: () => toastr.success('You have click on the ok confirm button'),
+      onCancel: () => toastr.error('You have click on the cancel confirm button')
     };
 
     const img = '<img src="http://diegoddox.github.io/redux-toastr/img/demo.jpg">';
