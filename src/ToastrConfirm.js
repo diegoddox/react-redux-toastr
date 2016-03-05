@@ -9,8 +9,7 @@ export default class ToastrConfirm extends Component {
 
   static propTypes = {
     confirm: PropTypes.object.isRequired,
-    okText: PropTypes.string,
-    cancelText: PropTypes.string
+    confirmOptions: PropTypes.object
   };
 
   constructor(props) {
@@ -25,67 +24,69 @@ export default class ToastrConfirm extends Component {
     }
   }
 
-  handleConfirmClick = () => {
+  handleConfirmClick() {
     const {options} = this.props.confirm;
-    if (options.onOk) {
-      options.onOk();
-    }
-    this._setTransition();
-  };
+    const onAnimationEnd = () => {
+      this._removeConfirm();
+      if (options.onOk) {
+        options.onOk();
+      }
+    };
 
-  handleCancelClick = () => {
-    const {options} = this.props.confirm;
-    if (options.onCancel) {
-      options.onCancel();
-    }
     this._setTransition();
-  };
+    onCSSTransitionEnd(this.confirm, onAnimationEnd);
+  }
+
+  handleCancelClick() {
+    const {options} = this.props.confirm;
+    const onAnimationEnd = () => {
+      this._removeConfirm();
+      if (options.onCancel) {
+        options.onCancel();
+      }
+    };
+
+    this._setTransition();
+    onCSSTransitionEnd(this.confirm, onAnimationEnd);
+  }
 
   _setTransition = (add) => {
     const body = document.querySelector('body');
 
     if (add) {
+      this.isHiding = false;
       CSSCore.addClass(body, 'toastr-confirm-active');
       CSSCore.addClass(this.confirm, 'bounceInDown');
-      this.isHiding = false;
-    } else {
-      CSSCore.addClass(this.confirm, 'bounceOutUp');
-      this.isHiding = true;
+      return;
     }
 
-    onCSSTransitionEnd(this.confirm, this._onConfirmAnimationComplete);
-  };
-
-  _onConfirmAnimationComplete = () => {
-    if (this.isHiding) {
-      this._removeConfirm();
-    }
+    this.isHiding = true;
+    CSSCore.addClass(this.confirm, 'bounceOutUp');
   };
 
   _removeConfirm = () => {
     this.isHiding = false;
+    this.props.hideConfirm();
     const body = document.querySelector('body');
     CSSCore.removeClass(this.confirm, 'bounceOutUp');
     CSSCore.removeClass(this.confirm, 'bounceInDown');
     CSSCore.removeClass(body, 'toastr-confirm-active');
-    this.props.hideConfirm();
   };
 
   render() {
-    const {okText, cancelText} = this.props.confirmOptions;
     const classes = cn('confirm-holder', {active: this.props.confirm.show});
     return (
       <div className={classes}>
-          <div className="confirm animated" ref={(ref) => this.confirm = ref}>
+          <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
             <Button
               className="ok"
-              onClick={e => this.handleConfirmClick(e)}>{okText}</Button>
+              onClick={this.handleConfirmClick.bind(this)}>{this.props.confirmOptions.okText}</Button>
             <Button
               className="cancel"
-              onClick={e => this.handleCancelClick(e)}>{cancelText}</Button>
+              onClick={this.handleCancelClick.bind(this)}>{this.props.confirmOptions.cancelText}</Button>
           </div>
-        <div className="shadow animated" ref={(ref) => this.confirmShadow = ref}></div>
+        <div className="shadow animated"></div>
       </div>
     );
   }
