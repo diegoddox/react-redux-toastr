@@ -79,14 +79,14 @@ export default class ToastrConfirm extends Component {
       <div className={classes}>
           <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
-            <Button
-              className="ok"
-              onClick={this.handleConfirmClick.bind(this)}>{this.props.confirmOptions.okText}</Button>
-            <Button
-              className="cancel"
-              onClick={this.handleCancelClick.bind(this)}>{this.props.confirmOptions.cancelText}</Button>
+            <Button onClick={this.handleConfirmClick.bind(this)}>
+              {this.props.confirmOptions.okText}
+            </Button>
+            <Button onClick={this.handleCancelClick.bind(this)}>
+              {this.props.confirmOptions.cancelText}
+            </Button>
           </div>
-        <div className="shadow animated"></div>
+        <div className="shadow"></div>
       </div>
     );
   }
