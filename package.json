@@ -91,7 +91,7 @@
     "eslint": "^1.10.3",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.10.0",
-    "fbjs": "^0.3.1",
+    "fbjs": "^0.8.0-alpha.3",
     "jshint": "^2.9.1-rc1",
     "less": "^2.5.3",
     "less-plugin-autoprefix": "^1.5.1",
@@ -102,7 +102,7 @@
     "rimraf": "^2.4.4"
   },
   "peerDependencies": {
-    "fbjs": "^0.3.1",
+    "fbjs": "^0.8.0-alpha.3",
     "react": "^0.14.0",
     "react-redux": "^4.0.1",
     "redux": "^3.0.5"
