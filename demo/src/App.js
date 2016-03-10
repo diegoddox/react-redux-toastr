@@ -28,7 +28,7 @@ export default class App extends Component {
       onCancel: () => toastr.error('You have click on the cancel confirm button')
     };
 
-    this.img = '<img src="http://diegoddox.github.io/redux-toastr/img/demo.jpg">';
+    const img = '<img src="http://diegoddox.github.io/redux-toastr/img/demo.jpg">';
     this.largeMessageText = loremIpsum({count: 2}) + img + loremIpsum({count: 3});
   }
 

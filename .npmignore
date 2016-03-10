@@ -10,7 +10,7 @@
 config.gypi
 CVS
 npm-debug.log
-src
+src/
 CHANGELOG.md
 build/
 config/
