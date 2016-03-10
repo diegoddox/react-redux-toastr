@@ -1,7 +1,7 @@
-import React, {Component, PropTypes}  from 'react';
-import loremIpsum                     from 'lorem-ipsum';
-import {Provider}                     from 'react-redux';
-import ReduxToastr, {toastr}          from 'react-redux-toastr';
+import React, {Component, PropTypes} from 'react';
+import loremIpsum from 'lorem-ipsum';
+import {Provider} from 'react-redux';
+import ReduxToastr, {toastr} from 'react-redux-toastr';
 
 export default class App extends Component {
   static displayName = 'ReduxToastrDemo';
@@ -12,28 +12,27 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
-  }
-
-  render() {
-    const toastrOptions = {
+    this.toastrOptions = {
       timeOut: 20000,
       onShowComplete: () => console.log('SHOW: animation is done'),
       onHideComplete: () => console.log('HIDE: animation is done')
     }
 
-    const messageOptions = {
+    this.messageOptions = {
       onShowComplete: () => console.log('SHOW: animation is done'),
       onHideComplete: () => console.log('HIDE: animation is done')
     };
 
-    const confirmOptions = {
+    this.confirmOptions = {
       onOk: () => toastr.success('You have click on the ok confirm button'),
       onCancel: () => toastr.error('You have click on the cancel confirm button')
     };
 
-    const img = '<img src="http://diegoddox.github.io/redux-toastr/img/demo.jpg">';
-    const largeMessageText = loremIpsum({count: 2}) + img + loremIpsum({count: 3});
+    this.img = '<img src="http://diegoddox.github.io/redux-toastr/img/demo.jpg">';
+    this.largeMessageText = loremIpsum({count: 2}) + img + loremIpsum({count: 3});
+  }
 
+  render() {
     return (
       <Provider store={this.props.store}>
         <div className="wrapper">
@@ -41,16 +40,16 @@ export default class App extends Component {
           <hr/>
           <button
             className="btn btn-default"
-            onClick={() => toastr.confirm('Are you sure?', confirmOptions)}>Confirm</button>
+            onClick={() => toastr.confirm('Are you sure?', this.confirmOptions)}>Confirm</button>
 
           <button
             className="btn btn-default"
-            onClick={() => toastr.message('News baby', largeMessageText, messageOptions)}
+            onClick={() => toastr.message('News baby', this.largeMessageText, this.messageOptions)}
             >Message</button>
 
           <button
             className="btn btn-success"
-            onClick={() => toastr.success('Title', 'Love is what we need', toastrOptions)}>Success</button>
+            onClick={() => toastr.success('Title', 'Love is what we need', this.toastrOptions)}>Success</button>
 
           <button
             className="btn btn-primary"
