@@ -1,6 +1,6 @@
-const config = new Map();
+const config = {};
 
-config.set('newestOnTop', true);
-config.set('timeOut', 5000);
+config.newestOnTop = true;
+config.timeOut = 5000;
 
 export default config;

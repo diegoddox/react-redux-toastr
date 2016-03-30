@@ -35,8 +35,8 @@ export default class ReduxToastr extends Component {
 
   constructor(props) {
     super(props);
-    config.set('timeOut', this.props.timeOut);
-    config.set('newestOnTop', this.props.newestOnTop);
+    config.timeOut = this.props.timeOut;
+    config.newestOnTop = this.props.newestOnTop;
   }
 
   componentDidMount() {

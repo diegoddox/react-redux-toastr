@@ -24,7 +24,7 @@ export default class ToastrBox extends Component {
     const {item} = this.props;
     let {timeOut} = item.options;
     if (typeof timeOut === 'undefined' && item.type !== 'message') {
-      timeOut = config.get('timeOut');
+      timeOut = config.timeOut;
     }
 
     if (timeOut) {

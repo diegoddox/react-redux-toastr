@@ -20,7 +20,7 @@ export default createReducer(initialState, {
       options: payload.options
     };
 
-    if (!config.get('newestOnTop')) {
+    if (!config.newestOnTop) {
       return {
         ...state,
         toastrs: [
