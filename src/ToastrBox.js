@@ -131,7 +131,7 @@ export default class ToastrBox extends Component {
 
   renderMessage = () => {
     const {toastr} = this.props;
-    if (toastr.type == 'message') {
+    if (toastr.type == 'message' || toastr.options.html) {
       return <div className="message"><p dangerouslySetInnerHTML={{__html: toastr.message}}></p></div>;
     }
     return <div className="message">{toastr.message}</div>;
