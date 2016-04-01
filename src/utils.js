@@ -27,7 +27,7 @@ export function mapToToastrMessage(type, array) {
   obj.options = {};
 
   const options = array.filter(item => {
-    return item.icon || item.timeOut || item.onShowComplete || item.onHideComplete || item.icon;
+    return item.icon || item.timeOut || item.onShowComplete || item.onHideComplete || item.icon || item.html;
   })[0];
 
   if (options) {
