@@ -121,7 +121,11 @@ export default class ToastrBox extends Component {
         <div className="message-holder">
           {this.props.item.title && <div className="title">{this.props.item.title}</div>}
           {this.props.item.message && <div className="message">{this.props.item.message}</div>}
-          {this.props.item.options.component && <this.props.item.options.component />}
+          {this.props.item.options.component &&
+            <div className="message">
+              <this.props.item.options.component />
+            </div>
+          }
         </div>
       </div>
     );
