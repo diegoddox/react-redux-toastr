@@ -1,9 +1,7 @@
 #3.0.0
-Remove dangerouslysetinnerhtml and implment component option.
+Remove `dangerouslysetinnerhtml` and implment `component` `option`.
 
-instead of use `dangerouslysetinnerhtml` you can pass on react component in the `toastr` `options` so is up to you what and how you wanna display your `toastr`
-
-If you wanna contribute just fork the repo run `npm i`, `npm start` and you're ready
+instead of using the `dangerouslysetinnerhtml` now you can pass a react component in the `toastr` `options` so is up to you what and how you wanna display your `toastr`
 
 #2.1.0
 change ReduxToastr props name from `confirm` to `confirmOptions`
