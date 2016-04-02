@@ -2,12 +2,13 @@
 
 import './index.less';
 import './toastr/less/index.less';
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
 import {Provider} from 'react-redux';
 import ReduxToastr, {toastr} from './toastr/';
 import DevTools from './containers/DevTools';
 import config from './../config';
 
+import LongText from './largetext';
 import loremIpsum from 'lorem-ipsum';
 
 class comp extends Component {
@@ -16,6 +17,13 @@ class comp extends Component {
     return (
         <h2>hej</h2>
     );
+  }
+}
+
+class messageComp extends Component {
+  static displayName = 'MMCmessageComp';
+  render() {
+    return <div dangerouslySetInnerHTML={{__html: LongText}} />;
   }
 }
 
@@ -48,10 +56,10 @@ export default class App extends Component {
           <ReduxToastr />
           <div className="content">
             <button type="button" onClick={this.add.bind(this)}>success</button>
-            <button type="button" onClick={() => toastr.info('## Success', loremIpsum())}>info</button>
+            <button type="button" onClick={() => toastr.info('## Info', loremIpsum())}>info</button>
             <button type="button" onClick={() => toastr.error('## Error', {timeOut: 4000, component: comp})}>error</button>
             <button type="button" onClick={() => toastr.warning('## Warning', loremIpsum())}>warning</button>
-            <button type="button" onClick={() => toastr.message('## message', loremIpsum())}>message</button>
+            <button type="button" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
           </div>
           {this.renderDev()}
         </div>
