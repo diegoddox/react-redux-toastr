@@ -1,4 +1,4 @@
-#2.2.2
+#3.0.0
 Remove dangerouslysetinnerhtml and implment component option.
 
 instead of use `dangerouslysetinnerhtml` you can pass on react component in the `toastr` `options` so is up to you what and how you wanna display your `toastr`
