@@ -97,7 +97,7 @@ const toastrOptions = {
   icon: 'my-icon-name',
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  component: React.Component({...})
+  component: React.Component
 }
 
 toastr.success('Title', 'Message', toastrOptions)
@@ -114,7 +114,7 @@ const toastrMessageOptions = {
   timeOut: 1000,
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  component: React.Component({...})
+  component: React.Component
 };
 toastr.message('Title', toastrMessageOptions)
 ```

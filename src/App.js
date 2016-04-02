@@ -2,7 +2,7 @@
 
 import './index.less';
 import './toastr/less/index.less';
-import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react';
+import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react'; // eslint-disable-line no-unused-vars
 import {Provider} from 'react-redux';
 import ReduxToastr, {toastr} from './toastr/';
 import DevTools from './containers/DevTools';
