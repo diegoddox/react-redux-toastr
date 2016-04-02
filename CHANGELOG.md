@@ -1,6 +1,8 @@
-#2.2.1
+#2.2.2
 Remove dangerouslysetinnerhtml and implment component option.
 instead of use `dangerouslysetinnerhtml` you can pass on react component in the `toastr` `options` so is up to you what and how you wanna display your `toastr`
+
+If you wanna contribute just fork the repo run `npm i`, `npm start` and you're ready
 
 Fix [issue](https://github.com/diegoddox/react-redux-toastr/issues/11#issuecomment-192171920)
 #2.1.0

@@ -111,13 +111,13 @@ This one is in case you wanna show a large amount of information, unlike the oth
 
 ```
 const toastrMessageOptions = {
+  timeOut: 1000,
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  timeout: 10000
+  component: React.Component({...})
 };
-toastr.message('Title', 'text <img src="myimage.jpg" />', toastrMessageOptions)
+toastr.message('Title', toastrMessageOptions)
 ```
-This method uses `React` [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html) to display the message.
 
 ##### Toastr: `confirm`
 The confirm method takes two arguments, the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
