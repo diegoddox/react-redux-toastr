@@ -30,7 +30,7 @@ export default class ToastrConfirm extends Component {
     const {options} = this.props.confirm;
     const onAnimationEnd = () => {
       this._removeConfirm();
-      if (options.onOk) {
+      if (options && options.onOk) {
         options.onOk();
       }
     };
@@ -43,7 +43,7 @@ export default class ToastrConfirm extends Component {
     const {options} = this.props.confirm;
     const onAnimationEnd = () => {
       this._removeConfirm();
-      if (options.onCancel) {
+      if (options && options.onCancel) {
         options.onCancel();
       }
     };
