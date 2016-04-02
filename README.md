@@ -13,7 +13,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ##### 2. Add the `react-redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/react-redux-toastr/2.1.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/react-redux-toastr/2.2.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 ##### 3. The third thing you need to do is to add the `react-redux-toastr` `reducer` to Redux.
 
@@ -48,8 +48,8 @@ import ReduxToastr from 'react-redux-toastr'
 ```
 default props: In case you don't pass the props
 ```
-timeOut: 5000
-newestOnTop: true
+timeOut: 5000,
+newestOnTop: true,
 position: 'top-right'
 ```
 positions: `top-left` `top-right`  `bottom-left` and `bottom-right`
@@ -86,7 +86,7 @@ constructor(props) {
 ```
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error`
-Each of this method can take up to three arguments the `title` a `message` and `options`.
+Each of these methods can take up to three arguments the `title` a `message` and `options`.
 In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`
 
 ```
@@ -96,7 +96,8 @@ const toastrOptions = {
   timeOut: 3000,
   icon: 'my-icon-name',
   onShowComplete: () => console.log('SHOW: animation is done'),
-  onHideComplete: () => console.log('HIDE: animation is done')
+  onHideComplete: () => console.log('HIDE: animation is done'),
+  component: React.Component({...})
 }
 
 toastr.success('Title', 'Message', toastrOptions)
@@ -143,7 +144,7 @@ const options = {
 # Run a local demo
 ```
 git clone https://github.com/diegoddox/react-redux-toastr.git
-cd react-redux-toastr/demo/
+cd react-redux-toastr
 npm install
 npm start
 ```

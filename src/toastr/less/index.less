@@ -1,0 +1,144 @@
+@import './css-fonts.less';
+@import './animation.less';
+@import './confirm.less';
+
+body.toastr-confirm-active {
+  overflow: hidden;
+}
+
+.redux-toastr {
+  width: 310px;
+  position: fixed;
+  z-index: 99999999;
+  
+  &.top-left, &.top-right {
+    top: 15px;  
+  }
+  
+  &.bottom-left, &.bottom-right {
+    bottom: 15px;
+  }
+  
+  &.top-left {
+    left: 15px;
+  }
+
+  &.top-right {
+    right: 15px;
+  }
+
+  &.bottom-left {
+    left: 15px;
+  }
+
+  &.bottom-right {
+    right: 15px;
+  }
+
+  .toastr {
+    background-color: #fcfcfc;
+    width: 100%;
+    min-height: 40px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    position: relative;
+    color: #333;
+    padding: 10px 0;
+    opacity: .9;
+    box-shadow: 0px 0px 10px #ccc;
+    
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      margin-top: -11px;
+      font-size: 22px;
+    }
+    
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 10px #777;
+      opacity: 1;
+    }
+
+    .message-holder {
+      width: 80%;
+      margin-left: 15%;
+      position: relative;
+      font-family: Arial, Helvetica, sans-serif, sans-serif;
+      font-size: 1em;
+      text-align: left;
+
+      p {
+        padding: 5px;
+        margin: 0;
+      }
+
+      .title {
+        font-size: 1.1em;
+        font-weight: bold;
+      }
+    }
+
+    &.info, &.success, &.warning, &.error {
+      color: white;
+    }
+
+    &.info {
+      background-color: #58abc3;
+    }
+
+    &.success {
+      background-color: #60bb71;
+    }
+
+    &.warning {
+      background-color: #f7a336;
+    }
+
+    &.error {
+      background-color: #db6a64;
+    }
+
+    &.message {
+      opacity: 1;
+      border: 1px solid #dbdbdb;
+      
+      .message-holder {
+        width: 100%;
+        margin-left: 0;
+
+        .title {
+          width: 90%;
+          height: 50px;
+          text-align: center;
+          overflow: hidden;
+          font-size: 1.2em;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          line-height: 45px;
+          padding: 0 15px;
+        }
+
+        .message {
+          border-radius: 5px;
+          width: 100%;
+          max-height: 400px;
+          overflow: hidden;
+          overflow-y: auto;
+          border-top: 1px solid #f1f1f1;
+          background-color: white;
+          padding: 15px;
+          font-size: 1.1em;
+
+          img {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

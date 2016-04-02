@@ -1,1 +1,3 @@
-module.exports = require('./webpack/' + process.env.NODE_ENV);
+'use strict';
+
+module.exports = require('./webpack/' + require('../config').env);

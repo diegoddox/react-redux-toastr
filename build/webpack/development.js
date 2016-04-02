@@ -1,14 +1,31 @@
 'use strict';
 
-var webpack = require('webpack');
+var path = require('path');
+var config = require('../../config');
 var baseConfig = require('./base');
 
-var config = Object.create(baseConfig);
-config.plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('development')
-  })
+baseConfig.entry.app = [
+  'webpack-dev-server/client?http://localhost:' + config.server_port,
+  'webpack/hot/only-dev-server',
+  config.path_base + '/src/client.js'
 ];
 
-module.exports = config;
+baseConfig.devtool = 'inline-source-map';
+
+baseConfig.devServer = {
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': true,
+    'Access-Control-Max-Age': 1
+  },
+  contentBase: path.join(config.path_base, '/src'),
+  noInfo: false,
+  port: config.server_port,
+  hot: true,
+  stats: {
+    colors: true
+  },
+  historyApiFallback: true
+};
+
+module.exports = baseConfig;
