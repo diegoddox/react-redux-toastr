@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: path.join(config.path_base + '/dist'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: ''
   },
   module: {
     preLoaders: [
@@ -66,10 +66,10 @@ module.exports = {
         + '<html>'
         + ' <head>'
         + '   <meta charset="iso-8859-1">'
-        + '   <title>React Redux Modal</title>'
+        + '   <title>React Redux Toastr</title>'
         + '   <meta name="viewport" content="width=device-width, initial-scale=1">'
         + '   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">'
-        + '   <link href="http://diegoddox.github.io/react-redux-modal/0.1.0/react-redux-modal.min.css" rel="stylesheet">'
+        + '   <link href="http://diegoddox.github.io/react-redux-toastr/3.0.0/react-redux-toastr.min.css" rel="stylesheet">'
         + ' </head>'
         + ' <body>'
         + '   <div id="app"></div>'
