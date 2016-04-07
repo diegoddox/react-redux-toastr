@@ -1,14 +1,13 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-import {connect}            from 'react-redux';
-import classnames           from 'classnames';
-
-import ToastrBox            from './ToastrBox';
-import ToastrConfirm        from './ToastrConfirm';
-import * as tActions        from './actions';
-import {EE}                 from './toastrEmitter';
-import config               from './config';
+import {connect} from 'react-redux';
+import cn from 'classnames';
+import ToastrBox from './ToastrBox';
+import ToastrConfirm from './ToastrConfirm';
+import * as tActions from './actions';
+import {EE} from './toastrEmitter';
+import config from './config';
 
 @connect(state => ({
   toastr: state.toastr
@@ -55,13 +54,14 @@ export default class ReduxToastr extends Component {
   }
 
   render() {
-    const classes = classnames('redux-toastr', this.props.position);
-    const {confirm, toastrs} = this.props.toastr;
-
     return (
-      <div className={classes}>
-        <ToastrConfirm confirm={confirm} {...this.props}/>
-        {toastrs.map(item => <ToastrBox key={item.id} item={item}  {...this.props}/>)}
+      <div className={cn('redux-toastr', this.props.position)}>
+        {this.props.toastr &&
+            <ToastrConfirm confirm={this.props.toastr.confirm} {...this.props}/>
+        }
+        {this.props.toastr &&
+            this.props.toastr.toastrs.map(item => <ToastrBox key={item.id} item={item}  {...this.props}/>)
+        }
       </div>
     );
   }
