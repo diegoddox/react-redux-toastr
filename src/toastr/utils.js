@@ -1,5 +1,3 @@
-'use strict';
-
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 
 export function createReducer(initialState, fnMap) {

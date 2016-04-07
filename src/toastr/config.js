@@ -1,5 +1,3 @@
-'use strict';
-
 const config = {};
 
 config.newestOnTop = true;

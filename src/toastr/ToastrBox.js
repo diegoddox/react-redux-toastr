@@ -1,5 +1,3 @@
-'use strict';
-
 import CSSCore from 'fbjs/lib/CSSCore';
 import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react'; //  eslint-disable-line no-unused-vars
 import cn from 'classnames';

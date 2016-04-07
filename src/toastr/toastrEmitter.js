@@ -1,5 +1,3 @@
-'use strict';
-
 import {mapToToastrMessage} from './utils.js';
 import EventEmitter from 'eventemitter3';
 const emitter = new EventEmitter();

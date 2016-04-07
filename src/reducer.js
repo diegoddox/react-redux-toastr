@@ -1,4 +1,3 @@
-'use strict';
 import {combineReducers} from 'redux';
 import {reducer as toastrReducer} from './toastr';
 export default combineReducers({

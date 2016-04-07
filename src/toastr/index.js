@@ -1,5 +1,3 @@
-'use strict';
-
 import ReduxToastr from './ReduxToastr';
 import * as ReduxToastrActions from './actions';
 import ReduxToastrReducer from './reducer';

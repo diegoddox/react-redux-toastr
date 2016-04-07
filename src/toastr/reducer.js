@@ -1,5 +1,3 @@
-'use strict';
-
 import {createReducer, guid}  from './utils.js';
 import config from './config';
 import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';

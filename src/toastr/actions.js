@@ -1,5 +1,3 @@
-'use strict';
-
 import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
 import {mapToToastrMessage} from './utils';
 
