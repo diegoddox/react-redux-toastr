@@ -1,6 +1,6 @@
 {
   "name": "react-redux-toastr",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
@@ -51,6 +51,7 @@
     "url": "https://github.com/diegoddox/react-redux-toastr/issues"
   },
   "files": [
+    "src/",
     "lib/",
     "CHANGELOG.md",
     "README.md"
