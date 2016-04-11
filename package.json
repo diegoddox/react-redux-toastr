@@ -1,14 +1,14 @@
 {
   "name": "react-redux-toastr",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
   "scripts": {
     "start": "better-npm-run dev-server",
     "build": "better-npm-run build",
-    "less": "lessc src/toastr/less/index.less --autoprefix=\"last 2 versions\" lib/css/react-redux-toastr.css",
-    "less:m": "lessc src/toastr/less/index.less --autoprefix=\"last 2 versions\" --clean-css lib/css/react-redux-toastr.min.css",
+    "less": "lessc src/less/index.less --autoprefix=\"last 2 versions\" lib/css/react-redux-toastr.css",
+    "less:m": "lessc src/less/index.less --autoprefix=\"last 2 versions\" --clean-css lib/css/react-redux-toastr.min.css",
     "clean": "better-npm-run clean",
     "lint": "better-npm-run lint",
     "build_app": "concurrent --kill-others & npm run clean & npm run lint & npm run build & npm run less & npm run less:m",
@@ -32,7 +32,7 @@
       }
     },
     "build": {
-      "command": "node_modules/.bin/babel src/toastr/ --out-dir lib"
+      "command": "node_modules/.bin/babel src/ --out-dir lib"
     },
     "lint": {
       "command": "node_modules/.bin/eslint . --ext .js --ext .jsx || true"

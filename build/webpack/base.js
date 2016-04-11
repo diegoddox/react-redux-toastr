@@ -5,12 +5,12 @@ var path      = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = require('../../config');
 
-const baseSrcPath = path.join(config.path_base, '/src');
+const baseSrcPath = path.join(config.path_base, '/' +  config.dir_client);
 
 module.exports = {
   target: 'web',
   entry: {
-    app: path.join(config.path_base, '/src/client.js')
+    app: path.join(config.path_base, '/' + config.dir_client + '/client.js')
   },
   output: {
     path: path.join(config.path_base + '/dist'),
@@ -22,35 +22,29 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loaders: ['eslint'],
-        exclude: /node_modules/,
-        include: baseSrcPath
+        exclude: /node_modules/
       }
     ],
     loaders: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel'],
-        include: baseSrcPath
+        loaders: ['react-hot', 'babel']
       }, {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         exclude: /node_modules/,
-        loader: 'url-loader',
-        include: baseSrcPath
+        loader: 'url-loader'
       }, {
         test: /\.less$/,
         exclude: /node_modules/,
-        loader: 'style!css!less',
-        include: baseSrcPath
+        loader: 'style!css!less'
       }, {
         test: /\.css$/,
-        loader: 'style-loader!css-loader',
-        include: baseSrcPath
+        loader: 'style-loader!css-loader'
       }, {
         test: /\.jpg$/,
         exclude: /node_modules/,
-        loader: 'file-loader',
-        include: baseSrcPath
+        loader: 'file-loader'
       }
     ]
   },

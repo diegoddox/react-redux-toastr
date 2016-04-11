@@ -1,10 +1,10 @@
 'use strict';
 
 import './index.less';
-import './toastr/less/index.less';
+import './../src/less/index.less';
 import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react'; // eslint-disable-line no-unused-vars
 import {Provider} from 'react-redux';
-import ReduxToastr, {toastr} from './toastr/';
+import ReduxToastr, {toastr} from './../src/';
 import DevTools from './containers/DevTools';
 import config from './../config';
 
