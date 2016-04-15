@@ -8,7 +8,7 @@ import {EE} from './toastrEmitter';
 import config from './config';
 
 @connect(state => ({
-  toastr: state.toastr
+  toastr: state.toastr ? state.toastr : state.get('toastr')
 }), tActions)
 export default class ReduxToastr extends Component {
   static displayName = 'ReduxToastr';
