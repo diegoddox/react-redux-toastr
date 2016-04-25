@@ -91,7 +91,15 @@ constructor(props) {
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`
+In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`.
+
+`icon` can be one of the following:
+- `'icon-close-round'`
+- `'icon-information-circle'`
+- `'icon-check-1:before'`
+- `'icon-exclamation-triangle'`
+- `'icon-exclamation-alert'`
+
 
 ```
 import {toastr} from 'react-redux-toastr'
