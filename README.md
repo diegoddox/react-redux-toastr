@@ -96,7 +96,7 @@ In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideCo
 `icon` can be one of the following:
 - `'icon-close-round'`
 - `'icon-information-circle'`
-- `'icon-check-1:before'`
+- `'icon-check-1'`
 - `'icon-exclamation-triangle'`
 - `'icon-exclamation-alert'`
 
