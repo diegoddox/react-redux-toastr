@@ -21,7 +21,7 @@ Or import the less file into to your project.
 
 ##### 3. The third thing you need to do is to add the `react-redux-toastr` `reducer` to Redux.
 
-```
+```javascript
 import {createStore, combineReducers} from 'redux'
 import {reducer as toastrReducer} from 'react-redux-toastr'
 const reducers = {
@@ -35,7 +35,8 @@ const store = createStore(reducer)
 ##### NOTE: The default mount point for `react-redux-toastr` is `toastr`.
 
 ##### 4. Add the `react-redux-toastr` React component to the root of your app
-```
+
+```javascript
 import {Provider}  from 'react-redux'
 import ReduxToastr from 'react-redux-toastr'
 
@@ -50,18 +51,22 @@ import ReduxToastr from 'react-redux-toastr'
   </div>
 </Provider>
 ```
+
 default props: In case you don't pass the props
+
 ```
 timeOut: 5000,
 newestOnTop: true,
 position: 'top-right'
 ```
+
 positions: `top-left` `top-right`  `bottom-left` and `bottom-right`
 
 ##### 5. Add the `react-redux-toastr`  `toastr` emitter
 The `toastr` method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
-```
+
+```javascript
 import React, {Component}  from 'react'
 import {toastr} from 'react-redux-toastr'
 
@@ -78,7 +83,8 @@ export class YourComponent extends Component {
 }
 ```
 Or you can bind the `actions` to your component if you prefer.
-```
+
+```javascript
 import {bindActionCreators} from 'redux'
 import {actions as toastrActions} from 'react-redux-toastr'
 // In your React component
@@ -88,12 +94,21 @@ constructor(props) {
   this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
 }
 ```
+
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`
+In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`.
 
-```
+`icon` can be one of the following:
+- `'icon-close-round'`
+- `'icon-information-circle'`
+- `'icon-check-1'`
+- `'icon-exclamation-triangle'`
+- `'icon-exclamation-alert'`
+
+
+``` javascript
 import {toastr} from 'react-redux-toastr'
 
 const toastrOptions = {
@@ -113,7 +128,7 @@ toastr.error('The message')
 ##### Toastr: `message`
 This one is in case you wanna show a large amount of information, unlike the other methods above this will not close automatically unless you provide a `timeout` in the `message` options.
 
-```
+```javascript
 const toastrMessageOptions = {
   timeOut: 1000,
   onShowComplete: () => console.log('SHOW: animation is done'),
@@ -128,7 +143,7 @@ The confirm method takes two arguments, the first is the message the second is a
 
 NOTE: You can only have one at a time, right now if you have one `confirm` and you fire another it will be ignored.
 
-```
+```javascript
 const toastrConfirmOptions = {
   onOk: () => console.log('OK: clicked'),
   onCancel: () => console.log('CANCEL: clicked')
@@ -138,13 +153,14 @@ toastr.confirm('Are you sure about that!', toastrConfirmOptions)
 
 You can change the `ok` and `cancel` text by passing the `confirm` props to the `ReduxToastr` component
 
-```
+```javascript
 const options = {
   okText: 'confirm text',
   cancelText: 'cancel text'
 };
 <ReduxToastr confirmOptions={options}/>
 ```
+
 # Run a local demo
 ```
 git clone https://github.com/diegoddox/react-redux-toastr.git
