@@ -7,6 +7,10 @@ body.toastr-confirm-active {
 }
 
 .redux-toastr {
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+    
   width: 310px;
   position: fixed;
   z-index: 99999999;
@@ -43,14 +47,13 @@ body.toastr-confirm-active {
     border-radius: 4px;
     position: relative;
     color: #333;
-    padding: 10px 0;
-    opacity: .9;
-    box-shadow: 0px 0px 10px #ccc;
+    opacity: .94;
+    box-shadow: 2px 2px 10px #ccc;
     
     &:before {
       position: absolute;
       top: 50%;
-      left: 12px;
+      left: 22px;
       margin-top: -11px;
       font-size: 22px;
     }
@@ -62,12 +65,12 @@ body.toastr-confirm-active {
     }
 
     .message-holder {
-      width: 80%;
-      margin-left: 15%;
+      width: 100%;
       position: relative;
       font-family: Arial, Helvetica, sans-serif, sans-serif;
       font-size: 1em;
       text-align: left;
+      padding: 20px 20px 20px 60px;
 
       p {
         padding: 5px;

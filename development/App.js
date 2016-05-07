@@ -60,7 +60,7 @@ export default class App extends Component {
             <button type="button" className="btn btn-danger" onClick={() => toastr.error('## Error', {timeOut: 4000, component: comp})}>error</button>
             <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning', loremIpsum())}>warning</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
-            <button type="button" className="btn btn-default" onClick={() => toastr.confirm('## confirm')}>confirm</button>
+            <button type="button" className="btn btn-default" onClick={() => toastr.confirm(loremIpsum({count: 5}))}>confirm</button>
           </div>
           {this.renderDev()}
         </div>
