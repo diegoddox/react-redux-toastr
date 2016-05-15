@@ -1,3 +1,6 @@
+#3.1.4
+Add the font-icons to the lib folder.
+ 
 #3.0.0
 Remove `dangerouslysetinnerhtml` and implment `component` `option`.
 
