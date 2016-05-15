@@ -11,7 +11,6 @@
     "react"
   ],
   "rules": {
-    // Possible Errors
     "comma-dangle": [2, "never"],
     "no-cond-assign": 2,
     "no-constant-condition": 2,
@@ -34,8 +33,6 @@
     "no-reserved-keys": 0,
     "no-sparse-arrays": 2,
     "no-unreachable": 2,
-    "strict": [2, "global"],
-    // Variables
     "no-catch-shadow": 2,
     "no-delete-var": 2,
     "no-label-var": 2,
@@ -46,7 +43,6 @@
     "no-undefined": 2,
     "no-unused-vars": 2,
     "no-use-before-define": 2,
-    // Stylistic Issues
     "indent": [2, 2, {
       "SwitchCase": 1
     }],
@@ -97,19 +93,9 @@
     "space-unary-ops": 2,
     "spaced-comment": 2,
     "wrap-regex": 0,
-
     "use-isnan": 2,
     "valid-jsdoc": 0,
     "valid-typeof": 2,
-    "new-cap": 0,
-    "strict": 0,
-    "no-underscore-dangle": 0,
-    "no-use-before-define": 0,
-    "eol-last": 0,
-    "quotes": [2, "single"],
-    "jsx-quotes": [2, "prefer-double"],
-    "quote-props": [2, "as-needed"],
-
     "react/display-name": 1,
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
