@@ -2,5 +2,8 @@ node_modules
 npm-debug.log
 0.*
 1.*
+2.*
+3.*
+4.*
 lib
 dist/
