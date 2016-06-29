@@ -60,7 +60,7 @@ newestOnTop: true,
 position: 'top-right'
 ```
 
-positions: `top-left` `top-right`  `bottom-left` and `bottom-right`
+positions: `top-left` `top-center` `top-right`  `bottom-left` `bottom-center` and `bottom-right`
 
 ##### 5. Add the `react-redux-toastr`  `toastr` emitter
 The `toastr` method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
