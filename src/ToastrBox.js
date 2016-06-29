@@ -1,5 +1,5 @@
 import CSSCore from 'fbjs/lib/CSSCore';
-import React, {Component, PropTypes} from 'react'; //  eslint-disable-line no-unused-vars
+import React, {Component, PropTypes, isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
 import cn from 'classnames';
 
 import {onCSSTransitionEnd} from './utils';
@@ -110,14 +110,13 @@ export default class ToastrBox extends Component {
   };
 
   _renderSubComponent = (SubComponent) => {
-    // If component is a class reference, create a React element from it
-    if (SubComponent.prototype && SubComponent.prototype.render) {
-      return (
-        <SubComponent />
-      );
-    }
+    // If SubComponent is already a valid React element, just render it.
+    if (isValidElement(SubComponent)) return SubComponent;
 
-    return SubComponent;
+    // If SubComponent is a class reference, create a React element from it
+    return (
+      <SubComponent />
+    );
   };
 
   render() {
