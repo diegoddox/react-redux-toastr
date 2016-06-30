@@ -1,5 +1,5 @@
 import CSSCore from 'fbjs/lib/CSSCore';
-import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react'; //  eslint-disable-line no-unused-vars
+import React, {Component, PropTypes, isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
 import cn from 'classnames';
 
 import {onCSSTransitionEnd} from './utils';
@@ -33,7 +33,7 @@ export default class ToastrBox extends Component {
     }
 
     this._setTransition();
-    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
+    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplete);
   }
 
   componentWillUnmount() {
@@ -58,7 +58,7 @@ export default class ToastrBox extends Component {
     }
   }
 
-  _onAnimationComplite = () => {
+  _onAnimationComplete = () => {
     const {remove, item} = this.props;
     const {options, id} = item;
 
@@ -77,7 +77,7 @@ export default class ToastrBox extends Component {
     if (!this.isHiding) {
       this._setIsHiding(true);
       this._setTransition(true);
-      onCSSTransitionEnd(this.toastrBox, this._onAnimationComplite);
+      onCSSTransitionEnd(this.toastrBox, this._onAnimationComplete);
     }
   };
 
@@ -109,6 +109,16 @@ export default class ToastrBox extends Component {
     this.isHiding = val;
   };
 
+  _renderSubComponent = (SubComponent) => {
+    // If SubComponent is already a valid React element, just render it.
+    if (isValidElement(SubComponent)) return SubComponent;
+
+    // If SubComponent is a class reference, create a React element from it
+    return (
+      <SubComponent />
+    );
+  };
+
   render() {
     return (
       <div
@@ -122,7 +132,7 @@ export default class ToastrBox extends Component {
           {this.props.item.message && <div className="message">{this.props.item.message}</div>}
           {this.props.item.options.component &&
             <div className="message">
-              <this.props.item.options.component />
+              {this._renderSubComponent(this.props.item.options.component)}
             </div>
           }
         </div>

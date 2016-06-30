@@ -98,7 +98,7 @@ constructor(props) {
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify the `timeout` `icon` `onShowComplete` and `onHideComplete`.
+In `options` you can specify the `timeout` `icon` `onShowComplete` `onHideComplete` and `component`.
 
 `icon` can be one of the following:
 - `'icon-close-round'`
@@ -116,7 +116,11 @@ const toastrOptions = {
   icon: 'my-icon-name',
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  component: React.Component
+  component: (
+    <MyCustomComponent myProp="myValue">
+      <span>Hello, World!</span>
+    </MyCustomComponent>
+  )
 }
 
 toastr.success('Title', 'Message', toastrOptions)
