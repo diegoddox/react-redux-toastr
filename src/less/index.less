@@ -10,21 +10,30 @@ body.toastr-confirm-active {
   *, *:before, *:after {
     box-sizing: border-box;
   }
-    
-  width: 310px;
+
+  @toastr-width: 310px;
+
+  width: @toastr-width;
   position: fixed;
   z-index: 99999999;
-  
-  &.top-left, &.top-right {
-    top: 15px;  
+
+  &.top-left, &.top-right, &.top-center {
+    top: 15px;
   }
-  
-  &.bottom-left, &.bottom-right {
+
+  &.bottom-left, &.bottom-right, &.bottom-center {
     bottom: 15px;
   }
-  
+
   &.top-left {
     left: 15px;
+  }
+
+  &.top-center, &.bottom-center {
+    left: 50%;
+    // Center toastr
+    // https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/
+    margin-left: -(@toastr-width / 2);
   }
 
   &.top-right {
