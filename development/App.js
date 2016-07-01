@@ -11,14 +11,16 @@ import config from './../config';
 import LongText from './largetext';
 import loremIpsum from 'lorem-ipsum';
 
-class comp extends Component {
-  static displayName = 'MMC';
-  render() {
-    return (
-        <h2>hej</h2>
-    );
-  }
-}
+const MyComp = props => {
+  console.log('props', props);
+  setTimeout(() => {
+    props.remove();
+    console.log('## remove toastr with the remove func.');
+  }, 4000);
+  return <h2>Hello {props.name}</h2>;
+};
+
+MyComp.displayName = 'comp';
 
 class messageComp extends Component {
   static displayName = 'MMCmessageComp';
@@ -57,7 +59,13 @@ export default class App extends Component {
           <div className="content">
             <button type="button" className="btn btn-success" onClick={this.add.bind(this)}>success</button>
             <button type="button" className="btn btn-primary" onClick={() => toastr.info('## Info', loremIpsum())}>info</button>
-            <button type="button" className="btn btn-danger" onClick={() => toastr.error('## Error', {timeOut: 4000, component: comp})}>error</button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => toastr.error('## Error', {
+                timeOut: 0,
+                component: (<MyComp name="Jesus" />)
+              })}>error</button>
             <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning', loremIpsum())}>warning</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.confirm(loremIpsum({count: 5}))}>confirm</button>

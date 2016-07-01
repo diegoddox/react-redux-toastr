@@ -19,6 +19,8 @@ export default class ToastrBox extends Component {
     this.intervalId = null;
     this.transitionIn = options.transitionIn || config.transitionIn;
     this.transitionOut = options.transitionOut || config.transitionOut;
+
+    console.log(this.props);
   }
 
   componentDidMount() {
@@ -110,12 +112,16 @@ export default class ToastrBox extends Component {
   };
 
   _renderSubComponent = (SubComponent) => {
-    // If SubComponent is already a valid React element, just render it.
-    if (isValidElement(SubComponent)) return SubComponent;
+    const removeCurrentToastrFunc = () => this.props.remove(this.props.item.id);
 
-    // If SubComponent is a class reference, create a React element from it
+    if (isValidElement(SubComponent)) {
+      return React.cloneElement(SubComponent, {
+        remove: removeCurrentToastrFunc
+      });
+    }
+
     return (
-      <SubComponent />
+      <SubComponent remove={removeCurrentToastrFunc}/>
     );
   };
 
@@ -123,10 +129,11 @@ export default class ToastrBox extends Component {
     return (
       <div
         ref={(ref) => this.toastrBox = ref}
-        className={cn('toastr', 'animated', this.props.item.type, this.props.item.options.icon)}
+        className={cn('toastr', 'animated', this.props.item.type, this.props.item.options.icon, this.props.item.options.className)}
         onMouseEnter={this.mouseEnter.bind(this)}
         onMouseLeave={this.mouseLeave.bind(this)}
-        onClick={this.handleClick.bind(this)}>
+        onClick={this.handleClick.bind(this)}
+      >
         <div className="message-holder">
           {this.props.item.title && <div className="title">{this.props.item.title}</div>}
           {this.props.item.message && <div className="message">{this.props.item.message}</div>}

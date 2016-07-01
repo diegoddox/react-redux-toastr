@@ -98,7 +98,7 @@ constructor(props) {
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify the `timeout` `icon` `onShowComplete` `onHideComplete` and `component`.
+In `options` you can specify the `timeOut` `icon` `onShowComplete` `onHideComplete` `className` and `component`.
 
 `icon` can be one of the following:
 - `'icon-close-round'`
@@ -112,11 +112,11 @@ In `options` you can specify the `timeout` `icon` `onShowComplete` `onHideComple
 import {toastr} from 'react-redux-toastr'
 
 const toastrOptions = {
-  timeOut: 3000,
+  timeOut: 3000, // by setting to 0 it will prevent the auto close
   icon: 'my-icon-name',
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  component: (
+  component: ( // this option will give you a func 'remove' as props
     <MyCustomComponent myProp="myValue">
       <span>Hello, World!</span>
     </MyCustomComponent>
