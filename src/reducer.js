@@ -5,8 +5,9 @@ import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} fro
 const initialState = {
   toastrs: [],
   confirm: {
+    id: guid(),
     show: false,
-    options: null
+    options: {}
   }
 };
 
@@ -20,7 +21,7 @@ export default createReducer(initialState, {
       options: payload.options
     };
 
-    if (!config.newestOnTop) {
+    if (!config.toastr.newestOnTop) {
       return {
         ...state,
         toastrs: [
@@ -53,19 +54,17 @@ export default createReducer(initialState, {
     return {
       ...state,
       confirm: {
+        id: guid(),
         show: true,
         message: payload.message,
-        options: payload.options || null
+        options: payload.options || {}
       }
     };
   },
   [HIDE_CONFIRM]: (state) => {
     return {
       ...state,
-      confirm: {
-        show: false,
-        options: null
-      }
+      confirm: {...initialState.confirm}
     };
   }
 });

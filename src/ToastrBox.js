@@ -17,8 +17,8 @@ export default class ToastrBox extends Component {
     let {options} = props.item;
     this.isHiding = false;
     this.intervalId = null;
-    this.transitionIn = options.transitionIn || config.transitionIn;
-    this.transitionOut = options.transitionOut || config.transitionOut;
+    this.transitionIn = options.transitionIn || config.toastr.transitionIn;
+    this.transitionOut = options.transitionOut || config.toastr.transitionOut;
   }
 
   componentDidMount() {
