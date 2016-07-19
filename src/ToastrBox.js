@@ -19,8 +19,6 @@ export default class ToastrBox extends Component {
     this.intervalId = null;
     this.transitionIn = options.transitionIn || config.transitionIn;
     this.transitionOut = options.transitionOut || config.transitionOut;
-
-    console.log(this.props);
   }
 
   componentDidMount() {
