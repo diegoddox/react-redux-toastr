@@ -18,7 +18,7 @@ export const toastrEmitter = {
   confirm: (...args) => {
     emitter.emit('toastr/confirm', {
       message: args[0].toString(),
-      options: args[1]
+      options: args[1] || {}
     });
   }
 };

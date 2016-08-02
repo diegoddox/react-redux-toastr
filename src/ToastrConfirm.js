@@ -5,20 +5,26 @@ import cn from 'classnames';
 import CSSCore from 'fbjs/lib/CSSCore';
 import {onCSSTransitionEnd} from './utils';
 import Button from './Button';
+import config from './config';
 
 export default class ToastrConfirm extends Component {
   static displayName = 'ToastrConfirm';
 
   static propTypes = {
-    confirm: PropTypes.object.isRequired,
-    confirmOptions: PropTypes.object
+    confirm: PropTypes.object.isRequired
   };
 
   constructor(props) {
     super(props);
+    let {options} = props.confirm;
+
+    this.okText = options.okText || config.confirm.okText;
+    this.cancelText = options.cancelText || config.confirm.cancelText;
+    this.transitionIn = options.transitionIn || config.confirm.transitionIn;
+    this.transitionOut = options.transitionOut || config.confirm.transitionOut;
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     this.isHiding = false;
 
     if (this.props.confirm.show) {
@@ -58,20 +64,18 @@ export default class ToastrConfirm extends Component {
     if (add) {
       this.isHiding = false;
       CSSCore.addClass(body, 'toastr-confirm-active');
-      CSSCore.addClass(this.confirm, 'bounceInDown');
+      CSSCore.addClass(this.confirm, this.transitionIn);
       return;
     }
 
     this.isHiding = true;
-    CSSCore.addClass(this.confirm, 'bounceOutUp');
+    CSSCore.addClass(this.confirm, this.transitionOut);
   };
 
   _removeConfirm = () => {
     this.isHiding = false;
     this.props.hideConfirm();
     const body = document.querySelector('body');
-    CSSCore.removeClass(this.confirm, 'bounceOutUp');
-    CSSCore.removeClass(this.confirm, 'bounceInDown');
     CSSCore.removeClass(body, 'toastr-confirm-active');
   };
 
@@ -82,10 +86,10 @@ export default class ToastrConfirm extends Component {
           <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
             <Button onClick={this.handleConfirmClick.bind(this)}>
-              {this.props.confirmOptions.okText}
+              {this.okText}
             </Button>
             <Button onClick={this.handleCancelClick.bind(this)}>
-              {this.props.confirmOptions.cancelText}
+              {this.cancelText}
             </Button>
           </div>
         <div className="shadow"></div>

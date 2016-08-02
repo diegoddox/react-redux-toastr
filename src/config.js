@@ -1,8 +1,18 @@
-const config = {};
+const toastr = {};
+toastr.newestOnTop = true;
+toastr.timeOut = 5000;
+toastr.transitionIn = 'bounceIn';
+toastr.transitionOut = 'bounceOut';
 
-config.newestOnTop = true;
-config.timeOut = 5000;
-config.transitionIn = 'bounceIn';
-config.transitionOut = 'bounceOut';
+const confirm = {};
+confirm.transitionIn = 'bounceInDown';
+confirm.transitionOut = 'bounceOutUp';
+confirm.okText = 'ok';
+confirm.cancelText = 'cancel';
+
+const config = {
+  toastr,
+  confirm
+};
 
 export default config;
