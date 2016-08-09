@@ -25,7 +25,7 @@ export default class ToastrBox extends Component {
     const {item} = this.props;
     let {timeOut} = item.options;
     if (typeof timeOut === 'undefined' && item.type !== 'message') {
-      timeOut = config.timeOut;
+      timeOut = config.toastr.timeOut;
     }
 
     if (timeOut) {
@@ -53,9 +53,16 @@ export default class ToastrBox extends Component {
   }
 
   mouseLeave() {
-    if (this.isHiding || this.props.item.type !== 'message') {
-      this._setIntervalId(setTimeout(this._removeToastr, 1000));
-    }
+    const {removeOnHover} = this.props.item.options;
+    console.log('removeOnHover', removeOnHover);
+
+    if (
+      this.isHiding
+      && this.props.item.type !== 'message'
+      && removeOnHover
+    ) return;
+
+    this._setIntervalId(setTimeout(this._removeToastr, 1000));
   }
 
   _onAnimationComplete = () => {

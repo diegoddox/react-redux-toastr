@@ -1,6 +1,6 @@
 const toastr = {};
 toastr.newestOnTop = true;
-toastr.timeOut = 5000;
+toastr.timeOut = 4000;
 toastr.transitionIn = 'bounceIn';
 toastr.transitionOut = 'bounceOut';
 

@@ -69,6 +69,13 @@ export default class App extends Component {
             <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning', loremIpsum())}>warning</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.confirm(loremIpsum({count: 5}))}>confirm</button>
+
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={() => toastr.warning(loremIpsum({count: 5}), {
+                removeOnHover: false
+              })}>Don't hide on hover</button>
           </div>
           {this.renderDev()}
         </div>
