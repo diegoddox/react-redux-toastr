@@ -1,3 +1,13 @@
+#3.6.0
+add extra options to the `toastr`, now u can prevent the `toastr` closing on mouseLeave and on Click.
+
+```
+{
+    removeOnHover: false,
+    removeOnClick: false
+}
+```
+
 #3.1.4
 Add the font-icons to the lib folder.
  
