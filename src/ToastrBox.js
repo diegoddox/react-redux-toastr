@@ -56,13 +56,9 @@ export default class ToastrBox extends Component {
     const {removeOnHover} = this.props.item.options;
     console.log('removeOnHover', removeOnHover);
 
-    if (
-      this.isHiding
-      && this.props.item.type !== 'message'
-      && removeOnHover
-    ) return;
-
-    this._setIntervalId(setTimeout(this._removeToastr, 1000));
+    if (this.isHiding && this.props.item.type !== 'message' && removeOnHover == true) {
+      this._setIntervalId(setTimeout(this._removeToastr, 1000));
+    }
   }
 
   _onAnimationComplete = () => {
