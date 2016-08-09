@@ -43,7 +43,10 @@ export default class ToastrBox extends Component {
   }
 
   handleClick() {
-    this._removeToastr();
+    const {removeOnClick} = this.props.item.options;
+    if (removeOnClick) {
+      this._removeToastr();
+    }
   }
 
   mouseEnter() {
@@ -54,8 +57,6 @@ export default class ToastrBox extends Component {
 
   mouseLeave() {
     const {removeOnHover} = this.props.item.options;
-    console.log('removeOnHover', removeOnHover);
-
     if (this.isHiding && this.props.item.type !== 'message' && removeOnHover == true) {
       this._setIntervalId(setTimeout(this._removeToastr, 1000));
     }

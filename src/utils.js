@@ -34,9 +34,13 @@ export function mapToToastrMessage(type, array) {
     obj.options.icon = mapToIcon(type);
   }
 
-  console.log('obj.options', obj.options);
+
   if (!obj.options.hasOwnProperty('removeOnHover')) {
     obj.options.removeOnHover = true;
+  }
+
+  if (!obj.options.hasOwnProperty('removeOnClick')) {
+    obj.options.removeOnClick = true;
   }
 
   if (isString(array[0]) && isString(array[1])) {

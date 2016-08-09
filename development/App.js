@@ -74,8 +74,9 @@ export default class App extends Component {
               type="button"
               className="btn btn-default"
               onClick={() => toastr.warning(loremIpsum({count: 5}), {
-                removeOnHover: false
-              })}>Don't hide on hover</button>
+                removeOnHover: false,
+                removeOnClick: false
+              })}>Don't hide on hover and don't remove on click</button>
           </div>
           {this.renderDev()}
         </div>
