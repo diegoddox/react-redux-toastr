@@ -1,12 +1,12 @@
 {
   "name": "react-redux-toastr",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
   "scripts": {
     "start": "better-npm-run dev-server",
-    "build": "better-npm-run build",
+    "build": "better-npm-run build && npm run less && npm run less:m",
     "less": "lessc src/less/index.less --autoprefix=\"last 2 versions\" lib/css/react-redux-toastr.css",
     "less:m": "lessc src/less/index.less --autoprefix=\"last 2 versions\" --clean-css lib/css/react-redux-toastr.min.css",
     "clean": "better-npm-run clean",
