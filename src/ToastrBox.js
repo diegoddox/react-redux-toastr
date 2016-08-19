@@ -57,7 +57,7 @@ export default class ToastrBox extends Component {
 
   mouseLeave() {
     const {removeOnHover} = this.props.item.options;
-    if (this.isHiding && this.props.item.type !== 'message' && removeOnHover == true) {
+    if (!this.isHiding && this.props.item.type !== 'message' && removeOnHover == true) {
       this._setIntervalId(setTimeout(this._removeToastr, 1000));
     }
   }
