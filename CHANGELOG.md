@@ -1,3 +1,5 @@
+#3.6.3
+Fix time-travel issue #43
 #3.6.0
 add extra options to the `toastr`, now u can prevent the `toastr` closing on mouseLeave and on Click.
 
