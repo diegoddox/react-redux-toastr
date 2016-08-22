@@ -28,11 +28,16 @@ export default class ReduxToastr extends Component {
     timeOut: 5000
   };
 
+  toastrFired = {}
+
   constructor(props) {
     super(props);
+
     config.toastr.timeOut = this.props.timeOut;
     config.toastr.newestOnTop = this.props.newestOnTop;
     config.confirm = {...config.confirm, ...this.props.confirmOptions};
+
+    this._addToMemory = this._addToMemory.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +51,11 @@ export default class ReduxToastr extends Component {
     EE.removeListener('toastr/confirm');
     EE.removeListener('add/toastr');
     EE.removeListener('clean/toastr');
+    this.toastrFired = {};
+  }
+
+  _addToMemory(id) {
+    this.toastrFired[id] = true;
   }
 
   render() {
@@ -55,7 +65,15 @@ export default class ReduxToastr extends Component {
             <ToastrConfirm key={this.props.toastr.confirm.id} confirm={this.props.toastr.confirm} {...this.props}/>
         }
         {this.props.toastr &&
-            this.props.toastr.toastrs.map(item => <ToastrBox key={item.id} item={item}  {...this.props}/>)
+            this.props.toastr.toastrs.map(item => {
+              return (
+                <ToastrBox
+                  inMemory={this.toastrFired}
+                  addToMemory={this._addToMemory}
+                  key={item.id} item={item}
+                  {...this.props}/>
+              );
+            })
         }
       </div>
     );

@@ -66,7 +66,7 @@ export default class App extends Component {
                 timeOut: 0,
                 component: (<MyComp name="Jesus" />)
               })}>error</button>
-            <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning', loremIpsum())}>warning</button>
+            <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning זזהה', loremIpsum())}>warning</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.confirm(loremIpsum({count: 5}))}>confirm</button>
 
@@ -74,6 +74,7 @@ export default class App extends Component {
               type="button"
               className="btn btn-default"
               onClick={() => toastr.warning(loremIpsum({count: 5}), {
+                timeOut: 0,
                 removeOnHover: false,
                 removeOnClick: false
               })}>Don't hide on hover and don't remove on click</button>

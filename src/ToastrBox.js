@@ -23,6 +23,8 @@ export default class ToastrBox extends Component {
 
   componentDidMount() {
     const {item} = this.props;
+    if (this.props.inMemory[item.id]) return;
+
     let {timeOut} = item.options;
     if (typeof timeOut === 'undefined' && item.type !== 'message') {
       timeOut = config.toastr.timeOut;
@@ -34,6 +36,7 @@ export default class ToastrBox extends Component {
 
     this._setTransition();
     onCSSTransitionEnd(this.toastrBox, this._onAnimationComplete);
+    this.props.addToMemory(item.id);
   }
 
   componentWillUnmount() {
