@@ -6,6 +6,7 @@
   "jsnext:main": "./src/index.js",
   "scripts": {
     "start": "better-npm-run dev-server",
+    "dev_win": "NODE_ENV=development NODE_PORT=3000 ./node_modules/.bin/webpack-dev-server --hot --inline --config build/webpack.config.js",
     "build": "better-npm-run build && npm run less && npm run less:m",
     "less": "lessc src/less/index.less --autoprefix=\"last 2 versions\" lib/css/react-redux-toastr.css",
     "less:m": "lessc src/less/index.less --autoprefix=\"last 2 versions\" --clean-css lib/css/react-redux-toastr.min.css",
