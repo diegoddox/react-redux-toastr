@@ -1,3 +1,6 @@
+#3.7.0
+#47
+
 #3.6.3
 Fix time-travel issue #43
 #3.6.0
