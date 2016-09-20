@@ -11,14 +11,13 @@ export default class Button extends Component {
   }
 
   handleClick = (e) => {
-    e.preventDefault();
     CSSCore.addClass(this.toastrButton, 'active');
     /*
      * In order to avoid event bubbling we need to call the onClick callback
      * after we have remove the css class 'active' that contains the animation
      */
     // Untill I found out why stoppropagation is not working I will remove the onClick from the animationend.
-    this.props.onClick();
+    this.props.onClick && this.props.onClick();
     const end = () => CSSCore.removeClass(this.toastrButton, 'active');
     onCSSTransitionEnd(this.toastrButton, end);
   };
