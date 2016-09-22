@@ -28,7 +28,7 @@ export default class Button extends Component {
       <button
         ref={(ref) => this.toastrButton = ref}
         type="button"
-        onClick={e => this.handleClick(e)}>
+        onClick={() => this.props.onClick()}>
           <p>{this.props.children}</p>
       </button>
     );
