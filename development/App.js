@@ -22,6 +22,12 @@ const MyComp = props => {
 
 MyComp.displayName = 'comp';
 
+class MyConfirmComp extends Component {
+  render() {
+    return <div>{loremIpsum({count: 5})}</div>;
+  }
+}
+
 class messageComp extends Component {
   static displayName = 'MMCmessageComp';
   render() {
@@ -66,9 +72,9 @@ export default class App extends Component {
                 timeOut: 0,
                 component: (<MyComp name="Jesus" />)
               })}>error</button>
-            <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning ææää', loremIpsum())}>warning</button>
+            <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning ï¿½ï¿½ï¿½ï¿½', loremIpsum())}>warning</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
-            <button type="button" className="btn btn-default" onClick={() => toastr.confirm(loremIpsum({count: 5}))}>confirm</button>
+            <button type="button" className="btn btn-default" onClick={() => toastr.confirm(<MyConfirmComp />)}>confirm</button>
 
             <button
               type="button"
