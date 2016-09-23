@@ -1,36 +1,11 @@
-import React, {Component} from 'react';
-import CSSCore from 'fbjs/lib/CSSCore';
+import React from 'react';
 
-import {onCSSTransitionEnd} from './utils';
+const Button = props => (
+  <button type="button" onClick={() => props.onClick()}>
+    <p>{props.children}</p>
+  </button>
+);
 
-export default class Button extends Component {
-  static displayName = 'ReduxConfirmButton';
+Button.displayName = 'ReduxConfirmButton';
 
-  constructor(props) {
-    super(props);
-  }
-
-  handleClick = (e) => {
-    e.preventDefault();
-    CSSCore.addClass(this.toastrButton, 'active');
-    /*
-     * In order to avoid event bubbling we need to call the onClick callback
-     * after we have remove the css class 'active' that contains the animation
-     */
-    // Untill I found out why stoppropagation is not working I will remove the onClick from the animationend.
-    this.props.onClick();
-    const end = () => CSSCore.removeClass(this.toastrButton, 'active');
-    onCSSTransitionEnd(this.toastrButton, end);
-  };
-
-  render() {
-    return (
-      <button
-        ref={(ref) => this.toastrButton = ref}
-        type="button"
-        onClick={() => this.props.onClick()}>
-          <p>{this.props.children}</p>
-      </button>
-    );
-  }
-}
+export default Button;
