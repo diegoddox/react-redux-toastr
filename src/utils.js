@@ -39,9 +39,6 @@ export function mapToToastrMessage(type, array) {
     obj.options.removeOnHover = true;
   }
 
-  if (!obj.options.hasOwnProperty('removeOnClick')) {
-    obj.options.removeOnClick = true;
-  }
   if (!obj.options.hasOwnProperty('showCloseBotton')) {
     obj.options.showCloseBotton = true;
   }

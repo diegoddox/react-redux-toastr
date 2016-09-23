@@ -137,13 +137,15 @@ const toastrMessageOptions = {
   timeOut: 1000,
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
+  removeOnHover: false // Default value is true 
+  showCloseBotton: false, // Default value is true 
   component: React.Component
 };
 toastr.message('Title', toastrMessageOptions)
 ```
 
 ##### Toastr: `confirm`
-The confirm method takes two arguments, the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` or `cancel` button
+The confirm method takes two arguments, the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` and `cancel` button or by `keypress` `enter/esc`
 
 NOTE: You can only have one at a time, right now if you have one `confirm` and you fire another it will be ignored.
 

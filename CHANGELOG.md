@@ -1,5 +1,6 @@
-#3.7.0
-#47
+#3.8.0
+add `showCloseButton` in the `confirm` `props`
+clsoe confirm on `esc` and `enter`
 
 #3.6.3
 Fix time-travel issue #43
