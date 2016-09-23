@@ -42,6 +42,9 @@ export function mapToToastrMessage(type, array) {
   if (!obj.options.hasOwnProperty('removeOnClick')) {
     obj.options.removeOnClick = true;
   }
+  if (!obj.options.hasOwnProperty('showCloseBotton')) {
+    obj.options.showCloseBotton = true;
+  }
 
   if (isString(array[0]) && isString(array[1])) {
     obj.title = array[0];

@@ -46,10 +46,7 @@ export default class ToastrBox extends Component {
   }
 
   handleClick() {
-    const {removeOnClick} = this.props.item.options;
-    if (removeOnClick) {
-      this._removeToastr();
-    }
+    this._removeToastr();
   }
 
   mouseEnter() {
@@ -131,23 +128,36 @@ export default class ToastrBox extends Component {
   };
 
   render() {
+    const {
+      options,
+      type,
+      message,
+      title
+    } = this.props.item;
     return (
       <div
         ref={(ref) => this.toastrBox = ref}
-        className={cn('toastr', 'animated', this.props.item.type, this.props.item.options.icon, this.props.item.options.className)}
+        className={cn(
+          'toastr',
+          'animated',
+          type,
+          options.icon,
+          options.className
+        )}
         onMouseEnter={this.mouseEnter.bind(this)}
         onMouseLeave={this.mouseLeave.bind(this)}
-        onClick={this.handleClick.bind(this)}
       >
         <div className="message-holder">
-          {this.props.item.title && <div className="title">{this.props.item.title}</div>}
-          {this.props.item.message && <div className="message">{this.props.item.message}</div>}
-          {this.props.item.options.component &&
+          {title && <div className="title">{title}</div>}
+          {message && <div className="message">{message}</div>}
+          {options.component &&
             <div className="message">
-              {this._renderSubComponent(this.props.item.options.component)}
+              {this._renderSubComponent(options.component)}
             </div>
           }
         </div>
+        {options.showCloseBotton &&
+        <button className="close-toastr" onClick={this.handleClick.bind(this)}>x</button>}
       </div>
     );
   }
