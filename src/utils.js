@@ -24,6 +24,10 @@ function isString(obj) {
   return false;
 }
 
+export function keyCode(e) {
+  return (e.which) ? e.which : e.keyCode;
+}
+
 export function mapToToastrMessage(type, array) {
   const obj = {};
   obj.type = type;

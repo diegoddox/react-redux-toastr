@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import CSSCore from 'fbjs/lib/CSSCore';
-import {onCSSTransitionEnd} from './utils';
+import {onCSSTransitionEnd, keyCode} from './utils';
 import Button from './Button';
 import config from './config';
 
 const ENTER = 13;
+const ESC = 27;
 
 class ToastrConfirm extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class ToastrConfirm extends Component {
   }
 
   handleOnKeyDown(e) {
-    if (e.keyCode == ENTER) {
+    if (keyCode(e) == ENTER) {
       e.preventDefault();
     }
     this.isKeyDown = true;
@@ -97,8 +98,8 @@ class ToastrConfirm extends Component {
   }
 
   handleOnKeyUp(e) {
-    const code = e.keyCode;
-    if (code == 27) {
+    const code = keyCode(e);
+    if (code == ESC) {
       this.handleCancelClick();
     } else if (code == ENTER && this.isKeyDown) {
       this.isKeyDown = false;
