@@ -61,19 +61,21 @@ export default class ReduxToastr extends Component {
   render() {
     return (
       <div className={cn('redux-toastr', this.props.position)}>
-        {this.props.toastr &&
-            <ToastrConfirm key={this.props.toastr.confirm.id} confirm={this.props.toastr.confirm} {...this.props}/>
+        {this.props.toastr.confirm &&
+          <ToastrConfirm
+            key={this.props.toastr.confirm.id}
+            confirm={this.props.toastr.confirm}
+            {...this.props}
+          />
         }
-        {this.props.toastr &&
-            this.props.toastr.toastrs.map(item => {
-              return (
-                <ToastrBox
-                  inMemory={this.toastrFired}
-                  addToMemory={this._addToMemory}
-                  key={item.id} item={item}
-                  {...this.props}/>
-              );
-            })
+        {this.props.toastr && this.props.toastr.toastrs.map(item =>
+            <ToastrBox
+                inMemory={this.toastrFired}
+                addToMemory={this._addToMemory}
+                key={item.id} item={item}
+                {...this.props}
+            />
+          )
         }
       </div>
     );

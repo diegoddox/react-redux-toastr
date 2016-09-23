@@ -1,19 +1,12 @@
-'use strict';
-
 import React, {Component, PropTypes} from 'react';
-import cn from 'classnames';
 import CSSCore from 'fbjs/lib/CSSCore';
 import {onCSSTransitionEnd} from './utils';
 import Button from './Button';
 import config from './config';
 
-export default class ToastrConfirm extends Component {
-  static displayName = 'ToastrConfirm';
+const ENTER = 13;
 
-  static propTypes = {
-    confirm: PropTypes.object.isRequired
-  };
-
+class ToastrConfirm extends Component {
   constructor(props) {
     super(props);
     let {options} = props.confirm;
@@ -22,43 +15,67 @@ export default class ToastrConfirm extends Component {
     this.cancelText = options.cancelText || config.confirm.cancelText;
     this.transitionIn = options.transitionIn || config.confirm.transitionIn;
     this.transitionOut = options.transitionOut || config.confirm.transitionOut;
+
+    this.setTransition = this.setTransition.bind(this);
+    this.removeConfirm = this.removeConfirm.bind(this);
+    this.handleOnKeyUp = this.handleOnKeyUp.bind(this);
+    this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+    this.isKeyDown = false;
   }
 
   componentDidMount() {
     this.isHiding = false;
 
     if (this.props.confirm.show) {
-      this._setTransition(true);
+      this.setTransition(true);
     }
+    if (window) {
+      window.addEventListener('keyup', this.handleOnKeyUp);
+      window.addEventListener('keydown', this.handleOnKeyDown);
+    }
+  }
+
+  componentWillUnmount() {
+    if (window) {
+      window.removeEventListener('keyup', this.handleOnKeyUp);
+      window.removeEventListener('keydown', this.handleOnKeyDown);
+    }
+  }
+
+  handleOnKeyDown(e) {
+    if (e.keyCode == ENTER) {
+      e.preventDefault();
+    }
+    this.isKeyDown = true;
   }
 
   handleConfirmClick() {
     const {options} = this.props.confirm;
     const onAnimationEnd = () => {
-      this._removeConfirm();
+      this.removeConfirm();
       if (options && options.onOk) {
         options.onOk();
       }
     };
 
-    this._setTransition();
+    this.setTransition();
     onCSSTransitionEnd(this.confirm, onAnimationEnd);
   }
 
   handleCancelClick() {
     const {options} = this.props.confirm;
     const onAnimationEnd = () => {
-      this._removeConfirm();
+      this.removeConfirm();
       if (options && options.onCancel) {
         options.onCancel();
       }
     };
 
-    this._setTransition();
+    this.setTransition();
     onCSSTransitionEnd(this.confirm, onAnimationEnd);
   }
 
-  _setTransition = (add) => {
+  setTransition(add) {
     const body = document.querySelector('body');
 
     if (add) {
@@ -70,19 +87,28 @@ export default class ToastrConfirm extends Component {
 
     this.isHiding = true;
     CSSCore.addClass(this.confirm, this.transitionOut);
-  };
+  }
 
-  _removeConfirm = () => {
+  removeConfirm() {
     this.isHiding = false;
     this.props.hideConfirm();
     const body = document.querySelector('body');
     CSSCore.removeClass(body, 'toastr-confirm-active');
-  };
+  }
+
+  handleOnKeyUp(e) {
+    const code = e.keyCode;
+    if (code == 27) {
+      this.handleCancelClick();
+    } else if (code == ENTER && this.isKeyDown) {
+      this.isKeyDown = false;
+      this.handleConfirmClick();
+    }
+  }
 
   render() {
-    const classes = cn('confirm-holder', {active: this.props.confirm.show});
     return (
-      <div className={classes}>
+      <div className="confirm-holder">
           <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
             <Button onClick={this.handleConfirmClick.bind(this)}>
@@ -97,3 +123,10 @@ export default class ToastrConfirm extends Component {
     );
   }
 }
+
+ToastrConfirm.displayName = 'ToastrConfirm';
+ToastrConfirm.propTypes = {
+  confirm: PropTypes.object.isRequired
+};
+
+export default ToastrConfirm;

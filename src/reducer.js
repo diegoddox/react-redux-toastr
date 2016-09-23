@@ -4,11 +4,7 @@ import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} fro
 
 const initialState = {
   toastrs: [],
-  confirm: {
-    id: guid(),
-    show: false,
-    options: {}
-  }
+  confirm: null
 };
 
 export default createReducer(initialState, {
@@ -64,7 +60,7 @@ export default createReducer(initialState, {
   [HIDE_CONFIRM]: (state) => {
     return {
       ...state,
-      confirm: {...initialState.confirm}
+      confirm: null
     };
   }
 });
