@@ -62,13 +62,13 @@ export function mapToToastrMessage(type, array) {
 export function mapToIcon(type) {
   switch (type) {
     case 'info':
-      return 'icon-information-circle';
+      return 'toastr-icon-information-circle';
     case 'success':
-      return 'icon-check-1';
+      return 'toastr-icon-check-1';
     case 'warning':
-      return 'icon-exclamation-triangle';
+      return 'toastr-icon-exclamation-triangle';
     case 'error':
-      return 'icon-exclamation-alert';
+      return 'toastr-icon-exclamation-alert';
     default:
       return type;
   }
