@@ -101,11 +101,11 @@ Each of these methods can take up to three arguments the `title` a `message` and
 In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover` `removeOnClick`
 
 `icon` can be one of the following:
-- `'icon-close-round'`
-- `'icon-information-circle'`
-- `'icon-check-1'`
-- `'icon-exclamation-triangle'`
-- `'icon-exclamation-alert'`
+- `'toastr-icon-close-round'`
+- `'toastr-icon-information-circle'`
+- `'toastr-icon-check-1'`
+- `'toastr-icon-exclamation-triangle'`
+- `'toastr-icon-exclamation-alert'`
 
 
 ``` javascript
