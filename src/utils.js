@@ -43,7 +43,7 @@ export function mapToToastrMessage(type, array) {
     obj.options.removeOnHover = true;
   }
 
-  if (!obj.options.hasOwnProperty('showCloseBotton')) {
+  if (!obj.options.hasOwnProperty('showCloseButton')) {
     obj.options.showCloseBotton = true;
   }
 
