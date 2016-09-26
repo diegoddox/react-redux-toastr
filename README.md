@@ -98,7 +98,7 @@ constructor(props) {
 # Toastr methods
 ##### Toastr: `success` `info` `warning` and `error`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover` `removeOnClick`
+In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover` and `showCloseButton`
 
 `icon` can be one of the following:
 - `'toastr-icon-close-round'`
