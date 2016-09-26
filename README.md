@@ -138,7 +138,7 @@ const toastrMessageOptions = {
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
   removeOnHover: false // Default value is true 
-  showCloseBotton: false, // Default value is true 
+  showCloseButton: false, // Default value is true 
   component: React.Component
 };
 toastr.message('Title', toastrMessageOptions)
