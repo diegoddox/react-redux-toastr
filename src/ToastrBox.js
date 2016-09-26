@@ -156,8 +156,8 @@ export default class ToastrBox extends Component {
             </div>
           }
         </div>
-        {options.showCloseBotton &&
-        <button className="close-toastr" onClick={this.handleClick.bind(this)}>x</button>}
+        {options.showCloseButton &&
+        <button type="button" className="close-toastr" onClick={this.handleClick.bind(this)}>x</button>}
       </div>
     );
   }
