@@ -116,6 +116,7 @@ const toastrOptions = {
   icon: 'my-icon-name',
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
+  showCloseButton: false, // true by default
   component: ( // this option will give you a func 'remove' as props
     <MyCustomComponent myProp="myValue">
       <span>Hello, World!</span>
