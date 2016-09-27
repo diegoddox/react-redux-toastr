@@ -44,7 +44,7 @@ export function mapToToastrMessage(type, array) {
   }
 
   if (!obj.options.hasOwnProperty('showCloseButton')) {
-    obj.options.showCloseBotton = true;
+    obj.options.showCloseButton = true;
   }
 
   if (isString(array[0]) && isString(array[1])) {
