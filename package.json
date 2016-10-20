@@ -83,7 +83,6 @@
     "babel-loader": "^6.2.0",
     "babel-plugin-syntax-class-properties": "^6.1.18",
     "babel-plugin-transform-class-properties": "^6.2.2",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es2015-arrow-functions": "^6.1.18",
     "babel-plugin-transform-es2015-block-scoping": "^6.1.18",
     "babel-plugin-transform-proto-to-assign": "^6.6.5",
