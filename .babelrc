@@ -2,7 +2,6 @@
   "plugins": [
     "syntax-class-properties",
     "transform-class-properties",
-    "transform-decorators-legacy",
     "transform-es2015-arrow-functions",
     "transform-es2015-block-scoping",
     ["transform-es2015-classes", {"loose": true}],
