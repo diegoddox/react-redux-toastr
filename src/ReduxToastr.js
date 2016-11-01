@@ -16,16 +16,18 @@ class ReduxToastr extends Component {
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
-    confirmOptions: PropTypes.object
+    confirmOptions: PropTypes.object,
+    progressBar: PropTypes.bool
   };
 
   static defaultProps = {
     position: 'top-right',
     newestOnTop: true,
-    timeOut: 5000
+    timeOut: 5000,
+    progressBar: false
   };
 
-  toastrFired = {}
+  toastrFired = {};
 
   constructor(props) {
     super(props);
@@ -55,6 +57,27 @@ class ReduxToastr extends Component {
     this.toastrFired[id] = true;
   }
 
+  _renderToastrBox(item) {
+    // Default options from props, but item can override them with own.
+    const mergedItem = {
+      ...item,
+      options: {
+        progressBar: this.props.progressBar,
+        ...item.options
+      }
+    };
+
+    return (
+      <ToastrBox
+        key={item.id}
+        inMemory={this.toastrFired}
+        addToMemory={this._addToMemory}
+        item={mergedItem}
+        {...this.props}
+      />
+    );
+  }
+
   render() {
     return (
       <div className={cn('redux-toastr', this.props.position)}>
@@ -65,15 +88,7 @@ class ReduxToastr extends Component {
             {...this.props}
           />
         }
-        {this.props.toastr && this.props.toastr.toastrs.map(item =>
-            <ToastrBox
-                inMemory={this.toastrFired}
-                addToMemory={this._addToMemory}
-                key={item.id} item={item}
-                {...this.props}
-            />
-          )
-        }
+        {this.props.toastr && this.props.toastr.toastrs.map(item => this._renderToastrBox(item))}
       </div>
     );
   }
