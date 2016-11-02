@@ -17,24 +17,28 @@ class ReduxToastr extends Component {
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
     confirmOptions: PropTypes.object,
-    progressBar: PropTypes.bool
+    progressBar: PropTypes.bool,
+    transitionIn: PropTypes.string,
+    transitionOut: PropTypes.string
   };
 
   static defaultProps = {
     position: 'top-right',
     newestOnTop: true,
     timeOut: 5000,
-    progressBar: false
+    progressBar: false,
+    transitionIn: config.toastr.transitionIn,
+    transitionOut: config.toastr.transitionOut
   };
 
   toastrFired = {};
 
   constructor(props) {
     super(props);
-
-    config.toastr.timeOut = this.props.timeOut;
-    config.toastr.newestOnTop = this.props.newestOnTop;
-    config.confirm = {...config.confirm, ...this.props.confirmOptions};
+    //
+    // config.toastr.timeOut = this.props.timeOut;
+    // config.toastr.newestOnTop = this.props.newestOnTop;
+    // config.confirm = {...config.confirm, ...this.props.confirmOptions};
 
     this._addToMemory = this._addToMemory.bind(this);
   }
@@ -63,6 +67,8 @@ class ReduxToastr extends Component {
       ...item,
       options: {
         progressBar: this.props.progressBar,
+        transitionIn: this.props.transitionIn,
+        transitionOut: this.props.transitionOut,
         ...item.options
       }
     };

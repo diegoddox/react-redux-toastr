@@ -47,7 +47,10 @@ import ReduxToastr from 'react-redux-toastr'
     <ReduxToastr
       timeOut={4000}
       newestOnTop={false}
-      position="top-left"/>
+      position="top-left"
+      transitionIn="fadeIn"
+      transitionOut="fadeOut"
+      progressBar/>
   </div>
 </Provider>
 ```
@@ -57,10 +60,15 @@ default props: In case you don't pass the props
 ```
 timeOut: 5000,
 newestOnTop: true,
-position: 'top-right'
+position: 'top-right',
+transitionIn: 'bounceIn',
+transitionOut: 'bounceOut',
+progressBar: false,
 ```
 
 positions: `top-left` `top-center` `top-right`  `bottom-left` `bottom-center` and `bottom-right`
+transitionIn: `bounceIn` `bounceInDown` and `fadeIn`
+transitionOut: `bounceOut` `bounceOutUp` and `fadeOut`
 
 ##### 5. Add the `react-redux-toastr`  `toastr` emitter
 The `toastr` method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions

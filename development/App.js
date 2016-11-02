@@ -92,9 +92,9 @@ export default class App extends Component {
                 progressBar: true,
                 transitionIn: 'fadeIn',
                 transitionOut: 'fadeOut',
-                timeOut: 6000,
-                showCloseBotton: false
-              })}>Progress bar</button>
+                timeOut: 5000,
+                showCloseButton: false
+              })}>Progress bar fadeIn/fadeOut</button>
           </div>
           {this.renderDev()}
         </div>
