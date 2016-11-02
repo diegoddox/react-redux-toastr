@@ -35,11 +35,6 @@ class ReduxToastr extends Component {
 
   constructor(props) {
     super(props);
-    //
-    // config.toastr.timeOut = this.props.timeOut;
-    // config.toastr.newestOnTop = this.props.newestOnTop;
-    // config.confirm = {...config.confirm, ...this.props.confirmOptions};
-
     this._addToMemory = this._addToMemory.bind(this);
   }
 
