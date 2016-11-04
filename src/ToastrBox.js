@@ -14,11 +14,17 @@ export default class ToastrBox extends Component {
 
   constructor(props) {
     super(props);
-    let {options} = props.item;
+
+    let {
+      transitionIn,
+      transitionOut
+    } = props.item;
+
     this.isHiding = false;
     this.intervalId = null;
-    this.transitionIn = options.transitionIn || this.props.transitionIn;
-    this.transitionOut = options.transitionOut || this.props.transitionOut;
+
+    this.transitionIn = transitionIn || this.props.transitionIn;
+    this.transitionOut = transitionOut || this.props.transitionOut;
 
     this.state = {progressBar: null};
   }
