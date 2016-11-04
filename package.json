@@ -74,7 +74,9 @@
     "react redux toastr",
     "react toastr redux",
     "react confirm",
-    "react alert"
+    "react alert",
+    "avatar",
+    "toastr profile"
   ],
   "devDependencies": {
     "babel-cli": "^6.6.5",
