@@ -16,7 +16,7 @@ export default createReducer(initialState, {
       message,
       options
     };
-    console.log(config);
+
     if (config.preventDuplicates && preventDuplication(state.toastrs, newToastr)) {
       return {
         ...state

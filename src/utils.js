@@ -98,10 +98,6 @@ export function onCSSTransitionEnd(node, callback) {
 }
 
 export function preventDuplication(currentData, newObjec) {
-  if (!Array.isArray(currentData)) {
-    console.log('The data provided was not an array');
-    return;
-  }
   let hasDuplication = false;
   currentData.forEach((item) => {
     // Because the toastr has a unic id we will check by the title and message.
