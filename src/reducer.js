@@ -41,10 +41,10 @@ export default createReducer(initialState, {
     toastrsCache = newState.toastrs;
     return newState;
   },
-  [REMOVE_TOASTR]: (state, payload) => {
+  [REMOVE_TOASTR]: (state, {id}) => {
     const newState = {
       ...state,
-      toastrs: state.toastrs.filter(toastr => toastr.id !== payload.id)
+      toastrs: state.toastrs.filter(toastr => toastr.id !== id)
     };
 
     toastrsCache = newState.toastrs;
@@ -57,14 +57,14 @@ export default createReducer(initialState, {
       toastrs: []
     };
   },
-  [SHOW_CONFIRM]: (state, payload) => {
+  [SHOW_CONFIRM]: (state, {message, options}) => {
     return {
       ...state,
       confirm: {
         id: guid(),
         show: true,
-        message: payload.message,
-        options: payload.options || {}
+        message,
+        options: options || {}
       }
     };
   },
