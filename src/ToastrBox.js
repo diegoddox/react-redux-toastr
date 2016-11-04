@@ -28,7 +28,19 @@ export default class ToastrBox extends Component {
     this.transitionOut = transitionOut || this.props.transitionOut;
 
     this.state = {progressBar: null};
-    _bind('renderSubComponent _onAnimationComplete _removeToastr _setTransition _clearTransition _setIntervalId _setIsHiding', this);
+    _bind(
+      [
+        'renderSubComponent',
+        'renderIcon',
+        '_onAnimationComplete',
+        '_removeToastr',
+        '_setTransition',
+        '_clearTransition',
+        '_setIntervalId',
+        '_setIsHiding'
+      ],
+      this
+    );
   }
 
   componentDidMount() {
@@ -82,6 +94,37 @@ export default class ToastrBox extends Component {
         this.setState({progressBar: {duration: 1000}});
       }
     }
+  }
+
+  renderSubComponent() {
+    const {
+      id,
+      options
+    } = this.props.item;
+
+    const removeCurrentToastrFunc = () => this.props.remove(id);
+
+    if (isValidElement(options.component)) {
+      return React.cloneElement(options.component, {
+        remove: removeCurrentToastrFunc
+      });
+    }
+
+    return (
+      <options.component remove={removeCurrentToastrFunc}/>
+    );
+  }
+
+  renderIcon() {
+    const {
+      type,
+      options
+    } = this.props.item;
+
+    if (isValidElement(options.icon)) {
+      return React.cloneElement(options.icon);
+    }
+    return <Icon name={type} />;
   }
 
   _getItemTimeOut() {
@@ -145,20 +188,6 @@ export default class ToastrBox extends Component {
     this.isHiding = val;
   }
 
-  renderSubComponent(SubComponent) {
-    const removeCurrentToastrFunc = () => this.props.remove(this.props.item.id);
-
-    if (isValidElement(SubComponent)) {
-      return React.cloneElement(SubComponent, {
-        remove: removeCurrentToastrFunc
-      });
-    }
-
-    return (
-      <SubComponent remove={removeCurrentToastrFunc}/>
-    );
-  }
-
   render() {
     const {
       options,
@@ -166,6 +195,7 @@ export default class ToastrBox extends Component {
       message,
       title
     } = this.props.item;
+
     return (
       <div
         ref={(ref) => this.toastrBox = ref}
@@ -178,14 +208,12 @@ export default class ToastrBox extends Component {
         onMouseEnter={this.mouseEnter.bind(this)}
         onMouseLeave={this.mouseLeave.bind(this)}
       >
-        <div className="toastr-left-container">
-            <Icon name={type} />
-        </div>
+        <div className="toastr-left-container">{this.renderIcon()}</div>
 
         <div className="toastr-middle-container">
           {title && <div className="title">{title}</div>}
           {message && <div className="message">{message}</div>}
-          {options.component && this.renderSubComponent(options.component)}
+          {options.component && this.renderSubComponent()}
         </div>
 
         <div className="toastr-right-container">

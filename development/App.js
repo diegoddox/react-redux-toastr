@@ -57,6 +57,20 @@ export default class App extends Component {
     toastr.success('success', loremIpsum());
   }
 
+  toastrWithAvatar() {
+    toastr.success('Message from Marley', 'Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', {
+      icon: (
+        <div className="toastr-avatar">
+          <img src="./assets/bob.jpg" />
+        </div>
+      ),
+      timeOut: 0,
+      removeOnHover: false,
+      showCloseButton: false,
+      progressBar: true
+    });
+  }
+
   render() {
     return (
       <Provider store={this.props.store}>
@@ -66,10 +80,11 @@ export default class App extends Component {
             preventDuplicates={true}
           />
           <div className="content">
+            <button type="button" className="btn btn-success" onClick={this.toastrWithAvatar.bind(this)}>success with avatar</button>
             <button type="button" className="btn btn-success" onClick={this.add.bind(this)}>success</button>
             <button
               type="button"
-              className="btn btn-success"
+              className="btn btn-info"
               onClick={() => toastr.info('This is to check the duplication function', 'Check the console')}
             >
               duplication
@@ -96,7 +111,7 @@ export default class App extends Component {
               onClick={() => toastr.warning(loremIpsum({count: 5}), {
                 timeOut: 0,
                 removeOnHover: false,
-                showCloseBotton: false
+                showCloseButton: false
               })}>Don't hide on hover and don't remove on click</button>
 
             <button
