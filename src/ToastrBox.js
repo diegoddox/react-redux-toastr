@@ -2,6 +2,7 @@ import CSSCore from 'fbjs/lib/CSSCore';
 import React, {Component, PropTypes, isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
 import cn from 'classnames';
 import ProgressBar from './ProgressBar';
+import Icon from './Icon';
 
 import {onCSSTransitionEnd, _bind} from './utils';
 
@@ -172,30 +173,32 @@ export default class ToastrBox extends Component {
           'toastr',
           'animated',
           type,
-          options.icon,
           options.className
         )}
         onMouseEnter={this.mouseEnter.bind(this)}
         onMouseLeave={this.mouseLeave.bind(this)}
       >
-        <div className="message-holder">
+        <div className="toastr-left-container">
+            <Icon name={type} />
+        </div>
+
+        <div className="toastr-middle-container">
           {title && <div className="title">{title}</div>}
           {message && <div className="message">{message}</div>}
-          {options.component &&
-            <div className="message">
-              {this.renderSubComponent(options.component)}
-            </div>
+          {options.component && this.renderSubComponent(options.component)}
+        </div>
+
+        <div className="toastr-right-container">
+          {options.showCloseButton &&
+            <button
+              type="button"
+              className="close-toastr"
+              onClick={this.handleClick.bind(this)}
+            >
+              x
+            </button>
           }
         </div>
-        {options.showCloseButton &&
-          <button
-            type="button"
-            className="close-toastr"
-            onClick={this.handleClick.bind(this)}
-          >
-            x
-          </button>
-        }
         {this.state.progressBar ? <ProgressBar {...this.state.progressBar}/> : null}
       </div>
     );

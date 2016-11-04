@@ -96,7 +96,6 @@
     "use-isnan": 2,
     "valid-jsdoc": 0,
     "valid-typeof": 2,
-    "react/display-name": 1,
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1
