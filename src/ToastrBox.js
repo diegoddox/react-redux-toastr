@@ -4,7 +4,6 @@ import cn from 'classnames';
 import ProgressBar from './ProgressBar';
 
 import {onCSSTransitionEnd} from './utils';
-import config from './config';
 
 export default class ToastrBox extends Component {
   static displayName = 'ToastrBox';
@@ -18,8 +17,8 @@ export default class ToastrBox extends Component {
     let {options} = props.item;
     this.isHiding = false;
     this.intervalId = null;
-    this.transitionIn = options.transitionIn || config.toastr.transitionIn;
-    this.transitionOut = options.transitionOut || config.toastr.transitionOut;
+    this.transitionIn = options.transitionIn || this.props.transitionIn;
+    this.transitionOut = options.transitionOut || this.props.transitionOut;
 
     this.state = {progressBar: null};
   }
@@ -81,7 +80,7 @@ export default class ToastrBox extends Component {
     const {item} = this.props;
     let {timeOut} = item.options;
     if (typeof timeOut === 'undefined' && item.type !== 'message') {
-      timeOut = config.toastr.timeOut;
+      timeOut = this.props.timeOut;
     }
 
     return timeOut;

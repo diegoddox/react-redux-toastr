@@ -82,9 +82,7 @@ export function hasProperty(obj, property) {
 }
 
 export function guid() {
-  function r() {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  }
+  const r = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
   return r() + r() + r() + '-' + r() + '_' + r() + '-' + r() + '_' + r() + r() + r();
 }
 
@@ -97,4 +95,32 @@ export function onCSSTransitionEnd(node, callback) {
     ReactTransitionEvents.removeEndEventListener(node, runOnce);
   };
   ReactTransitionEvents.addEndEventListener(node, runOnce);
+}
+
+export function preventDuplication(currentData, newObjec) {
+  if (!Array.isArray(currentData)) {
+    console.log('The data provided was not an array');
+    return;
+  }
+  let hasDuplication = false;
+  currentData.forEach((item) => {
+    // Because the toastr has a unic id we will check by the title and message.
+    if (item.title === newObjec.title && item.message === newObjec.message) {
+      hasDuplication = true;
+    }
+  });
+  return hasDuplication;
+}
+
+export function updateConfig(config, obj) {
+  Object.keys(config).forEach(function(key) {
+    if (obj.hasOwnProperty(key)) {
+      config[key] = obj[key];
+    }
+  });
+}
+
+export function _bind(strin, scope) {
+  var array = strin.split(' ');
+  return array.map(item=> scope[item] = scope[item].bind(scope));
 }

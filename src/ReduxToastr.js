@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import cn from 'classnames';
 import ToastrBox from './ToastrBox';
 import ToastrConfirm from './ToastrConfirm';
-import * as tActions from './actions';
+import * as actions from './actions';
 import {EE} from './toastrEmitter';
 import config from './config';
+import {updateConfig, _bind} from './utils';
 
 class ReduxToastr extends Component {
   static displayName = 'ReduxToastr';
@@ -16,7 +17,7 @@ class ReduxToastr extends Component {
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
-    confirmOptions: PropTypes.object,
+    confirmOption: PropTypes.object,
     progressBar: PropTypes.bool,
     transitionIn: PropTypes.string,
     transitionOut: PropTypes.string
@@ -27,15 +28,23 @@ class ReduxToastr extends Component {
     newestOnTop: true,
     timeOut: 5000,
     progressBar: false,
-    transitionIn: config.toastr.transitionIn,
-    transitionOut: config.toastr.transitionOut
+    transitionIn: 'bounceIn',
+    transitionOut: 'bounceOut',
+    confirmOption: {
+      transitionIn: 'bounceInDown',
+      transitionOut: 'bounceOutUp',
+      okText: 'ok',
+      cancelText: 'cancel'
+    }
   };
 
   toastrFired = {};
 
   constructor(props) {
     super(props);
-    this._addToMemory = this._addToMemory.bind(this);
+    _bind('_addToMemory', this);
+    console.log('this.props.newestOnTop', this.props.newestOnTop);
+    updateConfig(config, this.props);
   }
 
   componentDidMount() {
@@ -97,4 +106,4 @@ class ReduxToastr extends Component {
 
 export default connect(state => ({
   toastr: state.toastr ? state.toastr : state.get('toastr')
-}), tActions)(ReduxToastr);
+}), actions)(ReduxToastr);

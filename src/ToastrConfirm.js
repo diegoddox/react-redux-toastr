@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import CSSCore from 'fbjs/lib/CSSCore';
-import {onCSSTransitionEnd, keyCode} from './utils';
+import {onCSSTransitionEnd, _bind, keyCode} from './utils';
 import Button from './Button';
-import config from './config';
 
 const ENTER = 13;
 const ESC = 27;
@@ -10,17 +9,24 @@ const ESC = 27;
 class ToastrConfirm extends Component {
   constructor(props) {
     super(props);
-    let {options} = props.confirm;
+    const {
+      confirmOption,
+      confirm
+    } = this.props;
 
-    this.okText = options.okText || config.confirm.okText;
-    this.cancelText = options.cancelText || config.confirm.cancelText;
-    this.transitionIn = options.transitionIn || config.confirm.transitionIn;
-    this.transitionOut = options.transitionOut || config.confirm.transitionOut;
+    const {
+      okText,
+      cancelText,
+      transitionIn,
+      transitionOut
+    } = confirm.options;
 
-    this.setTransition = this.setTransition.bind(this);
-    this.removeConfirm = this.removeConfirm.bind(this);
-    this.handleOnKeyUp = this.handleOnKeyUp.bind(this);
-    this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+    this.okText = okText || confirmOption.okText;
+    this.cancelText = cancelText || confirmOption.cancelText;
+    this.transitionIn = transitionIn || confirmOption.transitionIn;
+    this.transitionOut = transitionOut || confirmOption.transitionOut;
+
+    _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown', this);
     this.isKeyDown = false;
   }
 

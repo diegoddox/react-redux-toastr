@@ -61,9 +61,19 @@ export default class App extends Component {
     return (
       <Provider store={this.props.store}>
         <div className="wrapper">
-          <ReduxToastr />
+          <ReduxToastr
+            newestOnTop={false}
+          />
           <div className="content">
             <button type="button" className="btn btn-success" onClick={this.add.bind(this)}>success</button>
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => toastr.info('This is to check the duplication function', 'Check the console')}
+            >
+              duplication
+            </button>
+
             <button type="button" className="btn btn-primary" onClick={() => toastr.info('## Info', loremIpsum())}>info</button>
             <button
               type="button"

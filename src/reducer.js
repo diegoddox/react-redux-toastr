@@ -1,4 +1,4 @@
-import {createReducer, guid}  from './utils.js';
+import {createReducer, guid, preventDuplication}  from './utils.js';
 import config from './config';
 import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
 
@@ -8,16 +8,22 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-  [ADD_TOASTR]: (state, payload) => {
+  [ADD_TOASTR]: (state, {type, title, message, options}) => {
     const newToastr = {
       id: guid(),
-      type: payload.type,
-      title: payload.title,
-      message: payload.message,
-      options: payload.options
+      type,
+      title,
+      message,
+      options
     };
+    console.log(config);
+    if (config.preventDuplicates && preventDuplication(state.toastrs, newToastr)) {
+      return {
+        ...state
+      };
+    }
 
-    if (!config.toastr.newestOnTop) {
+    if (!config.newestOnTop) {
       return {
         ...state,
         toastrs: [
