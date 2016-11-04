@@ -63,6 +63,7 @@ export default class App extends Component {
         <div className="wrapper">
           <ReduxToastr
             newestOnTop={false}
+            preventDuplicates={true}
           />
           <div className="content">
             <button type="button" className="btn btn-success" onClick={this.add.bind(this)}>success</button>

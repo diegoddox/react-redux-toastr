@@ -1,6 +1,9 @@
-import {createReducer, guid, preventDuplication}  from './utils.js';
+import {createReducer, guid}  from './utils.js';
 import config from './config';
 import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
+
+// We will cache data so we can check for duplicated before fire the add action.
+export let toastrsCache = [];
 
 const initialState = {
   toastrs: [],
@@ -17,36 +20,38 @@ export default createReducer(initialState, {
       options
     };
 
-    if (config.preventDuplicates && preventDuplication(state.toastrs, newToastr)) {
-      return {
-        ...state
-      };
-    }
-
+    let newState = {};
     if (!config.newestOnTop) {
-      return {
+      newState = {
         ...state,
         toastrs: [
           ...state.toastrs,
           newToastr
         ]
       };
+    } else {
+      newState = {
+        ...state,
+        toastrs: [
+          newToastr,
+          ...state.toastrs
+        ]
+      };
     }
-    return {
-      ...state,
-      toastrs: [
-        newToastr,
-        ...state.toastrs
-      ]
-    };
+    toastrsCache = newState.toastrs;
+    return newState;
   },
   [REMOVE_TOASTR]: (state, payload) => {
-    return {
+    const newState = {
       ...state,
       toastrs: state.toastrs.filter(toastr => toastr.id !== payload.id)
     };
+
+    toastrsCache = newState.toastrs;
+    return newState;
   },
   [CLEAN_TOASTR]: (state) => {
+    toastrsCache = [];
     return {
       ...state,
       toastrs: []

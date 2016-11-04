@@ -116,7 +116,10 @@ export function updateConfig(config, obj) {
   });
 }
 
-export function _bind(strin, scope) {
-  var array = strin.split(' ');
+export function _bind(strinOrAray, scope) {
+  let array = strinOrAray;
+  if (!Array.isArray(strinOrAray)) {
+    array = strinOrAray.split(' ');
+  }
   return array.map(item=> scope[item] = scope[item].bind(scope));
 }

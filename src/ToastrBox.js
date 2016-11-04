@@ -3,7 +3,7 @@ import React, {Component, PropTypes, isValidElement} from 'react'; //  eslint-di
 import cn from 'classnames';
 import ProgressBar from './ProgressBar';
 
-import {onCSSTransitionEnd} from './utils';
+import {onCSSTransitionEnd, _bind} from './utils';
 
 export default class ToastrBox extends Component {
   static displayName = 'ToastrBox';
@@ -27,6 +27,7 @@ export default class ToastrBox extends Component {
     this.transitionOut = transitionOut || this.props.transitionOut;
 
     this.state = {progressBar: null};
+    _bind('renderSubComponent _onAnimationComplete _removeToastr _setTransition _clearTransition _setIntervalId _setIsHiding', this);
   }
 
   componentDidMount() {
@@ -92,7 +93,7 @@ export default class ToastrBox extends Component {
     return timeOut;
   }
 
-  _onAnimationComplete = () => {
+  _onAnimationComplete() {
     const {remove, item} = this.props;
     const {options, id} = item;
 
@@ -105,17 +106,17 @@ export default class ToastrBox extends Component {
     } else if (!this.isHiding && options.onShowComplete) {
       options.onShowComplete();
     }
-  };
+  }
 
-  _removeToastr = () => {
+  _removeToastr() {
     if (!this.isHiding) {
       this._setIsHiding(true);
       this._setTransition(true);
       onCSSTransitionEnd(this.toastrBox, this._onAnimationComplete);
     }
-  };
+  }
 
-  _setTransition = (hide) => {
+  _setTransition(hide) {
     const node = this.toastrBox;
     const animationType = hide ? this.transitionOut : this.transitionIn;
 
@@ -127,23 +128,23 @@ export default class ToastrBox extends Component {
 
     onCSSTransitionEnd(this.toastrBox, onEndListener);
     CSSCore.addClass(node, animationType);
-  };
+  }
 
-  _clearTransition = () => {
+  _clearTransition() {
     const node = this.toastrBox;
     CSSCore.removeClass(node, this.transitionIn);
     CSSCore.removeClass(node, this.transitionOut);
-  };
+  }
 
-  _setIntervalId = (intervalId) => {
+  _setIntervalId(intervalId) {
     this.intervalId = intervalId;
-  };
+  }
 
-  _setIsHiding = (val) => {
+  _setIsHiding(val) {
     this.isHiding = val;
-  };
+  }
 
-  _renderSubComponent = (SubComponent) => {
+  renderSubComponent(SubComponent) {
     const removeCurrentToastrFunc = () => this.props.remove(this.props.item.id);
 
     if (isValidElement(SubComponent)) {
@@ -155,7 +156,7 @@ export default class ToastrBox extends Component {
     return (
       <SubComponent remove={removeCurrentToastrFunc}/>
     );
-  };
+  }
 
   render() {
     const {
@@ -182,7 +183,7 @@ export default class ToastrBox extends Component {
           {message && <div className="message">{message}</div>}
           {options.component &&
             <div className="message">
-              {this._renderSubComponent(options.component)}
+              {this.renderSubComponent(options.component)}
             </div>
           }
         </div>
