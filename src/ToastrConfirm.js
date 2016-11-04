@@ -26,6 +26,7 @@ class ToastrConfirm extends Component {
 
   componentDidMount() {
     this.isHiding = false;
+    this.hasClicked = false;
 
     if (this.props.confirm.show) {
       this.setTransition(true);
@@ -51,6 +52,9 @@ class ToastrConfirm extends Component {
   }
 
   handleConfirmClick() {
+    if (this.hasClicked) return;
+    this.hasClicked = true;
+
     const {options} = this.props.confirm;
     const onAnimationEnd = () => {
       this.removeConfirm();
@@ -64,6 +68,9 @@ class ToastrConfirm extends Component {
   }
 
   handleCancelClick() {
+    if (this.hasClicked) return;
+    this.hasClicked = true;
+
     const {options} = this.props.confirm;
     const onAnimationEnd = () => {
       this.removeConfirm();

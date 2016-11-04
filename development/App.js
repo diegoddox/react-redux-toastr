@@ -74,7 +74,10 @@ export default class App extends Component {
               })}>error</button>
             <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning ����', loremIpsum())}>warning</button>
             <button type="button" className="btn btn-default" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
-            <button type="button" className="btn btn-default" onClick={() => toastr.confirm(<MyConfirmComp />)}>confirm</button>
+            <button type="button" className="btn btn-default" onClick={() => toastr.confirm(<MyConfirmComp />, {
+              onOk: () => console.log('confirm ok'),
+              onCancel: () => console.log('confirm cancel')
+            })}>confirm</button>
 
             <button
               type="button"
