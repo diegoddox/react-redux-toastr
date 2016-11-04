@@ -42,9 +42,8 @@ class ReduxToastr extends Component {
 
   constructor(props) {
     super(props);
-    _bind('_addToMemory', this);
-    console.log('this.props.newestOnTop', this.props.newestOnTop);
     updateConfig(config, this.props);
+    _bind('_addToMemory', this);
   }
 
   componentDidMount() {
