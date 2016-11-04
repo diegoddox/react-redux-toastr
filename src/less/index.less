@@ -12,6 +12,10 @@ body.toastr-confirm-active {
   }
 
   @toastr-width: 310px;
+  @successBgColor: #60bb71;
+  @infoBgColor: #58abc3;
+  @warningBgColor: #f7a336;
+  @errorBgColor: #db6a64;
 
   width: @toastr-width;
   position: fixed;
@@ -111,19 +115,35 @@ body.toastr-confirm-active {
     }
 
     &.info {
-      background-color: #58abc3;
+      background-color: @infoBgColor;
+
+      .toastr-progressbar {
+        background-color: darken(@infoBgColor, 15%);
+      }
     }
 
     &.success {
-      background-color: #60bb71;
+      background-color: @successBgColor;
+
+      .toastr-progressbar {
+        background-color: darken(@successBgColor, 15%);
+      }
     }
 
     &.warning {
-      background-color: #f7a336;
+      background-color: @warningBgColor;
+
+      .toastr-progressbar {
+        background-color: darken(@warningBgColor, 15%);
+      }
     }
 
     &.error {
-      background-color: #db6a64;
+      background-color: @errorBgColor;
+
+      .toastr-progressbar {
+        background-color: darken(@errorBgColor, 15%);
+      }
     }
 
     &.message {
@@ -169,6 +189,21 @@ body.toastr-confirm-active {
 
       .close-toastr {
         height: 50px;
+      }
+    }
+
+    .toastr-progress-container {
+      height: 5px;
+      margin: 0 -20px -20px -60px;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+
+      .toastr-progressbar {
+        -webkit-border-radius: 0 0 0 4px;
+        -moz-border-radius: 0 0 0 4px;
+        border-radius: 0 0 0 4px;
+        height: 100%;
       }
     }
   }

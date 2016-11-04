@@ -1,6 +1,7 @@
 import CSSCore from 'fbjs/lib/CSSCore';
 import React, {Component, PropTypes, isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
 import cn from 'classnames';
+import ProgressBar from './ProgressBar';
 
 import {onCSSTransitionEnd} from './utils';
 import config from './config';
@@ -19,19 +20,22 @@ export default class ToastrBox extends Component {
     this.intervalId = null;
     this.transitionIn = options.transitionIn || config.toastr.transitionIn;
     this.transitionOut = options.transitionOut || config.toastr.transitionOut;
+
+    this.state = {progressBar: null};
   }
 
   componentDidMount() {
     const {item} = this.props;
     if (this.props.inMemory[item.id]) return;
 
-    let {timeOut} = item.options;
-    if (typeof timeOut === 'undefined' && item.type !== 'message') {
-      timeOut = config.toastr.timeOut;
-    }
+    const timeOut = this._getItemTimeOut();
 
     if (timeOut) {
       this._setIntervalId(setTimeout(this._removeToastr, timeOut));
+    }
+
+    if (timeOut && item.options.progressBar) {
+      this.setState({progressBar: {duration: this._getItemTimeOut()}});
     }
 
     this._setTransition();
@@ -53,13 +57,34 @@ export default class ToastrBox extends Component {
     clearTimeout(this.intervalId);
     this._setIntervalId(null);
     this._setIsHiding(false);
+
+    const {progressBar} = this.props.item.options;
+    const timeOut = this._getItemTimeOut();
+    if (timeOut && progressBar) {
+      this.setState({progressBar: null});
+    }
   }
 
   mouseLeave() {
     const {removeOnHover} = this.props.item.options;
     if (!this.isHiding && this.props.item.type !== 'message' && removeOnHover == true) {
       this._setIntervalId(setTimeout(this._removeToastr, 1000));
+      const {progressBar} = this.props.item.options;
+      const timeOut = this._getItemTimeOut();
+      if (timeOut && progressBar) {
+        this.setState({progressBar: {duration: 1000}});
+      }
     }
+  }
+
+  _getItemTimeOut() {
+    const {item} = this.props;
+    let {timeOut} = item.options;
+    if (typeof timeOut === 'undefined' && item.type !== 'message') {
+      timeOut = config.toastr.timeOut;
+    }
+
+    return timeOut;
   }
 
   _onAnimationComplete = () => {
@@ -165,6 +190,7 @@ export default class ToastrBox extends Component {
             x
           </button>
         }
+        {this.state.progressBar ? <ProgressBar {...this.state.progressBar}/> : null}
       </div>
     );
   }

@@ -16,24 +16,25 @@ class ReduxToastr extends Component {
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
-    confirmOptions: PropTypes.object
+    confirmOptions: PropTypes.object,
+    progressBar: PropTypes.bool,
+    transitionIn: PropTypes.string,
+    transitionOut: PropTypes.string
   };
 
   static defaultProps = {
     position: 'top-right',
     newestOnTop: true,
-    timeOut: 5000
+    timeOut: 5000,
+    progressBar: false,
+    transitionIn: config.toastr.transitionIn,
+    transitionOut: config.toastr.transitionOut
   };
 
-  toastrFired = {}
+  toastrFired = {};
 
   constructor(props) {
     super(props);
-
-    config.toastr.timeOut = this.props.timeOut;
-    config.toastr.newestOnTop = this.props.newestOnTop;
-    config.confirm = {...config.confirm, ...this.props.confirmOptions};
-
     this._addToMemory = this._addToMemory.bind(this);
   }
 
@@ -55,6 +56,29 @@ class ReduxToastr extends Component {
     this.toastrFired[id] = true;
   }
 
+  _renderToastrBox(item) {
+    // Default options from props, but item can override them with own.
+    const mergedItem = {
+      ...item,
+      options: {
+        progressBar: this.props.progressBar,
+        transitionIn: this.props.transitionIn,
+        transitionOut: this.props.transitionOut,
+        ...item.options
+      }
+    };
+
+    return (
+      <ToastrBox
+        key={item.id}
+        inMemory={this.toastrFired}
+        addToMemory={this._addToMemory}
+        item={mergedItem}
+        {...this.props}
+      />
+    );
+  }
+
   render() {
     return (
       <div className={cn('redux-toastr', this.props.position)}>
@@ -65,15 +89,7 @@ class ReduxToastr extends Component {
             {...this.props}
           />
         }
-        {this.props.toastr && this.props.toastr.toastrs.map(item =>
-            <ToastrBox
-                inMemory={this.toastrFired}
-                addToMemory={this._addToMemory}
-                key={item.id} item={item}
-                {...this.props}
-            />
-          )
-        }
+        {this.props.toastr && this.props.toastr.toastrs.map(item => this._renderToastrBox(item))}
       </div>
     );
   }

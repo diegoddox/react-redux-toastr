@@ -84,6 +84,17 @@ export default class App extends Component {
                 removeOnHover: false,
                 showCloseBotton: false
               })}>Don't hide on hover and don't remove on click</button>
+
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={() => toastr.success(loremIpsum({count: 5}), {
+                progressBar: true,
+                transitionIn: 'fadeIn',
+                transitionOut: 'fadeOut',
+                timeOut: 5000,
+                showCloseButton: false
+              })}>Progress bar fadeIn/fadeOut</button>
           </div>
           {this.renderDev()}
         </div>
