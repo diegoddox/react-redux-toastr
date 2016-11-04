@@ -101,7 +101,7 @@ export function preventDuplication(currentData, newObjec) {
   let hasDuplication = false;
   currentData.forEach((item) => {
     // Because the toastr has a unic id we will check by the title and message.
-    if (item.title === newObjec.title && item.message === newObjec.message) {
+    if (item.title === newObjec.title && item.message === newObjec.message && item.type === newObjec.type) {
       hasDuplication = true;
     }
   });
