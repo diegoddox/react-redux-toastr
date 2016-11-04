@@ -1,3 +1,6 @@
+#3.11.0
+Add option `preventDuplicates`
+
 #3.8.0
 add `showCloseButton` in the `confirm` `props`
 clsoe confirm on `esc` and `enter`

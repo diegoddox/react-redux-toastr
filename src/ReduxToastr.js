@@ -20,7 +20,8 @@ class ReduxToastr extends Component {
     confirmOption: PropTypes.object,
     progressBar: PropTypes.bool,
     transitionIn: PropTypes.string,
-    transitionOut: PropTypes.string
+    transitionOut: PropTypes.string,
+    preventDuplicates: PropTypes.bool
   };
 
   static defaultProps = {
@@ -30,6 +31,7 @@ class ReduxToastr extends Component {
     progressBar: false,
     transitionIn: 'bounceIn',
     transitionOut: 'bounceOut',
+    preventDuplicates: false,
     confirmOption: {
       transitionIn: 'bounceInDown',
       transitionOut: 'bounceOutUp',
