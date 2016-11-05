@@ -52,6 +52,9 @@ export default class Menu extends React.Component {
             <span className="icon-check"/>
             <span className="icon-person"/>
           </li>
+          <li className="info" onClick={() => toastr.info('Lets prevent duplication', {timeOut: 0, removeOnHover: false})}>
+            <span className="icon-double-diamonds"/>
+          </li>
           <li className="light" onClick={() => this.handleClick('light')}>
             <span className="icon-light"/>
           </li>

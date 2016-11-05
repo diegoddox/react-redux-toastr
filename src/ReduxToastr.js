@@ -49,9 +49,9 @@ class ReduxToastr extends Component {
   }
 
   componentDidMount() {
-    const {addToastrAction, showConfirm, clean} = this.props;
+    const {add, showConfirm, clean} = this.props;
     EE.on('toastr/confirm', showConfirm);
-    EE.on('add/toastr', addToastrAction);
+    EE.on('add/toastr', add);
     EE.on('clean/toastr', clean);
   }
 
@@ -105,6 +105,9 @@ class ReduxToastr extends Component {
   }
 }
 
-export default connect(state => ({
-  toastr: state.toastr ? state.toastr : state.get('toastr')
-}), actions)(ReduxToastr);
+export default connect(
+  state => ({
+    toastr: state.toastr ? state.toastr : state.get('toastr')
+  }),
+  actions
+)(ReduxToastr);

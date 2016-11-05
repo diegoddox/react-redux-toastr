@@ -3,7 +3,8 @@ import {mapToToastrMessage, preventDuplication} from './utils';
 import {toastrsCache} from './reducer';
 import config from './config';
 
-export function addToastrAction(toastr) {
+export function add(toastr) {
+  if (config.preventDuplicates && preventDuplication(toastrsCache, toastr)) return;
   return {
     type: ADD_TOASTR,
     payload: toastr
@@ -26,7 +27,6 @@ export function remove(id) {
 }
 
 export function addToastr(type, ...toastr) {
-  if (config.preventDuplicates && preventDuplication(toastrsCache, toastr)) return;
   return {
     type: ADD_TOASTR,
     payload: mapToToastrMessage(type, toastr)

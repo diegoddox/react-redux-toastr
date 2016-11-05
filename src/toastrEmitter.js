@@ -6,7 +6,7 @@ const emitter = new EventEmitter();
 
 const addToToastr = (type, array) => {
   const toastr = mapToToastrMessage(type, array);
-  if (config.preventDuplicates && preventDuplication(toastrsCache, toastr)) return;
+  // if (config.preventDuplicates && preventDuplication(toastrsCache, toastr)) return;
   emitter.emit('add/toastr', toastr);
 };
 
