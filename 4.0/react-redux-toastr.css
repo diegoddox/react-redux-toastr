@@ -255,6 +255,7 @@ body.toastr-confirm-active {
 .redux-toastr .toastr {
   background-color: #fcfcfc;
   width: 100%;
+  min-height: 70px;
   overflow: hidden;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -303,6 +304,7 @@ body.toastr-confirm-active {
   top: 50%;
   margin-top: -35px;
   left: 5px;
+  line-height: 60px;
 }
 .redux-toastr .toastr .toastr-left-container .toastr-icon {
   fill: white;
