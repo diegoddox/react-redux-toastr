@@ -1,5 +1,7 @@
 import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
-import {mapToToastrMessage} from './utils';
+import {mapToToastrMessage, preventDuplication} from './utils';
+import {toastrsCache} from './reducer';
+import config from './config';
 
 export function addToastrAction(toastr) {
   return {
@@ -23,33 +25,11 @@ export function remove(id) {
   };
 }
 
-// In case the user wanna bind the actions
-// we need to use the func 'mapToToastrMessage' here as well.
-export function success(...toastr) {
+export function addToastr(type, ...toastr) {
+  if (config.preventDuplicates && preventDuplication(toastrsCache, toastr)) return;
   return {
     type: ADD_TOASTR,
-    payload: mapToToastrMessage('success', toastr)
-  };
-}
-
-export function info(...toastr) {
-  return {
-    type: ADD_TOASTR,
-    payload: mapToToastrMessage('info', toastr)
-  };
-}
-
-export function warning(...toastr) {
-  return {
-    type: ADD_TOASTR,
-    payload: mapToToastrMessage('warning', toastr)
-  };
-}
-
-export function error(...toastr) {
-  return {
-    type: ADD_TOASTR,
-    payload: mapToToastrMessage('error', toastr)
+    payload: mapToToastrMessage(type, toastr)
   };
 }
 
