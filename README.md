@@ -150,7 +150,7 @@ import {toastr} from 'react-redux-toastr'
 
 const toastrType = 'warning';
 const toastrOptions = {
-  icon: toastrType',
+  icon: toastrType,
   status: toastrType
 }
 
