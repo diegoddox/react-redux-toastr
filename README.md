@@ -16,7 +16,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ##### 2. Add the `react-redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/react-redux-toastr/3.11/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/react-redux-toastr/4.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 
 Or import the less file into to your project.
