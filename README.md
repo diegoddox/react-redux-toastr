@@ -105,24 +105,16 @@ constructor(props) {
 ```
 
 # Toastr methods
-##### Toastr: `success` `info` `warning` and `error`
+##### Toastr: `success` `info` `warning` `light` and `error`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
 In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton` and `progressBar`
-
-`icon` can be one of the following:
-- `'toastr-icon-close-round'`
-- `'toastr-icon-information-circle'`
-- `'toastr-icon-check-1'`
-- `'toastr-icon-exclamation-triangle'`
-- `'toastr-icon-exclamation-alert'`
-
 
 ``` javascript
 import {toastr} from 'react-redux-toastr'
 
 const toastrOptions = {
   timeOut: 3000, // by setting to 0 it will prevent the auto close
-  icon: 'my-icon-name',
+  icon: (<myCustomIconOrAvatar />), // You can add any component you want but note the the with and height are 70px ;)
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
   showCloseButton: false, // true by default
@@ -139,12 +131,32 @@ toastr.warning('The title', 'The message')
 toastr.error('The message')
 ```
 
+##### Toastr methods light
+
+The `light` method is like the other `toastr` accept that the bg is white and you can add a top
+border on top of the `toastr`
+
+`icon` can be one of the following:
+- `'success'`
+- `'info'`
+- `'warning'`
+- `'error'`
+
+``` javascript
+import {toastr} from 'react-redux-toastr'
+
+const toastrOptions = {
+  icon: 'warning',
+}
+
+toastr.light('The message', toastrOptions)
+```
+
 ##### Toastr: `message`
 This one is in case you wanna show a large amount of information, unlike the other methods above this will not close automatically unless you provide a `timeout` in the `message` options.
 
 ```javascript
 const toastrMessageOptions = {
-  timeOut: 1000,
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
   removeOnHover: false // Default value is true 

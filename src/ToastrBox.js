@@ -36,7 +36,6 @@ export default class ToastrBox extends Component {
         'renderToastr',
         'renderCloseButton',
         'renderMessage',
-        'isMessageToastr',
         '_onAnimationComplete',
         '_removeToastr',
         '_setTransition',
@@ -54,11 +53,11 @@ export default class ToastrBox extends Component {
 
     const timeOut = this._getItemTimeOut();
 
-    if (timeOut && !this.isMessageToastr()) {
+    if (timeOut) {
       this._setIntervalId(setTimeout(this._removeToastr, timeOut));
     }
 
-    if (timeOut && item.options.progressBar && !this.isMessageToastr()) {
+    if (timeOut && item.options.progressBar) {
       this.setState({progressBar: {duration: this._getItemTimeOut()}});
     }
 
@@ -86,7 +85,7 @@ export default class ToastrBox extends Component {
     const {progressBar} = this.props.item.options;
     const timeOut = this._getItemTimeOut();
 
-    if (timeOut && progressBar && !this.isMessageToastr()) {
+    if (timeOut && progressBar) {
       this.setState({progressBar: null});
     }
   }
@@ -100,7 +99,7 @@ export default class ToastrBox extends Component {
       const {progressBar} = this.props.item.options;
       const timeOut = this._getItemTimeOut();
 
-      if (timeOut && progressBar && !this.isMessageToastr()) {
+      if (timeOut && progressBar) {
         this.setState({progressBar: {duration: 1000}});
       }
     }
@@ -149,13 +148,6 @@ export default class ToastrBox extends Component {
         x
       </button>
     );
-  }
-
-  isMessageToastr() {
-    if (this.props.item.type == 'message') {
-      return true;
-    }
-    return false;
   }
 
   renderToastr() {
