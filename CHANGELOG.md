@@ -1,3 +1,9 @@
+#4.0.0
+
+Add light style.
+toastr option icon can be a react component.
+change to inline svg.
+
 #3.11.0
 Add option `preventDuplicates`
 
