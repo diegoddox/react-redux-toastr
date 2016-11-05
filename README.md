@@ -157,10 +157,10 @@ This one is in case you wanna show a large amount of information, unlike the oth
 
 ```javascript
 const toastrMessageOptions = {
+  timeOut: 3000, // Default value is 0 
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
   removeOnHover: false // Default value is true 
-  showCloseButton: false, // Default value is true 
   component: React.Component
 };
 toastr.message('Title', toastrMessageOptions)
