@@ -133,8 +133,8 @@ toastr.error('The message')
 
 ##### Toastr methods light
 
-The `light` method is like the other `toastr` accept that the bg is white and you can add a top
-border on top of the `toastr`
+The `light` method is like the other `toastr` except that the `background-color` is `white` and you can add a top
+border on top of the `toastr` by passing the `status` option
 
 `icon` can be one of the following:
 - `'success'`
@@ -145,8 +145,10 @@ border on top of the `toastr`
 ``` javascript
 import {toastr} from 'react-redux-toastr'
 
+const toastrType = 'warning';
 const toastrOptions = {
-  icon: 'warning',
+  icon: toastrType',
+  status: toastrType
 }
 
 toastr.light('The message', toastrOptions)
@@ -160,7 +162,7 @@ const toastrMessageOptions = {
   timeOut: 3000, // Default value is 0 
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  removeOnHover: false // Default value is true 
+  removeOnHover: false // Default value is false 
   component: React.Component
 };
 toastr.message('Title', toastrMessageOptions)

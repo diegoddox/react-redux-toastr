@@ -10,16 +10,13 @@ export default class Menu extends React.Component {
   }
 
   handleClick(type, avatar) {
-    let options = {
-      // timeOut: 0,
-      // removeOnHover: false,
-      progressBar: true
-    };
+    let options = {};
 
-    let message = loremIpsum({count: 2});
+    let message = loremIpsum({count: 1});
 
     if (avatar) {
       options.icon = (<Avatar />);
+      options.progressBar = true;
     }
 
     if (type == 'message') {
@@ -30,6 +27,7 @@ export default class Menu extends React.Component {
       const icon = 'warning';
       options.icon = icon;
       options.status = icon;
+      options.progressBar = true;
     }
 
     toastr[type](loremIpsum(), message, options);
