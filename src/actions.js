@@ -1,10 +1,17 @@
 import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
-import {mapToToastrMessage, preventDuplication} from './utils';
+import {preventDuplication} from './utils';
 import {toastrsCache} from './reducer';
 import config from './config';
 
 export function add(toastr) {
-  if (config.preventDuplicates && preventDuplication(toastrsCache, toastr)) return;
+  if (config.preventDuplicates && preventDuplication(toastrsCache, toastr)) {
+    return {
+      type: ADD_TOASTR,
+      payload: {
+        ignoreToastr: true
+      }
+    };
+  }
   return {
     type: ADD_TOASTR,
     payload: toastr
@@ -23,13 +30,6 @@ export function remove(id) {
     payload: {
       id
     }
-  };
-}
-
-export function addToastr(type, ...toastr) {
-  return {
-    type: ADD_TOASTR,
-    payload: mapToToastrMessage(type, toastr)
   };
 }
 
