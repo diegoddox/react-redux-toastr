@@ -194,6 +194,9 @@ const options = {
 <ReduxToastr confirmOptions={options}/>
 ```
 
+### Avatar: in case you wanna use the same avatar as the example
+[Avatar](https://github.com/diegoddox/react-redux-toastr/blob/master/development/Avatar.js)
+
 # Run a local demo
 ```
 git clone https://github.com/diegoddox/react-redux-toastr.git
