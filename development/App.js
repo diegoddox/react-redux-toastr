@@ -7,36 +7,10 @@ import {Provider} from 'react-redux';
 import ReduxToastr, {toastr} from './../src/';
 import DevTools from './containers/DevTools';
 import config from './../config';
-
-import LongText from './largetext';
-import loremIpsum from 'lorem-ipsum';
-
-const MyComp = props => {
-  console.log('props', props);
-  setTimeout(() => {
-    props.remove();
-    console.log('## remove toastr with the remove func.');
-  }, 4000);
-  return <h2>Hello {props.name}</h2>;
-};
-
-MyComp.displayName = 'comp';
-
-class MyConfirmComp extends Component {
-  render() {
-    return <div>{loremIpsum({count: 5})}</div>;
-  }
-}
-
-class messageComp extends Component {
-  static displayName = 'MMCmessageComp';
-  render() {
-    return <div dangerouslySetInnerHTML={{__html: LongText}} />;
-  }
-}
+import Menu from './Menu';
 
 export default class App extends Component {
-  static displayName = 'ReduxModalDev';
+  static displayName = 'ReduxToastr';
 
   static propTypes = {
     store: PropTypes.object.isRequired
@@ -51,10 +25,6 @@ export default class App extends Component {
     if (config.env !== 'production') {
       return <DevTools />;
     }
-  }
-
-  add() {
-    toastr.success('success', loremIpsum());
   }
 
   toastrWithAvatar() {
@@ -79,53 +49,7 @@ export default class App extends Component {
             newestOnTop={false}
             preventDuplicates={true}
           />
-          <div className="content">
-            <button type="button" className="btn btn-success" onClick={this.toastrWithAvatar.bind(this)}>success with avatar</button>
-            <button type="button" className="btn btn-success" onClick={this.add.bind(this)}>success</button>
-            <button
-              type="button"
-              className="btn btn-info"
-              onClick={() => toastr.info('This is to check the duplication function', 'Check the console')}
-            >
-              duplication
-            </button>
-
-            <button type="button" className="btn btn-primary" onClick={() => toastr.info('## Info', loremIpsum())}>info</button>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={() => toastr.error('## Error', {
-                timeOut: 0,
-                component: (<MyComp name="Jesus" />)
-              })}>error</button>
-            <button type="button" className="btn btn-warning" onClick={() => toastr.warning('## Warning ����', loremIpsum())}>warning</button>
-            <button type="button" className="btn btn-default" onClick={() => toastr.message('## Message', {component: messageComp})}>message</button>
-            <button type="button" className="btn btn-default" onClick={() => toastr.confirm(<MyConfirmComp />, {
-              onOk: () => console.log('confirm ok'),
-              onCancel: () => console.log('confirm cancel')
-            })}>confirm</button>
-
-            <button
-              type="button"
-              className="btn btn-default"
-              onClick={() => toastr.warning(loremIpsum({count: 5}), {
-                timeOut: 0,
-                removeOnHover: false,
-                showCloseButton: false
-              })}>Don't hide on hover and don't remove on click</button>
-
-            <button
-              type="button"
-              className="btn btn-default"
-              onClick={() => toastr.success(loremIpsum({count: 5}), {
-                progressBar: true,
-                transitionIn: 'fadeIn',
-                transitionOut: 'fadeOut',
-                timeOut: 5000,
-                showCloseButton: false
-              })}>Progress bar fadeIn/fadeOut</button>
-          </div>
-          {this.renderDev()}
+          <Menu />
         </div>
       </Provider>
     );

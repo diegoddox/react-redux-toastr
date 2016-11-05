@@ -1,6 +1,6 @@
 import CSSCore from 'fbjs/lib/CSSCore';
 import React, {Component, PropTypes, isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
-import cn from 'classnames';
+import classnames from 'classnames';
 import ProgressBar from './ProgressBar';
 import Icon from './Icon';
 
@@ -28,10 +28,15 @@ export default class ToastrBox extends Component {
     this.transitionOut = transitionOut || this.props.transitionOut;
 
     this.state = {progressBar: null};
+
     _bind(
       [
         'renderSubComponent',
         'renderIcon',
+        'renderToastr',
+        'renderCloseButton',
+        'renderMessage',
+        'isMessageToastr',
         '_onAnimationComplete',
         '_removeToastr',
         '_setTransition',
@@ -86,7 +91,7 @@ export default class ToastrBox extends Component {
 
   mouseLeave() {
     const {removeOnHover} = this.props.item.options;
-    if (!this.isHiding && this.props.item.type !== 'message' && removeOnHover == true) {
+    if (!this.isHiding && removeOnHover == true) {
       this._setIntervalId(setTimeout(this._removeToastr, 1000));
       const {progressBar} = this.props.item.options;
       const timeOut = this._getItemTimeOut();
@@ -124,13 +129,88 @@ export default class ToastrBox extends Component {
     if (isValidElement(options.icon)) {
       return React.cloneElement(options.icon);
     }
-    return <Icon name={type} />;
+
+    const iconName = (type === 'light') ? options.icon : type;
+    return <Icon name={iconName} />;
+  }
+
+  renderCloseButton() {
+    return (
+      <button
+        type="button"
+        className="close-toastr"
+        onClick={this.handleClick.bind(this)}
+      >
+        x
+      </button>
+    );
+  }
+
+  isMessageToastr() {
+    if (this.props.item.type == 'message') {
+      return true;
+    }
+    return false;
+  }
+
+  renderToastr() {
+    const {
+      options,
+      message,
+      title
+    } = this.props.item;
+
+    return (
+      <div>
+        <div className="toastr-left-container">
+          <div className="holder">
+            {this.renderIcon()}
+          </div>
+        </div>
+        {options.status && <div className={classnames('toastr-status', options.status)}/>}
+        <div className="toastr-middle-container">
+          {title && <div className="title">{title}</div>}
+          {message && <div className="message">{message}</div>}
+          {options.component && this.renderSubComponent()}
+        </div>
+
+        <div className="toastr-right-container">
+          {options.showCloseButton && this.renderCloseButton()}
+        </div>
+        {this.state.progressBar ? <ProgressBar {...this.state.progressBar}/> : null}
+      </div>
+    );
+  }
+
+  renderMessage() {
+    const {
+      title,
+      message
+    } = this.props.item;
+
+    return (
+      <div>
+        <div className="title">
+          {title}
+          {this.renderCloseButton()}
+        </div>
+        <div className="message">{message}</div>
+      </div>
+    );
+  }
+
+  toastr() {
+    if (this.props.item.type === 'message') {
+      return this.renderMessage();
+    }
+
+    return this.renderToastr();
   }
 
   _getItemTimeOut() {
     const {item} = this.props;
     let {timeOut} = item.options;
-    if (typeof timeOut === 'undefined' && item.type !== 'message') {
+    if (typeof timeOut === 'undefined') {
       timeOut = this.props.timeOut;
     }
 
@@ -191,15 +271,13 @@ export default class ToastrBox extends Component {
   render() {
     const {
       options,
-      type,
-      message,
-      title
+      type
     } = this.props.item;
 
     return (
       <div
         ref={(ref) => this.toastrBox = ref}
-        className={cn(
+        className={classnames(
           'toastr',
           'animated',
           type,
@@ -208,26 +286,7 @@ export default class ToastrBox extends Component {
         onMouseEnter={this.mouseEnter.bind(this)}
         onMouseLeave={this.mouseLeave.bind(this)}
       >
-        <div className="toastr-left-container">{this.renderIcon()}</div>
-
-        <div className="toastr-middle-container">
-          {title && <div className="title">{title}</div>}
-          {message && <div className="message">{message}</div>}
-          {options.component && this.renderSubComponent()}
-        </div>
-
-        <div className="toastr-right-container">
-          {options.showCloseButton &&
-            <button
-              type="button"
-              className="close-toastr"
-              onClick={this.handleClick.bind(this)}
-            >
-              x
-            </button>
-          }
-        </div>
-        {this.state.progressBar ? <ProgressBar {...this.state.progressBar}/> : null}
+       {this.toastr()}
       </div>
     );
   }

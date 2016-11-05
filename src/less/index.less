@@ -65,23 +65,58 @@ body.toastr-confirm-active {
       opacity: 1;
     }
 
+    .toastr-status {
+      width: 100%;
+      height: 5px;
+
+      &.success {
+        background-color: @successBgColor;
+      }
+
+      &.warning {
+        background-color: @warningBgColor;
+      }
+
+      &.info {
+        background-color: @infoBgColor;
+      }
+
+      &.error {
+        background-color: @errorBgColor;
+      }
+    }
+
     .toastr-left-container, .toastr-right-container {
-      width: 25%;
-      min-height: 30px;
       float: left;
       text-align: center;
       overflow: hidden;
     }
 
     .toastr-left-container {
-      padding-top: 20px;
+      width: 80px;
+      top: 0;
+      left: 0;
+      position: absolute;
+      bottom: 0;
+
+      .holder {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        top: 50%;
+        margin-top: -35px;
+        left: 5px;
+      }
+
       .toastr-icon {
         fill: white;
+        margin-top: 5px;
       }
     }
 
     .toastr-middle-container {
       width: 65%;
+      margin-left: 80px; 
       position: relative;
       float: left;
       font-family: Arial, Helvetica, sans-serif, sans-serif;
@@ -111,6 +146,7 @@ body.toastr-confirm-active {
       border: none;
       outline: none;
       opacity: 0.5;
+      cursor: pointer;
 
       &:hover {
         opacity: 1;
@@ -157,44 +193,48 @@ body.toastr-confirm-active {
       }
     }
 
+    &.light {
+      .toastr-icon {
+        fill: #333 !important;
+      }
+    }
+
     &.message {
       opacity: 1;
       border: 1px solid #dbdbdb;
+      &:hover {
+        box-shadow: none;
+      }
       
-      .message-holder {
+      .title {
+        width: 90%;
+        height: 50px;
+        text-align: center;
+        overflow: hidden;
+        font-size: 1.2em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 50px;
+        padding: 0 20px;
+      }
+
+      .message {
         width: 100%;
-        margin-left: 0;
+        max-height: 400px;
+        overflow: hidden;
+        overflow-y: auto;
+        border-top: 1px solid #f1f1f1;
+        border-bottom: 1px solid #f1f1f1;
+        background-color: white;
+        padding: 15px;
+        font-size: 1.1em;
+        margin-bottom: 20px;
 
-        .title {
-          width: 90%;
-          height: 50px;
-          text-align: center;
-          overflow: hidden;
-          font-size: 1.2em;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-          line-height: 50px;
-          padding: 0 20px;
-        }
-
-        .message {
-          width: 100%;
-          max-height: 400px;
-          overflow: hidden;
-          overflow-y: auto;
-          border-top: 1px solid #f1f1f1;
-          border-bottom: 1px solid #f1f1f1;
-          background-color: white;
-          padding: 15px;
-          font-size: 1.1em;
-          margin-bottom: 20px;
-
-          img {
-            display: block;
-            margin: 10px auto;
-            max-width: 100%;
-          }
+        img {
+          display: block;
+          margin: 10px auto;
+          max-width: 100%;
         }
       }
 

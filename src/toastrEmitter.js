@@ -12,7 +12,7 @@ const addToToastr = (type, array) => {
 
 let actions = {};
 
-['message', 'info', 'success', 'warning', 'error'].forEach(item => {
+['light', 'message', 'info', 'success', 'warning', 'error'].forEach(item => {
   actions[item] = (...args) => addToToastr(item, args);
 });
 
