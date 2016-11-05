@@ -54,11 +54,11 @@ export default class ToastrBox extends Component {
 
     const timeOut = this._getItemTimeOut();
 
-    if (timeOut) {
+    if (timeOut && !this.isMessageToastr()) {
       this._setIntervalId(setTimeout(this._removeToastr, timeOut));
     }
 
-    if (timeOut && item.options.progressBar) {
+    if (timeOut && item.options.progressBar && !this.isMessageToastr()) {
       this.setState({progressBar: {duration: this._getItemTimeOut()}});
     }
 
@@ -79,23 +79,28 @@ export default class ToastrBox extends Component {
 
   mouseEnter() {
     clearTimeout(this.intervalId);
+
     this._setIntervalId(null);
     this._setIsHiding(false);
 
     const {progressBar} = this.props.item.options;
     const timeOut = this._getItemTimeOut();
-    if (timeOut && progressBar) {
+
+    if (timeOut && progressBar && !this.isMessageToastr()) {
       this.setState({progressBar: null});
     }
   }
 
   mouseLeave() {
     const {removeOnHover} = this.props.item.options;
-    if (!this.isHiding && removeOnHover == true) {
+
+    if (!this.isHiding && removeOnHover) {
       this._setIntervalId(setTimeout(this._removeToastr, 1000));
+
       const {progressBar} = this.props.item.options;
       const timeOut = this._getItemTimeOut();
-      if (timeOut && progressBar) {
+
+      if (timeOut && progressBar && !this.isMessageToastr()) {
         this.setState({progressBar: {duration: 1000}});
       }
     }

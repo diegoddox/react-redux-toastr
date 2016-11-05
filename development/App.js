@@ -30,7 +30,6 @@ export default class App extends Component {
       <Provider store={this.props.store}>
         <div className="wrapper">
           <ReduxToastr
-            newestOnTop={false}
             preventDuplicates={true}
           />
           <Menu />

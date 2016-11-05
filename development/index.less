@@ -27,6 +27,7 @@ body {
     color: white;
     border-radius: 4px;
     overflow: hidden;
+    margin-bottom: 20px;
 
     li {
       width: 70px;
@@ -37,6 +38,37 @@ body {
       font-size: 1.5rem;
       text-align: center;
       line-height: @height;
+
+      &.success {
+        &:hover {
+          background-color: #60bb71;
+        }
+      }
+
+      &.warning {
+        &:hover {
+          background-color: #f7a336;
+        }
+      }
+
+      &.info {
+        &:hover {
+          background-color: #58abc3;
+        }
+      }
+
+      &.error {
+        &:hover {
+          background-color: #db6a64;
+        }
+      }
+
+      &.light, &.message {
+        &:hover {
+          background-color: #fcfcfc;
+          color: #333;
+        }
+      }
 
       &:last-child {
         border-right: none;

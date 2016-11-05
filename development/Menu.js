@@ -11,8 +11,8 @@ export default class Menu extends React.Component {
 
   handleClick(type, avatar) {
     let options = {
-      timeOut: 0,
-      removeOnHover: false,
+      // timeOut: 0,
+      // removeOnHover: false,
       progressBar: true
     };
 
@@ -38,26 +38,26 @@ export default class Menu extends React.Component {
   render() {
     return (
         <ul className="menu">
-          <li onClick={() => this.handleClick('success')}>
+          <li className="success" onClick={() => this.handleClick('success')}>
             <span className="icon-check"/>
           </li>
-          <li onClick={() => this.handleClick('warning')}>
+          <li className="warning" onClick={() => this.handleClick('warning')}>
             <span className="icon-exclamation-triangle"/>
           </li>
-          <li onClick={() => this.handleClick('info')}>
+          <li className="info" onClick={() => this.handleClick('info')}>
             <span className="icon-info-circle"/>
           </li>
-          <li onClick={() => this.handleClick('error')}>
+          <li className="error" onClick={() => this.handleClick('error')}>
             <span  className="icon-bug"/>
           </li>
-          <li onClick={() => this.handleClick('success', true)}>
+          <li className="success" onClick={() => this.handleClick('success', true)}>
             <span className="icon-check"/>
             <span className="icon-person"/>
           </li>
-          <li onClick={() => this.handleClick('light')}>
+          <li className="light" onClick={() => this.handleClick('light')}>
             <span className="icon-light"/>
           </li>
-          <li onClick={() => this.handleClick('message')}>
+          <li className="message" onClick={() => this.handleClick('message')}>
             <span className="icon-email-envelope"/>
           </li>
       </ul>
