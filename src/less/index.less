@@ -60,7 +60,7 @@ body.toastr-confirm-active {
     opacity: .94;
     box-shadow: 2px 2px 10px #ccc;
     
-    &:hover {
+    &:hover:not(.message) {
       box-shadow: 0px 0px 10px #777;
       opacity: 1;
     }
@@ -110,6 +110,7 @@ body.toastr-confirm-active {
 
       .toastr-icon {
         fill: white;
+        vertical-align: middle;
         margin-top: 5px;
       }
     }
@@ -202,9 +203,6 @@ body.toastr-confirm-active {
     &.message {
       opacity: 1;
       border: 1px solid #dbdbdb;
-      &:hover {
-        box-shadow: none;
-      }
       
       .title {
         width: 90%;

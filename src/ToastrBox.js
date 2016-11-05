@@ -155,6 +155,7 @@ export default class ToastrBox extends Component {
 
   renderToastr() {
     const {
+      type,
       options,
       message,
       title
@@ -167,7 +168,7 @@ export default class ToastrBox extends Component {
             {this.renderIcon()}
           </div>
         </div>
-        {options.status && <div className={classnames('toastr-status', options.status)}/>}
+        {options.status && type === 'light' && <div className={classnames('toastr-status', options.status)}/>}
         <div className="toastr-middle-container">
           {title && <div className="title">{title}</div>}
           {message && <div className="message">{message}</div>}

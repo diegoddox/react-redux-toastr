@@ -11,13 +11,19 @@ class Icon extends React.Component {
     }
 
     render() {
+      const {size} = this.props;
+      const styles = {
+        width: size,
+        height: size
+      };
+
       return (
         <svg
             className={classnames(this.props.className, 'toastr-icon')}
             xmlns="http://www.w3.org/2000/svg"
-            width={this.props.width}
-            height={this.props.height}
-            viewBox={`0 0 ${this.props.width} ${this.props.height}`}
+            preserveAspectRatio="xMidYMid meet" fit
+            viewBox={`0 0 ${this.props.size} ${this.props.size}`}
+            style={styles}
         >
             {icons(this.props.name)}
         </svg>
@@ -27,8 +33,7 @@ class Icon extends React.Component {
 
 Icon.displayName = 'Icon';
 Icon.defaultProps = {
-  width: 32,
-  height: 32
+  size: 32
 };
 
 export default Icon;
