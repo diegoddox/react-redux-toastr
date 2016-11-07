@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import icons from './icons';
 
-class Icon extends React.Component {
+export default class Icon extends React.Component {
     static displayName = 'Icon'
 
     static defaultProps = {
@@ -29,5 +29,3 @@ class Icon extends React.Component {
       );
     }
 }
-
-export default Icon;
