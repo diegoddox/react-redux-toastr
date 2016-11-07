@@ -6,8 +6,7 @@ class Icon extends React.Component {
     static displayName = 'Icon'
 
     static defaultProps = {
-      width: 32,
-      height: 32
+      size: 32
     }
 
     render() {
@@ -30,10 +29,5 @@ class Icon extends React.Component {
       );
     }
 }
-
-Icon.displayName = 'Icon';
-Icon.defaultProps = {
-  size: 32
-};
 
 export default Icon;
