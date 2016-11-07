@@ -21,7 +21,7 @@ class Icon extends React.Component {
         <svg
             className={classnames(this.props.className, 'toastr-icon')}
             xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid meet" fit
+            preserveAspectRatio="xMidYMid meet"
             viewBox={`0 0 ${this.props.size} ${this.props.size}`}
             style={styles}
         >
