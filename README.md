@@ -200,7 +200,7 @@ const options = {
   okText: 'confirm text',
   cancelText: 'cancel text'
 };
-<ReduxToastr confirmOptions={options}/>
+<ReduxToastr confirmOption={options}/>
 ```
 
 ### Avatar: in case you wanna use the same avatar as the example
