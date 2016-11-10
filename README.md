@@ -163,7 +163,7 @@ const toastrOptions = {
   status: toastrType
 }
 
-toastr.light('The message', toastrOptions)
+toastr.light('The title', 'The message', toastrOptions)
 ```
 
 ##### Toastr: `message`
