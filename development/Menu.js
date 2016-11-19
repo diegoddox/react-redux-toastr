@@ -21,6 +21,7 @@ export default class Menu extends React.Component {
 
     if (type == 'message') {
       message = loremIpsum({count: 19});
+      options.component = () => (<div>hej</div>);
     }
 
     if (type == 'light') {
@@ -28,6 +29,7 @@ export default class Menu extends React.Component {
       options.icon = icon;
       options.status = icon;
       options.progressBar = true;
+      options.component = () => (<div>hej</div>);
     }
 
     toastr[type](loremIpsum(), message, options);
