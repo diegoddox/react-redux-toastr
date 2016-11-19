@@ -104,6 +104,15 @@ constructor(props) {
   super(props);
   // Bind the react-redux-toastr actions to the component
   this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
+  
+  this.toastr.add({
+   type: 'success',
+   title: 'your title',
+   message: 'message',
+   options: {}
+  });
+  
+  this.toastr.remove('toastrId');
 }
 ```
 
