@@ -1,6 +1,6 @@
 {
   "name": "react-redux-toastr",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
