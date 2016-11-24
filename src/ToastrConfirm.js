@@ -10,7 +10,7 @@ class ToastrConfirm extends Component {
   constructor(props) {
     super(props);
     const {
-      confirmOption,
+      confirmOptions,
       confirm
     } = this.props;
 
@@ -21,10 +21,10 @@ class ToastrConfirm extends Component {
       transitionOut
     } = confirm.options;
 
-    this.okText = okText || confirmOption.okText;
-    this.cancelText = cancelText || confirmOption.cancelText;
-    this.transitionIn = transitionIn || confirmOption.transitionIn;
-    this.transitionOut = transitionOut || confirmOption.transitionOut;
+    this.okText = okText || confirmOptions.okText;
+    this.cancelText = cancelText || confirmOptions.cancelText;
+    this.transitionIn = transitionIn || confirmOptions.transitionIn;
+    this.transitionOut = transitionOut || confirmOptions.transitionOut;
 
     _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown', this);
     this.isKeyDown = false;

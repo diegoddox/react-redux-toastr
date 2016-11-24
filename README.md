@@ -104,14 +104,14 @@ constructor(props) {
   super(props);
   // Bind the react-redux-toastr actions to the component
   this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
-  
+
   this.toastr.add({
    type: 'success',
    title: 'your title',
    message: 'message',
    options: {}
   });
-  
+
   this.toastr.remove('toastrId');
 }
 ```
@@ -171,10 +171,10 @@ This one is in case you wanna show a large amount of information, unlike the oth
 
 ```javascript
 const toastrMessageOptions = {
-  timeOut: 3000, // Default value is 0 
+  timeOut: 3000, // Default value is 0
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  removeOnHover: false // Default value is false 
+  removeOnHover: false // Default value is false
   component: React.Component
 };
 toastr.message('Title', toastrMessageOptions)
@@ -190,10 +190,12 @@ const toastrConfirmOptions = {
   onOk: () => console.log('OK: clicked'),
   onCancel: () => console.log('CANCEL: clicked')
 };
-toastr.confirm('Are you sure about that!', toastrConfirmOptions)
+toastr.confirm('Are you sure about that!', toastrConfirmOptions);
 ```
 
-You can change the `ok` and `cancel` text by passing the `confirm` props to the `ReduxToastr` component
+You can change the `ok` and `cancel` text by:
+
+- Passing the `confirm` props to the `ReduxToastr` component
 
 ```javascript
 const options = {
@@ -201,6 +203,18 @@ const options = {
   cancelText: 'cancel text'
 };
 <ReduxToastr confirmOptions={options}/>
+```
+
+- Passing the `okText` and `cancelText` props to the `toasterConfirmOptions` object:
+
+```javascript
+const toastrConfirmOptions = {
+  ...
+  okText: 'confirm text',
+  cancelText: 'cancel text'
+};
+
+toastr.confirm('Are you sure about that!', toastrConfirmOptions);
 ```
 
 ### Avatar: in case you wanna use the same avatar as the example
