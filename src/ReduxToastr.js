@@ -17,7 +17,7 @@ class ReduxToastr extends Component {
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
-    confirmOption: PropTypes.object,
+    confirmOptions: PropTypes.object,
     progressBar: PropTypes.bool,
     transitionIn: PropTypes.string,
     transitionOut: PropTypes.string,
@@ -32,7 +32,7 @@ class ReduxToastr extends Component {
     transitionIn: 'bounceIn',
     transitionOut: 'bounceOut',
     preventDuplicates: false,
-    confirmOption: {
+    confirmOptions: {
       transitionIn: 'bounceInDown',
       transitionOut: 'bounceOutUp',
       okText: 'ok',
