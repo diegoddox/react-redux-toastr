@@ -1,5 +1,5 @@
-import './index.less';
-import './../src/less/index.less';
+import './index.scss';
+import './../src/styles/index.scss';
 import React, {Component, PropTypes, dangerouslySetInnerHTML} from 'react'; // eslint-disable-line no-unused-vars
 import {Provider} from 'react-redux';
 import ReduxToastr from './../src/';

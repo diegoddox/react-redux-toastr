@@ -1,5 +1,5 @@
-@import './animation.less';
-@import './confirm.less';
+@import './animation';
+@import './confirm';
 
 body.toastr-confirm-active {
   overflow: hidden;
@@ -10,13 +10,13 @@ body.toastr-confirm-active {
     box-sizing: border-box;
   }
 
-  @toastr-width: 350px;
-  @successBgColor: #60bb71;
-  @infoBgColor: #58abc3;
-  @warningBgColor: #f7a336;
-  @errorBgColor: #db6a64;
+  $toastr-width: 350px;
+  $successBgColor: #60bb71;
+  $infoBgColor: #58abc3;
+  $warningBgColor: #f7a336;
+  $errorBgColor: #db6a64;
 
-  width: @toastr-width;
+  width: $toastr-width;
   position: fixed;
   z-index: 99999999;
 
@@ -34,7 +34,7 @@ body.toastr-confirm-active {
 
   &.top-center, &.bottom-center {
     left: 50%;
-    margin-left: -(@toastr-width / 2);
+    margin-left: -($toastr-width / 2);
   }
 
   &.top-right {
@@ -71,19 +71,19 @@ body.toastr-confirm-active {
       height: 5px;
 
       &.success {
-        background-color: @successBgColor;
+        background-color: $successBgColor;
       }
 
       &.warning {
-        background-color: @warningBgColor;
+        background-color: $warningBgColor;
       }
 
       &.info {
-        background-color: @infoBgColor;
+        background-color: $infoBgColor;
       }
 
       &.error {
-        background-color: @errorBgColor;
+        background-color: $errorBgColor;
       }
     }
 
@@ -165,34 +165,34 @@ body.toastr-confirm-active {
     }
 
     &.info {
-      background-color: @infoBgColor;
+      background-color: $infoBgColor;
 
       .toastr-progressbar {
-        background-color: darken(@infoBgColor, 15%);
+        background-color: darken($infoBgColor, 15%);
       }
     }
 
     &.success {
-      background-color: @successBgColor;
+      background-color: $successBgColor;
 
       .toastr-progressbar {
-        background-color: darken(@successBgColor, 15%);
+        background-color: darken($successBgColor, 15%);
       }
     }
 
     &.warning {
-      background-color: @warningBgColor;
+      background-color: $warningBgColor;
 
       .toastr-progressbar {
-        background-color: darken(@warningBgColor, 15%);
+        background-color: darken($warningBgColor, 15%);
       }
     }
 
     &.error {
-      background-color: @errorBgColor;
+      background-color: $errorBgColor;
 
       .toastr-progressbar {
-        background-color: darken(@errorBgColor, 15%);
+        background-color: darken($errorBgColor, 15%);
       }
     }
 
