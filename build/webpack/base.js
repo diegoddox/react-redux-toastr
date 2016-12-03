@@ -5,8 +5,6 @@ var path      = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = require('../../config');
 
-const baseSrcPath = path.join(config.path_base, '/' +  config.dir_client);
-
 module.exports = {
   target: 'web',
   entry: {
@@ -35,9 +33,9 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'url-loader'
       }, {
-        test: /\.less$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
-        loader: 'style!css!less'
+        loader: 'style!css!sass'
       }, {
         test: /\.css$/,
         loader: 'style-loader!css-loader'

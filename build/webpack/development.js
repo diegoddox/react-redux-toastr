@@ -24,12 +24,12 @@ baseConfig.devServer = {
   hot: true,
   stats: {
     historyApiFallback: true,
-    assets: false, //the flag for the assets out-puted before
+    assets: false, // the flag for the assets out-puted before
     colors: true,
     version: false,
     hash: false,
     timings: true,
-    chunks: true, //these chunks seem more useful for dev
+    chunks: true, // these chunks seem more useful for dev
     chunkModules: false,
     children: false
   },

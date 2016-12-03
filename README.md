@@ -20,7 +20,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ```
 
 Or import the less file into to your project.
-`import 'react-redux-toastr/src/less/index.less'`
+`import 'react-redux-toastr/src/styles/index.scss'`
 
 ##### 3. The third thing you need to do is to add the `react-redux-toastr` `reducer` to Redux.
 
