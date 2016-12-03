@@ -22,6 +22,7 @@ export default class ToastrBox extends Component {
     } = props.item;
 
     this.isHiding = false;
+    this.shouldClose = false;
     this.intervalId = null;
 
     this.transitionIn = transitionIn || this.props.transitionIn;
@@ -41,7 +42,8 @@ export default class ToastrBox extends Component {
         '_setTransition',
         '_clearTransition',
         '_setIntervalId',
-        '_setIsHiding'
+        '_setIsHiding',
+        '_setShouldClose'
       ],
       this
     );
@@ -73,6 +75,7 @@ export default class ToastrBox extends Component {
   }
 
   handleClick() {
+    this._setShouldClose(true);
     this._removeToastr();
   }
 
@@ -93,7 +96,7 @@ export default class ToastrBox extends Component {
   mouseLeave() {
     const {removeOnHover} = this.props.item.options;
 
-    if (!this.isHiding && removeOnHover) {
+    if (!this.isHiding && (removeOnHover || this.shouldClose)) {
       this._setIntervalId(setTimeout(this._removeToastr, 1000));
 
       const {progressBar} = this.props.item.options;
@@ -264,6 +267,10 @@ export default class ToastrBox extends Component {
 
   _setIsHiding(val) {
     this.isHiding = val;
+  }
+
+  _setShouldClose(val) {
+    this.shouldClose = val;
   }
 
   render() {
