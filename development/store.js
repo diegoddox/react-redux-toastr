@@ -2,12 +2,11 @@
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import {createStore, compose} from 'redux';
-import DevTools from './containers/DevTools';
 import rootReducers from './reducer';
 
 export default function configStore(initialState) {
   let createStoreWithMiddleware;
-  createStoreWithMiddleware = compose(DevTools.instrument());
+  createStoreWithMiddleware = compose(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
   const store = createStoreWithMiddleware(createStore)(rootReducers, initialState);
 
