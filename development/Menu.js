@@ -63,6 +63,9 @@ export default class Menu extends React.Component {
           <li className="message" onClick={() => this.handleClick('message')}>
             <span className="icon-email-envelope"/>
           </li>
+          <li className="message" onClick={() => toastr.confirm('The confirm message')}>
+            <span className="icon-check-5"/>
+          </li>
       </ul>
     );
   }
