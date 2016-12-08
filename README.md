@@ -119,7 +119,7 @@ constructor(props) {
 # Toastr methods
 ##### Toastr: `success`  `info`  `warning`  `light`  `error` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton` and `progressBar`
+In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton`, `progressBar`, `transitionIn` and `transitionOut`.
 
 ``` javascript
 import {toastr} from 'react-redux-toastr'

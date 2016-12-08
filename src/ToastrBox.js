@@ -19,7 +19,7 @@ export default class ToastrBox extends Component {
     let {
       transitionIn,
       transitionOut
-    } = props.item;
+    } = props.item.options;
 
     this.isHiding = false;
     this.shouldClose = false;
