@@ -1,4 +1,12 @@
-import {ADD_TOASTR, REMOVE_TOASTR, CLEAN_TOASTR, SHOW_CONFIRM, HIDE_CONFIRM} from './constants';
+import {
+  ADD_TOASTR,
+  REMOVE_TOASTR,
+  CLEAN_TOASTR,
+  SHOW_CONFIRM,
+  HIDE_CONFIRM,
+  REMOVE_BY_TYPE
+} from './constants';
+
 import {preventDuplication} from './utils';
 import {toastrsCache} from './reducer';
 import config from './config';
@@ -18,30 +26,23 @@ export function add(toastr) {
   };
 }
 
-export function clean() {
-  return {
-    type: CLEAN_TOASTR
-  };
-}
+export const clean = () => ({
+  type: CLEAN_TOASTR
+});
 
-export function remove(id) {
-  return {
-    type: REMOVE_TOASTR,
-    payload: {
-      id
-    }
-  };
-}
+export const remove = (params) => ({
+  type: REMOVE_TOASTR,
+  payload: params
+});
 
-export function showConfirm(obj) {
-  return {
-    type: SHOW_CONFIRM,
-    payload: obj
-  };
-}
+export const showConfirm = (obj) => ({
+  type: SHOW_CONFIRM,
+  payload: obj
+});
 
-export function hideConfirm() {
-  return {
-    type: HIDE_CONFIRM
-  };
-}
+export const hideConfirm = () => ({type: HIDE_CONFIRM});
+
+export const removeByType = (payload) => ({
+  type: REMOVE_BY_TYPE,
+  payload
+});

@@ -11,6 +11,12 @@ let actions = {};
 
 actions.clean = () => emitter.emit('clean/toastr');
 
+/**
+ * @params: can be a ID or a object that with a property type: 'success'
+ * and by passing this we will remove all toastr with that type.
+ */
+actions.removeByType = (type) => emitter.emit('removeByType/toastr', type);
+
 actions.confirm = (...args) => {
   emitter.emit('toastr/confirm', {
     message: args[0],

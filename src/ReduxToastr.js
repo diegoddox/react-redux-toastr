@@ -49,16 +49,18 @@ class ReduxToastr extends Component {
   }
 
   componentDidMount() {
-    const {add, showConfirm, clean} = this.props;
+    const {add, showConfirm, clean, removeByType} = this.props;
     EE.on('toastr/confirm', showConfirm);
     EE.on('add/toastr', add);
     EE.on('clean/toastr', clean);
+    EE.on('removeByType/toastr', removeByType);
   }
 
   componentWillUnmount() {
     EE.removeListener('toastr/confirm');
     EE.removeListener('add/toastr');
     EE.removeListener('clean/toastr');
+    EE.removeListener('removeByType/toastr');
     this.toastrFired = {};
   }
 
