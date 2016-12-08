@@ -117,7 +117,7 @@ constructor(props) {
 ```
 
 # Toastr methods
-##### Toastr: `success` `info` `warning` `light` and `error`
+##### Toastr: `success`  `info`  `warning`  `light`  `error` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
 In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton` and `progressBar`
 
@@ -141,6 +141,7 @@ toastr.success('Title', 'Message', toastrOptions)
 toastr.info('The message', toastrOptions)
 toastr.warning('The title', 'The message')
 toastr.error('The message')
+toastr.removeByType('error') // Remove all toastrs with the type error.
 ```
 
 ##### Toastr methods light

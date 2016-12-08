@@ -1,3 +1,7 @@
+#4.2.1
+Add method `removeByType`.
+
+
 #4.1.0
 Migrate frm less to scss
 
