@@ -1,5 +1,5 @@
-@import './animation';
-@import './confirm';
+@import './animation.scss';
+@import './confirm.scss';
 
 body.toastr-confirm-active {
   overflow: hidden;
