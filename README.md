@@ -117,6 +117,8 @@ constructor(props) {
 ```
 
 # Toastr methods
+Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `error` `confirm` `message` and `removeByType`
+
 ##### Toastr: `success`  `info`  `warning`  `light`  `error` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
 In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton`, `progressBar`, `transitionIn` and `transitionOut`.
