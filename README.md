@@ -230,7 +230,7 @@ const toastrConfirmOptions = {
   disableCancel: true;
 };
 
-toastr.confirm('Are you sure about that!', toastrConfirmOptions);
+toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
 ```
 
 ### Avatar: in case you wanna use the same avatar as the example
