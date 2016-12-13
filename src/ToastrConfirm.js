@@ -115,7 +115,9 @@ class ToastrConfirm extends Component {
     const code = keyCode(e);
     if (code == ESC && !this.disableCancel) {
       this.handleCancelClick();
-    } else if ((code == ENTER && this.isKeyDown) || this.disableCancel) {
+    } else if (code == ESC && this.disableCancel) {
+      this.handleConfirmClick();
+    } else if ((code == ENTER && this.isKeyDown)) {
       this.isKeyDown = false;
       this.handleConfirmClick();
     }
