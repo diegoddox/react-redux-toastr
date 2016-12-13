@@ -131,13 +131,12 @@ class ToastrConfirm extends Component {
                 <button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
                   {this.okText}
                 </button>
-
-            {
-              this.disableCancel ? null : (
-                <Button onClick={this.handleCancelClick.bind(this)}>
-                  {this.disableCancel}
-                </Button>
-              )
+                {
+                  this.disableCancel ? null : (
+                    <Button onClick={this.handleCancelClick.bind(this)}>
+                      {this.disableCancel}
+                    </Button>
+                )
             }
           </div>
         <div className="shadow"></div>
