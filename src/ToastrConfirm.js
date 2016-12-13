@@ -128,13 +128,13 @@ class ToastrConfirm extends Component {
       <div className="confirm-holder">
           <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
-                <button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
+                <Button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
                   {this.okText}
-                </button>
+                </Button>
                 {
                   this.disableCancel ? null : (
                     <Button onClick={this.handleCancelClick.bind(this)}>
-                      {this.disableCancel}
+                      {this.cancelText}
                     </Button>
                 )
             }
