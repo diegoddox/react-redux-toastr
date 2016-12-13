@@ -19,14 +19,14 @@ class ToastrConfirm extends Component {
       cancelText,
       transitionIn,
       transitionOut,
-      hideCancel
+      disableCancel
     } = confirm.options;
 
     this.okText = okText || confirmOptions.okText;
     this.cancelText = cancelText || confirmOptions.cancelText;
     this.transitionIn = transitionIn || confirmOptions.transitionIn;
     this.transitionOut = transitionOut || confirmOptions.transitionOut;
-    this.hideCancel = hideCancel || confirmOptions.hideCancel;
+    this.disableCancel = disableCancel || confirmOptions.disableCancel;
     _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown', this);
     this.isKeyDown = false;
   }
@@ -113,9 +113,9 @@ class ToastrConfirm extends Component {
 
   handleOnKeyUp(e) {
     const code = keyCode(e);
-    if (code == ESC && !this.hideCancel) {
+    if (code == ESC && !this.disableCancel) {
       this.handleCancelClick();
-    } else if ((code == ENTER && this.isKeyDown) || this.hideCancel) {
+    } else if ((code == ENTER && this.isKeyDown) || this.disableCancel) {
       this.isKeyDown = false;
       this.handleConfirmClick();
     }
@@ -126,14 +126,14 @@ class ToastrConfirm extends Component {
       <div className="confirm-holder">
           <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
-                <button className={this.hideCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
+                <button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
                   {this.okText}
                 </button>
 
             {
-              this.hideCancel ? null : (
+              this.disableCancel ? null : (
                 <Button onClick={this.handleCancelClick.bind(this)}>
-                  {this.cancelText}
+                  {this.disableCancel}
                 </Button>
               )
             }
