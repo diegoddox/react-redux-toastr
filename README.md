@@ -220,7 +220,7 @@ const toastrConfirmOptions = {
 toastr.confirm('Are you sure about that!', toastrConfirmOptions);
 ```
 
-You can make it so ok is the only option by:
+You can make it so 'ok' is the only button by:
 
 - Passing the `disableCancel` prop to the `toasterConfirmOptions` object:
 
