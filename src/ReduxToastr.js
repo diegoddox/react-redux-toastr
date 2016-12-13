@@ -36,7 +36,8 @@ class ReduxToastr extends Component {
       transitionIn: 'bounceInDown',
       transitionOut: 'bounceOutUp',
       okText: 'ok',
-      cancelText: 'cancel'
+      cancelText: 'cancel',
+      hideCancel: true
     }
   };
 
