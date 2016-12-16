@@ -75,6 +75,12 @@ export default class ToastrBox extends Component {
   }
 
   handleClick() {
+    let {onCloseButtonClick} = this.props.item.options;
+
+    if (onCloseButtonClick) {
+      onCloseButtonClick();
+    }
+
     this._setShouldClose(true);
     this._removeToastr();
   }
