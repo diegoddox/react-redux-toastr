@@ -221,6 +221,19 @@ const toastrConfirmOptions = {
 toastr.confirm('Are you sure about that!', toastrConfirmOptions);
 ```
 
+You can make it so `ok` is the only button by:
+
+- Passing the `disableCancel` prop to the `toasterConfirmOptions` object:
+
+```javascript
+const toastrConfirmOptions = {
+  ...
+  disableCancel: true;
+};
+
+toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
+```
+
 ### Avatar: in case you wanna use the same avatar as the example
 [Avatar](https://github.com/diegoddox/react-redux-toastr/blob/master/development/Avatar.js)
 

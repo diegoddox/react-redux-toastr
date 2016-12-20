@@ -74,6 +74,10 @@
         transform: scale(0);
       }
 
+      &.full-width {
+        width: 100%;
+      }
+
       // In order to avoid event bubbling put the transition on the active class
       &.active {
         &:before {

@@ -18,14 +18,15 @@ class ToastrConfirm extends Component {
       okText,
       cancelText,
       transitionIn,
-      transitionOut
+      transitionOut,
+      disableCancel
     } = confirm.options;
 
     this.okText = okText || confirmOptions.okText;
     this.cancelText = cancelText || confirmOptions.cancelText;
     this.transitionIn = transitionIn || confirmOptions.transitionIn;
     this.transitionOut = transitionOut || confirmOptions.transitionOut;
-
+    this.disableCancel = (disableCancel != null) ? disableCancel : confirmOptions.disableCancel;
     _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown', this);
     this.isKeyDown = false;
   }
@@ -112,9 +113,11 @@ class ToastrConfirm extends Component {
 
   handleOnKeyUp(e) {
     const code = keyCode(e);
-    if (code == ESC) {
+    if (code == ESC && !this.disableCancel) {
       this.handleCancelClick();
-    } else if (code == ENTER && this.isKeyDown) {
+    } else if (code == ESC && this.disableCancel) {
+      this.handleConfirmClick();
+    } else if ((code == ENTER && this.isKeyDown)) {
       this.isKeyDown = false;
       this.handleConfirmClick();
     }
@@ -125,12 +128,16 @@ class ToastrConfirm extends Component {
       <div className="confirm-holder">
           <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
-            <Button onClick={this.handleConfirmClick.bind(this)}>
-              {this.okText}
-            </Button>
-            <Button onClick={this.handleCancelClick.bind(this)}>
-              {this.cancelText}
-            </Button>
+                <Button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
+                  {this.okText}
+                </Button>
+                {
+                  this.disableCancel ? null : (
+                    <Button onClick={this.handleCancelClick.bind(this)}>
+                      {this.cancelText}
+                    </Button>
+                )
+            }
           </div>
         <div className="shadow"></div>
       </div>
