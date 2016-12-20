@@ -154,7 +154,7 @@ export default class ToastrBox extends Component {
         className="close-toastr"
         onClick={this.handleClick.bind(this)}
       >
-        x
+        &#x2715;
       </button>
     );
   }
