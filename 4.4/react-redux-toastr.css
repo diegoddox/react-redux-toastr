@@ -1,0 +1,332 @@
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both; }
+  .animated.bounceIn {
+    animation-duration: .7s; }
+  .animated.bounceOut {
+    animation-duration: .5s; }
+  .animated.bounceIn {
+    animation-name: bounceIn; }
+  .animated.bounceOut {
+    animation-name: bounceOut; }
+  .animated.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: .7s; }
+  .animated.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: .3s; }
+  .animated.bounceInDown {
+    animation-name: bounceInDown; }
+  .animated.bounceOutUp {
+    animation-name: bounceOutUp; }
+
+@keyframes bounceIn {
+  from, 20%, 40%, 60%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3); }
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1); }
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9); }
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03); }
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97); }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1); } }
+
+@keyframes bounceOut {
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9); }
+  50%, 55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1); }
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3); } }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@keyframes bounceInDown {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0); }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0); }
+  75% {
+    transform: translate3d(0, -10px, 0); }
+  90% {
+    transform: translate3d(0, 5px, 0); }
+  to {
+    -webkit-transform: none;
+    transform: none; } }
+
+@keyframes bounceOutUp {
+  20% {
+    transform: translate3d(0, -10px, 0); }
+  40%, 45% {
+    opacity: 1;
+    transform: translate3d(0, 20px, 0); }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0); } }
+
+.confirm-holder {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2; }
+  .confirm-holder .shadow {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(50, 58, 68, 0.8); }
+  .confirm-holder .confirm {
+    width: 320px;
+    background-color: white;
+    position: absolute;
+    z-index: 9;
+    top: 20%;
+    left: 50%;
+    margin-left: -160px;
+    box-shadow: 3px 3px 20px #333;
+    border-radius: 4px;
+    overflow: hidden; }
+    .confirm-holder .confirm .message {
+      width: 90%;
+      padding: 5%;
+      min-height: 50px;
+      font-size: 1em;
+      background-color: white;
+      text-align: center;
+      font-family: 'open-sanscondensed-light', sans-serif;
+      clear: both; }
+    .confirm-holder .confirm button {
+      width: 50%;
+      height: 50px;
+      text-transform: capitalize;
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      float: left;
+      border-top: 1px solid #f0f0f0;
+      font-size: 14px;
+      overflow: hidden; }
+      .confirm-holder .confirm button p {
+        position: relative;
+        z-index: 1;
+        line-height: 100%;
+        padding: 0;
+        margin: 0;
+        color: #555; }
+      .confirm-holder .confirm button:before {
+        content: '';
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -20px;
+        background-color: #999;
+        border-radius: 50%;
+        z-index: 0;
+        opacity: .2;
+        transform: scale(0); }
+      .confirm-holder .confirm button.full-width {
+        width: 100%; }
+      .confirm-holder .confirm button.active:before {
+        transition: transform .25s ease-in-out;
+        transform: scale(2); }
+      .confirm-holder .confirm button:focus {
+        outline: none; }
+      .confirm-holder .confirm button:hover {
+        cursor: pointer;
+        background-color: #f5f5f5; }
+
+body.toastr-confirm-active {
+  overflow: hidden; }
+
+.redux-toastr {
+  width: 350px;
+  position: fixed;
+  z-index: 99999999; }
+  .redux-toastr *, .redux-toastr *:before, .redux-toastr *:after {
+    box-sizing: border-box; }
+  .redux-toastr.top-left, .redux-toastr.top-right, .redux-toastr.top-center {
+    top: 15px; }
+  .redux-toastr.bottom-left, .redux-toastr.bottom-right, .redux-toastr.bottom-center {
+    bottom: 15px; }
+  .redux-toastr.top-left {
+    left: 15px; }
+  .redux-toastr.top-center, .redux-toastr.bottom-center {
+    left: 50%;
+    margin-left: -175px; }
+  .redux-toastr.top-right {
+    right: 15px; }
+  .redux-toastr.bottom-left {
+    left: 15px; }
+  .redux-toastr.bottom-right {
+    right: 15px; }
+  .redux-toastr .toastr {
+    background-color: #fcfcfc;
+    width: 100%;
+    min-height: 70px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    position: relative;
+    color: #333;
+    opacity: .94;
+    box-shadow: 2px 2px 10px #ccc; }
+    .redux-toastr .toastr:hover:not(.message) {
+      box-shadow: 0px 0px 10px #777;
+      opacity: 1; }
+    .redux-toastr .toastr .toastr-status {
+      width: 100%;
+      height: 5px; }
+      .redux-toastr .toastr .toastr-status.success {
+        background-color: #60bb71; }
+      .redux-toastr .toastr .toastr-status.warning {
+        background-color: #f7a336; }
+      .redux-toastr .toastr .toastr-status.info {
+        background-color: #58abc3; }
+      .redux-toastr .toastr .toastr-status.error {
+        background-color: #db6a64; }
+    .redux-toastr .toastr .toastr-left-container, .redux-toastr .toastr .toastr-right-container {
+      float: left;
+      text-align: center;
+      overflow: hidden; }
+    .redux-toastr .toastr .toastr-left-container {
+      width: 80px;
+      top: 0;
+      left: 0;
+      position: absolute;
+      bottom: 0; }
+      .redux-toastr .toastr .toastr-left-container .holder {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        top: 50%;
+        margin-top: -35px;
+        left: 5px;
+        line-height: 60px; }
+      .redux-toastr .toastr .toastr-left-container .toastr-icon {
+        fill: white;
+        vertical-align: middle;
+        margin-top: 5px; }
+    .redux-toastr .toastr .toastr-middle-container {
+      width: 65%;
+      margin-left: 80px;
+      position: relative;
+      float: left;
+      font-family: Arial, Helvetica, sans-serif, sans-serif;
+      font-size: 1em;
+      text-align: left;
+      padding: 10px 5px; }
+      .redux-toastr .toastr .toastr-middle-container .title {
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-bottom: 5px; }
+    .redux-toastr .toastr .toastr-right-container {
+      width: 10%; }
+    .redux-toastr .toastr .close-toastr {
+      width: 10%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: transparent;
+      font-size: 22px;
+      border: none;
+      outline: none;
+      opacity: 0.5;
+      cursor: pointer; }
+      .redux-toastr .toastr .close-toastr:hover {
+        opacity: 1; }
+      .redux-toastr .toastr .close-toastr:focus {
+        outline: none; }
+    .redux-toastr .toastr.info, .redux-toastr .toastr.success, .redux-toastr .toastr.warning, .redux-toastr .toastr.error {
+      color: white; }
+    .redux-toastr .toastr.info {
+      background-color: #58abc3; }
+      .redux-toastr .toastr.info .toastr-progressbar {
+        background-color: #378298; }
+    .redux-toastr .toastr.success {
+      background-color: #60bb71; }
+      .redux-toastr .toastr.success .toastr-progressbar {
+        background-color: #3e914d; }
+    .redux-toastr .toastr.warning {
+      background-color: #f7a336; }
+      .redux-toastr .toastr.warning .toastr-progressbar {
+        background-color: #d87e09; }
+    .redux-toastr .toastr.error {
+      background-color: #db6a64; }
+      .redux-toastr .toastr.error .toastr-progressbar {
+        background-color: #c5352e; }
+    .redux-toastr .toastr.light .toastr-progressbar {
+      background-color: #ccc; }
+    .redux-toastr .toastr.light .toastr-icon {
+      fill: #333 !important; }
+    .redux-toastr .toastr.message {
+      opacity: 1;
+      border: 1px solid #dbdbdb; }
+      .redux-toastr .toastr.message .title {
+        width: 90%;
+        height: 50px;
+        text-align: center;
+        overflow: hidden;
+        font-size: 1.2em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 50px;
+        padding: 0 20px; }
+      .redux-toastr .toastr.message .message {
+        width: 100%;
+        max-height: 400px;
+        overflow: hidden;
+        overflow-y: auto;
+        border-top: 1px solid #f1f1f1;
+        border-bottom: 1px solid #f1f1f1;
+        background-color: white;
+        padding: 15px;
+        font-size: 1.1em;
+        margin-bottom: 20px; }
+        .redux-toastr .toastr.message .message img {
+          display: block;
+          margin: 10px auto;
+          max-width: 100%; }
+      .redux-toastr .toastr.message .close-toastr {
+        height: 50px; }
+    .redux-toastr .toastr .toastr-progress-container {
+      height: 5px;
+      margin: 0 -20px -20px -60px;
+      position: absolute;
+      bottom: 20px;
+      width: 100%; }
+      .redux-toastr .toastr .toastr-progress-container .toastr-progressbar {
+        -webkit-border-radius: 0 0 0 4px;
+        -moz-border-radius: 0 0 0 4px;
+        border-radius: 0 0 0 4px;
+        height: 100%; }
