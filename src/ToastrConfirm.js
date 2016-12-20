@@ -38,19 +38,8 @@ class ToastrConfirm extends Component {
     if (this.props.confirm.show) {
       this.setTransition(true);
     }
-    if (window) {
-      window.addEventListener('keyup', this.handleOnKeyUp);
-      window.addEventListener('keydown', this.handleOnKeyDown);
-    }
   }
-
-  componentWillUnmount() {
-    if (window) {
-      window.removeEventListener('keyup', this.handleOnKeyUp);
-      window.removeEventListener('keydown', this.handleOnKeyDown);
-    }
-  }
-
+ 
   handleOnKeyDown(e) {
     if (keyCode(e) == ENTER) {
       e.preventDefault();
@@ -125,7 +114,7 @@ class ToastrConfirm extends Component {
 
   render() {
     return (
-      <div className="confirm-holder">
+      <div className="confirm-holder" tabIndex="-1" onKeyDown={handleOnKeyDown} onKeyUp={handleOnKeyUp}>
           <div className="confirm animated" ref={ref => this.confirm = ref}>
             <div className="message">{this.props.confirm.message}</div>
                 <Button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
