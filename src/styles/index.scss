@@ -10,11 +10,11 @@ body.toastr-confirm-active {
     box-sizing: border-box;
   }
 
-  $toastr-width: 350px;
-  $successBgColor: #60bb71;
-  $infoBgColor: #58abc3;
-  $warningBgColor: #f7a336;
-  $errorBgColor: #db6a64;
+  $toastr-width: 350px !default;
+  $successBgColor: #60bb71 !default;
+  $infoBgColor: #58abc3 !default;
+  $warningBgColor: #f7a336 !default;
+  $errorBgColor: #db6a64 !default;
 
   width: $toastr-width;
   position: fixed;
