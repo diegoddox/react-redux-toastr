@@ -192,7 +192,8 @@ export default class ToastrBox extends Component {
   renderMessage() {
     const {
       title,
-      message
+      message,
+      options
     } = this.props.item;
 
     return (
@@ -201,7 +202,10 @@ export default class ToastrBox extends Component {
           {title}
           {this.renderCloseButton()}
         </div>
-        <div className="message">{message}</div>
+        <div className="message">
+          {message}
+          {options.component && this.renderSubComponent()}
+        </div>
       </div>
     );
   }
