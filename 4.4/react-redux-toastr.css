@@ -261,7 +261,8 @@ body.toastr-confirm-active {
       border: none;
       outline: none;
       opacity: 0.5;
-      cursor: pointer; }
+      cursor: pointer;
+      font-family: "Helvetica Neue", Helvetica, Arial sans-serif; }
       .redux-toastr .toastr .close-toastr:hover {
         opacity: 1; }
       .redux-toastr .toastr .close-toastr:focus {
