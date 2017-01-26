@@ -24,6 +24,7 @@ export default class ToastrBox extends Component {
     this.isHiding = false;
     this.shouldClose = false;
     this.intervalId = null;
+    this.ignoreIsHiding = false;
 
     this.transitionIn = transitionIn || this.props.transitionIn;
     this.transitionOut = transitionOut || this.props.transitionOut;
@@ -76,6 +77,7 @@ export default class ToastrBox extends Component {
 
   handleClick() {
     let {onCloseButtonClick} = this.props.item.options;
+    this.ignoreIsHiding = true;
 
     if (onCloseButtonClick) {
       onCloseButtonClick();
@@ -232,8 +234,9 @@ export default class ToastrBox extends Component {
     const {remove, item} = this.props;
     const {options, id} = item;
 
-    if (this.isHiding) {
+    if (this.isHiding || this.ignoreIsHiding) {
       this._setIsHiding(false);
+      this.ignoreIsHiding = false;
       remove(id);
       if (options.onHideComplete) {
         options.onHideComplete();

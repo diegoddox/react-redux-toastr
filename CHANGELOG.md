@@ -1,3 +1,7 @@
+#4.4.6
+Fix animation side effect.
+(issue)[https://github.com/diegoddox/react-redux-toastr/issues/102]
+
 #4.2.1
 Add method `removeByType`.
 
