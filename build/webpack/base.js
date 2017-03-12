@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.join(config.path_base + '/dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
     publicPath: ''
   },
   module: {
