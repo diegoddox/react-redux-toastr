@@ -106,6 +106,7 @@ constructor(props) {
   this.toastr = bindActionCreators(toastrActions, this.props.dispatch)
 
   this.toastr.add({
+   id: 'mycustomid', // If not provided we will add one.
    type: 'success',
    title: 'your title',
    message: 'message',

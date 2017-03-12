@@ -1,3 +1,6 @@
+#5.0.0
+Custom `id` for the `toastr` and `confirm`
+
 #4.4.6
 Fix animation side effect.
 (issue)[https://github.com/diegoddox/react-redux-toastr/issues/102]
