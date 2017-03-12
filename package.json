@@ -27,7 +27,7 @@
       }
     },
     "build_client": {
-      "command": "./node_modules/.bin/webpack --progress --config build/webpack.config.js",
+      "command": "./node_modules/.bin/webpack -p --color --progress --config build/webpack.config.js",
       "env": {
         "NODE_ENV": "production"
       }

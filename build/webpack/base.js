@@ -8,11 +8,17 @@ var config = require('../../config');
 module.exports = {
   target: 'web',
   entry: {
-    app: path.join(config.path_base, '/' + config.dir_client + '/client.js')
+    app: path.join(config.path_base, '/' + config.dir_client + '/client.js'),
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'redux'
+    ]
   },
   output: {
     path: path.join(config.path_base + '/dist'),
-    filename: 'bundle.[hash].js',
+    filename: '[name].[hash].js',
     publicPath: ''
   },
   module: {
@@ -52,6 +58,7 @@ module.exports = {
         NODE_ENV: '"' + process.env.NODE_ENV + '"'
       }
     }),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.[hash].bundle.js'),
     new HtmlWebpackPlugin({
       templateContent: ''
         + '<!DOCTYPE html>'
