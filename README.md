@@ -1,6 +1,6 @@
 ##`react-redux-toastr` [demo](http://diegoddox.github.io/react-redux-toastr/)
 
-![react-redux-toastr](https://raw.githubusercontent.com/diegoddox/react-redux-toastr/svg-component/development/assets/toastr.png?style=centerme)
+![react-redux-toastr](https://raw.githubusercontent.com/diegoddox/react-redux-toastr/master/assets/toastr.png?style=centerme)
 
 
 `react-redux-toastr` is a React toastr message implemented with [Redux](https://github.com/rackt/redux), primary consists of three things: a reducer, toastr emitter and a React component.
