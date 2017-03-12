@@ -60,6 +60,7 @@ module.exports = {
         + '   <meta charset="iso-8859-1">'
         + '   <title>React Redux Toastr</title>'
         + '   <meta name="viewport" content="width=device-width, initial-scale=1">'
+        + '   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">'
         + '   <link href="https://file.myfontastic.com/DK4y3Mj8zxvX2ADWpcWGnM/icons.css" rel="stylesheet">'
         + ' </head>'
         + ' <body>'

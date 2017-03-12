@@ -9,14 +9,10 @@ const styles = {
   margin: 'auto'
 };
 
-const imgStyle = {
-  maxWidth: '105%'
-};
-
 export default () => {
   return (
     <div className="toastr-avatar" style={styles}>
-      <img src="./assets/bob.jpg" style={imgStyle}/>
+      <img src="./assets/jesus.jpg" style={{maxWidth: '105%'}}/>
     </div>
   );
 };
