@@ -18,13 +18,13 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-  [ADD_TOASTR]: (state, {type, title, message, options, ignoreToastr}) => {
+  [ADD_TOASTR]: (state, {id, type, title, message, options, ignoreToastr}) => {
     if (ignoreToastr) {
       return state;
     }
 
     const newToastr = {
-      id: guid(),
+      id: id || guid(),
       type,
       title,
       message,
@@ -77,11 +77,11 @@ export default createReducer(initialState, {
       toastrs: []
     };
   },
-  [SHOW_CONFIRM]: (state, {message, options}) => {
+  [SHOW_CONFIRM]: (state, {id, message, options}) => {
     return {
       ...state,
       confirm: {
-        id: guid(),
+        id: id || guid(),
         show: true,
         message,
         options: options || {}
