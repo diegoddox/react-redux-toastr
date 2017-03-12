@@ -105,13 +105,14 @@ export default class ToastrBox extends Component {
     const {removeOnHover} = this.props.item.options;
 
     if (!this.isHiding && (removeOnHover || this.shouldClose)) {
-      this._setIntervalId(setTimeout(this._removeToastr, 1000));
+      const interval = removeOnHover === true ? 1000 : removeOnHover;
+      this._setIntervalId(setTimeout(this._removeToastr, interval));
 
       const {progressBar} = this.props.item.options;
       const timeOut = this._getItemTimeOut();
 
       if (timeOut && progressBar) {
-        this.setState({progressBar: {duration: 1000}});
+        this.setState({progressBar: {duration: interval}});
       }
     }
   }
