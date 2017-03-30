@@ -8,7 +8,7 @@ import {EE} from './toastrEmitter';
 import config from './config';
 import {updateConfig, _bind} from './utils';
 
-class ReduxToastr extends Component {
+export class ReduxToastr extends Component {
   static displayName = 'ReduxToastr';
 
   static propTypes = {
