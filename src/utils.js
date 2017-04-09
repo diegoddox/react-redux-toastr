@@ -14,6 +14,13 @@ function isString(obj) {
   return false;
 }
 
+export function isBrowser() {
+  if (typeof window !== 'undefined') {
+    return true;
+  }
+  return false;
+}
+
 export function keyCode(e) {
   return (e.which) ? e.which : e.keyCode;
 }
@@ -61,8 +68,8 @@ export function onCSSTransitionEnd(node, callback) {
     // stopPropagation is not working in IE11 and Edge, the transitionend from the Button.js is waiting
     // on the confirm animation to end first and not the Button.js
     e.stopPropagation();
-    callback && callback(e);
     ReactTransitionEvents.removeEndEventListener(node, runOnce);
+    callback && callback(e);
   };
   ReactTransitionEvents.addEndEventListener(node, runOnce);
 }

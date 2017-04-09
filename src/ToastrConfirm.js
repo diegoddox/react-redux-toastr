@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSCore from 'fbjs/lib/CSSCore';
-import {onCSSTransitionEnd, _bind, keyCode} from './utils';
+import {onCSSTransitionEnd, _bind, keyCode, isBrowser} from './utils';
 import Button from './Button';
 
 const ENTER = 13;
@@ -35,7 +34,7 @@ class ToastrConfirm extends React.Component {
   componentDidMount() {
     this.isHiding = false;
     this.hasClicked = false;
-    this.confirmHolder.focus();
+    this.confirmHolderElement.focus();
 
     if (this.props.confirm.show) {
       this.setTransition(true);
@@ -62,7 +61,7 @@ class ToastrConfirm extends React.Component {
     };
 
     this.setTransition();
-    onCSSTransitionEnd(this.confirm, onAnimationEnd);
+    onCSSTransitionEnd(this.confirmElement, onAnimationEnd);
   }
 
   handleCancelClick() {
@@ -78,28 +77,25 @@ class ToastrConfirm extends React.Component {
     };
 
     this.setTransition();
-    onCSSTransitionEnd(this.confirm, onAnimationEnd);
+    onCSSTransitionEnd(this.confirmElement, onAnimationEnd);
   }
 
   setTransition(add) {
-    const body = document.querySelector('body');
-
     if (add) {
       this.isHiding = false;
-      CSSCore.addClass(body, 'toastr-confirm-active');
-      CSSCore.addClass(this.confirm, this.transitionIn);
+      this.confirmElement.classList.add(this.transitionIn);
+      isBrowser() && document.querySelector('body').classList.add('toastr-confirm-active');
       return;
     }
 
     this.isHiding = true;
-    CSSCore.addClass(this.confirm, this.transitionOut);
+    this.confirmElement.classList.add(this.transitionOut);
   }
 
   removeConfirm() {
     this.isHiding = false;
     this.props.hideConfirm();
-    const body = document.querySelector('body');
-    CSSCore.removeClass(body, 'toastr-confirm-active');
+    isBrowser() && document.querySelector('body').classList.remove('toastr-confirm-active');
   }
 
   handleOnKeyUp(e) {
@@ -119,11 +115,11 @@ class ToastrConfirm extends React.Component {
       <div
         className="confirm-holder"
         tabIndex="-1"
-        ref={ref => this.confirmHolder = ref}
+        ref={ref => this.confirmHolderElement = ref}
         onKeyDown={this.handleOnKeyDown}
         onKeyUp={this.handleOnKeyUp}
       >
-          <div className="confirm animated" ref={ref => this.confirm = ref}>
+          <div className="confirm animated" ref={ref => this.confirmElement = ref}>
             <div className="message">{this.props.confirm.message}</div>
                 <Button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
                   {this.okText}

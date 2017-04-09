@@ -1,4 +1,3 @@
-import CSSCore from 'fbjs/lib/CSSCore';
 import React, {isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -66,7 +65,7 @@ export default class ToastrBox extends React.Component {
     }
 
     this._setTransition();
-    onCSSTransitionEnd(this.toastrBox, this._onAnimationComplete);
+    onCSSTransitionEnd(this.toastrBoxElement, this._onAnimationComplete);
     this.props.addToMemory(item.id);
   }
 
@@ -252,28 +251,25 @@ export default class ToastrBox extends React.Component {
     if (!this.isHiding) {
       this._setIsHiding(true);
       this._setTransition(true);
-      onCSSTransitionEnd(this.toastrBox, this._onAnimationComplete);
+      onCSSTransitionEnd(this.toastrBoxElement, this._onAnimationComplete);
     }
   }
 
   _setTransition(hide) {
-    const node = this.toastrBox;
     const animationType = hide ? this.transitionOut : this.transitionIn;
 
     const onEndListener = (e) => {
-      if (e && e.target == node) {
-        CSSCore.removeClass(node, animationType);
+      if (e && e.target == this.toastrBoxElement) {
+        this.toastrBoxElement.classList.remove(animationType);
       }
     };
 
-    onCSSTransitionEnd(this.toastrBox, onEndListener);
-    CSSCore.addClass(node, animationType);
+    onCSSTransitionEnd(this.toastrBoxElement, onEndListener);
+    this.toastrBoxElement.classList.add(animationType);
   }
 
   _clearTransition() {
-    const node = this.toastrBox;
-    CSSCore.removeClass(node, this.transitionIn);
-    CSSCore.removeClass(node, this.transitionOut);
+    this.toastrBoxElement.classList.remove(this.transitionIn, this.transitionOut);
   }
 
   _setIntervalId(intervalId) {
@@ -296,7 +292,7 @@ export default class ToastrBox extends React.Component {
 
     return (
       <div
-        ref={(ref) => this.toastrBox = ref}
+        ref={(ref) => this.toastrBoxElement = ref}
         className={classnames(
           'toastr',
           'animated',
