@@ -1,12 +1,13 @@
 import CSSCore from 'fbjs/lib/CSSCore';
-import React, {Component, PropTypes, isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
+import React, {isValidElement} from 'react'; //  eslint-disable-line no-unused-vars
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ProgressBar from './ProgressBar';
 import Icon from './Icon';
 
 import {onCSSTransitionEnd, _bind} from './utils';
 
-export default class ToastrBox extends Component {
+export default class ToastrBox extends React.Component {
   static displayName = 'ToastrBox';
 
   static propTypes = {

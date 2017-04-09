@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import CSSCore from 'fbjs/lib/CSSCore';
 import {onCSSTransitionEnd, _bind, keyCode} from './utils';
 import Button from './Button';
@@ -6,7 +7,7 @@ import Button from './Button';
 const ENTER = 13;
 const ESC = 27;
 
-class ToastrConfirm extends Component {
+class ToastrConfirm extends React.Component {
   constructor(props) {
     super(props);
     const {

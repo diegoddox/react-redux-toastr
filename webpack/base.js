@@ -1,20 +1,12 @@
-'use strict';
-
-var webpack   = require('webpack');
-var path      = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var config = require('../../config');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('../config');
 
 module.exports = {
   target: 'web',
   entry: {
-    app: path.join(config.path_base, '/' + config.dir_client + '/client.js'),
-    vendor: [
-      'react',
-      'react-dom',
-      'react-redux',
-      'redux'
-    ]
+    app: path.join(config.path_base, '/' + config.dir_client + '/client.js')
   },
   output: {
     path: path.join(config.path_base + '/dist'),
@@ -22,29 +14,19 @@ module.exports = {
     publicPath: ''
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['eslint'],
-        exclude: /node_modules/
-      }
-    ],
-    loaders: [
+    rules: [
       {
         test: /\.js?$/,
-        exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
+        exclude: [/node_modules/],
+        use: ['react-hot-loader', 'babel-loader']
       }, {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         exclude: /node_modules/,
         loader: 'url-loader'
       }, {
         test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: 'style!css!sass'
-      }, {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        exclude: [/node_modules/],
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }, {
         test: /\.jpg$/,
         exclude: /node_modules/,
@@ -58,7 +40,6 @@ module.exports = {
         NODE_ENV: '"' + process.env.NODE_ENV + '"'
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.[hash].bundle.js'),
     new HtmlWebpackPlugin({
       templateContent: ''
         + '<!DOCTYPE html>'

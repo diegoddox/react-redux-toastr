@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import cn from 'classnames';
 import ToastrBox from './ToastrBox';
@@ -8,7 +9,7 @@ import {EE} from './toastrEmitter';
 import config from './config';
 import {updateConfig, _bind} from './utils';
 
-export class ReduxToastr extends Component {
+export class ReduxToastr extends React.Component {
   static displayName = 'ReduxToastr';
 
   static propTypes = {
@@ -94,11 +95,7 @@ export class ReduxToastr extends Component {
 
   render() {
     return (
-      <div
-        className={cn('redux-toastr', this.props.position, this.props.className)}
-        aria-live="assertive"
-        role="alert"
-      >
+      <div className={cn('redux-toastr', this.props.position, this.props.className)}>
         {this.props.toastr.confirm &&
           <ToastrConfirm
             key={this.props.toastr.confirm.id}

@@ -1,29 +1,15 @@
 import './index.scss';
 import './../src/styles/index.scss';
-import React, {Component, PropTypes} from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react'; // eslint-disable-line no-unused-vars
 import {Provider} from 'react-redux';
 import ReduxToastr from './../src/';
 import Menu from './Menu';
 
-export default class App extends Component {
-  static displayName = 'ReduxToastr';
-
-  static propTypes = {
-    store: PropTypes.object.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Provider store={this.props.store}>
-        <div className="wrapper">
-          <ReduxToastr preventDuplicates/>
-          <Menu />
-        </div>
-      </Provider>
-    );
-  }
-}
+export default (props) => (
+  <Provider store={props.store}>
+    <div className="wrapper">
+      <ReduxToastr preventDuplicates/>
+      <Menu />
+    </div>
+  </Provider>
+);

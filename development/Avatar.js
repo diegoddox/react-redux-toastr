@@ -9,10 +9,8 @@ const styles = {
   margin: 'auto'
 };
 
-export default () => {
-  return (
-    <div className="toastr-avatar" style={styles}>
-      <img src="./assets/jesus.jpg" style={{maxWidth: '105%'}}/>
-    </div>
-  );
-};
+export default () => (
+  <div className="toastr-avatar" style={styles}>
+    <img src="./assets/jesus.jpg" style={{maxWidth: '105%'}}/>
+  </div>
+);
