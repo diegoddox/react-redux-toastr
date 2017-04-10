@@ -25,9 +25,9 @@ class ToastrConfirm extends React.Component {
 
     this.okText = okText || confirmOptions.okText;
     this.cancelText = cancelText || confirmOptions.cancelText;
-    this.transitionIn = transitionIn || confirmOptions.transitionIn;
-    this.transitionOut = transitionOut || confirmOptions.transitionOut;
-    this.disableCancel = (disableCancel != null) ? disableCancel : confirmOptions.disableCancel;
+    this.transitionIn = transitionIn || confirmOptions.transitionIn || props.transitionIn;
+    this.transitionOut = transitionOut || confirmOptions.transitionOut || props.transitionOut;
+    this.disableCancel = disableCancel || confirmOptions.disableCancel;
     _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown', this);
     this.isKeyDown = false;
   }

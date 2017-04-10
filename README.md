@@ -203,6 +203,7 @@ You can change the `ok` and `cancel` text by:
 - Passing the `confirm` props to the `ReduxToastr` component
 
 ```javascript
+<!-- please define both keys as this will override default okText & cancelText -->
 const options = {
   okText: 'confirm text',
   cancelText: 'cancel text'

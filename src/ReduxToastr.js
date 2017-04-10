@@ -34,11 +34,8 @@ export class ReduxToastr extends React.Component {
     transitionOut: 'bounceOut',
     preventDuplicates: false,
     confirmOptions: {
-      transitionIn: 'bounceInDown',
-      transitionOut: 'bounceOutUp',
       okText: 'ok',
-      cancelText: 'cancel',
-      disableCancel: false
+      cancelText: 'cancel'
     }
   };
 
