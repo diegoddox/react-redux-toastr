@@ -120,21 +120,19 @@ class ToastrConfirm extends React.Component {
         onKeyDown={this.handleOnKeyDown}
         onKeyUp={this.handleOnKeyUp}
       >
-          <div className="confirm animated" ref={ref => this.confirmElement = ref}>
-            <div className="message">{this.props.confirm.message}</div>
-                <Button
-                  className={classnames('ok-btn', {'full-width': this.disableCancel})}
-                  onClick={this.handleConfirmClick.bind(this)}>
-                  {this.okText}
-                </Button>
-                {
-                  this.disableCancel ? null : (
-                    <Button className="cancel-btn" onClick={this.handleCancelClick.bind(this)}>
-                      {this.cancelText}
-                    </Button>
-                )
-            }
-          </div>
+        <div className="confirm animated" ref={ref => this.confirmElement = ref}>
+          <div className="message">{this.props.confirm.message}</div>
+          <Button
+            className={classnames('ok-btn', {'full-width': this.disableCancel})}
+            onClick={() => this.handleConfirmClick()}>
+            {this.okText}
+          </Button>
+          {!this.disableCancel &&
+            <Button className="cancel-btn" onClick={this.handleCancelClick.bind(this)}>
+              {this.cancelText}
+            </Button>
+          }
+        </div>
         <div className="shadow"></div>
       </div>
     );
