@@ -1,4 +1,5 @@
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
+import config from './config';
 
 export function createReducer(initialState, fnMap) {
   return (state = initialState, {type, payload}) => {
@@ -28,8 +29,13 @@ export function keyCode(e) {
 export function mapToToastrMessage(type, array) {
   const obj = {};
   obj.type = type;
+  obj.position = config.position;
 
   obj.options = array.filter(item => typeof item == 'object')[0] || {};
+
+  if (obj.options.hasOwnProperty('position')) {
+    obj.position = obj.options.position;
+  }
 
   if (!obj.options.hasOwnProperty('removeOnHover')) {
     obj.options.removeOnHover = true;
@@ -85,7 +91,7 @@ export function preventDuplication(currentData, newObjec) {
   return hasDuplication;
 }
 
-export function updateConfig(config, obj) {
+export function updateConfig(obj) {
   Object.keys(config).forEach(function(key) {
     if (obj.hasOwnProperty(key)) {
       config[key] = obj[key];

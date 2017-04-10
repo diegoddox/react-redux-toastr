@@ -26,18 +26,16 @@ export function add(toastr) {
   };
 }
 
-export const clean = () => ({
-  type: CLEAN_TOASTR
-});
+export const clean = () => ({type: CLEAN_TOASTR});
 
-export const remove = (params) => ({
+export const remove = (payload) => ({
   type: REMOVE_TOASTR,
-  payload: params
+  payload
 });
 
-export const showConfirm = (obj) => ({
+export const showConfirm = (payload) => ({
   type: SHOW_CONFIRM,
-  payload: obj
+  payload
 });
 
 export const hideConfirm = () => ({type: HIDE_CONFIRM});

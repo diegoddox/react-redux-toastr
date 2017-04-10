@@ -18,17 +18,14 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-  [ADD_TOASTR]: (state, {id, type, title, message, options, ignoreToastr}) => {
-    if (ignoreToastr) {
+  [ADD_TOASTR]: (state, toastr) => {
+    if (toastr.ignoreToastr) {
       return state;
     }
 
     const newToastr = {
-      id: id || guid(),
-      type,
-      title,
-      message,
-      options
+      id: toastr.id || guid(),
+      ...toastr
     };
 
     let newState = {};

@@ -16,7 +16,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ##### 2. Add the `react-redux-toastr` css link to your app
 ##### NOTE: This can be change at anytime
 ```
-<link href="http://diegoddox.github.io/react-redux-toastr/4.4/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/react-redux-toastr/5.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 
 Or import the scss file into to your project.
@@ -50,7 +50,7 @@ import ReduxToastr from 'react-redux-toastr'
     <ReduxToastr
       timeOut={4000}
       newestOnTop={false}
-      preventDuplicates={true}
+      preventDuplicates
       position="top-left"
       transitionIn="fadeIn"
       transitionOut="fadeOut"
@@ -59,7 +59,8 @@ import ReduxToastr from 'react-redux-toastr'
 </Provider>
 ```
 
-default props: In case you don't pass the props
+default props: In case you don't pass the props.
+NOTE: `transitionIn` and `transitionOut` will affect the confirm animation as well
 
 ```
 timeOut: 5000,
@@ -109,6 +110,8 @@ constructor(props) {
    id: 'mycustomid', // If not provided we will add one.
    type: 'success',
    title: 'your title',
+   position: 'top-left', // This will override the global props position. 
+   attention: true, // This will add a shadow like the confirm method.
    message: 'message',
    options: {}
   });
@@ -122,7 +125,7 @@ Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `er
 
 ##### Toastr: `success`  `info`  `warning`  `light`  `error` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton`, `onCloseButtonClick`, `progressBar`, `transitionIn` and `transitionOut`.
+In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton`, `onCloseButtonClick`, `progressBar`, `transitionIn`, `position`, `attention`  and `transitionOut`.
 
 ``` javascript
 import {toastr} from 'react-redux-toastr'

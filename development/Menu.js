@@ -7,33 +7,21 @@ import messageText from './messageText';
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(type, avatar) {
+  handleClick(type) {
     let options = {};
-
-    let message = loremIpsum({count: 1});
-
-    if (avatar) {
-      options.icon = (<Avatar />);
-      options.progressBar = true;
-    }
-
-    if (type == 'message') {
-      message = loremIpsum({count: 19});
-      options.component = () => (<div>hej</div>);
-    }
 
     if (type == 'light') {
       const icon = 'warning';
       options.icon = icon;
       options.status = icon;
       options.progressBar = true;
+      options.position = 'bottom-left';
       options.component = () => (<div>hej</div>);
     }
 
-    toastr[type](loremIpsum(), message, options);
+    toastr[type](loremIpsum(), options);
   }
 
   render() {
@@ -45,6 +33,7 @@ export default class Menu extends React.Component {
               'and the Word was with God, and the Word was God...',
               {
                 timeOut: 10000,
+                position: 'top-left',
                 progressBar: true
               }
             );
@@ -57,6 +46,7 @@ export default class Menu extends React.Component {
           <li className="info" onClick={() => {
             toastr.info('Jesus answered, “I am the way and the truth and the life. No one comes to the Father except through Me.', {
               progressBar: true,
+              position: 'bottom-right',
               timeOut: 10000
             });
           }}>
@@ -71,6 +61,8 @@ export default class Menu extends React.Component {
               'that He gave His one and only Son, that everyone who believes in Him shall not perish but have eternal life. - John 3:16',
               {
                 icon: (<Avatar />),
+                position: 'top-center',
+                attention: true,
                 timeOut: 0
               });
           }}>

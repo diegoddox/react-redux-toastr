@@ -1,3 +1,12 @@
+#6.0.0
+
+## New features
+- Toastr `position`, now you can have toastr in different location by specifying the `position` option.
+- Toastr `attention`, this will add a shadow in the background of the toastr
+
+### Remove `transitionIn` and `transitionOut` from confirm options.
+Add the `position` on `toastr`,  
+
 #5.0.0
 Custom `id` for the `toastr` and `confirm`
 

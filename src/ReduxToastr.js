@@ -6,8 +6,7 @@ import ToastrBox from './ToastrBox';
 import ToastrConfirm from './ToastrConfirm';
 import * as actions from './actions';
 import {EE} from './toastrEmitter';
-import config from './config';
-import {updateConfig, _bind} from './utils';
+import {updateConfig} from './utils';
 
 export class ReduxToastr extends React.Component {
   static displayName = 'ReduxToastr';
@@ -43,8 +42,7 @@ export class ReduxToastr extends React.Component {
 
   constructor(props) {
     super(props);
-    updateConfig(config, this.props);
-    _bind('_addToMemory', this);
+    updateConfig(props);
   }
 
   componentDidMount() {
@@ -67,41 +65,75 @@ export class ReduxToastr extends React.Component {
     this.toastrFired[id] = true;
   }
 
-  _renderToastrBox(item) {
-    // Default options from props, but item can override them with own.
-    const mergedItem = {
-      ...item,
-      options: {
-        progressBar: this.props.progressBar,
-        transitionIn: this.props.transitionIn,
-        transitionOut: this.props.transitionOut,
-        ...item.options
-      }
-    };
+  _renderToastrForPosition(position) {
+    const {toastrs} = this.props.toastr;
 
+    if (toastrs) {
+      return toastrs
+        .filter(item => item.position === position)
+        .map(item => {
+          const mergedItem = {
+            ...item,
+            options: {
+              progressBar: this.props.progressBar,
+              transitionIn: this.props.transitionIn,
+              transitionOut: this.props.transitionOut,
+              ...item.options
+            }
+          };
+
+          return (
+            <span key={item.id}>
+              <ToastrBox
+                inMemory={this.toastrFired}
+                addToMemory={() => this._addToMemory(item.id)}
+                item={mergedItem}
+                {...this.props}
+              />
+              {item.options.attention && <div className="toastr-attention" />}
+            </span>
+          );
+        });
+    }
+  }
+
+  _renderToastrs() {
     return (
-      <ToastrBox
-        key={item.id}
-        inMemory={this.toastrFired}
-        addToMemory={this._addToMemory}
-        item={mergedItem}
-        {...this.props}
-      />
+      <span>
+        <div className="top-left">
+          {this._renderToastrForPosition('top-left')}
+        </div>
+        <div className="top-right">
+          {this._renderToastrForPosition('top-right')}
+        </div>
+        <div className="top-center">
+          {this._renderToastrForPosition('top-center')}
+        </div>
+        <div className="bottom-left">
+          {this._renderToastrForPosition('bottom-left')}
+        </div>
+        <div className="bottom-right">
+          {this._renderToastrForPosition('bottom-right')}
+        </div>
+        <div className="bottom-center">
+          {this._renderToastrForPosition('bottom-center')}
+        </div>
+      </span>
     );
   }
 
   render() {
+    const {className, toastr} = this.props;
     return (
-      <div className={cn('redux-toastr', this.props.position, this.props.className)}>
-        {this.props.toastr.confirm &&
+      <span className={cn('redux-toastr', className)}>
+        {toastr.confirm &&
           <ToastrConfirm
-            key={this.props.toastr.confirm.id}
-            confirm={this.props.toastr.confirm}
+            confirm={toastr.confirm}
             {...this.props}
           />
         }
-        {this.props.toastr && this.props.toastr.toastrs.map(item => this._renderToastrBox(item))}
-      </div>
+        {this._renderToastrs()}
+      </span>
     );
   }
 }
