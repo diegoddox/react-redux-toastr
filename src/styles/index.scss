@@ -11,20 +11,25 @@ body.toastr-confirm-active {
     box-sizing: border-box;
   }
 
-  width: $toastr-width;
+  max-width: $toastr-width;
   position: fixed;
   z-index: 99999999;
+  padding: 0 $defaultSpace;
 
   &.top-left, &.top-right, &.top-center {
-    top: $defaultSpace;
+    top: 0;
+  }
+
+  &.top-right, &.bottom-right {
+    right: 0;
   }
 
   &.bottom-left, &.bottom-right, &.bottom-center {
-    bottom: $defaultSpace;
+    bottom: 0;
   }
 
   &.top-left, &.bottom-left {
-    left: $defaultSpace;
+    left: 0;
   }
 
   &.top-center, &.bottom-center {
@@ -32,16 +37,12 @@ body.toastr-confirm-active {
     margin-left: -($toastr-width / 2);
   }
 
-  &.top-right, &.bottom-right {
-    right: $defaultSpace;
-  }
-
   .toastr {
     background-color: #fcfcfc;
     width: 100%;
     min-height: 70px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin: $defaultSpace 0;
     border-radius: 4px;
     position: relative;
     color: #333;
