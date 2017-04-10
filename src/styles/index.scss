@@ -1,3 +1,4 @@
+@import './variables.scss';
 @import './animation.scss';
 @import './confirm.scss';
 
@@ -9,13 +10,6 @@ body.toastr-confirm-active {
   *, *:before, *:after {
     box-sizing: border-box;
   }
-
-  $toastr-width: 350px !default;
-  $successBgColor: #60bb71 !default;
-  $infoBgColor: #58abc3 !default;
-  $warningBgColor: #f7a336 !default;
-  $errorBgColor: #db6a64 !default;
-  $defaultSpace: 10px;
 
   width: $toastr-width;
   position: fixed;

@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {onCSSTransitionEnd, _bind, keyCode, isBrowser} from './utils';
 import Button from './Button';
@@ -121,12 +122,14 @@ class ToastrConfirm extends React.Component {
       >
           <div className="confirm animated" ref={ref => this.confirmElement = ref}>
             <div className="message">{this.props.confirm.message}</div>
-                <Button className={this.disableCancel ? 'full-width' : ''} onClick={this.handleConfirmClick.bind(this)}>
+                <Button
+                  className={classnames('ok-btn', {'full-width': this.disableCancel})}
+                  onClick={this.handleConfirmClick.bind(this)}>
                   {this.okText}
                 </Button>
                 {
                   this.disableCancel ? null : (
-                    <Button onClick={this.handleCancelClick.bind(this)}>
+                    <Button className="cancel-btn" onClick={this.handleCancelClick.bind(this)}>
                       {this.cancelText}
                     </Button>
                 )
