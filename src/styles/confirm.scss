@@ -43,56 +43,22 @@
       background-color: transparent;
       padding: 0;
       margin: 0;
-      position: relative;
-      z-index: 1;
       float: left;
       border-top: 1px solid #f0f0f0;
       font-size: 14px;
       overflow: hidden;
+      cursor: pointer;
 
-      p {
-        position: relative;
-        z-index: 1;
-        line-height: 100%;
-        padding: 0;
-        margin: 0;
-        color: #555;
-      }
-
-      &:before {
-        content: '';
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        margin-left: -20px;
-        background-color: #999;
-        border-radius: 50%;
-        z-index: 0;
-        opacity: .2;
-        transform: scale(0);
+      &:hover {
+        background-color: #f5f5f5;
       }
 
       &.full-width {
         width: 100%;
       }
 
-      // In order to avoid event bubbling put the transition on the active class
-      &.active {
-        &:before {
-          transition: transform .25s ease-in-out;
-          transform: scale(2);
-        }
-      }
-
       &:focus {
         outline: none;
-      }
-
-      &:hover {
-        cursor: pointer;
-        background-color: #f5f5f5;
       }
     }
   }

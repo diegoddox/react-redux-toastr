@@ -16,22 +16,15 @@ body {
   background-color: #f2f2f2;
 }
 .wrapper {
-  margin: 100px auto auto 50px;
-
   $height: 70px;
 
   .menu {
-    width: 630px;
-    height: $height;
     background-color: #333;
     color: white;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 20px;
 
     li {
-      width: 70px;
       display: inline-block;
+      width: 70px;
       height: $height;
       border-right: 1px solid #393939;
       cursor: pointer;
