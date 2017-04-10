@@ -15,21 +15,22 @@ body.toastr-confirm-active {
   $infoBgColor: #58abc3 !default;
   $warningBgColor: #f7a336 !default;
   $errorBgColor: #db6a64 !default;
+  $defaultSpace: 10px;
 
   width: $toastr-width;
   position: fixed;
   z-index: 99999999;
 
   &.top-left, &.top-right, &.top-center {
-    top: 15px;
+    top: $defaultSpace;
   }
 
   &.bottom-left, &.bottom-right, &.bottom-center {
-    bottom: 15px;
+    bottom: $defaultSpace;
   }
 
-  &.top-left {
-    left: 15px;
+  &.top-left, &.bottom-left {
+    left: $defaultSpace;
   }
 
   &.top-center, &.bottom-center {
@@ -37,16 +38,8 @@ body.toastr-confirm-active {
     margin-left: -($toastr-width / 2);
   }
 
-  &.top-right {
-    right: 15px;
-  }
-
-  &.bottom-left {
-    left: 15px;
-  }
-
-  &.bottom-right {
-    right: 15px;
+  &.top-right, &.bottom-right {
+    right: $defaultSpace;
   }
 
   .toastr {
@@ -59,10 +52,10 @@ body.toastr-confirm-active {
     position: relative;
     color: #333;
     opacity: .94;
-    box-shadow: 2px 2px 10px #ccc;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
     
     &:hover:not(.message) {
-      box-shadow: 0px 0px 10px #777;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
       opacity: 1;
     }
 
