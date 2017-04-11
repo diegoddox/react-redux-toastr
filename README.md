@@ -13,16 +13,19 @@ The reducer listens to dispatched actions from the component to maintain the `to
 
 `npm install --save react-redux-toastr`
 
-##### 2. Add the `react-redux-toastr` css link to your app
-##### NOTE: This can be change at anytime
-```
+##### 2. Add the styles
+
+- import the scss file into to your project.
+
+  ```scss
+  @import 'react-redux-toastr/src/styles/index';
+  ```
+- or include the css file from the demo site (**NOTE**: This can be change at anytime)
+```html
 <link href="http://diegoddox.github.io/react-redux-toastr/5.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 
-Or import the scss file into to your project.
-`import 'react-redux-toastr/src/styles/index.scss'`
-
-##### 3. The third thing you need to do is to add the `react-redux-toastr` `reducer` to Redux.
+##### 3. Add the reducer.
 
 ```javascript
 import {createStore, combineReducers} from 'redux'
@@ -35,9 +38,9 @@ const reducer = combineReducers(reducers)
 const store = createStore(reducer)
 ```
 
-##### NOTE: The default mount point for `react-redux-toastr` is `toastr`.
+**NOTE**: The default mount point for `react-redux-toastr` is `toastr`.
 
-##### 4. Add the `react-redux-toastr` React component to the root of your app
+##### 4. Add the component into an app root
 
 ```javascript
 import {Provider}  from 'react-redux'
@@ -59,23 +62,29 @@ import ReduxToastr from 'react-redux-toastr'
 </Provider>
 ```
 
-default props: In case you don't pass the props.
-NOTE: `transitionIn` and `transitionOut` will affect the confirm animation as well
-
+The default configuration is:
+```js
+{
+  timeOut: 5000,
+  newestOnTop: true,
+  position: 'top-right',
+  transitionIn: 'bounceIn',
+  transitionOut: 'bounceOut',
+  progressBar: false
+}
 ```
-timeOut: 5000,
-newestOnTop: true,
-position: 'top-right',
-transitionIn: 'bounceIn',
-transitionOut: 'bounceOut',
-progressBar: false,
-```
 
-positions: `top-left` `top-center` `top-right`  `bottom-left` `bottom-center` and `bottom-right`
-transitionIn: `bounceIn` `bounceInDown` and `fadeIn`
-transitionOut: `bounceOut` `bounceOutUp` and `fadeOut`
+**NOTE**: `transitionIn` and `transitionOut` **will affect the confirm** animation as well
 
-##### 5. Add the `react-redux-toastr`  `toastr` emitter
+Here is the full list of available configurations:
+
+- position: `top-left` `top-center` `top-right`  `bottom-left` `bottom-center` and `bottom-right`
+
+- transitionIn: `bounceIn` `bounceInDown` and `fadeIn`
+
+- transitionOut: `bounceOut` `bounceOutUp` and `fadeOut`
+
+##### 5. Use the emitter
 The `toastr` method use [eventemitter3](https://github.com/primus/eventemitter3) to dispatch the actions
 
 
@@ -110,7 +119,7 @@ constructor(props) {
    id: 'mycustomid', // If not provided we will add one.
    type: 'success',
    title: 'your title',
-   position: 'top-left', // This will override the global props position. 
+   position: 'top-left', // This will override the global props position.
    attention: true, // This will add a shadow like the confirm method.
    message: 'message',
    options: {}
