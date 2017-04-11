@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ProgressBar from './ProgressBar';
 import Icon from './Icon';
+import {TRANSITIONS} from './constants';
 
 import {onCSSTransitionEnd, _bind} from './utils';
 
@@ -10,7 +11,12 @@ export default class ToastrBox extends React.Component {
   static displayName = 'ToastrBox';
 
   static propTypes = {
-    item: PropTypes.object.isRequired
+    item: PropTypes.shape({
+      options: PropTypes.shape({
+        transitionIn: PropTypes.oneOf(TRANSITIONS.in),
+        transitionOut: PropTypes.oneOf(TRANSITIONS.out)
+      })
+    })
   };
 
   constructor(props) {

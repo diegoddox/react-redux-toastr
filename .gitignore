@@ -9,3 +9,4 @@ lib
 dist/
 .idea
 /yarn.lock
+/*.sublime*

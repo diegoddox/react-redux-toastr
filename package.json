@@ -11,7 +11,7 @@
     "sass": "./node_modules/.bin/node-sass src/styles/index.scss lib/css/react-redux-toastr.min.css --output-style compressed",
     "postcss": "./node_modules/.bin/postcss --u autoprefixer -o ./lib/css/react-redux-toastr.min.css ./lib/css/react-redux-toastr.min.css",
     "clean": "./node_modules/.bin/rimraf dist lib",
-    "lint": "better-npm-run lint",
+    "lint": "./node_modules/eslint/bin/eslint.js --fix .",
     "build_app": "concurrent --kill-others & npm run clean & npm run lint & npm run build & npm run sass & npm run clean-css",
     "buildc": "better-npm-run build_client"
   },
@@ -91,6 +91,7 @@
     "css-loader": "^0.28.0",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.1.1",
+    "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",

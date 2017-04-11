@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ProgressBar extends React.Component {
+export default class ProgressBar extends React.Component {
   static displayName = 'ProgressBar';
 
   static propTypes = {
@@ -46,5 +46,3 @@ class ProgressBar extends React.Component {
     );
   }
 }
-
-export default ProgressBar;

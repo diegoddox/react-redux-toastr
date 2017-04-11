@@ -47,7 +47,9 @@ export default class Menu extends React.Component {
             toastr.info('Jesus answered, “I am the way and the truth and the life. No one comes to the Father except through Me.', {
               progressBar: true,
               position: 'bottom-right',
-              timeOut: 10000
+              timeOut: 10000,
+              transitionIn: 'bounceInDown',
+              transitionOut: 'bounceOutUp'
             });
           }}>
             <span className="icon-info-circle"/>
@@ -63,7 +65,9 @@ export default class Menu extends React.Component {
                 icon: (<Avatar />),
                 position: 'top-center',
                 attention: true,
-                timeOut: 0
+                timeOut: 0,
+                transitionIn: 'fadeIn',
+                transitionOut: 'fadeOut'
               });
           }}>
             <span className="icon-check"/>

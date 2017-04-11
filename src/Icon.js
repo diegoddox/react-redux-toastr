@@ -3,11 +3,11 @@ import classnames from 'classnames';
 import icons from './icons';
 
 export default class Icon extends React.Component {
-  static displayName = 'ReduxToastrIcon'
+  static displayName = 'ReduxToastrIcon';
 
   static defaultProps = {
     size: 32
-  }
+  };
 
   render() {
     const {size} = this.props;
@@ -18,13 +18,13 @@ export default class Icon extends React.Component {
 
     return (
       <svg
-          className={classnames(this.props.className, 'toastr-icon')}
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid meet"
-          viewBox={`0 0 ${this.props.size} ${this.props.size}`}
-          style={styles}
+        className={classnames(this.props.className, 'toastr-icon')}
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox={`0 0 ${this.props.size} ${this.props.size}`}
+        style={styles}
       >
-          {icons(this.props.name)}
+        {icons(this.props.name)}
       </svg>
     );
   }

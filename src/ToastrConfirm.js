@@ -3,11 +3,19 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {onCSSTransitionEnd, _bind, keyCode, isBrowser} from './utils';
 import Button from './Button';
+import {TRANSITIONS} from './constants';
 
 const ENTER = 13;
 const ESC = 27;
 
-class ToastrConfirm extends React.Component {
+export default class ToastrConfirm extends React.Component {
+  static displayName = 'ToastrConfirm';
+  static propTypes = {
+    confirm: PropTypes.object.isRequired,
+    transitionIn: PropTypes.oneOf(TRANSITIONS.in),
+    transitionOut: PropTypes.oneOf(TRANSITIONS.out)
+  };
+
   constructor(props) {
     super(props);
     const {
@@ -138,10 +146,3 @@ class ToastrConfirm extends React.Component {
     );
   }
 }
-
-ToastrConfirm.displayName = 'ToastrConfirm';
-ToastrConfirm.propTypes = {
-  confirm: PropTypes.object.isRequired
-};
-
-export default ToastrConfirm;

@@ -8,7 +8,8 @@
     "jsx": true
   },
   "plugins": [
-    "react"
+    "react",
+    "babel"
   ],
   "rules": {
     "comma-dangle": [2, "never"],
@@ -97,6 +98,7 @@
     "valid-typeof": 2,
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1
+    "react/jsx-uses-vars": 1,
+    "babel/semi": 1
   }
 }

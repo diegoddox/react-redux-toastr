@@ -7,6 +7,7 @@ import ToastrConfirm from './ToastrConfirm';
 import * as actions from './actions';
 import {EE} from './toastrEmitter';
 import {updateConfig} from './utils';
+import {TRANSITIONS} from './constants';
 
 export class ReduxToastr extends React.Component {
   static displayName = 'ReduxToastr';
@@ -19,8 +20,8 @@ export class ReduxToastr extends React.Component {
     timeOut: PropTypes.number,
     confirmOptions: PropTypes.object,
     progressBar: PropTypes.bool,
-    transitionIn: PropTypes.string,
-    transitionOut: PropTypes.string,
+    transitionIn: PropTypes.oneOf(TRANSITIONS.in),
+    transitionOut: PropTypes.oneOf(TRANSITIONS.out),
     preventDuplicates: PropTypes.bool
   };
 
@@ -29,8 +30,8 @@ export class ReduxToastr extends React.Component {
     newestOnTop: true,
     timeOut: 5000,
     progressBar: false,
-    transitionIn: 'bounceIn',
-    transitionOut: 'bounceOut',
+    transitionIn: TRANSITIONS.in[0],
+    transitionOut: TRANSITIONS.out[0],
     preventDuplicates: false,
     confirmOptions: {
       okText: 'ok',
