@@ -1,18 +1,27 @@
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import config from './config';
 
-export function createReducer(initialState, fnMap) {
-  return (state = initialState, {type, payload}) => {
-    const handle = fnMap[type];
-    return handle ? handle(state, payload) : state;
-  };
-}
-
 function isString(obj) {
   if (typeof obj == 'string') {
     return true;
   }
   return false;
+}
+
+var toastrWarn;
+if (process.env.NODE_ENV === 'production') {
+  toastrWarn = () => {};
+} else {
+  toastrWarn = (message) => {
+    console.warn(`[react-redux-toastr] ${message}`);
+  };
+}
+
+export function createReducer(initialState, fnMap) {
+  return (state = initialState, {type, payload}) => {
+    const handle = fnMap[type];
+    return handle ? handle(state, payload) : state;
+  };
 }
 
 export function isBrowser() {
@@ -70,7 +79,15 @@ export function guid() {
 }
 
 export function onCSSTransitionEnd(node, callback) {
+  // if css animation is failed - dispatch event manually
+  const timeoutId = setTimeout(function() {
+    var e = new Event('transitionend');
+    toastrWarn('The toastr box was closed automatically, please check \'transitionOut\' prop value');
+    node.dispatchEvent(e);
+  }, config.maxAnimationDelay);
+
   const runOnce = (e) => {
+    clearTimeout(timeoutId);
     // stopPropagation is not working in IE11 and Edge, the transitionend from the Button.js is waiting
     // on the confirm animation to end first and not the Button.js
     e.stopPropagation();

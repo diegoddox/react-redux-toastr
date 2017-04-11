@@ -49,7 +49,7 @@ export default class Menu extends React.Component {
               position: 'bottom-right',
               timeOut: 10000,
               transitionIn: 'bounceInDown',
-              transitionOut: 'bounceOutUp'
+              transitionOut: 'bounceOutU'
             });
           }}>
             <span className="icon-info-circle"/>
