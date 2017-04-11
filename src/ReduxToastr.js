@@ -91,7 +91,9 @@ export class ReduxToastr extends React.Component {
                 item={mergedItem}
                 {...this.props}
               />
-              {item.options && item.options.attention && <div className="toastr-attention" />}
+              {item.options && item.options.attention &&
+                <div onClick={() => this.props.remove(item.id)} className="toastr-attention" />
+              }
             </span>
           );
         });
