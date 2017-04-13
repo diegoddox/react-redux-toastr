@@ -1,6 +1,6 @@
 {
   "name": "react-redux-toastr",
-  "version": "6.2.3",
+  "version": "6.2.4",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
@@ -122,12 +122,12 @@
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.1",
-    "prop-types": "^15.5.7",
     "react-redux": "^4.0.1 || ^5.0.1",
     "redux": "^3.0.5"
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "prop-types": "^15.5.7",
     "eventemitter3": "^2.0.3"
   },
   "homepage": "https://github.com/diegoddox/react-redux-toastr#readme"
