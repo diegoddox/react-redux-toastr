@@ -93,18 +93,18 @@ export default class ToastrConfirm extends React.Component {
     if (add) {
       this.isHiding = false;
       this.confirmElement.classList.add(this.transitionIn);
-      isBrowser() && document.querySelector('body').classList.add('toastr-confirm-active');
-      return;
+      if (isBrowser()) return document.querySelector('body').classList.add('toastr-confirm-active');
     }
 
     this.isHiding = true;
+    this.confirmElement.classList.remove(this.transitionIn);
     this.confirmElement.classList.add(this.transitionOut);
   }
 
   removeConfirm() {
     this.isHiding = false;
     this.props.hideConfirm();
-    isBrowser() && document.querySelector('body').classList.remove('toastr-confirm-active');
+    if (isBrowser()) return document.querySelector('body').classList.remove('toastr-confirm-active');
   }
 
   handleOnKeyUp(e) {
@@ -113,7 +113,7 @@ export default class ToastrConfirm extends React.Component {
       this.handleCancelClick();
     } else if (code == ESC && this.disableCancel) {
       this.handleConfirmClick();
-    } else if ((code == ENTER && this.isKeyDown)) {
+    } else if (code == ENTER && this.isKeyDown) {
       this.isKeyDown = false;
       this.handleConfirmClick();
     }
