@@ -9,7 +9,7 @@ import {EE} from './toastrEmitter';
 import {updateConfig} from './utils';
 import {TRANSITIONS} from './constants';
 
-export class ReduxToastr extends React.Component {
+export class ReduxToastr extends React.PureComponent {
   static displayName = 'ReduxToastr';
 
   static propTypes = {
@@ -35,7 +35,7 @@ export class ReduxToastr extends React.Component {
     preventDuplicates: false,
     confirmOptions: {
       okText: 'ok',
-      cancelText: 'cancel'
+      cancelText: 'cancel',
     }
   };
 
@@ -44,6 +44,8 @@ export class ReduxToastr extends React.Component {
   constructor(props) {
     super(props);
     updateConfig(props);
+
+    this._addToMemory = ::this._addToMemory
   }
 
   componentDidMount() {
@@ -64,6 +66,10 @@ export class ReduxToastr extends React.Component {
 
   _addToMemory(id) {
     this.toastrFired[id] = true;
+  }
+
+  _handleAttentionOnClick(e){
+    this.props.remove(e.target.dataset.removeId)
   }
 
   _renderToastrForPosition(position) {
@@ -87,12 +93,12 @@ export class ReduxToastr extends React.Component {
             <span key={item.id}>
               <ToastrBox
                 inMemory={this.toastrFired}
-                addToMemory={() => this._addToMemory(item.id)}
+                addToMemory={this._addToMemory}
                 item={mergedItem}
                 {...this.props}
               />
               {item.options && item.options.attention &&
-                <div onClick={() => this.props.remove(item.id)} className="toastr-attention" />
+                <div data-remove-id={item.id} onClick={this._handleAttentionOnClick} className="toastr-attention" />
               }
             </span>
           );

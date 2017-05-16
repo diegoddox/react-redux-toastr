@@ -9,17 +9,11 @@ export function createReducer(initialState, fnMap) {
 }
 
 function isString(obj) {
-  if (typeof obj == 'string') {
-    return true;
-  }
-  return false;
+  return typeof obj === 'string';
 }
 
 export function isBrowser() {
-  if (typeof window !== 'undefined') {
-    return true;
-  }
-  return false;
+  return typeof window !== 'undefined';
 }
 
 export function keyCode(e) {
@@ -31,17 +25,14 @@ export function mapToToastrMessage(type, array) {
   obj.type = type;
   obj.position = config.position;
 
-  obj.options = array.filter(item => typeof item == 'object')[0] || {};
+  obj.options = array.filter(item => typeof item === 'object')[0] || {};
 
   if (obj.options.hasOwnProperty('position')) {
     obj.position = obj.options.position;
   }
 
   if (!obj.options.hasOwnProperty('removeOnHover')) {
-    obj.options.removeOnHover = true;
-    if (type === 'message') {
-      obj.options.removeOnHover = false;
-    }
+    obj.options.removeOnHover = type !== 'message';
   }
 
   if (!obj.options.hasOwnProperty('showCloseButton')) {
@@ -80,11 +71,11 @@ export function onCSSTransitionEnd(node, callback) {
   ReactTransitionEvents.addEndEventListener(node, runOnce);
 }
 
-export function preventDuplication(currentData, newObjec) {
+export function preventDuplication(currentData, newObject) {
   let hasDuplication = false;
   currentData.forEach((item) => {
     // Because the toastr has a unic id we will check by the title and message.
-    if (item.title === newObjec.title && item.message === newObjec.message && item.type === newObjec.type) {
+    if (item.title === newObject.title && item.message === newObject.message && item.type === newObject.type) {
       hasDuplication = true;
     }
   });
@@ -97,12 +88,4 @@ export function updateConfig(obj) {
       config[key] = obj[key];
     }
   });
-}
-
-export function _bind(strinOrAray, scope) {
-  let array = strinOrAray;
-  if (!Array.isArray(strinOrAray)) {
-    array = strinOrAray.split(' ');
-  }
-  return array.map(item=> scope[item] = scope[item].bind(scope));
 }
