@@ -6,7 +6,7 @@
   "jsnext:main": "./src/index.js",
   "scripts": {
     "start": "better-npm-run dev-server",
-    "dev_win": "NODE_ENV=development NODE_PORT=3000 ./node_modules/.bin/webpack-dev-server --hot --inline --config build/webpack.config.js",
+    "dev_win": "cross-env NODE_ENV=development NODE_PORT=3000 webpack-dev-server --hot --inline --config webpack/development.js",
     "build": "./node_modules/.bin/babel src/ --out-dir lib && npm run sass && npm run postcss",
     "sass": "./node_modules/.bin/node-sass src/styles/index.scss lib/css/react-redux-toastr.min.css --output-style compressed",
     "postcss": "./node_modules/.bin/postcss --u autoprefixer -o ./lib/css/react-redux-toastr.min.css ./lib/css/react-redux-toastr.min.css",
@@ -88,6 +88,7 @@
     "clean-css": "^4.0.11",
     "clean-css-loader": "0.0.5",
     "concurrently": "^3.4.0",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.1.1",
