@@ -1,3 +1,7 @@
+#7.0.0
+
+Removed support React 0.14 (Migrate to React.PureComponent)
+
 #6.0.0
 
 ## New features
