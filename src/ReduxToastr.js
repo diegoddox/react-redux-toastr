@@ -57,6 +57,7 @@ export class ReduxToastr extends React.PureComponent {
     updateConfig(props);
 
     this._addToMemory = ::this._addToMemory
+    this._handleAttentionOnClick = ::this._handleAttentionOnClick
   }
 
   componentDidMount() {
