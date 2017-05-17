@@ -18,7 +18,17 @@ export class ReduxToastr extends React.PureComponent {
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
-    confirmOptions: PropTypes.object,
+    confirmOptions: PropTypes.shape({
+      okText: PropTypes.string,
+      cancelText: PropTypes.string,
+      onOk: PropTypes.func,
+      onCancel:PropTypes.func,
+      onChangeNote: PropTypes.func,
+      enableNote: PropTypes.bool,
+      requiredNote: PropTypes.bool,
+      notePlaceholder: PropTypes.string,
+      noteLabel: PropTypes.string,
+    }),
     progressBar: PropTypes.bool,
     transitionIn: PropTypes.oneOf(TRANSITIONS.in),
     transitionOut: PropTypes.oneOf(TRANSITIONS.out),
@@ -36,6 +46,7 @@ export class ReduxToastr extends React.PureComponent {
     confirmOptions: {
       okText: 'ok',
       cancelText: 'cancel',
+      enableNote: false,
     }
   };
 

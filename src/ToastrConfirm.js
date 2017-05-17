@@ -21,8 +21,8 @@ export default class ToastrConfirm extends React.PureComponent {
     super(props);
 
     this.state = {
-      note: null
-    }
+      note: null,
+    };
 
     const {
       confirmOptions,
@@ -34,7 +34,8 @@ export default class ToastrConfirm extends React.PureComponent {
       cancelText,
       transitionIn,
       transitionOut,
-      disableCancel
+      disableCancel,
+      enableNote,
     } = confirm.options;
 
     this.okText = okText || confirmOptions.okText;
@@ -43,6 +44,7 @@ export default class ToastrConfirm extends React.PureComponent {
     this.transitionOut = transitionOut || confirmOptions.transitionOut || props.transitionOut;
     this.disableCancel = disableCancel || confirmOptions.disableCancel;
     this.isKeyDown = false;
+    this.enableNote = enableNote || confirmOptions.enableNote;
 
     this.setTransition = ::this.setTransition;
     this.removeConfirm = ::this.removeConfirm;
@@ -50,6 +52,7 @@ export default class ToastrConfirm extends React.PureComponent {
     this.handleOnKeyDown = ::this.handleOnKeyDown;
     this.handleConfirmClick = ::this.handleConfirmClick;
     this.handleCancelClick = ::this.handleCancelClick;
+    this.handleNoteChange = ::this.handleNoteChange;
   }
 
   componentDidMount() {
@@ -70,6 +73,7 @@ export default class ToastrConfirm extends React.PureComponent {
   }
 
   handleConfirmClick() {
+    if (this.enableNote && this.props.confirm.options.requiredNote && !this.state.note) return;
     if (this.hasClicked) return;
     this.hasClicked = true;
 
@@ -77,7 +81,11 @@ export default class ToastrConfirm extends React.PureComponent {
     const onAnimationEnd = () => {
       this.removeConfirm();
       if (options && options.onOk) {
-        options.onOk();
+        if (this.enableNote) {
+          options.onOk({ note: this.state.note });
+        } else {
+          options.onOk();
+        }
       }
     };
 
@@ -93,7 +101,11 @@ export default class ToastrConfirm extends React.PureComponent {
     const onAnimationEnd = () => {
       this.removeConfirm();
       if (options && options.onCancel) {
-        options.onCancel();
+        if (this.enableNote) {
+          options.onCancel({ note: this.state.note });
+        } else {
+          options.onCancel();
+        }
       }
     };
 
@@ -131,6 +143,13 @@ export default class ToastrConfirm extends React.PureComponent {
     }
   }
 
+  handleNoteChange(e) {
+    this.setState({ note: e.target.value })
+    if (this.props.confirm.options.hasOwnProperty('onChangeNote')) {
+      this.props.confirm.options.onChangeNote(e.target.value)
+    }
+  }
+
   setConfirmHolderElementRef = ref => this.confirmHolderElement = ref;
 
   setConfirmElementRef = ref => this.confirmElement = ref;
@@ -146,9 +165,25 @@ export default class ToastrConfirm extends React.PureComponent {
       >
         <div className="confirm animated" ref={this.setConfirmElementRef}>
           <div className="message">{this.props.confirm.message}</div>
+          {this.enableNote &&
+          <div className="note">
+            {this.props.confirm.options.noteLabel &&
+            <label htmlFor="toastr-note">{this.props.confirm.options.noteLabel}</label>
+            }
+            <input
+              id="toastr-note"
+              type="text"
+              placeholder={this.props.confirm.options.notePlaceholder}
+              value={this.state.note}
+              onChange={this.handleNoteChange}
+            />
+          </div>
+          }
           <Button
+            disabled={this.enableNote && this.props.confirm.options.requiredNote && !this.state.note}
             className={classnames('ok-btn', { 'full-width': this.disableCancel })}
-            onClick={this.handleConfirmClick}>
+            onClick={this.handleConfirmClick}
+          >
             {this.okText}
           </Button>
           {!this.disableCancel &&
