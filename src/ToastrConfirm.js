@@ -58,7 +58,12 @@ export default class ToastrConfirm extends React.PureComponent {
   componentDidMount() {
     this.isHiding = false;
     this.hasClicked = false;
-    this.confirmHolderElement.focus();
+
+    if (this.enableNote) {
+      this.noteInput.focus();
+    } else {
+      this.confirmHolderElement.focus();
+    }
 
     if (this.props.confirm.show) {
       this.setTransition(true);
@@ -154,6 +159,8 @@ export default class ToastrConfirm extends React.PureComponent {
 
   setConfirmElementRef = ref => this.confirmElement = ref;
 
+  setNoteInputElementRef = ref => this.noteInput = ref;
+
   render() {
     return (
       <div
@@ -173,6 +180,7 @@ export default class ToastrConfirm extends React.PureComponent {
             <input
               id="toastr-note"
               type="text"
+              ref={this.setNoteInputElementRef}
               placeholder={this.props.confirm.options.notePlaceholder}
               value={this.state.note}
               onChange={this.handleNoteChange}
