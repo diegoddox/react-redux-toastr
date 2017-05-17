@@ -248,6 +248,27 @@ const toastrConfirmOptions = {
 toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
 ```
 
+You can add the note text
+
+- Passing the `enableNote` props to the `toasterConfirmOptions` object
+
+- Passing the `requiredNote`, `notePlaceholder`, `noteLabel`, `onChangeNote` props to the `toasterConfirmOptions` object for fine tuning
+
+```javascript
+const toastrConfirmOptions = {
+  ...
+  enableNote: true,
+  requiredNote: true,
+  notePlaceholder: 'John',
+  noteLabel: 'What is your name?',
+  onChangeNote: console.log,
+  onOk: ({ note }) => console.log(`OK: clicked (${note})`),
+  onCancel: ({ note }) => console.log(`CANCEL: clicked (${note})`)
+};
+
+toastr.confirm('Are you sure about that!', toastrConfirmOptions);
+```
+
 ### Avatar: in case you wanna use the same avatar as the example
 [Avatar](https://github.com/diegoddox/react-redux-toastr/blob/master/development/Avatar.js)
 
