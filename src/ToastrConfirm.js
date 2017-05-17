@@ -21,7 +21,7 @@ export default class ToastrConfirm extends React.PureComponent {
     super(props);
 
     this.state = {
-      note: null,
+      note: '',
     };
 
     const {
