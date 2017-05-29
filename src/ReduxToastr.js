@@ -114,7 +114,7 @@ export class ReduxToastr extends React.Component {
       <span>
         {this.toastrPositions.map(position => {
           return (
-            <div className={position}>
+            <div key={position} className={position}>
               {this._renderToastrForPosition(position)}
             </div>
           );
