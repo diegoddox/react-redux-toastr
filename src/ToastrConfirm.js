@@ -127,6 +127,7 @@ export default class ToastrConfirm extends React.Component {
         ref={ref => this.confirmHolderElement = ref}
         onKeyDown={this.handleOnKeyDown}
         onKeyUp={this.handleOnKeyUp}
+        role="alert"
       >
         <div className="confirm animated" ref={ref => this.confirmElement = ref}>
           <div className="message">{this.props.confirm.message}</div>

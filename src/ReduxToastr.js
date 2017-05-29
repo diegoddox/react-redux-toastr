@@ -128,7 +128,7 @@ export class ReduxToastr extends React.Component {
   render() {
     const {className, toastr} = this.props;
     return (
-      <span className={cn('redux-toastr', className)}>
+      <span className={cn('redux-toastr', className)} aria-live="assertive">
         {toastr.confirm &&
           <ToastrConfirm
             confirm={toastr.confirm}
