@@ -41,6 +41,15 @@ export class ReduxToastr extends React.Component {
 
   toastrFired = {};
 
+  toastrPositions = [
+    'top-left',
+    'top-right',
+    'top-center',
+    'bottom-left',
+    'bottom-right',
+    'bottom-center'
+  ];
+
   constructor(props) {
     super(props);
     updateConfig(props);
@@ -103,24 +112,13 @@ export class ReduxToastr extends React.Component {
   _renderToastrs() {
     return (
       <span>
-        <div className="top-left">
-          {this._renderToastrForPosition('top-left')}
-        </div>
-        <div className="top-right">
-          {this._renderToastrForPosition('top-right')}
-        </div>
-        <div className="top-center">
-          {this._renderToastrForPosition('top-center')}
-        </div>
-        <div className="bottom-left">
-          {this._renderToastrForPosition('bottom-left')}
-        </div>
-        <div className="bottom-right">
-          {this._renderToastrForPosition('bottom-right')}
-        </div>
-        <div className="bottom-center">
-          {this._renderToastrForPosition('bottom-center')}
-        </div>
+        {position.map(position => {
+          return (
+            <div className={position}>
+              {this._renderToastrForPosition(position)}
+            </div>
+          );
+        })}
       </span>
     );
   }
