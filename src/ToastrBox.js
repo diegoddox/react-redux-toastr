@@ -5,9 +5,9 @@ import ProgressBar from './ProgressBar';
 import Icon from './Icon';
 import {TRANSITIONS} from './constants';
 
-import {onCSSTransitionEnd, _bind} from './utils';
+import {onCSSTransitionEnd} from './utils';
 
-export default class ToastrBox extends React.Component {
+export default class ToastrBox extends React.PureComponent {
   static displayName = 'ToastrBox';
 
   static propTypes = {
@@ -37,23 +37,21 @@ export default class ToastrBox extends React.Component {
 
     this.state = {progressBar: null};
 
-    _bind(
-      [
-        'renderSubComponent',
-        'renderIcon',
-        'renderToastr',
-        'renderCloseButton',
-        'renderMessage',
-        '_onAnimationComplete',
-        '_removeToastr',
-        '_setTransition',
-        '_clearTransition',
-        '_setIntervalId',
-        '_setIsHiding',
-        '_setShouldClose'
-      ],
-      this
-    );
+    this.renderSubComponent = ::this.renderSubComponent
+    this.renderIcon = ::this.renderIcon
+    this.renderToastr = ::this.renderToastr
+    this.renderCloseButton = ::this.renderCloseButton
+    this.renderMessage = ::this.renderMessage
+    this._onAnimationComplete = ::this._onAnimationComplete
+    this._removeToastr = ::this._removeToastr
+    this._setTransition = ::this._setTransition
+    this._clearTransition = ::this._clearTransition
+    this._setIntervalId = ::this._setIntervalId
+    this._setIsHiding = ::this._setIsHiding
+    this._setShouldClose = ::this._setShouldClose
+    this.mouseEnter = ::this.mouseEnter
+    this.mouseLeave = ::this.mouseLeave
+    this.handleClick = ::this.handleClick
   }
 
   componentDidMount() {
@@ -161,7 +159,7 @@ export default class ToastrBox extends React.Component {
       <button
         type="button"
         className="close-toastr"
-        onClick={this.handleClick.bind(this)}
+        onClick={this.handleClick}
       >
         &#x2715;
       </button>
@@ -265,7 +263,7 @@ export default class ToastrBox extends React.Component {
     const animationType = hide ? this.transitionOut : this.transitionIn;
 
     const onEndListener = (e) => {
-      if (e && e.target == this.toastrBoxElement) {
+      if (e && e.target === this.toastrBoxElement) {
         this.toastrBoxElement.classList.remove(animationType);
       }
     };
@@ -305,8 +303,8 @@ export default class ToastrBox extends React.Component {
           type,
           options.className
         )}
-        onMouseEnter={this.mouseEnter.bind(this)}
-        onMouseLeave={this.mouseLeave.bind(this)}
+        onMouseEnter={this.mouseEnter}
+        onMouseLeave={this.mouseLeave}
       >
        {this.toastr()}
       </div>

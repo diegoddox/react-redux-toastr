@@ -1,12 +1,12 @@
 {
   "name": "react-redux-toastr",
-  "version": "6.2.6",
+  "version": "7.0.0",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
   "scripts": {
     "start": "better-npm-run dev-server",
-    "dev_win": "NODE_ENV=development NODE_PORT=3000 ./node_modules/.bin/webpack-dev-server --hot --inline --config build/webpack.config.js",
+    "dev_win": "cross-env NODE_ENV=development NODE_PORT=3000 webpack-dev-server --hot --inline --config webpack/development.js",
     "build": "./node_modules/.bin/babel src/ --out-dir lib && npm run sass && npm run postcss",
     "sass": "./node_modules/.bin/node-sass src/styles/index.scss lib/css/react-redux-toastr.min.css --output-style compressed",
     "postcss": "./node_modules/.bin/postcss --u autoprefixer -o ./lib/css/react-redux-toastr.min.css ./lib/css/react-redux-toastr.min.css",
@@ -70,11 +70,11 @@
     "toastr profile"
   ],
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
+    "autoprefixer": "^7.1.0",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.2.1",
     "babel-eslint": "^7.2.1",
-    "babel-loader": "^6.2.0",
+    "babel-loader": "^7.0.0",
     "babel-plugin-syntax-class-properties": "^6.1.18",
     "babel-plugin-transform-class-properties": "^6.2.2",
     "babel-plugin-transform-es2015-arrow-functions": "^6.1.18",
@@ -88,6 +88,7 @@
     "clean-css": "^4.0.11",
     "clean-css-loader": "0.0.5",
     "concurrently": "^3.4.0",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.1.1",
@@ -100,13 +101,13 @@
     "jshint": "^2.9.1-rc1",
     "jshint-loader": "^0.8.3",
     "lorem-ipsum": "^1.0.3",
-    "node-sass": "^4.5.2",
-    "postcss-cli": "^3.1.1",
+    "node-sass": "^4.5.3",
+    "postcss-cli": "^4.0.0",
     "postcss-extend": "^1.0.5",
-    "postcss-import": "^9.1.0",
-    "postcss-mixins": "^5.4.1",
-    "postcss-nested": "^1.0.0",
-    "postcss-simple-vars": "^3.1.0",
+    "postcss-import": "^10.0.0",
+    "postcss-mixins": "^6.0.0",
+    "postcss-nested": "^2.0.2",
+    "postcss-simple-vars": "^4.0.0",
     "prop-types": "^15.5.7",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
@@ -115,20 +116,20 @@
     "redux": "^3.3.1",
     "rimraf": "^2.4.4",
     "sass-loader": "^6.0.3",
-    "style-loader": "^0.16.1",
+    "style-loader": "^0.17.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   },
   "peerDependencies": {
-    "react": "^0.14 || ^15.0.1",
+    "react": "^15.3.0",
     "react-redux": "^4.0.1 || ^5.0.1",
     "redux": "^3.0.5"
   },
   "dependencies": {
     "classnames": "^2.2.3",
-    "prop-types": "^15.5.7",
-    "eventemitter3": "^2.0.3"
+    "eventemitter3": "^2.0.3",
+    "prop-types": "^15.5.7"
   },
   "homepage": "https://github.com/diegoddox/react-redux-toastr#readme"
 }

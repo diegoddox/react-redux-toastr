@@ -77,3 +77,9 @@ body {
     }
   }
 }
+
+.icon-note{
+  &:before{
+    content: '❔';
+  }
+}

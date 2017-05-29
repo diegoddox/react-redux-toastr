@@ -1,11 +1,25 @@
 import React from 'react';
 
-const Button = props => (
-  <button type="button" onClick={() => props.onClick()} className={props.className}>
-    {props.children}
-  </button>
-);
 
-Button.displayName = 'ReduxConfirmButton';
+export default class Button extends React.PureComponent {
+  static displayName = 'ReduxConfirmButton';
 
-export default Button;
+  static defaultProps = {
+    disabled: false,
+  };
+
+  handleOnClick = () => this.props.onClick();
+
+  render() {
+    return (
+      <button
+        type="button"
+        className={this.props.className}
+        disabled={this.props.disabled}
+        onClick={this.handleOnClick}
+      >
+        {this.props.children}
+      </button>
+    );
+  }
+}

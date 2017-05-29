@@ -84,6 +84,17 @@ export default class Menu extends React.Component {
           <li className="message" onClick={() => toastr.confirm('The confirm message')}>
             <span className="icon-check-5"/>
           </li>
+          <li className="message" onClick={() => {
+            toastr.confirm('The confirm message', {
+              enableNote: true,
+              requiredNote: true,
+              notePlaceholder: 'John',
+              noteLabel: 'What is your name?',
+              onChangeNote: console.log
+            })
+          }}>
+            <span className="icon-note"/>
+          </li>
       </ul>
     );
   }

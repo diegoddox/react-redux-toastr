@@ -9,7 +9,7 @@ import {EE} from './toastrEmitter';
 import {updateConfig} from './utils';
 import {TRANSITIONS} from './constants';
 
-export class ReduxToastr extends React.Component {
+export class ReduxToastr extends React.PureComponent {
   static displayName = 'ReduxToastr';
 
   static propTypes = {
@@ -18,7 +18,17 @@ export class ReduxToastr extends React.Component {
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
-    confirmOptions: PropTypes.object,
+    confirmOptions: PropTypes.shape({
+      okText: PropTypes.string,
+      cancelText: PropTypes.string,
+      onOk: PropTypes.func,
+      onCancel:PropTypes.func,
+      onChangeNote: PropTypes.func,
+      enableNote: PropTypes.bool,
+      requiredNote: PropTypes.bool,
+      notePlaceholder: PropTypes.string,
+      noteLabel: PropTypes.string,
+    }),
     progressBar: PropTypes.bool,
     transitionIn: PropTypes.oneOf(TRANSITIONS.in),
     transitionOut: PropTypes.oneOf(TRANSITIONS.out),
@@ -35,7 +45,8 @@ export class ReduxToastr extends React.Component {
     preventDuplicates: false,
     confirmOptions: {
       okText: 'ok',
-      cancelText: 'cancel'
+      cancelText: 'cancel',
+      enableNote: false,
     }
   };
 
@@ -44,6 +55,9 @@ export class ReduxToastr extends React.Component {
   constructor(props) {
     super(props);
     updateConfig(props);
+
+    this._addToMemory = ::this._addToMemory
+    this._handleAttentionOnClick = ::this._handleAttentionOnClick
   }
 
   componentDidMount() {
@@ -64,6 +78,10 @@ export class ReduxToastr extends React.Component {
 
   _addToMemory(id) {
     this.toastrFired[id] = true;
+  }
+
+  _handleAttentionOnClick(e){
+    this.props.remove(e.target.dataset.removeId)
   }
 
   _renderToastrForPosition(position) {
@@ -87,12 +105,12 @@ export class ReduxToastr extends React.Component {
             <span key={item.id}>
               <ToastrBox
                 inMemory={this.toastrFired}
-                addToMemory={() => this._addToMemory(item.id)}
+                addToMemory={this._addToMemory}
                 item={mergedItem}
                 {...this.props}
               />
               {item.options && item.options.attention &&
-                <div onClick={() => this.props.remove(item.id)} className="toastr-attention" />
+                <div data-remove-id={item.id} onClick={this._handleAttentionOnClick} className="toastr-attention" />
               }
             </span>
           );

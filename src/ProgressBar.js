@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class ProgressBar extends React.Component {
+export default class ProgressBar extends React.PureComponent {
   static displayName = 'ProgressBar';
 
   static propTypes = {
@@ -19,7 +19,6 @@ export default class ProgressBar extends React.Component {
     const distance = 100 / (this.props.duration / 10);
     this.intervalId = setInterval(() => {
       const percent = this.state.percent - distance;
-
       this.setState({percent: percent > 0 ? percent : 0});
     }, 10);
   }
@@ -37,11 +36,9 @@ export default class ProgressBar extends React.Component {
   }
 
   render() {
-    const {percent} = this.state;
-
     return (
       <div className="toastr-progress-container">
-        <div className="toastr-progressbar" style={{width: `${percent}%`}}></div>
+        <div className="toastr-progressbar" style={{width: `${this.state.percent}%`}}/>
       </div>
     );
   }
