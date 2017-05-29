@@ -24,7 +24,8 @@ export default createReducer(initialState, {
     }
 
     const newToastr = {
-      id: toastr.id || guid(),
+      id: guid(),
+      position: config.position,
       ...toastr
     };
 
