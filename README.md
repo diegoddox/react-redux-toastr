@@ -220,7 +220,7 @@ const options = {
   okText: 'confirm text',
   cancelText: 'cancel text'
 };
-<ReduxToastr confirmOptions={options}/>
+<ReduxToastr confirmOption={options}/>
 ```
 
 - Passing the `okText` and `cancelText` props to the `toasterConfirmOptions` object:
