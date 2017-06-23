@@ -22,7 +22,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
   ```
 - or include the css file from the demo site (**NOTE**: This can be change at anytime)
 ```html
-<link href="http://diegoddox.github.io/react-redux-toastr/5.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
+<link href="http://diegoddox.github.io/react-redux-toastr/7.0/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
 
 ##### 3. Add the reducer.
