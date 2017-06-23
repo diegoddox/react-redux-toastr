@@ -178,19 +178,19 @@ export default class ToastrBox extends React.Component {
 
     return (
       <div>
-        <div className="toastr-left-container">
-          <div className="holder">
+        <div className="rrt-left-container">
+          <div className="rrt-holder">
             {this.renderIcon()}
           </div>
         </div>
         {options.status && type === 'light' && <div className={classnames('toastr-status', options.status)}/>}
-        <div className="toastr-middle-container">
-          {title && <div className="title">{title}</div>}
-          {message && <div className="message">{message}</div>}
+        <div className="rrt-middle-container">
+          {title && <div className="rrt-title">{title}</div>}
+          {message && <div className="rrt-text">{message}</div>}
           {options.component && this.renderSubComponent()}
         </div>
 
-        <div className="toastr-right-container">
+        <div className="rrt-right-container">
           {options.showCloseButton && this.renderCloseButton()}
         </div>
         {this.state.progressBar ? <ProgressBar {...this.state.progressBar}/> : null}
@@ -207,11 +207,11 @@ export default class ToastrBox extends React.Component {
 
     return (
       <div>
-        <div className="title">
+        <div className="rrt-title">
           {title}
           {this.renderCloseButton()}
         </div>
-        <div className="message">
+        <div className="rrt-text">
           {message}
           {options.component && this.renderSubComponent()}
         </div>
@@ -302,7 +302,7 @@ export default class ToastrBox extends React.Component {
         className={classnames(
           'toastr',
           'animated',
-          type,
+          'rrt-' + type,
           options.className
         )}
         onMouseEnter={this.mouseEnter.bind(this)}
