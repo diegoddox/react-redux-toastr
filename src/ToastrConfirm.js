@@ -120,6 +120,11 @@ export default class ToastrConfirm extends React.Component {
   }
 
   render() {
+    const {
+      options,
+      message
+    } = this.props.confirm;
+
     return (
       <div
         className="confirm-holder"
@@ -130,7 +135,8 @@ export default class ToastrConfirm extends React.Component {
         role="alert"
       >
         <div className="confirm animated" ref={ref => this.confirmElement = ref}>
-          <div className="message">{this.props.confirm.message}</div>
+          {message && <div className="message">{message}</div>}
+          {options.component && <options.component/>}
           <Button
             className={classnames('ok-btn', {'full-width': this.disableCancel})}
             onClick={() => this.handleConfirmClick()}>

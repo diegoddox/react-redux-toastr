@@ -248,6 +248,23 @@ const toastrConfirmOptions = {
 toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
 ```
 
+You can render your custom message component instead of the simple string message by:
+
+- Passing the `component` prop to the `toasterConfirmOptions` object:
+
+```javascript
+const toastrConfirmOptions = {
+  ...
+  component: () => (
+    <MyCustomComponent myProp="myValue">
+      <span>Hello, World!</span>
+    </MyCustomComponent>
+  )
+};
+
+toastr.confirm(null, toastrConfirmOptions); // pass null for message
+```
+
 ### Avatar: in case you wanna use the same avatar as the example
 [Avatar](https://github.com/diegoddox/react-redux-toastr/blob/master/development/Avatar.js)
 
