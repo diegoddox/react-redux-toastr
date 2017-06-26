@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {onCSSTransitionEnd, _bind, keyCode, isBrowser} from './utils';
 import Button from './Button';
@@ -57,15 +56,14 @@ export default class ToastrConfirm extends React.Component {
     this.isKeyDown = true;
   }
 
-  handleConfirmClick() {
+  handleButtonClick(callback) {
     if (this.hasClicked) return;
     this.hasClicked = true;
 
-    const {options} = this.props.confirm;
     const onAnimationEnd = () => {
       this.removeConfirm();
-      if (options && options.onOk) {
-        options.onOk();
+      if (callback) {
+        callback();
       }
     };
 
@@ -73,20 +71,14 @@ export default class ToastrConfirm extends React.Component {
     onCSSTransitionEnd(this.confirmElement, onAnimationEnd);
   }
 
+  handleConfirmClick() {
+    const callback = this.props.confirm.options ? this.props.confirm.options.onOk : null;
+    this.handleButtonClick(callback);
+  }
+
   handleCancelClick() {
-    if (this.hasClicked) return;
-    this.hasClicked = true;
-
-    const {options} = this.props.confirm;
-    const onAnimationEnd = () => {
-      this.removeConfirm();
-      if (options && options.onCancel) {
-        options.onCancel();
-      }
-    };
-
-    this.setTransition();
-    onCSSTransitionEnd(this.confirmElement, onAnimationEnd);
+    const callback = this.props.confirm.options ? this.props.confirm.options.onCancel : null;
+    this.handleButtonClick(callback);
   }
 
   setTransition(add) {
@@ -119,6 +111,44 @@ export default class ToastrConfirm extends React.Component {
     }
   }
 
+  containsOkButton(buttons) {
+    return buttons && buttons.filter(button => button.ok === true).length > 0;
+  }
+
+  containsCancelButton(buttons) {
+    return buttons && buttons.filter(button => button.cancel === true).length > 0;
+  }
+
+  getCustomButtonHandler(config) {
+    if (config.ok === true) {
+      return this.handleConfirmClick.bind(this);
+    }
+    if (config.cancel === true) {
+      return this.handleCancelClick.bind(this);
+    }
+    return () => this.handleButtonClick(config.handler);
+  }
+
+  getCustomButtonText(config) {
+    if (config.ok === true) {
+      return this.okText;
+    }
+    if (config.cancel === true) {
+      return this.cancelText;
+    }
+    return config.text;
+  }
+
+  getCustomButtonClassName(config) {
+    if (config.ok === true) {
+      return 'ok-btn';
+    }
+    if (config.cancel === true) {
+      return 'cancel-btn';
+    }
+    return config.className;
+  }
+
   render() {
     const {
       options,
@@ -137,16 +167,29 @@ export default class ToastrConfirm extends React.Component {
         <div className="confirm animated" ref={ref => this.confirmElement = ref}>
           {message && <div className="message">{message}</div>}
           {options.component && <options.component/>}
-          <Button
-            className={classnames('ok-btn', {'full-width': this.disableCancel})}
-            onClick={() => this.handleConfirmClick()}>
-            {this.okText}
-          </Button>
-          {!this.disableCancel &&
-            <Button className="cancel-btn" onClick={this.handleCancelClick.bind(this)}>
-              {this.cancelText}
-            </Button>
-          }
+          <div className="buttons-holder">
+            {!this.containsOkButton(options.buttons) &&
+              <Button className="ok-btn" onClick={() => this.handleConfirmClick()}>
+                {this.okText}
+              </Button>
+            }
+            {!this.disableCancel && !this.containsCancelButton(options.buttons) &&
+              <Button className="cancel-btn" onClick={this.handleCancelClick.bind(this)}>
+                {this.cancelText}
+              </Button>
+            }
+            {options.buttons && options.buttons.map((button, index) => {
+              if (button.cancel === true && this.disableCancel) {
+                return null;
+              }
+
+              const handler = this.getCustomButtonHandler(button);
+              const text = this.getCustomButtonText(button);
+              const className = this.getCustomButtonClassName(button);
+
+              return <Button className={className} onClick={handler} key={index}>{text}</Button>;
+            })}
+          </div>
         </div>
         <div className="shadow"></div>
       </div>

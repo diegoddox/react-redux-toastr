@@ -248,6 +248,38 @@ const toastrConfirmOptions = {
 toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
 ```
 
+You can add custom buttons by:
+
+- Passing the `buttons` prop to the `toasterConfirmOptions` object.
+  The buttons are inserted after the OK and the cancel button.
+  
+  Each button config can have a `text`, `handler` and a `className` property.
+  
+  If you want to move the original OK or cancel button to a different place, just
+  insert a button config with a boolean flag `ok` or `cancel` at the desired position
+  (note that all other properties are ignored in this button config).
+
+The following config leads to 3 buttons in this order:
+1. "Apply" (original OK button)
+2. "Do not apply" (our custom button)
+3. "Cancel" (original cancel button)
+
+```javascript
+const toastrConfirmOptions = {
+  ...
+  okText: 'Apply',
+  buttons: [{
+    text: 'Do not apply',
+    className: 'do-not-apply-btn',
+    handler: () => console.log('do-not-apply clicked')
+  }, {
+    cancel: true // move the cancel button to the end
+  }]
+};
+
+toastr.confirm('Your changes are applicable to 5 more records.', toastrConfirmOptions);
+```
+
 You can render your custom message component instead of the simple string message by:
 
 - Passing the `component` prop to the `toasterConfirmOptions` object:
