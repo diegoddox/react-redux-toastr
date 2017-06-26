@@ -12,12 +12,12 @@ export default class Menu extends React.Component {
   handleClick(type) {
     let options = {};
 
-    if (type == 'light') {
+    if (type == 'light' || type === 'error') {
       const icon = 'warning';
       options.icon = icon;
       options.status = icon;
       options.progressBar = true;
-      options.position = 'bottom-left';
+      options.position = type == 'light' ? 'bottom-left' : 'top-right';
       options.component = () => (<div>hej</div>);
     }
 

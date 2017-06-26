@@ -141,10 +141,10 @@ export default class ToastrConfirm extends React.Component {
 
   getCustomButtonClassName(config) {
     if (config.ok === true) {
-      return 'ok-btn';
+      return 'rrt-ok-btn';
     }
     if (config.cancel === true) {
-      return 'cancel-btn';
+      return 'rrt-cancel-btn';
     }
     return config.className;
   }
@@ -157,24 +157,24 @@ export default class ToastrConfirm extends React.Component {
 
     return (
       <div
-        className="confirm-holder"
+        className="rrt-confirm-holder"
         tabIndex="-1"
         ref={ref => this.confirmHolderElement = ref}
         onKeyDown={this.handleOnKeyDown}
         onKeyUp={this.handleOnKeyUp}
         role="alert"
       >
-        <div className="confirm animated" ref={ref => this.confirmElement = ref}>
-          {message && <div className="message">{message}</div>}
+        <div className="rrt-confirm animated" ref={ref => this.confirmElement = ref}>
+          {message && <div className="rrt-message">{message}</div>}
           {options.component && <options.component/>}
-          <div className="buttons-holder">
+          <div className="rrt-buttons-holder">
             {!this.containsOkButton(options.buttons) &&
-              <Button className="ok-btn" onClick={() => this.handleConfirmClick()}>
+              <Button className="rrt-ok-btn" onClick={() => this.handleConfirmClick()}>
                 {this.okText}
               </Button>
             }
             {!this.disableCancel && !this.containsCancelButton(options.buttons) &&
-              <Button className="cancel-btn" onClick={this.handleCancelClick.bind(this)}>
+              <Button className="rrt-cancel-btn" onClick={this.handleCancelClick.bind(this)}>
                 {this.cancelText}
               </Button>
             }

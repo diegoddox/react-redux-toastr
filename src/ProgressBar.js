@@ -40,8 +40,8 @@ export default class ProgressBar extends React.Component {
     const {percent} = this.state;
 
     return (
-      <div className="toastr-progress-container">
-        <div className="toastr-progressbar" style={{width: `${percent}%`}}></div>
+      <div className="rrt-progress-container">
+        <div className="rrt-progressbar" style={{width: `${percent}%`}}></div>
       </div>
     );
   }

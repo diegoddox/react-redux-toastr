@@ -1,4 +1,10 @@
-#6.0.0
+#7.0.0
+
+# Breaking Changes 
+add css prefix.
+
+# Features
+Confirm can take a custom component.
 
 ## New features
 - Toastr `position`, now you can have toastr in different location by specifying the `position` option.
