@@ -37,44 +37,44 @@
       clear: both;
     }
 
-    .rrt-button {
-      width: 50%;
-      height: 50px;
-      text-transform: capitalize;
-      border: none;
-      background-color: transparent;
-      padding: 0;
-      margin: 0;
-      float: left;
-      border-top: 1px solid #f0f0f0;
-      font-size: 14px;
-      overflow: hidden;
-      cursor: pointer;
+    .rrt-buttons-holder {
+      display: flex;
 
-      &:hover {
-        background-color: #f5f5f5;
-      }
+      .rrt-button {
+        flex-grow: 1;
+        height: 50px;
+        text-transform: capitalize;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        float: left;
+        border-top: 1px solid #f0f0f0;
+        font-size: 14px;
+        overflow: hidden;
+        cursor: pointer;
 
-      &.rrt-ok-btn {
-        &:active {
-          background-color: $successBgColor;
-          color: white;
+        &:hover {
+          background-color: #f5f5f5;
         }
-      }
 
-      &.rrt-cancel-btn {
-        &:active {
-          background-color: $errorBgColor;
-          color: white;
+        &.rrt-ok-btn {
+          &:active {
+            background-color: $successBgColor;
+            color: white;
+          }
         }
-      }
 
-      &.full-width {
-        width: 100%;
-      }
+        &.rrt-cancel-btn {
+          &:active {
+            background-color: $errorBgColor;
+            color: white;
+          }
+        }
 
-      &:focus {
-        outline: none;
+        &:focus {
+          outline: none;
+        }
       }
     }
   }
