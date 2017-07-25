@@ -34,7 +34,8 @@ export default class Menu extends React.Component {
               {
                 timeOut: 10000,
                 position: 'top-left',
-                progressBar: true
+                progressBar: true,
+                width:'300px'
               }
             );
           }}>
