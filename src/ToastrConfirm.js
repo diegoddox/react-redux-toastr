@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {onCSSTransitionEnd, _bind, keyCode, isBrowser} from './utils';
 import Button from './Button';
-import {TRANSITIONS} from './constants';
 
 const ENTER = 13;
 const ESC = 27;
@@ -10,9 +9,12 @@ const ESC = 27;
 export default class ToastrConfirm extends React.Component {
   static displayName = 'ToastrConfirm';
   static propTypes = {
-    confirm: PropTypes.object.isRequired,
-    transitionIn: PropTypes.oneOf(TRANSITIONS.in),
-    transitionOut: PropTypes.oneOf(TRANSITIONS.out)
+    confirm: PropTypes.shape({
+      options: PropTypes.shape({
+        transitionIn: PropTypes.string,
+        transitionOut: PropTypes.string
+      })
+    })
   };
 
   constructor(props) {
