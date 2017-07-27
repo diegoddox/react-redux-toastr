@@ -127,8 +127,9 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "eventemitter3": "^2.0.3",
     "prop-types": "^15.5.7",
-    "eventemitter3": "^2.0.3"
+    "react-transition-group": "1.x"
   },
   "homepage": "https://github.com/diegoddox/react-redux-toastr#readme"
 }

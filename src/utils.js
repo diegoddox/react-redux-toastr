@@ -1,5 +1,5 @@
-import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import config from './config';
+import { CSSTransitionGroup as ReactTransitionEvents } from 'react-transition-group';
 
 function isString(obj) {
   if (typeof obj == 'string') {
