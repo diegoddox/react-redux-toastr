@@ -76,6 +76,10 @@ The default configuration is:
 
 **NOTE**: `transitionIn` and `transitionOut` **will affect the confirm** animation as well
 
+**NOTE**: ReduxToastr component makes use of ReactTransitionGroup, thats is known to not work below HOC. 
+[react-redux issue](https://github.com/reactjs/react-redux/issues/303#issuecomment-189864169) and 
+[react-jss issue](https://github.com/cssinjs/react-jss/issues/25)
+
 Here is the full list of available configurations:
 
 - position: `top-left` `top-center` `top-right`  `bottom-left` `bottom-center` and `bottom-right`
