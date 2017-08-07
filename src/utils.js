@@ -1,5 +1,22 @@
 import config from './config';
-import { CSSTransitionGroup as ReactTransitionEvents } from 'react-transition-group';
+
+function whichTransitionEvent() {
+  let t;
+  const el = document.createElement('fakeelement');
+
+  const transitions = {
+    transition: 'transitionend',
+    OTransition: 'oTransitionEnd',
+    MozTransition: 'transitionend',
+    WebkitTransition: 'webkitTransitionEnd'
+  };
+
+  for (t in transitions) {
+    if (el.style[t] !== undefined) {
+      return transitions[t];
+    }
+  }
+}
 
 function isString(obj) {
   if (typeof obj == 'string') {
@@ -80,6 +97,7 @@ export function guid() {
 
 export function onCSSTransitionEnd(node, callback) {
   // if css animation is failed - dispatch event manually
+  const transitionEndName = whichTransitionEvent();
   const timeoutId = setTimeout(function() {
     var e = new Event('transitionend');
     toastrWarn('The toastr box was closed automatically, please check \'transitionOut\' prop value');
@@ -91,17 +109,18 @@ export function onCSSTransitionEnd(node, callback) {
     // stopPropagation is not working in IE11 and Edge, the transitionend from the Button.js is waiting
     // on the confirm animation to end first and not the Button.js
     e.stopPropagation();
-    ReactTransitionEvents.removeEndEventListener(node, runOnce);
+    node.removeEventListener(node, runOnce);
     callback && callback(e);
   };
-  ReactTransitionEvents.addEndEventListener(node, runOnce);
+
+  node.addEventListener(transitionEndName, runOnce);
 }
 
 export function preventDuplication(currentData, newObjec) {
   let hasDuplication = false;
   currentData.forEach((item) => {
     // If the toastr options implicitly specify not to prevent duplicates then skip
-    if(item.options.preventDuplicates === false) return;
+    if (item.options.preventDuplicates === false) return;
     // Because the toastr has a unic id we will check by the title and message.
     if (item.title === newObjec.title && item.message === newObjec.message && item.type === newObjec.type) {
       hasDuplication = true;
@@ -125,3 +144,4 @@ export function _bind(strinOrAray, scope) {
   }
   return array.map(item=> scope[item] = scope[item].bind(scope));
 }
+

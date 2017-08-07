@@ -1,6 +1,6 @@
 {
   "name": "react-redux-toastr",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
@@ -128,8 +128,7 @@
   "dependencies": {
     "classnames": "^2.2.3",
     "eventemitter3": "^2.0.3",
-    "prop-types": "^15.5.7",
-    "react-transition-group": "1.x"
+    "prop-types": "^15.5.7"
   },
   "homepage": "https://github.com/diegoddox/react-redux-toastr#readme"
 }
