@@ -1,5 +1,7 @@
 ## `react-redux-toastr` [demo](http://diegoddox.github.io/react-redux-toastr/)
 
+[![NPM](https://nodei.co/npm/react-redux-toastr.png)](https://nodei.co/npm/react-redux-toastr/)
+
 ![react-redux-toastr](https://raw.githubusercontent.com/diegoddox/react-redux-toastr/master/assets/toastr.png?style=centerme)
 
 
