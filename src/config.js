@@ -1,5 +1,5 @@
 let toastr = {
-  maxAnimationDelay: 2000,
+  maxAnimationDelay: 6000,
   newestOnTop: true,
   position: 'top-right',
   preventDuplicates: true

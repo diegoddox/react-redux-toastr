@@ -1,14 +1,14 @@
 import config from './config';
 
-function whichTransitionEvent() {
+function whichAnimationEvent() {
   let t;
   const el = document.createElement('fakeelement');
 
   const transitions = {
-    transition: 'transitionend',
-    OTransition: 'oTransitionEnd',
-    MozTransition: 'transitionend',
-    WebkitTransition: 'webkitTransitionEnd'
+    animation: 'animationend',
+    oanimation: 'oanimationend',
+    MSAnimation: 'MSAnimationEnd',
+    webkitAnimation: 'webkitAnimationEnd'
   };
 
   for (t in transitions) {
@@ -25,13 +25,11 @@ function isString(obj) {
   return false;
 }
 
-var toastrWarn;
-if (process.env.NODE_ENV === 'production') {
-  toastrWarn = () => {};
-} else {
-  toastrWarn = (message) => {
-    console.warn(`[react-redux-toastr] ${message}`);
-  };
+export function toastrWarn(message) {
+  if (process.env.NODE_ENV === 'production') {
+    return null;
+  }
+  console.warn(`[react-redux-toastr] ${message}`);
 }
 
 export function createReducer(initialState, fnMap) {
@@ -97,9 +95,9 @@ export function guid() {
 
 export function onCSSTransitionEnd(node, callback) {
   // if css animation is failed - dispatch event manually
-  const transitionEndName = whichTransitionEvent();
+  const animationEnd = whichAnimationEvent();
   const timeoutId = setTimeout(function() {
-    var e = new Event('transitionend');
+    const e = new Event(animationEnd);
     toastrWarn('The toastr box was closed automatically, please check \'transitionOut\' prop value');
     node.dispatchEvent(e);
   }, config.maxAnimationDelay);
@@ -109,11 +107,10 @@ export function onCSSTransitionEnd(node, callback) {
     // stopPropagation is not working in IE11 and Edge, the transitionend from the Button.js is waiting
     // on the confirm animation to end first and not the Button.js
     e.stopPropagation();
-    node.removeEventListener(node, runOnce);
+    node.removeEventListener(animationEnd, runOnce);
     callback && callback(e);
   };
-
-  node.addEventListener(transitionEndName, runOnce);
+  node.addEventListener(animationEnd, runOnce);
 }
 
 export function preventDuplication(currentData, newObjec) {
