@@ -14,7 +14,6 @@ export class ReduxToastr extends React.Component {
 
   static propTypes = {
     toastr: PropTypes.object,
-    options: PropTypes.object,
     position: PropTypes.string,
     newestOnTop: PropTypes.bool,
     timeOut: PropTypes.number,
@@ -112,7 +111,7 @@ export class ReduxToastr extends React.Component {
   _renderToastrs() {
     const {toastr} = this.props;
     const width = toastr.toastrs && toastr.toastrs[0] && toastr.toastrs[0].options && toastr.toastrs[0].options.width;
-    const style = width ? {width:width} : {};
+    const style = width ? {width: width} : {};
     return (
       <span>
         {this.toastrPositions.map(position => {
