@@ -9,6 +9,7 @@ import {
   REMOVE_BY_TYPE
 } from './constants';
 
+// TOTO: find a better way of handling this issue
 // We will cache data so we can check for duplicated before fire the add action.
 export let toastrsCache = [];
 
