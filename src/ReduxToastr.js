@@ -55,11 +55,12 @@ export class ReduxToastr extends React.Component {
   }
 
   componentDidMount() {
-    const {add, showConfirm, clean, removeByType} = this.props;
+    const {add, showConfirm, clean, removeByType, remove} = this.props;
     EE.on('toastr/confirm', showConfirm);
     EE.on('add/toastr', add);
     EE.on('clean/toastr', clean);
     EE.on('removeByType/toastr', removeByType);
+    EE.on('remove/toastr', remove);
   }
 
   componentWillUnmount() {
@@ -67,6 +68,7 @@ export class ReduxToastr extends React.Component {
     EE.removeListener('add/toastr');
     EE.removeListener('clean/toastr');
     EE.removeListener('removeByType/toastr');
+    EE.removeListener('remove/toastr');
     this.toastrFired = {};
   }
 
@@ -100,7 +102,15 @@ export class ReduxToastr extends React.Component {
                 {...this.props}
               />
               {item.options && item.options.attention &&
-                <div onClick={() => this.props.remove(item.id)} className="toastr-attention" />
+              <div
+                onClick={() => {
+                  if (typeof item.options.onAttentionClick === 'function') {
+                    item.options.onAttentionClick(item.id);
+                  } else {
+                    this.props.remove(item.id);
+                  }
+                }}
+                className="toastr-attention"/>
               }
             </span>
           );

@@ -66,6 +66,10 @@ export default class Menu extends React.Component {
                 icon: (<Avatar />),
                 position: 'top-center',
                 attention: true,
+                onAttentionClick: (id) => {
+                  console.log('Attention background clicked, id: ', id);
+                  toastr.remove(id);
+                },
                 timeOut: 0,
                 transitionIn: 'fadeIn',
                 transitionOut: 'fadeOut'
