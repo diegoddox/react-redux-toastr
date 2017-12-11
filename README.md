@@ -123,6 +123,7 @@ constructor(props) {
    title: 'your title',
    position: 'top-left', // This will override the global props position.
    attention: true, // This will add a shadow like the confirm method.
+   onAttentionClick: (id) => {}, //override default behavior of 'attention' background click.
    message: 'message',
    options: {}
   });
@@ -132,11 +133,11 @@ constructor(props) {
 ```
 
 # Toastr methods
-Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `error` `confirm` `message` and `removeByType`
+Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `error` `confirm` `message`, `remove` and `removeByType`
 
-##### Toastr: `success`  `info`  `warning`  `light`  `error` and `removeByType`
+##### Toastr: `success`  `info`  `warning`  `light`  `error`  `remove` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton`, `onCloseButtonClick`, `progressBar`, `transitionIn`, `position`, `attention`  and `transitionOut`.
+In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton`, `onCloseButtonClick`, `progressBar`, `transitionIn`, `position`, `attention`, `onAttentionClick`  and `transitionOut`.
 
 ``` javascript
 import {toastr} from 'react-redux-toastr'
@@ -160,6 +161,7 @@ toastr.info('The message', toastrOptions)
 toastr.warning('The title', 'The message')
 toastr.error('The message')
 toastr.removeByType('error') // Remove all toastrs with the type error.
+toastr.remove('123') // Removes toastr with id '123'
 ```
 
 ##### Toastr methods light

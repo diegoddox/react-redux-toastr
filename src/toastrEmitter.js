@@ -17,6 +17,8 @@ actions.clean = () => emitter.emit('clean/toastr');
  */
 actions.removeByType = (type) => emitter.emit('removeByType/toastr', type);
 
+actions.remove = (id) => emitter.emit('remove/toastr', id);
+
 actions.confirm = (...args) => {
   emitter.emit('toastr/confirm', {
     message: args[0],
