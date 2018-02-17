@@ -1,6 +1,10 @@
 ## `react-redux-toastr` [demo](http://diegoddox.github.io/react-redux-toastr/)
 
-[![NPM](https://nodei.co/npm/react-redux-toastr.png)](https://nodei.co/npm/react-redux-toastr/)
+<a href="https://www.npmjs.com/package/react-redux-toastr"><img src="https://img.shields.io/npm/v/react-redux-toastr.svg?style=flat-square" alt="NPM Version"></a>
+<a href="https://npm-stat.com/charts.html?package=react-redux-toastr"><img src="https://img.shields.io/npm/dt/react-redux-toastr.svg?style=flat-square" alt="NPM Downloads"></a>
+<a href="http://packagequality.com/#?package=react-redux-toastr"><img src="http://npm.packagequality.com/shield/react-redux-toastr.svg?style=flat-square" alt="Package Quality"></a>
+<a href="https://github.com/diegoddox/react-redux-toastr/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed-raw/diegoddox/react-redux-toastr.svg?style=flat-square" alt="Closed Issues"></a>
+<a href="https://github.com/diegoddox/react-redux-toastr/stargazers"><img src="https://img.shields.io/github/stars/diegoddox/react-redux-toastr.svg?style=social&label=Star" alt=" GitHub Stars"></a>
 
 ![react-redux-toastr](https://raw.githubusercontent.com/diegoddox/react-redux-toastr/master/assets/toastr.png?style=centerme)
 
