@@ -317,5 +317,6 @@ npm start
 ```
 open your browser at `http://localhost:3000`
 
-# TODO
-create test.
+## License
+
+[MIT](LICENSE). Copyright (c) 2016 Diego Oliveira.
