@@ -153,7 +153,7 @@ import {toastr} from 'react-redux-toastr'
 
 const toastrOptions = {
   timeOut: 3000, // by setting to 0 it will prevent the auto close
-  icon: (<myCustomIconOrAvatar />), // You can add any component you want but note the the with and height are 70px ;)
+  icon: (<myCustomIconOrAvatar />), // You can add any component you want but note that the width and height are 70px ;)
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
   onCloseButtonClick: () => console.log('Close button was clicked'),
