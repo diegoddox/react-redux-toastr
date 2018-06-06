@@ -146,7 +146,7 @@ Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `er
 
 ##### Toastr: `success`  `info`  `warning`  `light`  `error`  `remove` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`, `showCloseButton`, `onCloseButtonClick`, `progressBar`, `transitionIn`, `position`, `attention`, `onAttentionClick`  and `transitionOut`.
+In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`,`removeOnHoverTimeOut`,`showCloseButton`, `onCloseButtonClick`, `progressBar`, `transitionIn`, `position`, `attention`, `onAttentionClick`  and `transitionOut`.
 
 ``` javascript
 import {toastr} from 'react-redux-toastr'
@@ -204,7 +204,8 @@ const toastrMessageOptions = {
   timeOut: 3000, // Default value is 0
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
-  removeOnHover: false // Default value is false
+  removeOnHover: false, // Default value is false
+  removeOnHoverTimeOut: 1000, // Default value is 1000
   component: React.Component
 };
 toastr.message('Title', toastrMessageOptions)
