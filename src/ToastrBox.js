@@ -107,10 +107,10 @@ export default class ToastrBox extends React.Component {
   }
 
   mouseLeave() {
-    const {removeOnHover} = this.props.item.options;
+    const {removeOnHover,removeOnHoverTimeOut} = this.props.item.options;
 
     if (!this.isHiding && (removeOnHover || this.shouldClose)) {
-      const interval = removeOnHover === true ? 1000 : removeOnHover;
+        const interval = removeOnHover === true ? (removeOnHoverTimeOut || 1000) : removeOnHover;
       this._setIntervalId(setTimeout(this._removeToastr, interval));
 
       const {progressBar} = this.props.item.options;
