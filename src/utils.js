@@ -93,11 +93,24 @@ export function guid() {
   return r() + r() + r() + '-' + r() + '_' + r() + '-' + r() + '_' + r() + r() + r();
 }
 
+export function customEvent(eventName) {
+  var event;
+
+  if (typeof(Event) === 'function') {
+      event = new Event(eventName);
+  } else {
+      event = document.createEvent('Event');
+      event.initEvent(eventName, true, true);
+  }
+
+  return event;
+}
+
 export function onCSSTransitionEnd(node, callback) {
   // if css animation is failed - dispatch event manually
   const animationEnd = whichAnimationEvent();
   const timeoutId = setTimeout(function() {
-    const e = new Event(animationEnd);
+    const e = customEvent(animationEnd);
     toastrWarn('The toastr box was closed automatically, please check \'transitionOut\' prop value');
     node.dispatchEvent(e);
   }, config.maxAnimationDelay);
