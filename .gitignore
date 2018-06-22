@@ -6,8 +6,7 @@ npm-debug.log
 3.*
 4.*
 7.*
-lib
-dist/
 .idea
+lib
 /yarn.lock
 /*.sublime*
