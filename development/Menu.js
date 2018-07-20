@@ -35,7 +35,7 @@ export default class Menu extends React.Component {
                 timeOut: 10000,
                 position: 'top-left',
                 progressBar: true,
-                width:'300px'
+                width: '300px'
               }
             );
           }}>
@@ -50,7 +50,8 @@ export default class Menu extends React.Component {
               position: 'bottom-right',
               timeOut: 10000,
               transitionIn: 'bounceInDown',
-              transitionOut: 'bounceOutU'
+              transitionOut: 'bounceOutUp',
+              closeOnToastrClick: true
             });
           }}>
             <span className="icon-info-circle"/>

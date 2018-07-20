@@ -21,7 +21,8 @@ export class ReduxToastr extends React.Component {
     progressBar: PropTypes.bool,
     transitionIn: PropTypes.oneOf(TRANSITIONS.in),
     transitionOut: PropTypes.oneOf(TRANSITIONS.out),
-    preventDuplicates: PropTypes.bool
+    preventDuplicates: PropTypes.bool,
+    closeOnToastrClick: PropTypes.bool
   };
 
   static defaultProps = {
@@ -32,6 +33,7 @@ export class ReduxToastr extends React.Component {
     transitionIn: TRANSITIONS.in[0],
     transitionOut: TRANSITIONS.out[0],
     preventDuplicates: false,
+    closeOnToastrClick: false,
     confirmOptions: {
       okText: 'ok',
       cancelText: 'cancel'
@@ -89,6 +91,7 @@ export class ReduxToastr extends React.Component {
               progressBar: this.props.progressBar,
               transitionIn: this.props.transitionIn,
               transitionOut: this.props.transitionOut,
+              closeOnToastrClick: this.props.closeOnToastrClick,
               ...item.options
             }
           };
