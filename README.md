@@ -68,7 +68,8 @@ import ReduxToastr from 'react-redux-toastr'
       position="top-left"
       transitionIn="fadeIn"
       transitionOut="fadeOut"
-      progressBar/>
+      progressBar
+      closeOnToastrClick/>
   </div>
 </Provider>
 ```
@@ -81,7 +82,8 @@ The default configuration is:
   position: 'top-right',
   transitionIn: 'bounceIn',
   transitionOut: 'bounceOut',
-  progressBar: false
+  progressBar: false,
+  closeOnToastrClick: false,
 }
 ```
 
@@ -146,7 +148,7 @@ Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `er
 
 ##### Toastr: `success`  `info`  `warning`  `light`  `error`  `remove` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
-In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`,`removeOnHoverTimeOut`,`showCloseButton`, `onCloseButtonClick`, `progressBar`, `transitionIn`, `position`, `attention`, `onAttentionClick`  and `transitionOut`.
+In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`,`removeOnHoverTimeOut`,`showCloseButton`, `onCloseButtonClick`, `onToastrClick`, `progressBar`, `transitionIn`, `position`, `attention`, `onAttentionClick`, `transitionOut` and `closeOnToastrClick`.
 
 ``` javascript
 import {toastr} from 'react-redux-toastr'
@@ -157,7 +159,9 @@ const toastrOptions = {
   onShowComplete: () => console.log('SHOW: animation is done'),
   onHideComplete: () => console.log('HIDE: animation is done'),
   onCloseButtonClick: () => console.log('Close button was clicked'),
+  onToastrClick: () => console.log('Toastr was clicked'),
   showCloseButton: false, // true by default
+  closeOnToastrClick: true, // false by default, this will close the toastr when user clicks on it
   component: ( // this option will give you a func 'remove' as props
     <MyCustomComponent myProp="myValue">
       <span>Hello, World!</span>

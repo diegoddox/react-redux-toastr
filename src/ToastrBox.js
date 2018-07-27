@@ -80,8 +80,36 @@ export default class ToastrBox extends React.Component {
     }
   }
 
-  handleClick() {
+  handlePressEnterOrSpaceKeyToastr(e) {
+    if (e.key === ' ' || e.key === 'enter') {
+      this.handleClickToastr(e);
+    }
+  }
+
+  handlePressEnterOrSpaceKeyCloseButton(e) {
+    if (e.key === ' ' || e.key === 'enter') {
+      this.handleClickCloseButton(e);
+    }
+  }
+
+  handleClickToastr() {
+    let {onToastrClick, closeOnToastrClick} = this.props.item.options;
+    this.ignoreIsHiding = true;
+
+    if (onToastrClick) {
+      onToastrClick();
+    }
+
+    if (closeOnToastrClick) {
+      this._setShouldClose(true);
+      this._removeToastr();
+    }
+  }
+
+  handleClickCloseButton(e) {
     let {onCloseButtonClick} = this.props.item.options;
+    e.stopPropagation();
+
     this.ignoreIsHiding = true;
 
     if (onCloseButtonClick) {
@@ -107,10 +135,10 @@ export default class ToastrBox extends React.Component {
   }
 
   mouseLeave() {
-    const {removeOnHover,removeOnHoverTimeOut} = this.props.item.options;
+    const {removeOnHover, removeOnHoverTimeOut} = this.props.item.options;
 
     if (!this.isHiding && (removeOnHover || this.shouldClose)) {
-        const interval = removeOnHover === true ? (removeOnHoverTimeOut || 1000) : removeOnHover;
+      const interval = removeOnHover === true ? (removeOnHoverTimeOut || 1000) : removeOnHover;
       this._setIntervalId(setTimeout(this._removeToastr, interval));
 
       const {progressBar} = this.props.item.options;
@@ -160,7 +188,7 @@ export default class ToastrBox extends React.Component {
       <button
         type="button"
         className="close-toastr"
-        onClick={this.handleClick.bind(this)}
+        onClick={this.handleClickCloseButton.bind(this)}
       >
         &#x2715;
       </button>
@@ -295,6 +323,18 @@ export default class ToastrBox extends React.Component {
       type
     } = this.props.item;
 
+    const {onToastrClick, closeOnToastrClick} = options;
+    const hasOnToastrClick = !!onToastrClick;
+    const doesCloseOnToastrClick = closeOnToastrClick;
+
+    let toastrClickAttributes = {};
+    if (hasOnToastrClick || doesCloseOnToastrClick) {
+      toastrClickAttributes.role = 'button';
+      toastrClickAttributes.tabIndex = 0;
+      toastrClickAttributes.onClick = this.handleClickToastr.bind(this);
+      toastrClickAttributes.onKeyPress = this.handlePressEnterOrSpaceKeyToastr.bind(this);
+    }
+
     return (
       <div
         ref={(ref) => this.toastrBoxElement = ref}
@@ -304,8 +344,10 @@ export default class ToastrBox extends React.Component {
           'rrt-' + type,
           options.className
         )}
+
         onMouseEnter={this.mouseEnter.bind(this)}
         onMouseLeave={this.mouseLeave.bind(this)}
+        {...toastrClickAttributes}
       >
        {this.toastr()}
       </div>
