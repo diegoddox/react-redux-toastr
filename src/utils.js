@@ -94,6 +94,7 @@ export function guid() {
 }
 
 export function onCSSTransitionEnd(node, callback) {
+  if (!node) { return }
   // if css animation is failed - dispatch event manually
   const animationEnd = whichAnimationEvent();
   const timeoutId = setTimeout(function() {
@@ -141,4 +142,3 @@ export function _bind(strinOrAray, scope) {
   }
   return array.map(item=> scope[item] = scope[item].bind(scope));
 }
-
