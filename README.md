@@ -148,6 +148,7 @@ Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `er
 
 ##### Toastr: `success`  `info`  `warning`  `light`  `error`  `remove` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
+`title` and `message` can be strings or React Components.
 In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`,`removeOnHoverTimeOut`,`showCloseButton`, `onCloseButtonClick`, `onToastrClick`, `progressBar`, `transitionIn`, `position`, `attention`, `onAttentionClick`, `transitionOut` and `closeOnToastrClick`.
 
 ``` javascript
@@ -270,9 +271,9 @@ You can add custom buttons by:
 
 - Passing the `buttons` prop to the `toasterConfirmOptions` object.
   The buttons are inserted after the OK and the cancel button.
-  
+
   Each button config can have a `text`, `handler` and a `className` property.
-  
+
   If you want to move the original OK or cancel button to a different place, just
   insert a button config with a boolean flag `ok` or `cancel` at the desired position
   (note that all other properties are ignored in this button config).

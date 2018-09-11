@@ -25,6 +25,10 @@ function isString(obj) {
   return false;
 }
 
+function isReactComponent(obj) {
+  return !!obj.type
+}
+
 export function toastrWarn(message) {
   if (process.env.NODE_ENV === 'production') {
     return null;
@@ -55,7 +59,9 @@ export function mapToToastrMessage(type, array) {
   obj.type = type;
   obj.position = config.position;
 
-  obj.options = array.filter(item => typeof item == 'object')[0] || {};
+  obj.options = array.find(item =>
+    typeof item == 'object' && !isReactComponent(item)
+  ) || {};
 
   if (obj.options.hasOwnProperty('position')) {
     obj.position = obj.options.position;
@@ -76,11 +82,16 @@ export function mapToToastrMessage(type, array) {
     obj.options.timeOut = 0;
   }
 
-  if (isString(array[0]) && isString(array[1])) {
+  if (array.length === 3) {
     obj.title = array[0];
     obj.message = array[1];
-  } else if (isString(array[0]) && !isString(array[1])) {
-    obj.title = array[0];
+  } else if (array.length === 2) {
+    if (isReactComponent(array[1]) || isString(array[1])) {
+      obj.title = array[0];
+      obj.message = array[1];
+    } else {
+      obj.message = array[0];
+    }
   } else {
     obj.message = array[0];
   }

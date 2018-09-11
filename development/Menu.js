@@ -2,6 +2,7 @@ import React from 'react';
 import {toastr} from './../src/';
 import loremIpsum from 'lorem-ipsum';
 import Avatar from './Avatar';
+import CustomComponent from './CustomComponent';
 import messageText from './messageText';
 
 export default class Menu extends React.Component {
@@ -89,6 +90,12 @@ export default class Menu extends React.Component {
           </li>
           <li className="message" onClick={() => toastr.confirm('The confirm message')}>
             <span className="icon-check-5"/>
+          </li>
+          <li className="message" onClick={() => toastr.success(
+            <CustomComponent text="Nice Title" />,
+            <CustomComponent text="Nice Message" />
+          )}>
+            <span className="icon-double-diamonds"/>
           </li>
       </ul>
     );
