@@ -4,7 +4,8 @@ import {
   CLEAN_TOASTR,
   SHOW_CONFIRM,
   HIDE_CONFIRM,
-  REMOVE_BY_TYPE
+  REMOVE_BY_TYPE,
+  UPDATE_CONTENT_TOASTR
 } from './constants';
 
 import {preventDuplication} from './utils';
@@ -30,6 +31,11 @@ export const clean = () => ({type: CLEAN_TOASTR});
 
 export const remove = (payload) => ({
   type: REMOVE_TOASTR,
+  payload
+});
+
+export const update = (payload) => ({
+  type: UPDATE_CONTENT_TOASTR,
   payload
 });
 

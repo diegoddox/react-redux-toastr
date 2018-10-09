@@ -1,10 +1,11 @@
 import React from 'react';
-import {toastr} from './../src/';
+import {toastr, actions} from './../src/';
 import loremIpsum from 'lorem-ipsum';
 import Avatar from './Avatar';
 import messageText from './messageText';
+import {connect} from 'react-redux';
 
-export default class Menu extends React.Component {
+class Menu extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -22,6 +23,18 @@ export default class Menu extends React.Component {
     }
 
     toastr[type](loremIpsum(), options);
+  }
+
+  delay() {
+    return new Promise(resolve => setTimeout(resolve, 900));
+  }
+
+  async updateAll() {
+    const sum = 5;
+    for (let i = 1; i <= sum; i++) {
+      toastr.update('mycustomid', {message: `Process ${i} of ${sum}`, position: 'bottom-left'});
+      await this.delay();
+    }
   }
 
   render() {
@@ -90,7 +103,29 @@ export default class Menu extends React.Component {
           <li className="message" onClick={() => toastr.confirm('The confirm message')}>
             <span className="icon-check-5"/>
           </li>
+          <li className="success" onClick={() => {
+            this.props.dispatch(actions.add({
+              id: 'mycustomid', // If not provided we will add one.
+              type: 'success',
+              title: 'your title',
+              position: 'top-left', // This will override the global props position.
+              message: 'message',
+              options: {
+                timeOut: 100000
+              }
+            }));
+          }}>
+            <span className="icon-check" />
+          </li>
+          <li className="message" onClick={async () => {
+            await this.updateAll();
+            toastr.remove('mycustomid');
+          }}>
+            <span style={{fontSize: 10}}>Update</span>
+          </li>
       </ul>
     );
   }
 }
+
+export default connect()(Menu);
