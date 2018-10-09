@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-toastr",
+  "name": "ultumus-react-redux-toastr",
   "version": "7.4.0",
   "description": "react-redux-toastr is a React toastr message implemented with Redux",
   "main": "lib/index.js",
