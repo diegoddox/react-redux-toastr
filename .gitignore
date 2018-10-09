@@ -6,7 +6,6 @@ npm-debug.log
 3.*
 4.*
 7.*
-lib
 dist/
 .idea
 /yarn.lock
