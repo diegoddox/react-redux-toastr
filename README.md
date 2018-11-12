@@ -31,7 +31,7 @@ The reducer listens to dispatched actions from the component to maintain the `to
 ```javascript
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 ```
-- or include the css file from the demo site (**NOTE**: This can be change at anytime)
+- or include the css file from the demo site (**NOTE**: This file can be changed anytime)
 ```html
 <link href="https://diegoddox.github.io/react-redux-toastr/7.1/react-redux-toastr.min.css" rel="stylesheet" type="text/css">
 ```
@@ -148,6 +148,7 @@ Toastr accepts the following methods: `success`  `info`  `warning`  `light`  `er
 
 ##### Toastr: `success`  `info`  `warning`  `light`  `error`  `remove` and `removeByType`
 Each of these methods can take up to three arguments the `title` a `message` and `options`.
+
 In `options` you can specify `timeOut` `icon` `onShowComplete` `onHideComplete` `className` `component` `removeOnHover`,`removeOnHoverTimeOut`,`showCloseButton`, `onCloseButtonClick`, `onToastrClick`, `progressBar`, `transitionIn`, `position`, `attention`, `onAttentionClick`, `transitionOut` and `closeOnToastrClick`.
 
 ``` javascript
@@ -201,7 +202,7 @@ toastr.light('The title', 'The message', toastrOptions)
 ```
 
 ##### Toastr: `message`
-This one is in case you wanna show a large amount of information, unlike the other methods above this will not close automatically unless you provide a `timeout` in the `message` options.
+Use this one if you wanna show a large amount of information. Unlike the other methods above, it would not close automatically unless you provide a `timeout` in the `message` options.
 
 ```javascript
 const toastrMessageOptions = {
@@ -216,9 +217,9 @@ toastr.message('Title', toastrMessageOptions)
 ```
 
 ##### Toastr: `confirm`
-The confirm method takes two arguments, the first is the message the second is a object where you can specify what will happen when the user clicks on `ok` and `cancel` button or by `keypress` `enter/esc`
+The confirm method takes two arguments. The first one is the message and the second one is an object where you can specify what will happen when the user clicks on `ok` or on the `cancel` buttons or on `keypress` `enter/esc`.
 
-NOTE: You can only have one at a time, right now if you have one `confirm` and you fire another it will be ignored.
+NOTE: You can only have one confirm toastr at the same time. If you have one `confirm` and you fire another it will be ignored.
 
 ```javascript
 const toastrConfirmOptions = {
@@ -228,9 +229,9 @@ const toastrConfirmOptions = {
 toastr.confirm('Are you sure about that!', toastrConfirmOptions);
 ```
 
-You can change the `ok` and `cancel` text by:
+You can change the `ok` and `cancel` texts by:
 
-- Passing the `confirm` props to the `ReduxToastr` component
+- Passing `confirmOptions` to the `ReduxToastr` component:
 
 ```javascript
 <!-- please define both keys as this will override default okText & cancelText -->
@@ -241,7 +242,7 @@ const options = {
 <ReduxToastr confirmOptions={options}/>
 ```
 
-- Passing the `okText` and `cancelText` props to the `toasterConfirmOptions` object:
+- Passing `okText` and `cancelText` in the `toasterConfirmOptions` object:
 
 ```javascript
 const toastrConfirmOptions = {
@@ -255,12 +256,12 @@ toastr.confirm('Are you sure about that!', toastrConfirmOptions);
 
 You can make it so `ok` is the only button by:
 
-- Passing the `disableCancel` prop to the `toasterConfirmOptions` object:
+- Passing `disableCancel` in the `toasterConfirmOptions` object:
 
 ```javascript
 const toastrConfirmOptions = {
   ...
-  disableCancel: true;
+  disableCancel: true
 };
 
 toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
@@ -268,16 +269,17 @@ toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
 
 You can add custom buttons by:
 
-- Passing the `buttons` prop to the `toasterConfirmOptions` object.
-  The buttons are inserted after the OK and the cancel button.
+- Passing `buttons` in the `toasterConfirmOptions` object.
+
+  The buttons are inserted after the OK and the cancel buttons.
   
   Each button config can have a `text`, `handler` and a `className` property.
   
-  If you want to move the original OK or cancel button to a different place, just
-  insert a button config with a boolean flag `ok` or `cancel` at the desired position
-  (note that all other properties are ignored in this button config).
+  If you want to move the original OK or cancel buttons to a different postiion, just
+  insert a an object with a single boolean flag: `ok` or `cancel` to the desired position
+  inside buttons. (note that all other properties are ignored in this case).
 
-The following config leads to 3 buttons in this order:
+The following config leads to 3 buttons in the following order:
 1. "Apply" (original OK button)
 2. "Do not apply" (our custom button)
 3. "Cancel" (original cancel button)
@@ -315,7 +317,7 @@ const toastrConfirmOptions = {
 toastr.confirm(null, toastrConfirmOptions); // pass null for message
 ```
 
-### Avatar: in case you wanna use the same avatar as the example
+### Avatar: in case you wanna use the same avatar as in the example
 [Avatar](https://github.com/diegoddox/react-redux-toastr/blob/master/development/Avatar.js)
 
 # Run a local demo
