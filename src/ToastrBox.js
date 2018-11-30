@@ -33,6 +33,8 @@ export default class ToastrBox extends React.Component {
 
     this.transitionIn = transitionIn || this.props.transitionIn;
     this.transitionOut = transitionOut || this.props.transitionOut;
+    // an identifier to facilitate aria labelling for a11y for multiple instances of the component family in the DOM
+    this.id = Math.floor(Math.random() * 9999);
 
     this.state = {progressBar: null};
 
@@ -72,19 +74,26 @@ export default class ToastrBox extends React.Component {
     this._setTransition();
     onCSSTransitionEnd(this.toastrBoxElement, this._onAnimationComplete);
     this.props.addToMemory(item.id);
+    //
+    this.closeButton.focus();
   }
 
   componentWillUnmount() {
     if (this.intervalId) {
       clearTimeout(this.intervalId);
     }
+    // when toast unloads the toast close button automatically focuses on the next toast control (if any)
+    // need to add a micro delay to allow the DOM to recycle
+    setTimeout(function() {
+      document.getElementsByClassName('toastr-control')[0].focus();
+    }, 50);
   }
 
   handlePressEnterOrSpaceKeyToastr = (e) => {
     if (e.key === ' ' || e.key === 'enter') {
       this.handleClickToastr(e);
     }
-  }
+  };
 
   handlePressEnterOrSpaceKeyCloseButton(e) {
     if (e.key === ' ' || e.key === 'enter') {
@@ -104,7 +113,7 @@ export default class ToastrBox extends React.Component {
       this._setShouldClose(true);
       this._removeToastr();
     }
-  }
+  };
 
   handleClickCloseButton = (e) => {
     let {onCloseButtonClick} = this.props.item.options;
@@ -118,7 +127,7 @@ export default class ToastrBox extends React.Component {
 
     this._setShouldClose(true);
     this._removeToastr();
-  }
+  };
 
   mouseEnter = () => {
     clearTimeout(this.intervalId);
@@ -132,7 +141,7 @@ export default class ToastrBox extends React.Component {
     if (timeOut && progressBar) {
       this.setState({progressBar: null});
     }
-  }
+  };
 
   mouseLeave = () => {
     const {removeOnHover, removeOnHoverTimeOut} = this.props.item.options;
@@ -148,7 +157,7 @@ export default class ToastrBox extends React.Component {
         this.setState({progressBar: {duration: interval}});
       }
     }
-  }
+  };
 
   renderSubComponent() {
     const {
@@ -186,9 +195,12 @@ export default class ToastrBox extends React.Component {
   renderCloseButton() {
     return (
       <button
+        tabIndex="0"
         type="button"
-        className="close-toastr"
+        className="close-toastr toastr-control"
+        aria-label="toast"
         onClick={this.handleClickCloseButton}
+        ref={ref => this.closeButton = ref}
       >
         &#x2715;
       </button>
@@ -211,9 +223,9 @@ export default class ToastrBox extends React.Component {
           </div>
         </div>
         {options.status && type === 'light' && <div className={classnames('toastr-status', options.status)}/>}
-        <div className="rrt-middle-container">
-          {title && <div className="rrt-title">{title}</div>}
-          {message && <div className="rrt-text">{message}</div>}
+        <div className="rrt-middle-container" role="alertdialog" aria-labelledby={`dialogTitle-${this.id}`} aria-describedby={`dialogDesc-${this.id}`}>
+          {title && <div id={`dialogTitle-${this.id}`} className="rrt-title">{title}</div>}
+          {message && <div id={`dialogDesc-${this.id}`} className="rrt-text">{message}</div>}
           {options.component && this.renderSubComponent()}
         </div>
 
