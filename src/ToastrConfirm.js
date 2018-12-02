@@ -39,6 +39,9 @@ export default class ToastrConfirm extends React.Component {
     this.disableCancel = disableCancel || confirmOptions.disableCancel;
     _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown', this);
     this.isKeyDown = false;
+    // an identifier to facilitate aria labelling for a11y for multiple instances of the component family in the DOM
+    this.id = Math.floor(Math.random() * 9999);
+
   }
 
   componentDidMount() {
@@ -49,6 +52,16 @@ export default class ToastrConfirm extends React.Component {
     if (this.props.confirm.show) {
       this.setTransition(true);
     }
+    // when toast loads the toast close button automatically focuses on the toast control
+    this.closeButton.focus();
+  }
+
+  componentWillUnmount() {
+    // when toast unloads the toast close button automatically focuses on the next toast control (if any)
+    // need to add a micro delay to allow the DOM to recycle
+    setTimeout(function() {
+      document.getElementsByClassName('toastr-control')[0].focus();
+    }, 50);
   }
 
   handleOnKeyDown(e) {
@@ -166,17 +179,17 @@ export default class ToastrConfirm extends React.Component {
         onKeyUp={this.handleOnKeyUp}
         role="alert"
       >
-        <div className="rrt-confirm animated" ref={ref => this.confirmElement = ref}>
-          {message && <div className="rrt-message">{message}</div>}
+        <div className="rrt-confirm animated" ref={ref => this.confirmElement = ref} role="alertdialog" aria-describedby={`dialogDesc-${this.id}`}>
+          {message && <div className="rrt-message" id={`dialogDesc-${this.id}`}>{message}</div>}
           {options.component && <options.component/>}
           <div className="rrt-buttons-holder">
             {!this.containsOkButton(options.buttons) &&
-              <Button className="rrt-ok-btn" onClick={() => this.handleConfirmClick()}>
+              <Button tabIndex="0" ref={ref => this.closeButton = ref} className="rrt-ok-btn toastr-control" onClick={() => this.handleConfirmClick()}>
                 {this.okText}
               </Button>
             }
             {!this.disableCancel && !this.containsCancelButton(options.buttons) &&
-              <Button className="rrt-cancel-btn" onClick={this.handleCancelClick.bind(this)}>
+              <Button  tabIndex="0" ref={ref => this.closeButton = ref} className="rrt-cancel-btn toastr-control" onClick={this.handleCancelClick.bind(this)}>
                 {this.cancelText}
               </Button>
             }
@@ -189,7 +202,7 @@ export default class ToastrConfirm extends React.Component {
               const text = this.getCustomButtonText(button);
               const className = this.getCustomButtonClassName(button);
 
-              return <Button className={className} onClick={handler} key={index}>{text}</Button>;
+              return <Button tabIndex="0" className={className} onClick={handler} key={index}>{text}</Button>;
             })}
           </div>
         </div>
