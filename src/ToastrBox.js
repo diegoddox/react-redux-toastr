@@ -74,8 +74,9 @@ export default class ToastrBox extends React.Component {
     this._setTransition();
     onCSSTransitionEnd(this.toastrBoxElement, this._onAnimationComplete);
     this.props.addToMemory(item.id);
-    //
-    this.closeButton.focus();
+    if (this.closeButton !== undefined) {
+      this.closeButton.focus();
+    }
   }
 
   componentWillUnmount() {
@@ -85,7 +86,9 @@ export default class ToastrBox extends React.Component {
     // when toast unloads the toast close button automatically focuses on the next toast control (if any)
     // need to add a micro delay to allow the DOM to recycle
     setTimeout(function() {
-      document.getElementsByClassName('toastr-control')[0].focus();
+      if (document.getElementsByClassName('toastr-control').length > 0) {
+        document.getElementsByClassName('toastr-control')[0].focus();
+      }
     }, 50);
   }
 

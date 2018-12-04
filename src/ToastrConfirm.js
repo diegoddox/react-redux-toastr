@@ -53,14 +53,18 @@ export default class ToastrConfirm extends React.Component {
       this.setTransition(true);
     }
     // when toast loads the toast close button automatically focuses on the toast control
-    this.closeButton.focus();
+    if (this.closeButton !== undefined) {
+      this.closeButton.focus();
+    }
   }
 
   componentWillUnmount() {
     // when toast unloads the toast close button automatically focuses on the next toast control (if any)
     // need to add a micro delay to allow the DOM to recycle
     setTimeout(function() {
-      document.getElementsByClassName('toastr-control')[0].focus();
+      if (document.getElementsByClassName('toastr-control').length > 0) {
+        document.getElementsByClassName('toastr-control')[0].focus();
+      }
     }, 50);
   }
 
