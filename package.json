@@ -12,7 +12,7 @@
     "postcss": "./node_modules/.bin/postcss --u autoprefixer -o ./lib/css/react-redux-toastr.min.css ./lib/css/react-redux-toastr.min.css",
     "clean": "./node_modules/.bin/rimraf dist lib",
     "lint": "./node_modules/eslint/bin/eslint.js --fix .",
-    "build_app": "concurrent --kill-others & npm run clean & npm run lint & npm run build & npm run sass & npm run clean-css",
+    "build_app": "concurrently \"npm run clean\" \"npm run lint\" \"npm run build\" \"npm run sass\" \"npm run clean\"",
     "buildc": "better-npm-run build_client"
   },
   "eslintConfig": {
@@ -20,14 +20,14 @@
   },
   "betterScripts": {
     "dev-server": {
-      "command": "./node_modules/.bin/webpack-dev-server --hot --inline --config webpack/development.js",
+      "command": "./node_modules/.bin/webpack-dev-server --hot --inline --mode=development --config webpack/development.js",
       "env": {
         "NODE_ENV": "development",
-        "NODE_PORT": 3000
+        "NODE_PORT": 4001
       }
     },
     "build_client": {
-      "command": "./node_modules/.bin/webpack -p --color --progress --config webpack/production.js",
+      "command": "./node_modules/.bin/webpack -p --color --progress --mode=production --config webpack/production.js",
       "env": {
         "NODE_ENV": "production"
       }
@@ -70,65 +70,60 @@
     "toastr profile"
   ],
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
-    "babel-cli": "^6.6.5",
-    "babel-core": "^6.2.1",
-    "babel-eslint": "^7.2.1",
-    "babel-loader": "^6.2.0",
-    "babel-plugin-syntax-class-properties": "^6.1.18",
-    "babel-plugin-transform-class-properties": "^6.2.2",
-    "babel-plugin-transform-es2015-arrow-functions": "^6.1.18",
-    "babel-plugin-transform-es2015-block-scoping": "^6.1.18",
-    "babel-plugin-transform-es2015-classes": "^6.1.18",
-    "babel-plugin-transform-proto-to-assign": "^6.6.5",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18",
-    "babel-preset-stage-0": "^6.1.18",
-    "better-npm-run": "0.0.15",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.4.4",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "better-npm-run": "^0.1.1",
     "clean-css": "^4.0.11",
-    "clean-css-loader": "0.0.5",
-    "concurrently": "^3.4.0",
-    "css-loader": "^0.28.0",
-    "eslint": "^3.19.0",
-    "eslint-loader": "^1.1.1",
-    "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-react": "^6.10.3",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "file-loader": "^0.11.1",
-    "html-webpack-plugin": "^2.28.0",
-    "jasmine": "^2.3.2",
+    "clean-css-loader": "^1.1.0",
+    "concurrently": "^4.1.0",
+    "css-loader": "^2.1.0",
+    "eslint": "^5.12.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-react": "^7.12.3",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jasmine": "^3.3.1",
     "jshint": "^2.9.1-rc1",
     "jshint-loader": "^0.8.3",
     "lorem-ipsum": "^1.0.3",
+    "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.5.2",
-    "postcss-cli": "^3.1.1",
+    "postcss-cli": "^6.1.1",
     "postcss-extend": "^1.0.5",
-    "postcss-import": "^9.1.0",
-    "postcss-mixins": "^5.4.1",
-    "postcss-nested": "^1.0.0",
-    "postcss-simple-vars": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-mixins": "^6.2.1",
+    "postcss-nested": "^4.1.1",
+    "postcss-simple-vars": "^5.0.1",
     "prop-types": "^15.5.7",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-hot-loader": "^1.3.1",
-    "react-redux": "^5.0.3",
-    "redux": "^3.3.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-hot-loader": "^4.6.3",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
     "rimraf": "^2.4.4",
-    "sass-loader": "^6.0.3",
-    "style-loader": "^0.16.1",
-    "url-loader": "^0.5.7",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.1 || ^16.0.0",
-    "react-redux": "^4.0.1 || ^5.0.1",
+    "react-redux": "^4.0.1 || ^5.0.1 || ^6.0.0",
     "redux": "^3.0.5 || ^4.0.0",
     "prop-types": "^15.5.7"
   },
   "dependencies": {
     "classnames": "^2.2.3",
-    "eventemitter3": "^2.0.3"
+    "eventemitter3": "^3.1.0"
   },
   "homepage": "https://github.com/diegoddox/react-redux-toastr#readme"
 }
