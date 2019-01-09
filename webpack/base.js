@@ -18,7 +18,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: [/node_modules/],
-        use: ['react-hot-loader', 'babel-loader']
+        use: ['react-hot-loader/webpack', 'babel-loader']
       }, {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         exclude: /node_modules/,

@@ -4,9 +4,6 @@
     "browser": true,
     "node": true
   },
-  "ecmaFeatures": {
-    "jsx": true
-  },
   "plugins": [
     "react",
     "babel"
