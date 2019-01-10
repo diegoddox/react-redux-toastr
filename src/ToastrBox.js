@@ -312,12 +312,16 @@ export default class ToastrBox extends React.Component {
       }
     };
 
-    onCSSTransitionEnd(this.toastrBoxElement, onEndListener);
-    this.toastrBoxElement.classList.add(animationType);
+    if (this.toastrBoxElement) {
+      onCSSTransitionEnd(this.toastrBoxElement, onEndListener);
+      this.toastrBoxElement.classList.add(animationType);
+    }
   }
 
   _clearTransition() {
-    this.toastrBoxElement.classList.remove(this.transitionIn, this.transitionOut);
+    if (this.toastrBoxElement) {
+      this.toastrBoxElement.classList.remove(this.transitionIn, this.transitionOut);
+    }
   }
 
   _setIntervalId(intervalId) {
