@@ -94,7 +94,9 @@ export function guid() {
 }
 
 export function onCSSTransitionEnd(node, callback) {
-  if (!node) { return }
+  if (!node) {
+    return;
+  }
   // if css animation is failed - dispatch event manually
   const animationEnd = whichAnimationEvent();
   const timeoutId = setTimeout(function() {

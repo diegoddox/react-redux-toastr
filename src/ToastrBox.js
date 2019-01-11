@@ -368,7 +368,7 @@ export default class ToastrBox extends React.Component {
         onMouseLeave={this.mouseLeave}
         {...toastrClickAttributes}
       >
-       {this.toastr()}
+        {this.toastr()}
       </div>
     );
   }
