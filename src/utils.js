@@ -18,6 +18,17 @@ function whichAnimationEvent() {
   }
 }
 
+function createNewEvent(eventName) {
+  var event;
+  if (typeof (Event) === 'function') {
+    event = new Event(eventName);
+  } else {
+    event = document.createEvent('Event');
+    event.initEvent(eventName, true, true);
+  }
+  return event;
+}
+
 function isString(obj) {
   if (typeof obj == 'string') {
     return true;
@@ -100,7 +111,7 @@ export function onCSSTransitionEnd(node, callback) {
   // if css animation is failed - dispatch event manually
   const animationEnd = whichAnimationEvent();
   const timeoutId = setTimeout(function() {
-    const e = new Event(animationEnd);
+    const e = createNewEvent(animationEnd);
     toastrWarn('The toastr box was closed automatically, please check \'transitionOut\' prop value');
     node.dispatchEvent(e);
   }, config.maxAnimationDelay);
