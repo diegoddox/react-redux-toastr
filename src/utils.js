@@ -131,7 +131,7 @@ export function preventDuplication(currentData, newObjec) {
   let hasDuplication = false;
   currentData.forEach((item) => {
     // If the toastr options implicitly specify not to prevent duplicates then skip
-    if (item.options.preventDuplicates === false) return;
+    if (item.options && item.options.preventDuplicates === false) return;
     // Because the toastr has a unic id we will check by the title and message.
     if (item.title === newObjec.title && item.message === newObjec.message && item.type === newObjec.type) {
       hasDuplication = true;
