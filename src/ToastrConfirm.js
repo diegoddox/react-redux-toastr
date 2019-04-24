@@ -188,12 +188,12 @@ export default class ToastrConfirm extends React.Component {
           {options.component && <options.component/>}
           <div className="rrt-buttons-holder">
             {!this.containsOkButton(options.buttons) &&
-              <Button tabIndex="0" ref={ref => this.closeButton = ref} className="rrt-ok-btn toastr-control" onClick={() => this.handleConfirmClick()}>
+              <Button tabIndex="0" innerRef={ref => this.closeButton = ref} className="rrt-ok-btn toastr-control" onClick={() => this.handleConfirmClick()}>
                 {this.okText}
               </Button>
             }
             {!this.disableCancel && !this.containsCancelButton(options.buttons) &&
-              <Button  tabIndex="0" ref={ref => this.closeButton = ref} className="rrt-cancel-btn toastr-control" onClick={this.handleCancelClick.bind(this)}>
+              <Button tabIndex="0" innerRef={ref => this.closeButton = ref} className="rrt-cancel-btn toastr-control" onClick={this.handleCancelClick.bind(this)}>
                 {this.cancelText}
               </Button>
             }
