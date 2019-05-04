@@ -161,7 +161,7 @@ const toastrOptions = {
   onHideComplete: () => console.log('HIDE: animation is done'),
   onCloseButtonClick: () => console.log('Close button was clicked'),
   onToastrClick: () => console.log('Toastr was clicked'),
-  showCloseButton: false, // true by default
+  showCloseButton: true, // false by default
   closeOnToastrClick: true, // false by default, this will close the toastr when user clicks on it
   component: ( // this option will give you a func 'remove' as props
     <MyCustomComponent myProp="myValue">
