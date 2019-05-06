@@ -1,3 +1,7 @@
+# v7.4.10
+Allow latest react-redux as peer dependency
+[#230]
+
 # v7.4.9
 Fixies [#220]
 
