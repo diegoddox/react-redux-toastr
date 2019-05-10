@@ -173,6 +173,8 @@ export default class ToastrConfirm extends React.Component {
       options,
       message
     } = this.props.confirm;
+    const wrapperProps = {};
+    options.id && (wrapperProps.id = options.id);
 
     return (
       <div
@@ -182,6 +184,7 @@ export default class ToastrConfirm extends React.Component {
         onKeyDown={this.handleOnKeyDown}
         onKeyUp={this.handleOnKeyUp}
         role="alert"
+        {...wrapperProps}
       >
         <div className="rrt-confirm animated" ref={ref => this.confirmElement = ref} role="alertdialog" aria-describedby={`dialogDesc-${this.id}`}>
           {message && <div className="rrt-message" id={`dialogDesc-${this.id}`}>{message}</div>}
