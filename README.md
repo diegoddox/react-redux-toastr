@@ -229,6 +229,18 @@ const toastrConfirmOptions = {
 toastr.confirm('Are you sure about that!', toastrConfirmOptions);
 ```
 
+You can add a manually specified CSS ID selector to the confirmation wrapper element by:
+
+- Including an `id` prop in the `toasterConfirmOptions` object:
+
+```javascript
+const toastrConfirmOptions = {
+  ...
+  id: 'my-custom-id'
+};
+toastr.confirm('Are you sure about that!', toastrConfirmOptions);
+```
+
 You can change the `ok` and `cancel` texts by:
 
 - Passing `confirmOptions` to the `ReduxToastr` component:
