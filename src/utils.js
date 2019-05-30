@@ -66,7 +66,13 @@ export function mapToToastrMessage(type, array) {
   obj.type = type;
   obj.position = config.position;
 
-  obj.options = array.filter(item => typeof item == 'object')[0] || {};
+  // use 3rd parameter as the options parameter if it was provided, otherwise
+  // use 2nd parameter if it is a non-null object
+  obj.options = (array.length === 3 
+    ? array[2] 
+    : array.length === 2 && array[1] != null && typeof array[1] === 'object'
+      ? array[1]
+      : null) || {};
 
   if (obj.options.hasOwnProperty('position')) {
     obj.position = obj.options.position;
