@@ -30,6 +30,10 @@ export default createReducer(initialState, {
       ...toastr
     };
 
+    if (!newToastr.a11yId && toastr && toastr.hasOwnProperty('id') && !toastr.hasOwnProperty('a11yId')) {
+      newToastr.a11yId = toastr.id;
+    }
+
     let newState = {};
     if (!config.newestOnTop) {
       newState = {
