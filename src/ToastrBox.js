@@ -219,10 +219,14 @@ export default class ToastrBox extends React.Component {
     } = this.props.item;
 
     const ariaAttributes = {};
-    if (title)
+
+    if (title) {
       ariaAttributes['aria-labelledby'] = `dialogTitle-${this.id}`;
-    if (message)
+    }
+
+    if (message) {
       ariaAttributes['aria-describedby'] = `dialogDesc-${this.id}`;
+    }
 
     return (
       <div>
