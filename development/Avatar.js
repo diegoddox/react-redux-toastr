@@ -11,6 +11,6 @@ const styles = {
 
 export default () => (
   <div className="toastr-avatar" style={styles}>
-    <img src="./assets/jesus.jpg" style={{maxWidth: '105%'}}/>
+    <img src="./assets/jesus.jpg" alt="avatar" style={{maxWidth: '105%'}}/>
   </div>
 );
