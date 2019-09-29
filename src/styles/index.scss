@@ -153,6 +153,7 @@ body.toastr-confirm-active {
       opacity: 0.5;
       cursor: pointer;
       font-family: "Helvetica Neue", Helvetica, Arial sans-serif;
+      color: #000;
 
       &:hover {
         opacity: 1;
@@ -160,6 +161,14 @@ body.toastr-confirm-active {
 
       &:focus {
         outline: none;
+      }
+
+      span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
 

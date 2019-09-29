@@ -92,6 +92,13 @@ export default class ToastrBox extends React.Component {
     }, 50);
   }
 
+  get isToastrClickable() {
+    const {onToastrClick, closeOnToastrClick} = this.props.item.options;
+    const hasOnToastrClick = !!onToastrClick;
+
+    return hasOnToastrClick || closeOnToastrClick;
+  }
+
   handlePressEnterOrSpaceKeyToastr = (e) => {
     if (e.key === ' ' || e.key === 'enter') {
       this.handleClickToastr(e);
@@ -196,17 +203,24 @@ export default class ToastrBox extends React.Component {
   }
 
   renderCloseButton() {
+    let closeButtonAttributes = {
+      tabIndex: 0,
+      role: 'button',
+      onKeyPress: this.handlePressEnterOrSpaceKeyCloseButton
+    };
+    if (this.isToastrClickable) {
+      closeButtonAttributes = {};
+    }
     return (
-      <button
-        tabIndex="0"
-        type="button"
+      <div
         className="close-toastr toastr-control"
         aria-label="toast"
         onClick={this.handleClickCloseButton}
         ref={ref => this.closeButton = ref}
+        {...closeButtonAttributes}
       >
-        &#x2715;
-      </button>
+        <span>&#x2715;</span>
+      </div>
     );
   }
 
@@ -352,12 +366,8 @@ export default class ToastrBox extends React.Component {
       type
     } = this.props.item;
 
-    const {onToastrClick, closeOnToastrClick} = options;
-    const hasOnToastrClick = !!onToastrClick;
-    const doesCloseOnToastrClick = closeOnToastrClick;
-
     let toastrClickAttributes = {};
-    if (hasOnToastrClick || doesCloseOnToastrClick) {
+    if (this.isToastrClickable) {
       toastrClickAttributes.role = 'button';
       toastrClickAttributes.tabIndex = 0;
       toastrClickAttributes.onClick = this.handleClickToastr;

@@ -1,3 +1,6 @@
+# v7.5.2
+[#245] Fix W3C validation errors
+
 # v7.4.10
 Allow latest react-redux as peer dependency
 [#230]
