@@ -34,6 +34,7 @@ export class ReduxToastr extends React.Component {
     transitionOut: TRANSITIONS.out[0],
     preventDuplicates: false,
     closeOnToastrClick: false,
+    getState: (state) => state.toastr,
     confirmOptions: {
       okText: 'ok',
       cancelText: 'cancel'
@@ -155,8 +156,8 @@ export class ReduxToastr extends React.Component {
 }
 
 export default connect(
-  state => ({
-    toastr: state.toastr ? state.toastr : state.get('toastr')
+  (state, ownProps) => ({
+    toastr: ownProps.getState(state),
   }),
   actions
 )(ReduxToastr);
