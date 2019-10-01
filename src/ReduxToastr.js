@@ -155,8 +155,12 @@ export class ReduxToastr extends React.Component {
 }
 
 export default connect(
-  state => ({
-    toastr: state.toastr ? state.toastr : state.get('toastr')
+  (state, ownProps) => ({
+    toastr: state.toastr
+      ? state.toastr
+      : typeof ownProps.getState === 'function'
+        ? ownProps.getState(state)
+        : state.get('toastr')
   }),
   actions
 )(ReduxToastr);
