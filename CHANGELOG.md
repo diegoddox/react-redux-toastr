@@ -1,3 +1,12 @@
+# v7.6.0
+Now you can define the toastr state path via a function
+```
+<ReduxToastr
+    {...anotherProps}
+    getState={(state) => state.toastr} // This is the default
+/>
+```
+
 # v7.5.2
 [#245] Fix W3C validation errors
 
