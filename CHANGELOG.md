@@ -1,3 +1,6 @@
+# v7.6.1
+Fix `getState` is not a function
+
 # v7.6.0
 Now you can define the toastr state path via a function
 ```
