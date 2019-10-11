@@ -62,7 +62,7 @@ body.toastr-confirm-active {
     color: #333;
     opacity: .94;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-    
+
     &:hover:not(.rrt-message) {
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
       opacity: 1;
@@ -121,14 +121,14 @@ body.toastr-confirm-active {
 
     .rrt-middle-container {
       width: 65%;
-      margin-left: 80px; 
+      margin-left: 80px;
       position: relative;
       float: left;
       font-family: Arial, Helvetica, sans-serif, sans-serif;
       font-size: 1em;
       text-align: left;
       padding: 10px 5px;
-      
+
       .rrt-title {
         font-size: 1.1em;
         font-weight: bold;
@@ -220,7 +220,7 @@ body.toastr-confirm-active {
     &.rrt-message {
       opacity: 1;
       border: 1px solid #dbdbdb;
-      
+
       .rrt-title {
         width: 90%;
         height: 50px;

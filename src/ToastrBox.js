@@ -322,12 +322,12 @@ export default class ToastrBox extends React.Component {
   _removeToastr() {
     if (!this.isHiding) {
       this._setIsHiding(true);
-      this._setTransition(true);
+      this._setTransition(true, false);
       onCSSTransitionEnd(this.toastrBoxElement, this._onAnimationComplete);
     }
   }
 
-  _setTransition(hide) {
+  _setTransition(hide, autoRemove = true) {
     const animationType = hide ? this.transitionOut : this.transitionIn;
 
     const onEndListener = (e) => {
@@ -337,7 +337,9 @@ export default class ToastrBox extends React.Component {
     };
 
     if (this.toastrBoxElement) {
-      onCSSTransitionEnd(this.toastrBoxElement, onEndListener);
+      if (autoRemove) {
+        onCSSTransitionEnd(this.toastrBoxElement, onEndListener);
+      }
       this.toastrBoxElement.classList.add(animationType);
     }
   }
