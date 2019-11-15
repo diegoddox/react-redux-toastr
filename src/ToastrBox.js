@@ -100,13 +100,13 @@ export default class ToastrBox extends React.Component {
   }
 
   handlePressEnterOrSpaceKeyToastr = (e) => {
-    if (e.key === ' ' || e.key === 'enter') {
+    if (e.key === ' ' || e.key === 'Enter') {
       this.handleClickToastr(e);
     }
   };
 
   handlePressEnterOrSpaceKeyCloseButton = (e) => {
-    if (e.key === ' ' || e.key === 'enter') {
+    if (e.key === ' ' || e.key === 'Enter') {
       this.handleClickCloseButton(e);
     }
   }
