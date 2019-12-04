@@ -1,3 +1,9 @@
+# v7.6.4
+Fixes: [#238]
+
+`disableCloseButtonFocus` can be passed as a options in the toast methods in
+order to prevent the auto focus.
+
 # v7.6.1
 Fix `getState` is not a function
 

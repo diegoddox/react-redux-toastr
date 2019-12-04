@@ -74,7 +74,8 @@ export default class ToastrBox extends React.Component {
     this._setTransition();
     onCSSTransitionEnd(this.toastrBoxElement, this._onAnimationComplete);
     this.props.addToMemory(item.id);
-    if (this.closeButton !== undefined) {
+
+    if (this.closeButton !== undefined && !item.options.disableCloseButtonFocus) {
       this.closeButton.focus();
     }
   }
