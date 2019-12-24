@@ -87,8 +87,9 @@ export default class ToastrBox extends React.Component {
     // when toast unloads the toast close button automatically focuses on the next toast control (if any)
     // need to add a micro delay to allow the DOM to recycle
     setTimeout(function() {
-      if (document.getElementsByClassName('toastr-control').length > 0) {
-        document.getElementsByClassName('toastr-control')[0].focus();
+      const toastrControls = document.querySelectorAll('.toastr-control:not(.disable-auto-focus)');
+      if (toastrControls.length) {
+        toastrControls[0].focus();
       }
     }, 50);
   }
@@ -214,7 +215,9 @@ export default class ToastrBox extends React.Component {
     }
     return (
       <div
-        className="close-toastr toastr-control"
+        className={classnames('close-toastr', 'toastr-control', {
+          'disable-auto-focus': this.props.item.options.disableCloseButtonFocus
+        })}
         aria-label="toast"
         onClick={this.handleClickCloseButton}
         ref={ref => this.closeButton = ref}
