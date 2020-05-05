@@ -329,6 +329,19 @@ const toastrConfirmOptions = {
 
 toastr.confirm(null, toastrConfirmOptions); // pass null for message
 ```
+You can allow user to close confirm dialog by clicking in empty space
+
+- Passing `closeOnShadowClick` in the `toasterConfirmOptions` object:
+
+```javascript
+const toastrConfirmOptions = {
+  ...
+  closeOnShadowClick: true
+};
+
+toastr.confirm('You have timed out! Please log back in.', toastrConfirmOptions);
+```
+
 
 ### Avatar: in case you wanna use the same avatar as in the example
 [Avatar](https://github.com/diegoddox/react-redux-toastr/blob/master/development/Avatar.js)
@@ -340,7 +353,7 @@ cd react-redux-toastr
 npm install
 npm start
 ```
-open your browser at `http://localhost:3000`
+open your browser at `http://localhost:4001`
 
 ## License
 
