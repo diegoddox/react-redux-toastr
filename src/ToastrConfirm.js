@@ -29,7 +29,8 @@ export default class ToastrConfirm extends React.Component {
       cancelText,
       transitionIn,
       transitionOut,
-      disableCancel
+      disableCancel,
+      closeOnShadowClick
     } = confirm.options;
 
     this.okText = okText || confirmOptions.okText;
@@ -37,7 +38,8 @@ export default class ToastrConfirm extends React.Component {
     this.transitionIn = transitionIn || confirmOptions.transitionIn || props.transitionIn;
     this.transitionOut = transitionOut || confirmOptions.transitionOut || props.transitionOut;
     this.disableCancel = disableCancel || confirmOptions.disableCancel;
-    _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown', this);
+    this.closeOnShadowClick = closeOnShadowClick || confirmOptions.closeOnShadowClick;
+    _bind('setTransition removeConfirm handleOnKeyUp handleOnKeyDown handleCloseOnShadowClick', this);
     this.isKeyDown = false;
     // an identifier to facilitate aria labelling for a11y for multiple instances of the component family in the DOM
     this.id = Math.floor(Math.random() * 9999);
@@ -73,6 +75,12 @@ export default class ToastrConfirm extends React.Component {
       e.preventDefault();
     }
     this.isKeyDown = true;
+  }
+
+  handleCloseOnShadowClick(e){
+    if(this.closeOnShadowClick){
+      this.handleCancelClick();
+    }
   }
 
   handleButtonClick(callback) {
@@ -213,7 +221,7 @@ export default class ToastrConfirm extends React.Component {
             })}
           </div>
         </div>
-        <div className="shadow"></div>
+        <div className="shadow" onClick={this.handleCloseOnShadowClick.bind(this)}></div>
       </div>
     );
   }
