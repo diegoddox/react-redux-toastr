@@ -353,7 +353,7 @@ cd react-redux-toastr
 npm install
 npm start
 ```
-open your browser at `http://localhost:4001`
+open your browser at `http://localhost:3000`
 
 ## License
 
