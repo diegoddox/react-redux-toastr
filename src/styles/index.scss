@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import './variables.scss';
 @import './animation.scss';
 @import './confirm.scss';
@@ -36,7 +38,8 @@ body.toastr-confirm-active {
 
   .top-center, .bottom-center {
     left: 50%;
-    margin-left: -($toastr-width / 2);
+    $marginleft: math.div($toastr-width , 2);
+    margin-left: -$marginleft;
   }
 
   @media (max-width: 320px) {
@@ -45,8 +48,9 @@ body.toastr-confirm-active {
     }
 
     .top-center, .bottom-center {
-      $with: $toastr-width - 30;
-      margin-left: -($with / 2);
+      $width: $toastr-width - 30;
+      $marginleft: math.div($width, 2);
+      margin-left: -$marginleft;
     }
   }
 
