@@ -1,4 +1,4 @@
-# v7.6.4
+# v7.6.6
 Fixes: [#269]
 Thanks to @uxtx
 
