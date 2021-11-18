@@ -1,4 +1,8 @@
 # v7.6.4
+Fixes: [#269]
+Thanks to @uxtx
+
+# v7.6.4
 Fixes: [#238]
 
 `disableCloseButtonFocus` can be passed as a options in the toast methods in
