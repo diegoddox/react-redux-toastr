@@ -142,6 +142,10 @@ export default class ToastrBox extends React.Component {
   };
 
   mouseEnter = () => {
+    const {removeOnHover} = this.props.item.options;
+
+    if (!removeOnHover && this.intervalId) return;
+
     clearTimeout(this.intervalId);
 
     this._setIntervalId(null);
