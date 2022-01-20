@@ -1,4 +1,8 @@
 # v7.6.6
+Fixes: [#262]
+Thanks to @IgorGorbov
+
+# v7.6.6
 Fixes: [#269]
 Thanks to @uxtx
 
