@@ -111,7 +111,7 @@ export default class ToastrBox extends React.Component {
     if (e.key === ' ' || e.key === 'Enter') {
       this.handleClickCloseButton(e);
     }
-  }
+  };
 
   handleClickToastr = () => {
     let {onToastrClick, closeOnToastrClick} = this.props.item.options;
