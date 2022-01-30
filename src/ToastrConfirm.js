@@ -77,8 +77,8 @@ export default class ToastrConfirm extends React.Component {
     this.isKeyDown = true;
   }
 
-  handleCloseOnShadowClick(e){
-    if(this.closeOnShadowClick){
+  handleCloseOnShadowClick(_e) {
+    if (this.closeOnShadowClick) {
       this.handleCancelClick();
     }
   }
