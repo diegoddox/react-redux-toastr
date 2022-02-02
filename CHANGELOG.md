@@ -1,4 +1,8 @@
-# v7.6.6
+# v7.6.8
+Updated dependencies react@17
+Thanks to @Szabadember
+
+# v7.6.7
 Fixes: [#262]
 Thanks to @IgorGorbov
 
