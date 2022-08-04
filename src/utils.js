@@ -30,10 +30,7 @@ function createNewEvent(eventName) {
 }
 
 function isString(obj) {
-  if (typeof obj == 'string') {
-    return true;
-  }
-  return false;
+  return (typeof obj == 'string');
 }
 
 export function toastrWarn(message) {
@@ -51,10 +48,7 @@ export function createReducer(initialState, fnMap) {
 }
 
 export function isBrowser() {
-  if (typeof window !== 'undefined') {
-    return true;
-  }
-  return false;
+  return (typeof window !== 'undefined');
 }
 
 export function keyCode(e) {
