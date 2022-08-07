@@ -1,3 +1,7 @@
+# v7.6.9
+Minimal improvements in functions isString and isBrowser
+Thanks to @cyber2017
+
 # v7.6.8
 Updated dependencies react@17
 Thanks to @Szabadember
