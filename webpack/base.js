@@ -13,10 +13,13 @@ module.exports = {
     filename: '[name].[hash].js',
     publicPath: ''
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.(jsx?)$/,
         exclude: [/node_modules/],
         use: ['react-hot-loader/webpack', 'babel-loader']
       }, {
