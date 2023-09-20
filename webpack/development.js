@@ -1,6 +1,7 @@
 const path = require('path');
 const config = require('../config');
 const baseConfig = require('./base');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 baseConfig.entry.app = [
   `webpack-dev-server/client?http://localhost:${config.server_port}`,
@@ -29,5 +30,7 @@ baseConfig.devServer = {
   },
   historyApiFallback: true
 };
+
+baseConfig.plugins.push(new ReactRefreshWebpackPlugin());
 
 module.exports = baseConfig;

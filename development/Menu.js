@@ -32,8 +32,8 @@ export default class Menu extends React.Component {
             'In the beginning was the word',
             'and the Word was with God, and the Word was God...',
             {
-              timeOut: 10000,
-              position: 'top-left',
+              timeOut: 2000,
+              position: 'top-right',
               progressBar: true,
               width: '300px'
             }
