@@ -1,3 +1,7 @@
+# v8.0.0
+Add support for redux 5 and react-redux 9
+Thanks to @printfn
+
 # v7.6.9
 Minimal improvements in functions isString and isBrowser
 Thanks to @cyber2017
