@@ -6,7 +6,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 baseConfig.entry.app = [
   `webpack-dev-server/client?http://localhost:${config.server_port}`,
   'webpack/hot/only-dev-server',
-  `${config.path_base}/${config.dir_client}/client.js`
+  `${config.path_base}/${config.dir_client}/client.jsx`
 ];
 
 baseConfig.devtool = 'inline-source-map';
