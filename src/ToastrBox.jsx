@@ -59,8 +59,6 @@ export default class ToastrBox extends React.Component {
 
   componentDidMount() {
     const {item} = this.props;
-    if (this.props.inMemory[item.id]) return;
-
     const timeOut = this._getItemTimeOut();
 
     if (timeOut) {
@@ -76,7 +74,6 @@ export default class ToastrBox extends React.Component {
     if (this.toastrBoxElement) {
       this.toastrBoxElement.addEventListener('transitionend', this._onAnimationComplete);
     }
-    this.props.addToMemory(item.id);
 
     if (this.closeButton !== undefined && !item.options.disableCloseButtonFocus) {
       this.closeButton.focus();

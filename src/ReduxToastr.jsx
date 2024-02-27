@@ -41,8 +41,6 @@ export class ReduxToastr extends React.Component {
     }
   };
 
-  toastrFired = {};
-
   toastrPositions = [
     'top-left',
     'top-right',
@@ -72,11 +70,6 @@ export class ReduxToastr extends React.Component {
     EE.removeListener('clean/toastr');
     EE.removeListener('removeByType/toastr');
     EE.removeListener('remove/toastr');
-    this.toastrFired = {};
-  }
-
-  _addToMemory(id) {
-    this.toastrFired[id] = true;
   }
 
   _renderToastrForPosition(position) {
@@ -100,8 +93,6 @@ export class ReduxToastr extends React.Component {
           return (
             <div key={item.id}>
               <ToastrBox
-                inMemory={this.toastrFired}
-                addToMemory={() => this._addToMemory(item.id)}
                 item={mergedItem}
                 {...this.props}
               />

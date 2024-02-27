@@ -6,7 +6,7 @@ const config = require('../config');
 module.exports = {
   target: 'web',
   entry: {
-    app: path.join(config.path_base, '/' + config.dir_client + '/client.js')
+    app: path.join(config.path_base, '/' + config.dir_client + '/client.jsx')
   },
   output: {
     path: path.join(config.path_base + '/dist'),

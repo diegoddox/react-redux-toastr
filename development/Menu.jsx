@@ -1,5 +1,5 @@
 import React from 'react';
-import {toastr} from './../src/';
+import {toastr} from '../src';
 import loremIpsum from 'lorem-ipsum';
 import Avatar from './Avatar';
 import messageText from './messageText';
